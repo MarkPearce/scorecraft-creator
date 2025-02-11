@@ -89,10 +89,10 @@ const Concept1 = () => {
                 <defs>
                   <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#ea384c" />
-                    <stop offset="19.99%" stopColor="#ea384c" />
-                    <stop offset="20%" stopColor="#F97316" />
-                    <stop offset="59.99%" stopColor="#F97316" />
-                    <stop offset="60%" stopColor="#22c55e" />
+                    <stop offset="24.99%" stopColor="#ea384c" />
+                    <stop offset="25%" stopColor="#F97316" />
+                    <stop offset="74.99%" stopColor="#F97316" />
+                    <stop offset="75%" stopColor="#22c55e" />
                     <stop offset="100%" stopColor="#22c55e" />
                   </linearGradient>
                 </defs>
