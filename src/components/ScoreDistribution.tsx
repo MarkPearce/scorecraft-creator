@@ -33,14 +33,17 @@ const data = generateData();
 // Mock student score - this would typically come from props or an API
 const studentScore = 238;
 
-const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: any }) => (
-  <foreignObject x={x - 50} y={y - 100} width={100} height={80}>
-    <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
-      <p className="text-sm text-gray-600">Estimated Score</p>
-      <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
-    </div>
-  </foreignObject>
-);
+const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: any }) => {
+  console.log('Rendering CustomScoreLabel:', { x, y, payload }); // Debug log
+  return (
+    <foreignObject x={x - 50} y={y - 100} width={100} height={80}>
+      <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
+        <p className="text-sm text-gray-600">Estimated Score</p>
+        <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
+      </div>
+    </foreignObject>
+  );
+};
 
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
@@ -48,9 +51,12 @@ const ScoreDistribution = () => {
   // Generate ticks every 20 units
   const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + (i * 20));
 
-  // Find the count value for the student score
-  const scorePoint = data.find(point => point.score === Math.round(studentScore / 20) * 20);
-  const yValue = scorePoint ? scorePoint.count : 0;
+  // Find the closest data point for interpolation
+  const closestPoint = data.reduce((prev, curr) => {
+    return Math.abs(curr.score - studentScore) < Math.abs(prev.score - studentScore) ? curr : prev;
+  });
+  
+  console.log('Closest point:', closestPoint); // Debug log
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
@@ -102,8 +108,8 @@ const ScoreDistribution = () => {
           />
           <ReferenceDot
             x={studentScore}
-            y={yValue}
-            r={0}
+            y={closestPoint.count}
+            r={4}
             shape={CustomScoreLabel}
           />
         </AreaChart>
