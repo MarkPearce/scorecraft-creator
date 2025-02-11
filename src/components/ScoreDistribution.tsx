@@ -43,9 +43,9 @@ const ScoreDistribution = () => {
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
-      <div className="relative h-[400px] w-full">
+      <div className="relative h-[500px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 50, right: 30, left: 40, bottom: 30 }}>
+          <AreaChart data={data} margin={{ top: 150, right: 30, left: 40, bottom: 30 }}>
             <defs>
               <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
