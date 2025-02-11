@@ -69,46 +69,6 @@ const Concept2 = () => {
               </div>
             </div>
 
-            {/* Range Controls */}
-            <div className="w-full max-w-md space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-1">
-                  <label htmlFor="min-range" className="block text-sm font-medium text-gray-700 mb-1">
-                    Min Range
-                  </label>
-                  <Input
-                    id="min-range"
-                    type="number"
-                    value={range.min}
-                    onChange={(e) => handleRangeChange('min', e.target.value)}
-                    className="w-full"
-                  />
-                </div>
-                <div className="flex-1">
-                  <label htmlFor="max-range" className="block text-sm font-medium text-gray-700 mb-1">
-                    Max Range
-                  </label>
-                  <Input
-                    id="max-range"
-                    type="number"
-                    value={range.max}
-                    onChange={(e) => handleRangeChange('max', e.target.value)}
-                    className="w-full"
-                  />
-                </div>
-              </div>
-              <div className="pt-2">
-                <Slider
-                  value={[score]}
-                  min={0}
-                  max={300}
-                  step={1}
-                  onValueChange={(value) => setScore(value[0])}
-                  className="w-full"
-                />
-              </div>
-            </div>
-
             {/* Enhanced Gauge */}
             <div className="relative w-full max-w-md aspect-[2/1]">
               <svg viewBox="0 0 512 300" className="w-full h-full">
@@ -167,6 +127,49 @@ const Concept2 = () => {
               >
                 Take another mini-assessment
               </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Prototype Controls */}
+        <div className="mt-8 bg-gray-100 p-6 rounded-lg shadow-sm">
+          <h2 className="text-lg font-semibold text-gray-900 mb-6">Prototype Controls</h2>
+          <div className="w-full max-w-md space-y-6 mx-auto">
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <label htmlFor="min-range" className="block text-sm font-medium text-gray-700 mb-1">
+                  Min Range
+                </label>
+                <Input
+                  id="min-range"
+                  type="number"
+                  value={range.min}
+                  onChange={(e) => handleRangeChange('min', e.target.value)}
+                  className="w-full"
+                />
+              </div>
+              <div className="flex-1">
+                <label htmlFor="max-range" className="block text-sm font-medium text-gray-700 mb-1">
+                  Max Range
+                </label>
+                <Input
+                  id="max-range"
+                  type="number"
+                  value={range.max}
+                  onChange={(e) => handleRangeChange('max', e.target.value)}
+                  className="w-full"
+                />
+              </div>
+            </div>
+            <div className="pt-2">
+              <Slider
+                value={[score]}
+                min={0}
+                max={300}
+                step={1}
+                onValueChange={(value) => setScore(value[0])}
+                className="w-full"
+              />
             </div>
           </div>
         </div>
