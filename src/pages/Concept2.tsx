@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -12,33 +11,42 @@ const Concept2 = () => {
   const [range, setRange] = useState({ min: 241, max: 257 });
   const [targetScore, setTargetScore] = useState(230);
 
+  // Get score level name based on score
+  const getScoreLevelName = (score: number) => {
+    if (score < 100) return "Critical";
+    if (score < 150) return "Needs Work";
+    if (score < 200) return "On Track";
+    if (score < 250) return "Strong";
+    return "Excellent";
+  };
+
   // Get color based on score
   const getScoreColor = (score: number) => {
-    if (score < 100) return "text-[#ED1B24]"; // Red
-    if (score < 150) return "text-[#F46523]"; // Orange
-    if (score < 200) return "text-[#FFDD19]"; // Yellow
-    if (score < 250) return "text-[#8DC641]"; // Light Green
-    return "text-[#019444]"; // Dark Green
+    if (score < 100) return "text-[#ED1B24]"; // Red - Critical
+    if (score < 150) return "text-[#F46523]"; // Orange - Needs Work
+    if (score < 200) return "text-[#FFDD19]"; // Yellow - On Track
+    if (score < 250) return "text-[#8DC641]"; // Light Green - Strong
+    return "text-[#019444]"; // Dark Green - Excellent
   };
 
   // Get background color based on score
   const getBackgroundColor = (score: number) => {
-    if (score < 100) return "bg-[#ED1B24]/15"; // Red
-    if (score < 150) return "bg-[#F46523]/15"; // Orange
-    if (score < 200) return "bg-[#FFDD19]/15"; // Yellow
-    if (score < 250) return "bg-[#8DC641]/15"; // Light Green
-    return "bg-[#019444]/15"; // Dark Green
+    if (score < 100) return "bg-[#ED1B24]/15"; // Red - Critical
+    if (score < 150) return "bg-[#F46523]/15"; // Orange - Needs Work
+    if (score < 200) return "bg-[#FFDD19]/15"; // Yellow - On Track
+    if (score < 250) return "bg-[#8DC641]/15"; // Light Green - Strong
+    return "bg-[#019444]/15"; // Dark Green - Excellent
   };
 
   // Calculate rotation based on score (assuming 0-300 range)
   const calculateRotation = (score: number) => {
     // Define the angle ranges for each segment
     const segments = [
-      { max: 100, startAngle: -90, endAngle: -54 },   // Red
-      { max: 150, startAngle: -54, endAngle: -18 },   // Orange
-      { max: 200, startAngle: -18, endAngle: 18 },    // Yellow
-      { max: 250, startAngle: 18, endAngle: 54 },     // Light Green
-      { max: 300, startAngle: 54, endAngle: 90 }      // Dark Green
+      { max: 100, startAngle: -90, endAngle: -54 },   // Red - Critical
+      { max: 150, startAngle: -54, endAngle: -18 },   // Orange - Needs Work
+      { max: 200, startAngle: -18, endAngle: 18 },    // Yellow - On Track
+      { max: 250, startAngle: 18, endAngle: 54 },     // Light Green - Strong
+      { max: 300, startAngle: 54, endAngle: 90 }      // Dark Green - Excellent
     ];
 
     // Find the current segment
@@ -105,6 +113,9 @@ const Concept2 = () => {
                   <div className={`text-6xl font-bold ${getScoreColor(score)}`}>{score}</div>
                   <div className="text-gray-600 mt-2">
                     RANGE {range.min}-{range.max}
+                  </div>
+                  <div className={`text-sm font-medium ${getScoreColor(score)} mt-1`}>
+                    {getScoreLevelName(score)}
                   </div>
                 </div>
               </div>
