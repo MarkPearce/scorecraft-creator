@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ScoreDistribution from "@/components/ScoreDistribution";
+import ScoreBox from "@/components/ScoreBox";
 
 const PeerGroup = () => {
   const navigate = useNavigate();
+  const studentScore = 250; // Using the same score as in ScoreDistribution
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -26,7 +28,12 @@ const PeerGroup = () => {
           </p>
         </div>
         
-        <ScoreDistribution />
+        <div className="relative">
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+            <ScoreBox score={studentScore} position={0.5} />
+          </div>
+          <ScoreDistribution />
+        </div>
       </div>
     </div>
   );
