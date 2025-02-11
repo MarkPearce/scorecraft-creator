@@ -64,6 +64,7 @@ const ScoreDistribution = () => {
               label={{ value: 'Score', position: 'bottom', offset: 20 }}
               ticks={xAxisTicks}
               interval={0}
+              tick={{ fontSize: 11 }}
             />
             <YAxis 
               domain={[0, 50]}
