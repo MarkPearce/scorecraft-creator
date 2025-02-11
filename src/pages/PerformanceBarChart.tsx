@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -96,26 +97,10 @@ const PerformanceBarChart = () => {
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Performance Score</h1>
           </div>
 
-          <div className="flex flex-col items-center justify-center space-y-8">
-            <div className="flex items-start justify-center gap-12 w-full">
-              <div className="flex-1 flex justify-end items-center">
-                <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md`}>
-                  <div className="flex items-center gap-6">
-                    {getFaceIcon(score)}
-                    <div className="text-center">
-                      <div className={`text-6xl font-bold ${getTextColor(score)}`}>{score}</div>
-                      <div className="text-gray-600 mt-2">
-                        RANGE {range.min}-{range.max}
-                      </div>
-                      <div className={`text-sm font-medium ${getTextColor(score)} mt-1`}>
-                        {getScoreLevelName(score)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex-1 flex items-center">
+          <div className="flex flex-col space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              {/* Bar Graph - Left Column */}
+              <div className="flex justify-center">
                 <div className="relative h-[300px] w-[60px]">
                   {/* Score segments */}
                   {segments.map((segment, index) => (
@@ -163,9 +148,28 @@ const PerformanceBarChart = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Score Readout - Right Column */}
+              <div className="flex justify-center">
+                <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md`}>
+                  <div className="flex items-center gap-6">
+                    {getFaceIcon(score)}
+                    <div className="text-center">
+                      <div className={`text-6xl font-bold ${getTextColor(score)}`}>{score}</div>
+                      <div className="text-gray-600 mt-2">
+                        RANGE {range.min}-{range.max}
+                      </div>
+                      <div className={`text-sm font-medium ${getTextColor(score)} mt-1`}>
+                        {getScoreLevelName(score)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-col space-y-4 w-full max-w-md mt-8">
+            {/* Buttons - Bottom */}
+            <div className="flex flex-col space-y-4 w-full max-w-md mx-auto">
               <Button 
                 onClick={() => navigate('/report')}
                 variant="outline"
