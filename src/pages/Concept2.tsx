@@ -11,6 +11,15 @@ const Concept2 = () => {
   const [score, setScore] = useState(249);
   const [range, setRange] = useState({ min: 241, max: 257 });
 
+  // Get color based on score
+  const getScoreColor = (score: number) => {
+    if (score < 100) return "text-[#ED1B24]"; // Red
+    if (score < 150) return "text-[#F46523]"; // Orange
+    if (score < 200) return "text-[#FFDD19]"; // Yellow
+    if (score < 250) return "text-[#8DC641]"; // Light Green
+    return "text-[#019444]"; // Dark Green
+  };
+
   // Calculate rotation based on score (assuming 0-300 range)
   const calculateRotation = (score: number) => {
     const minAngle = -90; // Start angle
@@ -21,11 +30,12 @@ const Concept2 = () => {
 
   // Get face icon based on score
   const getFaceIcon = (score: number) => {
-    if (score < 100) return <Frown className="w-16 h-16 text-emerald-700" />;
-    if (score < 150) return <Meh className="w-16 h-16 text-emerald-700" />;
-    if (score < 200) return <Smile className="w-16 h-16 text-emerald-700" />;
-    if (score <= 300) return <Laugh className="w-16 h-16 text-emerald-700" />;
-    return <AlertTriangle className="w-16 h-16 text-emerald-700" />;
+    const colorClass = getScoreColor(score);
+    if (score < 100) return <Frown className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 150) return <Meh className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 200) return <Smile className={`w-16 h-16 ${colorClass}`} />;
+    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+    return <AlertTriangle className={`w-16 h-16 ${colorClass}`} />;
   };
 
   const handleRangeChange = (type: 'min' | 'max', value: string) => {
@@ -61,7 +71,7 @@ const Concept2 = () => {
               <div className="flex items-center justify-center gap-6">
                 {getFaceIcon(score)}
                 <div className="text-center">
-                  <div className="text-6xl font-bold text-emerald-700">{score}</div>
+                  <div className={`text-6xl font-bold ${getScoreColor(score)}`}>{score}</div>
                   <div className="text-gray-600 mt-2">
                     RANGE {range.min}-{range.max}
                   </div>
