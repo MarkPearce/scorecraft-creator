@@ -40,12 +40,12 @@ const TopicsList = () => {
               <div className="flex items-center space-x-4">
                 <div className="relative w-12 h-12">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-sm font-medium text-gray-700">{topic.score}%</span>
+                    <span className="text-xs font-medium text-gray-700">{topic.score}%</span>
                   </div>
                   <svg className="w-12 h-12 transform -rotate-90">
                     <circle
                       className="text-red-200"
-                      strokeWidth="2"
+                      strokeWidth="3"
                       stroke="currentColor"
                       fill="transparent"
                       r="20"
@@ -54,7 +54,7 @@ const TopicsList = () => {
                     />
                     <circle
                       className="text-green-500"
-                      strokeWidth="2"
+                      strokeWidth="3"
                       strokeDasharray={100}
                       strokeDashoffset={100 - topic.score}
                       strokeLinecap="round"
