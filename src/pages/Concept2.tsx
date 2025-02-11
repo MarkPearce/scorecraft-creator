@@ -50,7 +50,7 @@ const Concept2 = () => {
               <svg viewBox="0 0 200 160" className="w-full h-full">
                 <defs>
                   {/* Background circle gradient */}
-                  <linearGradient id="gaugeBackground" x1="0%" y1="0%" x2="100%" y1="0%">
+                  <linearGradient id="gaugeBackground" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#f8f9fa"/>
                     <stop offset="100%" stopColor="#e9ecef"/>
                   </linearGradient>
