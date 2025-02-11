@@ -43,7 +43,7 @@ const ScoreDistribution = () => {
             />
             <YAxis 
               label={{ 
-                value: 'Number of Students', 
+                value: 'Peer Group', 
                 angle: -90, 
                 position: 'insideLeft',
                 offset: 0,
@@ -78,7 +78,7 @@ const ScoreDistribution = () => {
             top: '0'
           }}
         >
-          <p className="text-sm text-gray-600">Your Score</p>
+          <p className="text-sm text-gray-600">Estimated Score</p>
           <p className="text-lg font-semibold text-emerald-600">{studentScore}</p>
         </div>
       </div>
