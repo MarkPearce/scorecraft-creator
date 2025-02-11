@@ -3,23 +3,23 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 // Convert the discrete data into more points for a smoother curve
 const data = [
-  { score: 0, count: 2 },
-  { score: 5, count: 3 },
-  { score: 10, count: 5 },
-  { score: 15, count: 12 },
-  { score: 20, count: 15 },
-  { score: 25, count: 20 },
-  { score: 30, count: 25 },
-  { score: 35, count: 35 },
-  { score: 40, count: 30 },
-  { score: 45, count: 25 },
-  { score: 50, count: 20 },
-  { score: 55, count: 15 },
-  { score: 60, count: 10 }
+  { score: 180, count: 2 },
+  { score: 190, count: 3 },
+  { score: 200, count: 5 },
+  { score: 210, count: 12 },
+  { score: 220, count: 15 },
+  { score: 230, count: 20 },
+  { score: 240, count: 25 },
+  { score: 250, count: 35 },
+  { score: 260, count: 30 },
+  { score: 270, count: 25 },
+  { score: 280, count: 20 },
+  { score: 290, count: 15 },
+  { score: 300, count: 10 }
 ];
 
 // Mock student score - this would typically come from props or an API
-const studentScore = 35;
+const studentScore = 250;
 
 const ScoreDistribution = () => {
   return (
@@ -65,7 +65,7 @@ const ScoreDistribution = () => {
         <div 
           className="absolute bg-white/90 border border-emerald-200 rounded-md p-2 shadow-sm"
           style={{
-            left: `${(studentScore / 60) * 100}%`,
+            left: `${((studentScore - 180) / (300 - 180)) * 100}%`,
             transform: 'translateX(-50%)',
             top: '0'
           }}
