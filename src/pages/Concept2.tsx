@@ -84,7 +84,7 @@ const Concept2 = () => {
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Predicted Score</h1>
           </div>
 
-          <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full max-w-md`}>
+          <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full max-w-md mx-auto`}>
             <div className="flex items-center justify-center gap-6">
               {getFaceIcon(score)}
               <div className="text-center">
@@ -99,7 +99,7 @@ const Concept2 = () => {
             </div>
           </div>
 
-          <div className="relative w-full max-w-md aspect-[2/1]">
+          <div className="relative w-full max-w-md mx-auto aspect-[2/1] mt-8">
             <svg viewBox="0 0 512 300" className="w-full h-full">
               <g id="dial">
                 <path className="fill-none" d="M317.7,68.2L256,257.9l161.4-117.2C392.8,107,358.1,81.3,317.7,68.2z"/>
@@ -141,7 +141,9 @@ const Concept2 = () => {
               </g>
             </svg>
           </div>
+        </div>
 
+        <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn mt-4">
           <PrototypeControls 
             range={range}
             targetScore={targetScore}
