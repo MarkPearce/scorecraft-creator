@@ -22,7 +22,7 @@ const ProgressTracker = () => {
 
   const getBarColor = (progress: number) => {
     if (progress >= 75) return 'bg-emerald-500';
-    if (progress >= 50) return 'bg-[#FEF7CD]';
+    if (progress >= 50) return 'bg-[#F97316]'; // Changed to orange for better contrast
     return 'bg-primary';
   };
 
