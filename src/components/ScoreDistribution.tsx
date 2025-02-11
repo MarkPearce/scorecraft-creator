@@ -14,14 +14,16 @@ import { useState } from 'react';
 const generateData = () => {
   const points = [];
   
-  // Add start point
-  points.push({ score: 180, count: 10 });
-  
-  // Add peak point
-  points.push({ score: 240, count: 34 });
-  
-  // Add end point
-  points.push({ score: 300, count: 1 });
+  // Generate points every 20 units
+  for (let score = 180; score <= 300; score += 20) {
+    let count;
+    if (score === 180) count = 10;
+    else if (score === 240) count = 34;
+    else if (score === 300) count = 1;
+    else count = Math.max(1, Math.floor(34 * Math.exp(-Math.pow((score - 240) / 40, 2))));
+    
+    points.push({ score, count });
+  }
   
   return points;
 };
