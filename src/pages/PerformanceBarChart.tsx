@@ -115,7 +115,7 @@ const PerformanceBarChart = () => {
                 </div>
               </div>
 
-              <div className="flex-1 flex items-center justify-end">
+              <div className="flex-1 flex items-center">
                 <div className="relative h-[300px] w-[60px]">
                   {/* Score segments */}
                   {segments.map((segment, index) => (
@@ -138,28 +138,28 @@ const PerformanceBarChart = () => {
 
                   {/* Score indicator */}
                   <div 
-                    className="absolute -right-[200px] transition-all duration-300 flex items-center gap-2"
+                    className="absolute -left-24 transition-all duration-300 flex items-center gap-2"
                     style={{ 
                       top: calculatePosition(score),
                       transform: 'translateY(-50%)'
                     }}
                   >
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[8px] border-r-gray-800" />
-                    <div className="w-6 h-0.5 bg-gray-800" />
                     <span className="whitespace-nowrap text-sm font-medium">Your performance</span>
+                    <div className="w-6 h-0.5 bg-gray-800" />
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-800" />
                   </div>
 
                   {/* Target score indicator */}
                   <div 
-                    className="absolute -right-[200px] transition-all duration-300 flex items-center gap-2 opacity-50"
+                    className="absolute -left-24 transition-all duration-300 flex items-center gap-2 opacity-50"
                     style={{ 
                       top: calculatePosition(targetScore),
                       transform: 'translateY(-50%)'
                     }}
                   >
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[8px] border-r-gray-800" />
-                    <div className="w-6 h-0.5 bg-gray-800" />
                     <span className="whitespace-nowrap text-sm font-medium">Target</span>
+                    <div className="w-6 h-0.5 bg-gray-800" />
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-800" />
                   </div>
                 </div>
               </div>
