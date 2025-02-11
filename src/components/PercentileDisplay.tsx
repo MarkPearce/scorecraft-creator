@@ -6,9 +6,9 @@ interface PercentileDisplayProps {
 }
 
 const getPercentileBackground = (percentile: number) => {
-  if (percentile < 40) return "bg-red-50";
-  if (percentile < 70) return "bg-amber-50";
-  return "bg-green-50";
+  if (percentile < 40) return "bg-amber-50";
+  if (percentile < 70) return "bg-amber-100";
+  return "bg-amber-200";
 };
 
 export const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {

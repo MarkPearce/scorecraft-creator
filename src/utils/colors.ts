@@ -1,6 +1,6 @@
 
 export const getPercentileColor = (percentile: number) => {
-  if (percentile < 40) return "text-red-700";
-  if (percentile < 70) return "text-yellow-600";
-  return "text-green-600";
+  if (percentile < 40) return "text-amber-500";
+  if (percentile < 70) return "text-amber-600";
+  return "text-amber-700";
 };
