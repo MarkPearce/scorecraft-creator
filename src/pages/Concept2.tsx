@@ -49,7 +49,7 @@ const Concept2 = () => {
             <div className="relative w-80 h-60">
               <svg viewBox="0 0 200 160" className="w-full h-full">
                 <defs>
-                  <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <linearGradient id="gaugeGradient" gradientUnits="userSpaceOnUse" x1="40" y1="80" x2="160" y2="80">
                     <stop offset="0%" stopColor="#ed1b24" />
                     <stop offset="25%" stopColor="#f46523" />
                     <stop offset="50%" stopColor="#ffdd19" />
