@@ -69,11 +69,16 @@ const ScoreDistribution = () => {
           </defs>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis 
-            dataKey="score" 
+            dataKey="score"
+            type="number"
+            allowDecimals={false}
+            domain={['dataMin', 'dataMax']}
             label={{ value: 'Score', position: 'bottom', offset: 20 }}
             ticks={xAxisTicks}
             interval={0}
             tick={{ fontSize: 11, dy: 10 }}
+            padding={{ left: 20, right: 20 }}
+            orientation="bottom"
           />
           <YAxis 
             domain={[0, 50]}
