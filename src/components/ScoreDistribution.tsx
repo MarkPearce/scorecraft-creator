@@ -10,22 +10,22 @@ import {
 import { Label } from "@/components/ui/label";
 import { useState } from 'react';
 
-// Convert the discrete data into more points for a smoother curve
-const data = [
-  { score: 180, count: 2 },
-  { score: 190, count: 3 },
-  { score: 200, count: 5 },
-  { score: 210, count: 12 },
-  { score: 220, count: 15 },
-  { score: 230, count: 20 },
-  { score: 240, count: 25 },
-  { score: 250, count: 35 },
-  { score: 260, count: 30 },
-  { score: 270, count: 25 },
-  { score: 280, count: 20 },
-  { score: 290, count: 15 },
-  { score: 300, count: 10 }
-];
+// Generate more data points for a smoother curve
+const generateData = () => {
+  const mean = 250;
+  const stdDev = 30;
+  const points = [];
+  
+  for (let score = 180; score <= 300; score += 2) {
+    const exponent = -Math.pow(score - mean, 2) / (2 * Math.pow(stdDev, 2));
+    const count = Math.round(35 * Math.exp(exponent));
+    points.push({ score, count });
+  }
+  
+  return points;
+};
+
+const data = generateData();
 
 // Mock student score - this would typically come from props or an API
 const studentScore = 250;
@@ -43,7 +43,7 @@ const ScoreDistribution = () => {
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
-      <div className="relative h-[300px] w-full">
+      <div className="relative h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 20, right: 30, left: 40, bottom: 30 }}>
             <defs>
@@ -73,7 +73,7 @@ const ScoreDistribution = () => {
               labelFormatter={(label: number) => `Score: ${label}`}
             />
             <Area 
-              type="monotone" 
+              type="basis" 
               dataKey="count" 
               stroke="#3B82F6" 
               fill="url(#colorCount)"
