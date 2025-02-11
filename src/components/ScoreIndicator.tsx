@@ -15,7 +15,7 @@ const ScoreIndicator = ({ label, value, isTarget = false }: ScoreIndicatorProps)
       <div className="flex items-center gap-2 w-[140px] justify-end">
         <span className={`text-sm font-medium ${textColor}`}>{label}</span>
       </div>
-      <div className={`border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm`} style={{ backgroundColor: "#FFFFFF" }}>
+      <div className={`border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm bg-[#FFFFFF]`}>
         {value}
       </div>
       <div className={`h-0.5 ${baseColor} min-w-[100px]`} />
