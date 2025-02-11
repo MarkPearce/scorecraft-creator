@@ -23,11 +23,6 @@ const ScoreIndicator = ({ label, value, isTarget = false }: ScoreIndicatorProps)
         <div className="h-1.5 bg-white absolute inset-y-[-2px] w-full z-0" />
         <div className={`h-0.5 ${baseColor} relative min-w-[100px] z-10 ${isTarget ? "opacity-70" : ""}`} />
       </div>
-      {/* Add white outline to arrow using layering technique */}
-      <div className="relative -ml-[1px] z-10">
-        <div className="w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[10px] border-l-white absolute -left-[1px] -top-[1px] z-0" />
-        <div className={`w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] relative z-10 ${isTarget ? "border-l-gray-500 opacity-70" : "border-l-gray-800"}`} />
-      </div>
     </div>
   );
 };
