@@ -1,5 +1,5 @@
 
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import {
   Select,
   SelectContent,
@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useState } from 'react';
-import ScoreBox from './ScoreBox';
 
 // Convert the discrete data into more points for a smoother curve
 const data = [
@@ -44,10 +43,9 @@ const ScoreDistribution = () => {
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
-      <div className="relative h-[400px] w-full">
-        <ScoreBox score={studentScore} position={scorePosition} />
+      <div className="relative h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 50, right: 30, left: 40, bottom: 30 }}>
+          <AreaChart data={data} margin={{ top: 20, right: 30, left: 40, bottom: 30 }}>
             <defs>
               <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
@@ -81,8 +79,25 @@ const ScoreDistribution = () => {
               fill="url(#colorCount)"
               strokeWidth={2}
             />
+            <ReferenceLine
+              x={studentScore}
+              stroke="#10B981"
+              strokeWidth={2}
+              strokeDasharray="3 3"
+            />
           </AreaChart>
         </ResponsiveContainer>
+        <div 
+          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center"
+          style={{
+            left: `${scorePosition * 100}%`,
+            transform: 'translate(-50%, -50%)',
+            top: '20px'
+          }}
+        >
+          <p className="text-sm text-gray-600">Estimated Score</p>
+          <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
+        </div>
       </div>
 
       <div className="mt-4 w-[200px] space-y-2">
