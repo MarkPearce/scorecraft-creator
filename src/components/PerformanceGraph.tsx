@@ -49,20 +49,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
         ))}
       </div>
 
-      {/* Score indicators */}
-      <div 
-        className="absolute right-0 transition-all duration-300"
-        style={{ 
-          top: calculatePosition(score),
-          transform: 'translateY(-50%)'
-        }}
-      >
-        <ScoreIndicator 
-          label="Estimated Score"
-          value={score}
-        />
-      </div>
-
+      {/* Target indicator (rendered first, so it appears behind) */}
       <div 
         className="absolute right-0 transition-all duration-300"
         style={{ 
@@ -74,6 +61,20 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
           label="Target Score"
           value={targetScore}
           isTarget
+        />
+      </div>
+
+      {/* Score indicator (rendered last, so it appears in front) */}
+      <div 
+        className="absolute right-0 transition-all duration-300"
+        style={{ 
+          top: calculatePosition(score),
+          transform: 'translateY(-50%)'
+        }}
+      >
+        <ScoreIndicator 
+          label="Estimated Score"
+          value={score}
         />
       </div>
     </div>
