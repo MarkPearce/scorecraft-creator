@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -13,36 +14,37 @@ const Concept2 = () => {
   const [targetScore, setTargetScore] = useState(260);
 
   const getScoreLevelName = (score: number) => {
-    if (score < 200) return "Critical";
-    if (score < 220) return "Needs Work";
-    if (score < 240) return "Developing";
-    if (score < 260) return "Strong";
+    if (score < 100) return "Critical";
+    if (score < 150) return "Needs Work";
+    if (score < 200) return "Developing";
+    if (score < 250) return "Strong";
     return "Excellent";
   };
 
   const getScoreColor = (score: number) => {
-    if (score < 200) return "text-[#ED1B24]";
-    if (score < 220) return "text-[#F46523]";
-    if (score < 240) return "text-[#FFDD19]";
-    if (score < 260) return "text-[#8DC641]";
+    if (score < 100) return "text-[#ED1B24]";
+    if (score < 150) return "text-[#F46523]";
+    if (score < 200) return "text-[#FFDD19]";
+    if (score < 250) return "text-[#8DC641]";
     return "text-[#019444]";
   };
 
   const getBackgroundColor = (score: number) => {
-    if (score < 200) return "bg-[#ED1B24]/15";
-    if (score < 220) return "bg-[#F46523]/15";
-    if (score < 240) return "bg-[#FFDD19]/15";
-    if (score < 260) return "bg-[#8DC641]/15";
+    if (score < 100) return "bg-[#ED1B24]/15";
+    if (score < 150) return "bg-[#F46523]/15";
+    if (score < 200) return "bg-[#FFDD19]/15";
+    if (score < 250) return "bg-[#8DC641]/15";
     return "bg-[#019444]/15";
   };
 
   const getFaceIcon = (score: number) => {
     const colorClass = getScoreColor(score);
-    if (score < 200) return <Angry className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 220) return <Frown className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 240) return <Meh className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 260) return <Smile className={`w-16 h-16 ${colorClass}`} />;
-    return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 100) return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 150) return <Frown className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 200) return <Meh className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 250) return <Smile className={`w-16 h-16 ${colorClass}`} />;
+    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+    return <AlertTriangle className={`w-16 h-16 ${colorClass}`} />;
   };
 
   const calculateRotation = (value: number) => {
