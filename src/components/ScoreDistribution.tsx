@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 import { useState } from 'react';
 
 // Convert the discrete data into more points for a smoother curve
@@ -93,9 +94,10 @@ const ScoreDistribution = () => {
         </div>
       </div>
 
-      <div className="mt-4 w-[200px]">
+      <div className="mt-4 w-[200px] space-y-2">
+        <Label htmlFor="peer-group">Peer Group</Label>
         <Select value={selectedPeerGroup} onValueChange={setSelectedPeerGroup}>
-          <SelectTrigger className="w-full">
+          <SelectTrigger id="peer-group" className="w-full">
             <SelectValue placeholder="Select peer group" />
           </SelectTrigger>
           <SelectContent>
