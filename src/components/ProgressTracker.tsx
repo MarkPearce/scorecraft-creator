@@ -2,18 +2,41 @@
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 
 const ProgressTracker = () => {
-  // Mock data - this would typically come from props or an API
-  const questionsAnswered = 65; // out of 100
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [questionsAnswered, setQuestionsAnswered] = useState(65); // out of 100
+  const { toast } = useToast();
+  
   const isAssessmentUnlocked = questionsAnswered >= 50;
   const isInsightsUnlocked = questionsAnswered >= 75;
+
+  const handleBoostAssessment = () => {
+    setQuestionsAnswered(prev => Math.min(prev + 10, 100));
+    setIsDialogOpen(false);
+    toast({
+      title: "Assessment Completed",
+      description: "You've answered 10 more questions!",
+      duration: 3000,
+    });
+  };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">Questions in last 30 days</h2>
-        <Button variant="outline">Boost Assessment</Button>
+        <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
+          Boost Assessment
+        </Button>
       </div>
       <div className="flex gap-6">
         <div className="w-4 h-[200px] bg-gray-100 rounded-full relative">
@@ -60,6 +83,26 @@ const ProgressTracker = () => {
           </div>
         </div>
       </div>
+
+      {/* Boost Assessment Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Start Assessment Boost</DialogTitle>
+          </DialogHeader>
+          <p className="py-4">
+            You'll be presented with 10 new questions to boost your progress. Ready to begin?
+          </p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleBoostAssessment}>
+              Start Assessment
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
