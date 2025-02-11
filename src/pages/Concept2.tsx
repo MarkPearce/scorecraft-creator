@@ -22,10 +22,27 @@ const Concept2 = () => {
 
   // Calculate rotation based on score (assuming 0-300 range)
   const calculateRotation = (score: number) => {
-    const minAngle = -90; // Start angle
-    const maxAngle = 90; // End angle
-    const percentage = (score / 300) * 100;
-    return minAngle + ((maxAngle - minAngle) * percentage) / 100;
+    // Define the angle ranges for each segment
+    const segments = [
+      { max: 100, startAngle: -90, endAngle: -54 },   // Red
+      { max: 150, startAngle: -54, endAngle: -18 },   // Orange
+      { max: 200, startAngle: -18, endAngle: 18 },    // Yellow
+      { max: 250, startAngle: 18, endAngle: 54 },     // Light Green
+      { max: 300, startAngle: 54, endAngle: 90 }      // Dark Green
+    ];
+
+    // Find the current segment
+    const segment = segments.find(s => score <= s.max) || segments[segments.length - 1];
+    
+    // Calculate percentage within the segment
+    const prevMax = segments[segments.indexOf(segment) - 1]?.max || 0;
+    const segmentRange = segment.max - prevMax;
+    const scoreWithinSegment = score - prevMax;
+    const percentageWithinSegment = scoreWithinSegment / segmentRange;
+
+    // Calculate angle within the segment
+    const angleRange = segment.endAngle - segment.startAngle;
+    return segment.startAngle + (angleRange * percentageWithinSegment);
   };
 
   // Get face icon based on score
