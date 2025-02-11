@@ -53,9 +53,6 @@ const ProgressTracker = () => {
           >
             +10
           </Button>
-          <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
-            Boost Assessment
-          </Button>
         </div>
       </div>
       <div className="flex gap-6">
@@ -102,6 +99,12 @@ const ProgressTracker = () => {
             <span className="text-sm text-gray-600">{questionsAnswered} Questions</span>
           </div>
         </div>
+      </div>
+
+      <div className="mt-6">
+        <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
+          Boost Assessment
+        </Button>
       </div>
 
       {/* Boost Assessment Dialog */}
