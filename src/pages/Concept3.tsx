@@ -44,14 +44,13 @@ const Concept3 = () => {
                   <p>
                     You are currently at the 30th percentile compared to other learners with an exam date at the end of June. Follow the recommendations below to improve your knowledge.
                   </p>
-
-                  <p>
-                    On this percentile rank, learners usually end up scoring between 230-250 on a 3-digit-scale. Keep it up!
-                  </p>
                 </div>
                 
                 <div>
                   <PercentileDisplay percentile={currentPercentile} />
+                  <p className="text-red-600 font-semibold mt-4">
+                    Warning: At the 30th percentile, your current performance level needs significant improvement. Based on historical data, this typically results in scores below passing threshold. Increased study effort is strongly recommended.
+                  </p>
                 </div>
               </div>
             </div>
