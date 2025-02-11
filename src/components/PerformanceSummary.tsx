@@ -2,50 +2,51 @@
 import { BarChart } from 'lucide-react';
 
 interface PerformanceItem {
-  discipline: string;
-  percentage: string;
-  items: string;
+  subject: string;
+  percentageRange: string;
   performance: 'lower' | 'same' | 'higher';
 }
 
 const performanceData: PerformanceItem[] = [
-  { discipline: "Medicine", percentage: "44-52%", items: "15-24%", performance: "higher" },
-  { discipline: "Surgery", percentage: "25-35%", items: "11-15%", performance: "same" },
-  { discipline: "Pediatrics", percentage: "15-22%", items: "7-9%", performance: "lower" },
-  { discipline: "Psychiatry", percentage: "11-15%", items: "4-6%", performance: "higher" },
+  { subject: "Pathology", percentageRange: "45-55%", performance: "same" },
+  { subject: "Physiology", percentageRange: "30-40%", performance: "higher" },
+  { subject: "Gross Anatomy & Embryology", percentageRange: "10-20%", performance: "higher" },
+  { subject: "Microbiology", percentageRange: "10-20%", performance: "lower" },
+  { subject: "Pharmacology", percentageRange: "10-20%", performance: "lower" },
+  { subject: "Behavioral Sciences", percentageRange: "10-15%", performance: "higher" },
+  { subject: "Biochemistry & Nutrition", percentageRange: "5-15%", performance: "higher" },
+  { subject: "Histology & Cell Biology", percentageRange: "5-15%", performance: "higher" },
+  { subject: "Immunology", percentageRange: "5-15%", performance: "higher" },
+  { subject: "Genetics", percentageRange: "5-10%", performance: "higher" }
 ];
 
 const PerformanceSummary = () => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Your Relative Strengths and Weaknesses</h2>
-      <div className="space-y-4">
+      <div className="space-y-3">
         {performanceData.map((item, index) => (
           <div
             key={index}
-            className="border rounded-lg p-4 hover:border-blue-200 transition-all duration-200"
+            className="flex items-center justify-between py-2 hover:bg-gray-50 transition-colors rounded-lg px-3"
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <BarChart className="w-5 h-5 text-gray-500" />
-                <div>
-                  <h3 className="font-medium">{item.discipline}</h3>
-                  <p className="text-sm text-gray-500">Items: {item.items}</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-sm font-medium">{item.percentage}</span>
-                <div
-                  className={`px-3 py-1 rounded-full text-sm ${
-                    item.performance === 'higher'
-                      ? 'bg-green-50 text-green-600'
-                      : item.performance === 'lower'
-                      ? 'bg-red-50 text-red-600'
-                      : 'bg-gray-50 text-gray-600'
-                  }`}
-                >
-                  {item.performance.charAt(0).toUpperCase() + item.performance.slice(1)}
-                </div>
+            <div className="flex items-center space-x-3 flex-1">
+              <span className="font-medium text-gray-900">{item.subject}</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-600 w-20 text-right">
+                {item.percentageRange}
+              </span>
+              <div
+                className={`px-3 py-1 rounded-full text-sm min-w-[80px] text-center ${
+                  item.performance === 'higher'
+                    ? 'bg-green-50 text-green-600'
+                    : item.performance === 'lower'
+                    ? 'bg-red-50 text-red-600'
+                    : 'bg-gray-50 text-gray-600'
+                }`}
+              >
+                {item.performance.charAt(0).toUpperCase() + item.performance.slice(1)}
               </div>
             </div>
           </div>
