@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Book } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
@@ -45,7 +46,7 @@ const TopicsList = () => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
-      <h2 className="text-xl font-semibold mb-4">High-Yield Topics To Focus On</h2>
+      <h2 className="text-xl font-semibold mb-4">Recommendations</h2>
       <div className="space-y-3">
         {topics.map((topic) => (
           <div
