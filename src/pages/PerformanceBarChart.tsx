@@ -122,28 +122,34 @@ const PerformanceBarChart = () => {
 
                   {/* Score indicator */}
                   <div 
-                    className="absolute -left-24 transition-all duration-300 flex items-center gap-2 justify-end w-24"
+                    className="absolute -left-48 transition-all duration-300 flex items-center gap-2"
                     style={{ 
                       top: calculatePosition(score),
                       transform: 'translateY(-50%)'
                     }}
                   >
-                    <span className="whitespace-nowrap text-sm font-medium">Your performance</span>
-                    <div className="w-6 h-0.5 bg-gray-800" />
+                    <span className="text-sm font-medium">Estimated Score</span>
+                    <div className="border border-gray-300 px-2 py-0.5 rounded bg-white">
+                      {score}
+                    </div>
+                    <div className="flex-1 h-0.5 bg-gray-800 min-w-[100px]" />
                     <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-800" />
                   </div>
 
                   {/* Target score indicator */}
                   <div 
-                    className="absolute -left-24 transition-all duration-300 flex items-center gap-2 opacity-50 justify-end w-24"
+                    className="absolute -left-48 transition-all duration-300 flex items-center gap-2 opacity-70"
                     style={{ 
                       top: calculatePosition(targetScore),
                       transform: 'translateY(-50%)'
                     }}
                   >
-                    <span className="whitespace-nowrap text-sm font-medium">Target</span>
-                    <div className="w-6 h-0.5 bg-gray-800" />
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-800" />
+                    <span className="text-sm font-medium text-gray-500">Target Score</span>
+                    <div className="border border-gray-300 px-2 py-0.5 rounded bg-white">
+                      {targetScore}
+                    </div>
+                    <div className="flex-1 h-0.5 bg-gray-500 min-w-[100px]" />
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-500" />
                   </div>
                 </div>
               </div>
