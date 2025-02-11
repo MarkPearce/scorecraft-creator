@@ -152,8 +152,8 @@ const Concept2 = () => {
                 {/* Needle */}
                 <g transform={`rotate(${calculateRotation(score)} 256 257.9)`}>
                   <polyline points="266.9,240.5 275.2,212.9 256,14.5 236.8,212.9 245.1,240.5" className="fill-gray-800"/>
-                  <circle cx="256" cy="257.9" r="24" className="fill-white" />
-                  <circle cx="256" cy="257.9" r="12.5" className="fill-gray-800" />
+                  <circle cx="256" cy="257.9" r="24" className="fill-gray-800" />
+                  <circle cx="256" cy="257.9" r="12.5" className="fill-white" />
                 </g>
               </g>
             </svg>
