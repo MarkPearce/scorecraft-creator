@@ -16,7 +16,7 @@ export const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {
     <div className={`rounded-2xl p-6 ${getPercentileBackground(percentile)}`}>
       <div className="flex items-center justify-center space-x-4">
         <div className={`text-7xl font-bold ${getPercentileColor(percentile)}`}>
-          {percentile}
+          {percentile}<sup className="text-3xl">th</sup>
         </div>
         <div className="text-xl text-gray-600 text-left">
           <span className="font-semibold">Percentile</span>
