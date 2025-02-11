@@ -28,6 +28,23 @@ const Index = () => {
             Here is your assessment based on Qbank Performance. Check out your study recommendations below to optimize your study schedule.
           </p>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Button
+            variant="outline"
+            onClick={() => navigate('/concept3')}
+            className="h-24 text-lg font-medium"
+          >
+            Concept 3
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => navigate('/concept4')}
+            className="h-24 text-lg font-medium"
+          >
+            Concept 4
+          </Button>
+        </div>
         
         <ScoreDistribution />
         <PerformanceSummary />
