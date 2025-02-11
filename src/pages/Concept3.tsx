@@ -48,7 +48,7 @@ const Concept3 = () => {
                 
                 <div className="space-y-4">
                   <PercentileDisplay percentile={currentPercentile} />
-                  <p className="font-bold text-gray-700 text-center">
+                  <p className="font-bold text-gray-700 text-left">
                     On this percentile rank, learners usually end up scoring between 230-250 on a 3-digit-scale. Keep it up!
                   </p>
                 </div>
