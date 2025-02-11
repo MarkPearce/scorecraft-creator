@@ -42,7 +42,7 @@ const Concept3 = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 <div className="space-y-4 text-left text-gray-600">
                   <p>
-                    You are currently at the 30th percentile compared to other learners with an exam date at the end of June. Follow the recommendations below to improve your knowledge.
+                    You are currently at the 30<sup>th</sup> percentile compared to other learners with an exam date at the end of June. Follow the recommendations below to improve your knowledge.
                   </p>
 
                   <p>
