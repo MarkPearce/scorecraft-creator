@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import TopicsList from "@/components/TopicsList";
 
 const Concept3 = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Concept3 = () => {
           Back to Dashboard
         </Button>
 
-        <Card className="p-8 animate-fadeIn">
+        <Card className="p-8 animate-fadeIn mb-8">
           <div className="text-center space-y-6">
             <h1 className="text-3xl font-semibold text-gray-900">
               Exam readiness
@@ -53,18 +54,11 @@ const Concept3 = () => {
                   On this percentile rank, learners usually end up scoring between 230-250 on a 3-digit-scale. Keep it up!
                 </p>
               </div>
-
-              <div className="pt-6">
-                <Button 
-                  className="w-full py-6 text-lg bg-[#06B6D4] hover:bg-[#06B6D4]/90"
-                  onClick={() => navigate('/report')}
-                >
-                  View Learning Recommendations
-                </Button>
-              </div>
             </div>
           </div>
         </Card>
+
+        <TopicsList />
       </div>
     </div>
   );
