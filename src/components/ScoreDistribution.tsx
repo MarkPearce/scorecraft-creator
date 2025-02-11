@@ -58,6 +58,8 @@ const ScoreDistribution = () => {
               dataKey="score" 
               label={{ value: 'Score', position: 'bottom', offset: 15 }}
               tick={{ fontSize: 11, dy: 10 }}
+              ticks={[180, 200, 220, 240, 260, 280, 300]}
+              tickFormatter={(value) => `${value}`}
             />
             <YAxis 
               domain={[0, 50]}
