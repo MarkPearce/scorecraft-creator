@@ -43,7 +43,7 @@ const ScoreDistribution = () => {
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
-      <div className="relative h-[300px] w-full">
+      <div className="relative h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 50, right: 30, left: 40, bottom: 30 }}>
             <defs>
