@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +17,15 @@ const Concept2 = () => {
     if (score < 200) return "text-[#FFDD19]"; // Yellow
     if (score < 250) return "text-[#8DC641]"; // Light Green
     return "text-[#019444]"; // Dark Green
+  };
+
+  // Get background color based on score
+  const getBackgroundColor = (score: number) => {
+    if (score < 100) return "bg-[#ED1B24]/15"; // Red
+    if (score < 150) return "bg-[#F46523]/15"; // Orange
+    if (score < 200) return "bg-[#FFDD19]/15"; // Yellow
+    if (score < 250) return "bg-[#8DC641]/15"; // Light Green
+    return "bg-[#019444]/15"; // Dark Green
   };
 
   // Calculate rotation based on score (assuming 0-300 range)
@@ -83,8 +91,8 @@ const Concept2 = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center space-y-8">
-            {/* Score Display - Updated background color to match arc green with opacity */}
-            <div className="bg-[#8DC641]/15 p-6 rounded-lg w-full max-w-md">
+            {/* Score Display - Dynamic background color based on score */}
+            <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full max-w-md`}>
               <div className="flex items-center justify-center gap-6">
                 {getFaceIcon(score)}
                 <div className="text-center">
