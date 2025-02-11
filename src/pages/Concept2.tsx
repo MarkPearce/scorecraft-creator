@@ -47,97 +47,41 @@ const Concept2 = () => {
 
             {/* Enhanced Gauge */}
             <div className="relative w-80 h-60">
-              <svg viewBox="0 0 200 160" className="w-full h-full">
-                <defs>
-                  <linearGradient id="gauge-gradient-1" gradientTransform="rotate(90)">
-                    <stop offset="0%" stopColor="#ed1b24" />
-                    <stop offset="100%" stopColor="#f46523" />
-                  </linearGradient>
-                  <linearGradient id="gauge-gradient-2" gradientTransform="rotate(90)">
-                    <stop offset="0%" stopColor="#f46523" />
-                    <stop offset="100%" stopColor="#ffdd19" />
-                  </linearGradient>
-                  <linearGradient id="gauge-gradient-3" gradientTransform="rotate(90)">
-                    <stop offset="0%" stopColor="#ffdd19" />
-                    <stop offset="100%" stopColor="#8dc641" />
-                  </linearGradient>
-                  <linearGradient id="gauge-gradient-4" gradientTransform="rotate(90)">
-                    <stop offset="0%" stopColor="#8dc641" />
-                    <stop offset="100%" stopColor="#019444" />
-                  </linearGradient>
-                </defs>
-
-                {/* Multiple gradient arcs */}
-                <path
-                  d="M 40 80 A 60 60 0 0 1 70 30"
-                  fill="none"
-                  stroke="url(#gauge-gradient-1)"
-                  strokeWidth="24"
-                  strokeLinecap="butt"
-                  className="opacity-90"
-                />
-                <path
-                  d="M 70 30 A 60 60 0 0 1 100 20"
-                  fill="none"
-                  stroke="url(#gauge-gradient-2)"
-                  strokeWidth="24"
-                  strokeLinecap="butt"
-                  className="opacity-90"
-                />
-                <path
-                  d="M 100 20 A 60 60 0 0 1 130 30"
-                  fill="none"
-                  stroke="url(#gauge-gradient-3)"
-                  strokeWidth="24"
-                  strokeLinecap="butt"
-                  className="opacity-90"
-                />
-                <path
-                  d="M 130 30 A 60 60 0 0 1 160 80"
-                  fill="none"
-                  stroke="url(#gauge-gradient-4)"
-                  strokeWidth="24"
-                  strokeLinecap="butt"
-                  className="opacity-90"
-                />
-
-                {/* Center white circle */}
-                <circle cx="100" cy="80" r="40" fill="white" stroke="#e5e7eb" strokeWidth="1"/>
-
-                {/* Needle */}
-                <g transform={`rotate(${calculateRotation(score)} 100 80)`}>
-                  <path
-                    d="M 96 80 L 100 45 L 104 80 Z"
-                    fill="#1f2937"
-                  />
-                  <circle cx="100" cy="80" r="4" fill="#1f2937"/>
-                </g>
-
-                {/* Emoji faces */}
-                <g transform="translate(0, 120)">
-                  {/* Very Sad */}
-                  <circle cx="40" cy="0" r="12" fill="#ed1b24" className="opacity-90"/>
-                  <path d="M 34 4 A 8 8 0 0 0 46 4" stroke="white" fill="none" strokeWidth="2"/>
-                  <circle cx="35" cy="-3" r="2" fill="white"/>
-                  <circle cx="45" cy="-3" r="2" fill="white"/>
-
-                  {/* Sad */}
-                  <circle cx="80" cy="0" r="12" fill="#f46523" className="opacity-90"/>
-                  <path d="M 74 3 A 6 6 0 0 0 86 3" stroke="white" fill="none" strokeWidth="2"/>
-                  <circle cx="75" cy="-3" r="2" fill="white"/>
-                  <circle cx="85" cy="-3" r="2" fill="white"/>
-
-                  {/* Neutral */}
-                  <circle cx="120" cy="0" r="12" fill="#ffdd19" className="opacity-90"/>
-                  <line x1="114" y1="2" x2="126" y2="2" stroke="white" strokeWidth="2"/>
-                  <circle cx="115" cy="-3" r="2" fill="white"/>
-                  <circle cx="125" cy="-3" r="2" fill="white"/>
-
-                  {/* Happy */}
-                  <circle cx="160" cy="0" r="12" fill="#019444" className="opacity-90"/>
-                  <path d="M 154 0 A 6 6 0 0 1 166 0" stroke="white" fill="none" strokeWidth="2"/>
-                  <circle cx="155" cy="-3" r="2" fill="white"/>
-                  <circle cx="165" cy="-3" r="2" fill="white"/>
+              <svg viewBox="0 0 512 512" className="w-full h-full">
+                <g id="dial">
+                  <g>
+                    {/* Yellow Center Section */}
+                    <path className="fill-[#FFDD19]" d="M261.2,113c9.2,0,18,1.5,26.2,4.2l7.4-22.8C284.3,90.9,273,89,261.2,89c-11.7,0-23,1.9-33.6,5.3l7.4,22.8C243.3,114.5,252.1,113,261.2,113z"/>
+                    
+                    {/* Green Right Section */}
+                    <path className="fill-[#8DC641]" d="M329.9,148l19.4-14.1c-13.4-18.4-32.4-32.4-54.4-39.6l-7.4,22.8C304.6,122.8,319.4,133.7,329.9,148z"/>
+                    
+                    {/* Red Left Section */}
+                    <path className="fill-[#ED1B24]" d="M173.2,133.9c-13.1,18-20.8,40.1-20.8,64h24c0-18.6,6-35.9,16.3-49.9L173.2,133.9z"/>
+                    
+                    {/* Orange Section */}
+                    <path className="fill-[#F46523]" d="M235,117.2l-7.4-22.8c-22,7.2-41,21.2-54.4,39.6l19.4,14.1C203,133.7,217.8,122.8,235,117.2z"/>
+                    
+                    {/* Dark Green Right Edge */}
+                    <path className="fill-[#019444]" d="M349.3,133.9L329.9,148c10.2,14,16.3,31.2,16.3,49.9h24C370.1,174,362.4,151.9,349.3,133.9z"/>
+                    
+                    {/* Gray Sections */}
+                    <polygon className="fill-[#C4C4C4]" points="152.3,197.9 176.3,197.9 176.3,197.9 152.3,197.9"/>
+                    <polygon className="fill-[#C4C4C4]" points="346.1,197.9 346.1,197.9 370.1,197.9 370.1,197.9"/>
+                    
+                    {/* Empty Fill Sections */}
+                    <path className="fill-none" d="M287.5,117.2l-26.2,80.7l68.6-49.9C319.4,133.7,304.6,122.8,287.5,117.2z"/>
+                    <path className="fill-none" d="M261.2,113c-9.2,0-18,1.5-26.2,4.2l26.2,80.7l26.2-80.7C279.2,114.5,270.4,113,261.2,113z"/>
+                    <path className="fill-none" d="M192.6,148l68.6,49.9L235,117.2C217.8,122.8,203,133.7,192.6,148z"/>
+                    <path className="fill-none" d="M176.3,197.9h84.9L192.6,148C182.4,162.1,176.3,179.3,176.3,197.9z"/>
+                    <path className="fill-none" d="M261.2,197.9h84.9c0-18.6-6-35.9-16.3-49.9L261.2,197.9z"/>
+                  </g>
+                  
+                  {/* Needle */}
+                  <g transform={`rotate(${calculateRotation(score)} 261.2 197.9)`}>
+                    <polyline points="265.9,190.5 269.4,178.8 261.2,94.4 253.1,178.8 256.6,190.5" className="fill-gray-800"/>
+                    <path className="fill-gray-800" d="M261.2,187.7c-5.6,0-10.2,4.6-10.2,10.2c0,5.6,4.6,10.2,10.2,10.2s10.2-4.6,10.2-10.2C271.4,192.3,266.9,187.7,261.2,187.7z M261.2,203.2c-2.9,0-5.3-2.4-5.3-5.3s2.4-5.3,5.3-5.3s5.3,2.4,5.3,5.3S264.2,203.2,261.2,203.2z"/>
+                  </g>
                 </g>
               </svg>
             </div>
