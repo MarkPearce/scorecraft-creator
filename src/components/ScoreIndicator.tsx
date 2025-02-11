@@ -13,7 +13,7 @@ const ScoreIndicator = ({ label, value, isTarget = false }: ScoreIndicatorProps)
   return (
     <div className={`flex items-center gap-0 ${isTarget ? "opacity-70" : ""}`}>
       <span className={`text-sm font-medium ${textColor} mr-2`}>{label}</span>
-      <div className={`border ${borderColor} px-2 py-0.5 rounded bg-white`}>
+      <div className={`border-[0.5px] ${borderColor} px-2 py-0.5 rounded bg-white`}>
         {value}
       </div>
       <div className={`h-0.5 ${baseColor} min-w-[100px]`} />
