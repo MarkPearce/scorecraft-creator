@@ -46,7 +46,7 @@ const Concept3 = () => {
                   </p>
 
                   <p>
-                    On this percentile rank, learners usually end up scoring between 230-250 on a 3-digit-scale. Keep it up!
+                    On this percentile rank, learners usually end up scoring <span className="font-bold">230-250 on a 3-digit-scale</span>. Keep it up!
                   </p>
                 </div>
                 
