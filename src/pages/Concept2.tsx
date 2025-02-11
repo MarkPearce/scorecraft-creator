@@ -49,48 +49,23 @@ const Concept2 = () => {
             <div className="relative w-80 h-60">
               <svg viewBox="0 0 200 160" className="w-full h-full">
                 <defs>
-                  {/* Background circle gradient */}
-                  <linearGradient id="gaugeBackground" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#f8f9fa"/>
-                    <stop offset="100%" stopColor="#e9ecef"/>
+                  <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#ed1b24" />
+                    <stop offset="25%" stopColor="#f46523" />
+                    <stop offset="50%" stopColor="#ffdd19" />
+                    <stop offset="75%" stopColor="#8dc641" />
+                    <stop offset="100%" stopColor="#019444" />
                   </linearGradient>
                 </defs>
 
-                {/* Gauge sections */}
+                {/* Single gradient arc */}
                 <path
                   d="M 40 80 A 60 60 0 0 1 160 80"
                   fill="none"
-                  stroke="#ea384c"
-                  strokeWidth="20"
-                  strokeLinecap="round"
+                  stroke="url(#gaugeGradient)"
+                  strokeWidth="24"
+                  strokeLinecap="butt"
                   className="opacity-90"
-                />
-                <path
-                  d="M 40 80 A 60 60 0 0 1 160 80"
-                  fill="none"
-                  stroke="#F97316"
-                  strokeWidth="20"
-                  strokeLinecap="round"
-                  className="opacity-90"
-                  strokeDasharray="75 180"
-                />
-                <path
-                  d="M 40 80 A 60 60 0 0 1 160 80"
-                  fill="none"
-                  stroke="#ffd700"
-                  strokeWidth="20"
-                  strokeLinecap="round"
-                  className="opacity-90"
-                  strokeDasharray="45 180"
-                />
-                <path
-                  d="M 40 80 A 60 60 0 0 1 160 80"
-                  fill="none"
-                  stroke="#22c55e"
-                  strokeWidth="20"
-                  strokeLinecap="round"
-                  className="opacity-90"
-                  strokeDasharray="60 180"
                 />
 
                 {/* Center white circle */}
@@ -108,25 +83,25 @@ const Concept2 = () => {
                 {/* Emoji faces */}
                 <g transform="translate(0, 120)">
                   {/* Very Sad */}
-                  <circle cx="40" cy="0" r="12" fill="#ea384c" className="opacity-90"/>
+                  <circle cx="40" cy="0" r="12" fill="#ed1b24" className="opacity-90"/>
                   <path d="M 34 4 A 8 8 0 0 0 46 4" stroke="white" fill="none" strokeWidth="2"/>
                   <circle cx="35" cy="-3" r="2" fill="white"/>
                   <circle cx="45" cy="-3" r="2" fill="white"/>
 
                   {/* Sad */}
-                  <circle cx="80" cy="0" r="12" fill="#F97316" className="opacity-90"/>
+                  <circle cx="80" cy="0" r="12" fill="#f46523" className="opacity-90"/>
                   <path d="M 74 3 A 6 6 0 0 0 86 3" stroke="white" fill="none" strokeWidth="2"/>
                   <circle cx="75" cy="-3" r="2" fill="white"/>
                   <circle cx="85" cy="-3" r="2" fill="white"/>
 
                   {/* Neutral */}
-                  <circle cx="120" cy="0" r="12" fill="#ffd700" className="opacity-90"/>
+                  <circle cx="120" cy="0" r="12" fill="#ffdd19" className="opacity-90"/>
                   <line x1="114" y1="2" x2="126" y2="2" stroke="white" strokeWidth="2"/>
                   <circle cx="115" cy="-3" r="2" fill="white"/>
                   <circle cx="125" cy="-3" r="2" fill="white"/>
 
                   {/* Happy */}
-                  <circle cx="160" cy="0" r="12" fill="#22c55e" className="opacity-90"/>
+                  <circle cx="160" cy="0" r="12" fill="#019444" className="opacity-90"/>
                   <path d="M 154 0 A 6 6 0 0 1 166 0" stroke="white" fill="none" strokeWidth="2"/>
                   <circle cx="155" cy="-3" r="2" fill="white"/>
                   <circle cx="165" cy="-3" r="2" fill="white"/>
