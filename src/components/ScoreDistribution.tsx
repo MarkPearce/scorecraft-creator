@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts';
 import {
   Select,
@@ -34,7 +33,7 @@ const data = generateData();
 const studentScore = 238;
 
 const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: any }) => {
-  console.log('Rendering CustomScoreLabel:', { x, y, payload }); // Debug log
+  console.log('Rendering CustomScoreLabel:', { x, y, payload });
   return (
     <foreignObject x={x - 50} y={y - 100} width={100} height={80}>
       <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
@@ -47,16 +46,13 @@ const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: a
 
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
-
-  // Generate ticks every 20 units
   const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + (i * 20));
-
-  // Find the closest data point for interpolation
+  
   const closestPoint = data.reduce((prev, curr) => {
     return Math.abs(curr.score - studentScore) < Math.abs(prev.score - studentScore) ? curr : prev;
   });
   
-  console.log('Closest point:', closestPoint); // Debug log
+  console.log('Closest point:', closestPoint);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
@@ -110,7 +106,11 @@ const ScoreDistribution = () => {
             x={studentScore}
             y={closestPoint.count}
             r={4}
+            fill="#10B981"
+            stroke="#10B981"
+            ifOverflow="extendDomain"
             shape={CustomScoreLabel}
+            className="score-label"
           />
         </AreaChart>
       </ResponsiveContainer>
