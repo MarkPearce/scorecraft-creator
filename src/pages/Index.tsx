@@ -15,8 +15,8 @@ const Index = () => {
         </div>
         
         <ScoreDistribution />
-        <TopicsList />
         <PerformanceSummary />
+        <TopicsList />
       </div>
     </div>
   );
