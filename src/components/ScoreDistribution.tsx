@@ -10,29 +10,18 @@ import {
 import { Label } from "@/components/ui/label";
 import { useState } from 'react';
 
-// Generate more data points for a smoother curve
+// Generate data points for a bezier curve
 const generateData = () => {
-  const mean = 250;
-  const stdDev = 30;
   const points = [];
   
-  for (let score = 180; score <= 300; score += 2) {
-    const exponent = -Math.pow(score - mean, 2) / (2 * Math.pow(stdDev, 2));
-    // Scale the distribution to start at 10 and end at 1
-    let count;
-    if (score === 180) {
-      count = 10;
-    } else if (score === 300) {
-      count = 1;
-    } else {
-      count = Math.round(35 * Math.exp(exponent));
-    }
-    points.push({ score, count });
-  }
+  // Add start point
+  points.push({ score: 180, count: 10 });
   
-  // Ensure smooth transition to start and end points
-  points[1].count = 12; // Smooth transition from 10
-  points[points.length - 2].count = 3; // Smooth transition to 1
+  // Add peak point
+  points.push({ score: 240, count: 34 });
+  
+  // Add end point
+  points.push({ score: 300, count: 1 });
   
   return points;
 };
@@ -85,7 +74,7 @@ const ScoreDistribution = () => {
               labelFormatter={(label: number) => `Score: ${label}`}
             />
             <Area 
-              type="basis" 
+              type="natural"
               dataKey="count" 
               stroke="#3B82F6" 
               fill="url(#colorCount)"
