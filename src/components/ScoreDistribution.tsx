@@ -60,6 +60,7 @@ const ScoreDistribution = () => {
               tick={{ fontSize: 11, dy: 10 }}
             />
             <YAxis 
+              domain={[0, 50]}
               label={{ 
                 value: 'Peer Group', 
                 angle: -90, 
