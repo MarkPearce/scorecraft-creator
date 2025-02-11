@@ -31,6 +31,24 @@ const data = generateData();
 // Mock student score - this would typically come from props or an API
 const studentScore = 250;
 
+const CustomTick = (props: any) => {
+  const { x, y, payload } = props;
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={16}
+        textAnchor="middle"
+        fill="#666"
+        fontSize={11}
+      >
+        {payload.value}
+      </text>
+    </g>
+  );
+};
+
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
 
@@ -40,13 +58,16 @@ const ScoreDistribution = () => {
   const chartWidth = 100 - ((leftMargin + rightMargin) / 100);
   const scorePosition = ((studentScore - 180) / (300 - 180)) * chartWidth + (leftMargin / 100);
 
+  // Generate ticks every 10 units
+  const xAxisTicks = Array.from({ length: 13 }, (_, i) => 180 + (i * 10));
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
       <div className="relative h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 20, right: 30, left: 40, bottom: 30 }}>
+          <AreaChart data={data} margin={{ top: 20, right: 30, left: 40, bottom: 40 }}>
             <defs>
               <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
@@ -56,8 +77,10 @@ const ScoreDistribution = () => {
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis 
               dataKey="score" 
-              label={{ value: 'Score', position: 'bottom', offset: 15 }}
-              tick={{ fontSize: 11, dy: 10 }}
+              label={{ value: 'Score', position: 'bottom', offset: 20 }}
+              ticks={xAxisTicks}
+              tick={CustomTick}
+              interval={0}
             />
             <YAxis 
               domain={[0, 50]}
