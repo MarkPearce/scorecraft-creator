@@ -2,6 +2,7 @@
 import ScoreDistribution from "@/components/ScoreDistribution";
 import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
+import ProgressTracker from "@/components/ProgressTracker";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
         <ScoreDistribution />
         <PerformanceSummary />
         <TopicsList />
+        <ProgressTracker />
       </div>
     </div>
   );
