@@ -46,9 +46,15 @@ const PerformanceSummary = () => {
           >
             <span>{item.subject}</span>
             <Button
-              variant="ghost"
+              variant="outline"
               size="icon"
-              className="h-6 w-6"
+              className={`h-6 w-6 bg-white border transition-colors ${
+                item.performance === 'higher'
+                  ? 'border-green-600 text-green-600 hover:bg-green-600 hover:text-white'
+                  : item.performance === 'lower'
+                  ? 'border-red-600 text-red-600 hover:bg-red-600 hover:text-white'
+                  : 'border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white'
+              }`}
               onClick={() => console.log(`Start test session for ${item.subject}`)}
             >
               <BookOpenCheck className="h-4 w-4" />
