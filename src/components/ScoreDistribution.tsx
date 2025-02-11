@@ -38,14 +38,14 @@ const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: a
     <g style={{ zIndex: 1000 }}>
       <line 
         x1={x} 
-        y1={60} 
+        y1={y} 
         x2={x} 
-        y2={y} 
+        y2={y-60} 
         stroke="#10B981" 
         strokeWidth={2} 
         strokeDasharray="3 3"
       />
-      <foreignObject x={x - 70} y={0} width={140} height={60}>
+      <foreignObject x={x - 70} y={y-120} width={140} height={60}>
         <div className="bg-white/90 border border-emerald-200 rounded-md px-3 py-2 shadow-sm flex flex-col items-center justify-center">
           <span className="text-sm text-gray-600">Estimated Score</span>
           <span className="text-lg font-bold text-emerald-600">{studentScore}</span>
