@@ -19,39 +19,37 @@ const SystemCard = ({ name, icon, score, questionsTagged, totalQuestions, target
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm">
       <div 
-        className="space-y-3 cursor-pointer"
+        className="flex items-center justify-between cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            {icon}
-            <span className="font-medium">{name}</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-500">
-              {questionsTagged} / {totalQuestions} questions
-            </span>
-            <span className="font-semibold text-blue-600">{score}%</span>
-            {isExpanded ? (
-              <ChevronDown className="h-5 w-5 text-gray-500" />
-            ) : (
-              <ChevronRight className="h-5 w-5 text-gray-500" />
-            )}
-          </div>
+        <div className="flex items-center space-x-3">
+          {icon}
+          <span className="font-medium">{name}</span>
         </div>
-
-        <div className="relative">
-          <Progress value={score} className="h-2" />
-          <div 
-            className="absolute top-0 h-2 w-0.5 bg-green-500"
-            style={{ left: `${targetScore}%` }}
-          />
+        <div className="flex items-center space-x-4">
+          <span className="text-sm text-gray-500">
+            {questionsTagged} / {totalQuestions} questions
+          </span>
+          <span className="font-semibold text-blue-600">{score}%</span>
+          {isExpanded ? (
+            <ChevronDown className="h-5 w-5 text-gray-500" />
+          ) : (
+            <ChevronRight className="h-5 w-5 text-gray-500" />
+          )}
         </div>
       </div>
 
       {isExpanded && (
-        <div className="mt-6 space-y-4 animate-fadeIn">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mt-4 space-y-4 animate-fadeIn">
+          <div className="relative">
+            <Progress value={score} className="h-2" />
+            <div 
+              className="absolute top-0 h-2 w-0.5 bg-green-500"
+              style={{ left: `${targetScore}%` }}
+            />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm text-gray-600">Current Score</p>
               <p className="text-xl font-semibold text-blue-600">{score}%</p>
