@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PrototypeControls from "@/components/PrototypeControls";
@@ -108,9 +108,9 @@ const PerformanceBarChart = () => {
           </div>
 
           <div className="flex flex-col space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Bar Graph - Left Column */}
-              <div className="flex justify-center">
+              <div className="flex items-center justify-center pl-[200px]">
                 <PerformanceGraph 
                   score={score}
                   targetScore={targetScore}
