@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts';
 import {
   Select,
@@ -120,7 +119,7 @@ const ScoreDistribution = () => {
             fill="#10B981"
             stroke="#10B981"
             ifOverflow="extendDomain"
-            shape={CustomScoreLabel}
+            shape={(props) => <CustomScoreLabel {...props} payload={closestPoint} />}
             className="score-label"
           />
         </AreaChart>
