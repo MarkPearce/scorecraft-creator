@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +8,9 @@ import PrototypeControls from "@/components/PrototypeControls";
 
 const Concept2 = () => {
   const navigate = useNavigate();
-  const [score, setScore] = useState(249);
-  const [range, setRange] = useState({ min: 241, max: 257 });
-  const [targetScore, setTargetScore] = useState(230);
+  const [score, setScore] = useState(240);
+  const [range, setRange] = useState({ min: 180, max: 300 });
+  const [targetScore, setTargetScore] = useState(260);
 
   const getScoreLevelName = (score: number) => {
     if (score < 100) return "Critical";
