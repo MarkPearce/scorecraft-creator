@@ -8,8 +8,8 @@ const data = [
   { date: '3/1', score: 45, color: '#ea384c' },
   { date: '3/8', score: 72, color: '#F97316' },
   { date: '3/15', score: 68, color: '#F97316' },
-  { date: '3/22', score: 75, color: '#0EA5E9' },
-  { date: '3/29', score: 85, color: '#0EA5E9' },
+  { date: '3/22', score: 75, color: '#22c55e' },
+  { date: '3/29', score: 85, color: '#22c55e' },
 ];
 
 const Concept1 = () => {
@@ -89,10 +89,10 @@ const Concept1 = () => {
                 <defs>
                   <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#ea384c" />
-                    <stop offset="25%" stopColor="#F97316" />
-                    <stop offset="50%" stopColor="#F97316" />
-                    <stop offset="75%" stopColor="#0EA5E9" />
-                    <stop offset="100%" stopColor="#0EA5E9" />
+                    <stop offset="20%" stopColor="#F97316" />
+                    <stop offset="60%" stopColor="#F97316" />
+                    <stop offset="80%" stopColor="#22c55e" />
+                    <stop offset="100%" stopColor="#22c55e" />
                   </linearGradient>
                 </defs>
                 <Line
