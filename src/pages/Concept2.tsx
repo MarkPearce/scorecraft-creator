@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -15,19 +14,19 @@ const Concept2 = () => {
   // Get color based on score
   const getScoreColor = (score: number) => {
     if (score < 100) return "text-[#ED1B24]"; // Red
-    if (score < 150) return "text-[#F46523]"; // Orange
-    if (score < 200) return "text-[#FFDD19]"; // Yellow
-    if (score < 250) return "text-[#8DC641]"; // Light Green
-    return "text-[#019444]"; // Dark Green
+    if (score < 150) return "text-[#FFDD19]"; // Yellow (Meh)
+    if (score < 200) return "text-[#8DC641]"; // Light Green (Happy)
+    if (score < 250) return "text-[#8DC641]"; // Light Green (Happy)
+    return "text-[#019444]"; // Dark Green (Laughing)
   };
 
   // Get background color based on score
   const getBackgroundColor = (score: number) => {
     if (score < 100) return "bg-[#ED1B24]/15"; // Red
-    if (score < 150) return "bg-[#F46523]/15"; // Orange
-    if (score < 200) return "bg-[#FFDD19]/15"; // Yellow
-    if (score < 250) return "bg-[#8DC641]/15"; // Light Green
-    return "bg-[#019444]/15"; // Dark Green
+    if (score < 150) return "bg-[#FFDD19]/15"; // Yellow (Meh)
+    if (score < 200) return "bg-[#8DC641]/15"; // Light Green (Happy)
+    if (score < 250) return "bg-[#8DC641]/15"; // Light Green (Happy)
+    return "bg-[#019444]/15"; // Dark Green (Laughing)
   };
 
   // Calculate rotation based on score (assuming 0-300 range)
