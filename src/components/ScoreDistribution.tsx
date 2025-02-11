@@ -1,4 +1,5 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import {
   Select,
   SelectContent,
@@ -79,12 +80,6 @@ const ScoreDistribution = () => {
               stroke="#3B82F6" 
               fill="url(#colorCount)"
               strokeWidth={2}
-            />
-            <ReferenceLine
-              x={studentScore}
-              stroke="#10B981"
-              strokeWidth={2}
-              strokeDasharray="3 3"
             />
           </AreaChart>
         </ResponsiveContainer>
