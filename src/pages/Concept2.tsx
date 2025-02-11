@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
 
 const Concept2 = () => {
   const navigate = useNavigate();
-  const [score] = useState(249);
-  const [range] = useState({ min: 241, max: 257 });
+  const [score, setScore] = useState(249);
+  const [range, setRange] = useState({ min: 241, max: 257 });
 
   // Calculate rotation based on score (assuming 0-300 range)
   const calculateRotation = (score: number) => {
@@ -24,6 +26,16 @@ const Concept2 = () => {
     if (score < 200) return <Smile className="w-16 h-16 text-emerald-700" />;
     if (score <= 300) return <Laugh className="w-16 h-16 text-emerald-700" />;
     return <AlertTriangle className="w-16 h-16 text-emerald-700" />;
+  };
+
+  const handleRangeChange = (type: 'min' | 'max', value: string) => {
+    const numValue = parseInt(value, 10);
+    if (isNaN(numValue)) return;
+    
+    setRange(prev => ({
+      ...prev,
+      [type]: numValue
+    }));
   };
 
   return (
@@ -54,6 +66,46 @@ const Concept2 = () => {
                     RANGE {range.min}-{range.max}
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Range Controls */}
+            <div className="w-full max-w-md space-y-6">
+              <div className="flex gap-4">
+                <div className="flex-1">
+                  <label htmlFor="min-range" className="block text-sm font-medium text-gray-700 mb-1">
+                    Min Range
+                  </label>
+                  <Input
+                    id="min-range"
+                    type="number"
+                    value={range.min}
+                    onChange={(e) => handleRangeChange('min', e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label htmlFor="max-range" className="block text-sm font-medium text-gray-700 mb-1">
+                    Max Range
+                  </label>
+                  <Input
+                    id="max-range"
+                    type="number"
+                    value={range.max}
+                    onChange={(e) => handleRangeChange('max', e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+              </div>
+              <div className="pt-2">
+                <Slider
+                  value={[score]}
+                  min={0}
+                  max={300}
+                  step={1}
+                  onValueChange={(value) => setScore(value[0])}
+                  className="w-full"
+                />
               </div>
             </div>
 
