@@ -1,6 +1,7 @@
 
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ProgressTracker = () => {
   // Mock data - this would typically come from props or an API
@@ -10,7 +11,10 @@ const ProgressTracker = () => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
-      <h2 className="text-xl font-semibold mb-4">Boost Assessment</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold">Questions in last 30 days</h2>
+        <Button variant="outline">Boost Assessment</Button>
+      </div>
       <div className="flex gap-6">
         <div className="w-4 h-[200px] bg-gray-100 rounded-full relative">
           <div 
