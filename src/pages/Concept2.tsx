@@ -83,8 +83,8 @@ const Concept2 = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center space-y-8">
-            {/* Score Display */}
-            <div className="bg-[#F0FBFA] p-6 rounded-lg w-full max-w-md">
+            {/* Score Display - Updated background color to match arc green with opacity */}
+            <div className="bg-[#8DC641]/15 p-6 rounded-lg w-full max-w-md">
               <div className="flex items-center justify-center gap-6">
                 {getFaceIcon(score)}
                 <div className="text-center">
