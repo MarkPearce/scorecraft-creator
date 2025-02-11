@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -47,13 +48,13 @@ const Concept2 = () => {
   };
 
   const calculateRotation = (value: number) => {
-    // Map 0-300 range to -90 to 90 degrees
-    return ((value / 300) * 180) - 90;
+    // Map the value from the current range to -90 to 90 degrees
+    return -90 + (((value - range.min) / (range.max - range.min)) * 180);
   };
 
   const calculateTargetRotation = (value: number) => {
-    // Map 0-300 range to -90 to 90 degrees
-    return ((value / 300) * 180) - 90;
+    // Map the value from the current range to -90 to 90 degrees
+    return -90 + (((value - range.min) / (range.max - range.min)) * 180);
   };
 
   const handleRangeChange = (type: 'min' | 'max', value: string) => {
