@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [questionsAnswered, setQuestionsAnswered] = useState(30); // changed default to 30
+  const [questionsAnswered, setQuestionsAnswered] = useState(30);
   const { toast } = useToast();
   
   const isAssessmentUnlocked = questionsAnswered >= 50;
@@ -22,7 +22,7 @@ const ProgressTracker = () => {
 
   const getBarColor = (progress: number) => {
     if (progress >= 75) return 'bg-emerald-500';
-    if (progress >= 50) return 'bg-[#0EA5E9]';
+    if (progress >= 50) return 'bg-[#FEF7CD]';
     return 'bg-primary';
   };
 
