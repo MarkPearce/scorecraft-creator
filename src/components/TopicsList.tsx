@@ -86,7 +86,7 @@ const TopicsList = () => {
             </div>
             {expandedTopic === topic.id && (
               <div className="mt-4 pl-8 text-gray-600 animate-fadeIn">
-                <p>Additional details about {topic.title} would go here.</p>
+                <p>Your qbank performance for {topic.title} places you in the {Math.floor(topic.score / 2)}th percentile, among your peer group. Additional Practice is recommended.</p>
                 <div className="mt-2 flex space-x-2">
                   <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
                     Read Article
