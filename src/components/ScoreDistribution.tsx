@@ -33,25 +33,6 @@ const data = generateData();
 // Mock student score - this would typically come from props or an API
 const studentScore = 250;
 
-const CustomTick = (props: any) => {
-  const { x, y, payload } = props;
-  return (
-    <g transform={`translate(${x},${y})`}>
-      <line y2="6" stroke="#666" />
-      <text
-        x={0}
-        y={0}
-        dy={16}
-        textAnchor="middle"
-        fill="#666"
-        fontSize={11}
-      >
-        {payload.value}
-      </text>
-    </g>
-  );
-};
-
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
 
@@ -82,7 +63,6 @@ const ScoreDistribution = () => {
               dataKey="score" 
               label={{ value: 'Score', position: 'bottom', offset: 20 }}
               ticks={xAxisTicks}
-              tick={CustomTick}
               interval={0}
             />
             <YAxis 
