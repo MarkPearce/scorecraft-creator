@@ -76,7 +76,7 @@ const ScoreDistribution = () => {
             <ReferenceLine
               x={studentScore}
               stroke="#10B981"
-              strokeWidth={4}
+              strokeWidth={2}
               strokeDasharray="3 3"
             />
           </AreaChart>
@@ -86,7 +86,7 @@ const ScoreDistribution = () => {
           style={{
             left: `${((studentScore - 180) / (300 - 180)) * 100}%`,
             transform: 'translateX(-50%)',
-            top: '10px'
+            top: '0'
           }}
         >
           <p className="text-sm text-gray-600">Estimated Score</p>
