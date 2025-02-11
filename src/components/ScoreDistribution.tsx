@@ -1,5 +1,13 @@
 
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useState } from 'react';
 
 // Convert the discrete data into more points for a smoother curve
 const data = [
@@ -22,6 +30,8 @@ const data = [
 const studentScore = 250;
 
 const ScoreDistribution = () => {
+  const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
@@ -81,6 +91,20 @@ const ScoreDistribution = () => {
           <p className="text-sm text-gray-600">Estimated Score</p>
           <p className="text-lg font-semibold text-emerald-600">{studentScore}</p>
         </div>
+      </div>
+
+      <div className="mt-4 w-[200px]">
+        <Select value={selectedPeerGroup} onValueChange={setSelectedPeerGroup}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select peer group" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Students</SelectItem>
+            <SelectItem value="same-major">Same Major</SelectItem>
+            <SelectItem value="same-year">Same Year</SelectItem>
+            <SelectItem value="same-school">Same School</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );
