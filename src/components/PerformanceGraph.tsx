@@ -29,7 +29,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
   ];
 
   return (
-    <div className="relative h-[300px] w-[60px]">
+    <div className="h-[300px] w-[60px] relative">
       {/* Score segments */}
       {segments.map((segment, index) => (
         <div 
