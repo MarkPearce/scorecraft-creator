@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -12,66 +11,55 @@ const Concept2 = () => {
   const [range, setRange] = useState({ min: 241, max: 257 });
   const [targetScore, setTargetScore] = useState(230);
 
-  // Get score level name based on score
   const getScoreLevelName = (score: number) => {
     if (score < 100) return "Critical";
     if (score < 150) return "Needs Work";
-    if (score < 200) return "Developing"; // Changed from "On Track" to "Developing"
+    if (score < 200) return "Developing";
     if (score < 250) return "Strong";
     return "Excellent";
   };
 
-  // Get color based on score
   const getScoreColor = (score: number) => {
-    if (score < 100) return "text-[#ED1B24]"; // Red - Critical
-    if (score < 150) return "text-[#F46523]"; // Orange - Needs Work
-    if (score < 200) return "text-[#FFDD19]"; // Yellow - Developing
-    if (score < 250) return "text-[#8DC641]"; // Light Green - Strong
-    return "text-[#019444]"; // Dark Green - Excellent
+    if (score < 100) return "text-[#ED1B24]";
+    if (score < 150) return "text-[#F46523]";
+    if (score < 200) return "text-[#FFDD19]";
+    if (score < 250) return "text-[#8DC641]";
+    return "text-[#019444]";
   };
 
-  // Get background color based on score
   const getBackgroundColor = (score: number) => {
-    if (score < 100) return "bg-[#ED1B24]/15"; // Red - Critical
-    if (score < 150) return "bg-[#F46523]/15"; // Orange - Needs Work
-    if (score < 200) return "bg-[#FFDD19]/15"; // Yellow - Developing
-    if (score < 250) return "bg-[#8DC641]/15"; // Light Green - Strong
-    return "bg-[#019444]/15"; // Dark Green - Excellent
+    if (score < 100) return "bg-[#ED1B24]/15";
+    if (score < 150) return "bg-[#F46523]/15";
+    if (score < 200) return "bg-[#FFDD19]/15";
+    if (score < 250) return "bg-[#8DC641]/15";
+    return "bg-[#019444]/15";
   };
 
-  // Calculate rotation based on score (assuming 0-300 range)
   const calculateRotation = (score: number) => {
-    // Define the angle ranges for each segment
     const segments = [
-      { max: 100, startAngle: -90, endAngle: -54 },   // Red - Critical
-      { max: 150, startAngle: -54, endAngle: -18 },   // Orange - Needs Work
-      { max: 200, startAngle: -18, endAngle: 18 },    // Yellow - On Track
-      { max: 250, startAngle: 18, endAngle: 54 },     // Light Green - Strong
-      { max: 300, startAngle: 54, endAngle: 90 }      // Dark Green - Excellent
+      { max: 100, startAngle: -90, endAngle: -54 },
+      { max: 150, startAngle: -54, endAngle: -18 },
+      { max: 200, startAngle: -18, endAngle: 18 },
+      { max: 250, startAngle: 18, endAngle: 54 },
+      { max: 300, startAngle: 54, endAngle: 90 }
     ];
 
-    // Find the current segment
     const segment = segments.find(s => score <= s.max) || segments[segments.length - 1];
-    
-    // Calculate percentage within the segment
     const prevMax = segments[segments.indexOf(segment) - 1]?.max || 0;
     const segmentRange = segment.max - prevMax;
     const scoreWithinSegment = score - prevMax;
     const percentageWithinSegment = scoreWithinSegment / segmentRange;
-
-    // Calculate angle within the segment
     const angleRange = segment.endAngle - segment.startAngle;
     return segment.startAngle + (angleRange * percentageWithinSegment);
   };
 
-  // Get face icon based on score
   const getFaceIcon = (score: number) => {
     const colorClass = getScoreColor(score);
-    if (score < 100) return <Angry className={`w-16 h-16 ${colorClass}`} />; // Changed to Angry
-    if (score < 150) return <Frown className={`w-16 h-16 ${colorClass}`} />; // Now Frown
-    if (score < 200) return <Meh className={`w-16 h-16 ${colorClass}`} />; // Now Meh
-    if (score < 250) return <Smile className={`w-16 h-16 ${colorClass}`} />; // Keep Smile
-    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />; // Keep Laugh
+    if (score < 100) return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 150) return <Frown className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 200) return <Meh className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 250) return <Smile className={`w-16 h-16 ${colorClass}`} />;
+    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
     return <AlertTriangle className={`w-16 h-16 ${colorClass}`} />;
   };
 
@@ -85,7 +73,6 @@ const Concept2 = () => {
     }));
   };
 
-  // Calculate rotation for target line
   const calculateTargetRotation = (targetScore: number) => {
     return calculateRotation(targetScore);
   };
@@ -154,16 +141,6 @@ const Concept2 = () => {
                       className="stroke-[#0EA5E9] stroke-[3] opacity-50"
                       strokeDasharray="4 4"
                     />
-                    <g transform="rotate(-90)">
-                      <text 
-                        x="-5" 
-                        y="256" 
-                        className="fill-[#0EA5E9] text-[12px] font-medium opacity-50"
-                        style={{ dominantBaseline: 'middle' }}
-                      >
-                        target
-                      </text>
-                    </g>
                   </g>
                   
                   <g transform={`rotate(${calculateRotation(score)} 256 257.9)`}>
@@ -233,7 +210,7 @@ const Concept2 = () => {
                   max={300}
                   step={1}
                   onValueChange={(value) => setTargetScore(value[0])}
-                  className="w-full h-1.5" // Thinner height for target slider
+                  className="w-full h-1.5"
                 />
               </div>
               <div>
