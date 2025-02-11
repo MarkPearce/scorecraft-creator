@@ -12,6 +12,13 @@ const data = [
   { date: '3/29', score: 85 },
 ];
 
+const segments = [
+  { dataKey: 'score', startIndex: 0, endIndex: 1, color: '#ea384c' },  // Red
+  { dataKey: 'score', startIndex: 1, endIndex: 2, color: '#F97316' },  // Yellow
+  { dataKey: 'score', startIndex: 2, endIndex: 3, color: '#F97316' },  // Yellow
+  { dataKey: 'score', startIndex: 3, endIndex: 4, color: '#0EA5E9' },  // Green
+];
+
 const Concept1 = () => {
   const navigate = useNavigate();
 
@@ -62,24 +69,29 @@ const Concept1 = () => {
                   }}
                   formatter={(value: number) => [`${value}%`, 'Score']}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="score" 
-                  stroke="#F97316"
-                  strokeWidth={2}
-                  dot={{ 
-                    stroke: '#F97316',
-                    strokeWidth: 2,
-                    r: 4,
-                    fill: 'white'
-                  }}
-                  activeDot={{
-                    stroke: '#F97316',
-                    strokeWidth: 2,
-                    r: 6,
-                    fill: 'white'
-                  }}
-                />
+                {segments.map((segment, index) => (
+                  <Line
+                    key={index}
+                    type="linear"
+                    dataKey={segment.dataKey}
+                    stroke={segment.color}
+                    strokeWidth={2}
+                    dot={{ 
+                      stroke: segment.color,
+                      strokeWidth: 2,
+                      r: 4,
+                      fill: 'white'
+                    }}
+                    activeDot={{
+                      stroke: segment.color,
+                      strokeWidth: 2,
+                      r: 6,
+                      fill: 'white'
+                    }}
+                    connectNulls
+                    data={data.slice(segment.startIndex, segment.endIndex + 1)}
+                  />
+                ))}
               </LineChart>
             </ResponsiveContainer>
           </div>
