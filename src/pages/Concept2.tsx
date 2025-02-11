@@ -1,5 +1,6 @@
+
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
@@ -66,10 +67,11 @@ const Concept2 = () => {
   // Get face icon based on score
   const getFaceIcon = (score: number) => {
     const colorClass = getScoreColor(score);
-    if (score < 100) return <Frown className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 150) return <Meh className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 200) return <Smile className={`w-16 h-16 ${colorClass}`} />;
-    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 100) return <Angry className={`w-16 h-16 ${colorClass}`} />; // Changed to Angry
+    if (score < 150) return <Frown className={`w-16 h-16 ${colorClass}`} />; // Now Frown
+    if (score < 200) return <Meh className={`w-16 h-16 ${colorClass}`} />; // Now Meh
+    if (score < 250) return <Smile className={`w-16 h-16 ${colorClass}`} />; // Keep Smile
+    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />; // Keep Laugh
     return <AlertTriangle className={`w-16 h-16 ${colorClass}`} />;
   };
 
