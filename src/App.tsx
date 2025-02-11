@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Concept1 from "./pages/Concept1";
 import Concept2 from "./pages/Concept2";
 import Concept3 from "./pages/Concept3";
+import PerformanceBarChart from "./pages/PerformanceBarChart";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/concept1" element={<Concept1 />} />
           <Route path="/concept2" element={<Concept2 />} />
           <Route path="/concept3" element={<Concept3 />} />
+          <Route path="/concept4" element={<PerformanceBarChart />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
