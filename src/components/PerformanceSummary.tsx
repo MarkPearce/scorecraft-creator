@@ -80,6 +80,9 @@ const PerformanceSummary = () => {
     </div>
   );
 
+  // Sort items for list view: lower -> same -> higher
+  const sortedItems = [...lowerPerformance, ...samePerformance, ...higherPerformance];
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <div className="flex justify-between items-center mb-4">
@@ -105,7 +108,7 @@ const PerformanceSummary = () => {
             <span className="text-sm font-medium text-gray-700 min-w-[80px] text-center">Performance</span>
           </div>
           <div className="space-y-3">
-            {performanceData.map((item, index) => (
+            {sortedItems.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleStartSession(item.subject)}
