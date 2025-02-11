@@ -12,46 +12,72 @@ const PerformanceBarChart = () => {
   const [range, setRange] = useState({ min: 241, max: 257 });
   const [targetScore, setTargetScore] = useState(230);
 
+  const getScoreSegment = (score: number) => {
+    const totalRange = range.max - range.min;
+    const segmentSize = totalRange / 5;
+    
+    if (score >= range.max - segmentSize) return 5; // Excellent
+    if (score >= range.max - (segmentSize * 2)) return 4; // Strong
+    if (score >= range.max - (segmentSize * 3)) return 3; // Developing
+    if (score >= range.max - (segmentSize * 4)) return 2; // Needs Work
+    return 1; // Critical
+  };
+
   const getScoreLevelName = (score: number) => {
-    if (score < 100) return "Critical";
-    if (score < 150) return "Needs Work";
-    if (score < 200) return "Developing";
-    if (score < 250) return "Strong";
-    return "Excellent";
+    const segment = getScoreSegment(score);
+    switch (segment) {
+      case 5: return "Excellent";
+      case 4: return "Strong";
+      case 3: return "Developing";
+      case 2: return "Needs Work";
+      default: return "Critical";
+    }
   };
 
   const getScoreColor = (score: number) => {
-    if (score < 100) return "bg-[#ED1B24]";
-    if (score < 150) return "bg-[#F46523]";
-    if (score < 200) return "bg-[#FFDD19]";
-    if (score < 250) return "bg-[#8DC641]";
-    return "bg-[#019444]";
+    const segment = getScoreSegment(score);
+    switch (segment) {
+      case 5: return "bg-[#019444]";
+      case 4: return "bg-[#8DC641]";
+      case 3: return "bg-[#FFDD19]";
+      case 2: return "bg-[#F46523]";
+      default: return "bg-[#ED1B24]";
+    }
   };
 
   const getBackgroundColor = (score: number) => {
-    if (score < 100) return "bg-[#ED1B24]/15";
-    if (score < 150) return "bg-[#F46523]/15";
-    if (score < 200) return "bg-[#FFDD19]/15";
-    if (score < 250) return "bg-[#8DC641]/15";
-    return "bg-[#019444]/15";
+    const segment = getScoreSegment(score);
+    switch (segment) {
+      case 5: return "bg-[#019444]/15";
+      case 4: return "bg-[#8DC641]/15";
+      case 3: return "bg-[#FFDD19]/15";
+      case 2: return "bg-[#F46523]/15";
+      default: return "bg-[#ED1B24]/15";
+    }
   };
 
   const getTextColor = (score: number) => {
-    if (score < 100) return "text-[#ED1B24]";
-    if (score < 150) return "text-[#F46523]";
-    if (score < 200) return "text-[#FFDD19]";
-    if (score < 250) return "text-[#8DC641]";
-    return "text-[#019444]";
+    const segment = getScoreSegment(score);
+    switch (segment) {
+      case 5: return "text-[#019444]";
+      case 4: return "text-[#8DC641]";
+      case 3: return "text-[#FFDD19]";
+      case 2: return "text-[#F46523]";
+      default: return "text-[#ED1B24]";
+    }
   };
 
   const getFaceIcon = (score: number) => {
+    const segment = getScoreSegment(score);
     const colorClass = getTextColor(score);
-    if (score < 100) return <Angry className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 150) return <Frown className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 200) return <Meh className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 250) return <Smile className={`w-16 h-16 ${colorClass}`} />;
-    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
-    return <AlertTriangle className={`w-16 h-16 ${colorClass}`} />;
+    
+    switch (segment) {
+      case 5: return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+      case 4: return <Smile className={`w-16 h-16 ${colorClass}`} />;
+      case 3: return <Meh className={`w-16 h-16 ${colorClass}`} />;
+      case 2: return <Frown className={`w-16 h-16 ${colorClass}`} />;
+      default: return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    }
   };
 
   const handleRangeChange = (type: 'min' | 'max', value: string) => {
