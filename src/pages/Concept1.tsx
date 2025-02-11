@@ -72,46 +72,38 @@ const Concept1 = () => {
                   formatter={(value: number) => [`${value}%`, 'Score']}
                 />
                 <defs>
-                  {colorRanges.map((range, index) => (
-                    index < colorRanges.length - 1 && (
-                      <linearGradient
-                        key={`gradient-${index}`}
-                        id={`gradient-${index}`}
-                        x1="0"
-                        y1="0"
-                        x2="1"
-                        y2="0"
-                      >
-                        <stop offset="0%" stopColor={range.color} />
-                        <stop offset="100%" stopColor={colorRanges[index + 1].color} />
-                      </linearGradient>
-                    )
-                  ))}
+                  <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#ea384c" />
+                    <stop offset="25%" stopColor="#F97316" />
+                    <stop offset="50%" stopColor="#F97316" />
+                    <stop offset="75%" stopColor="#0EA5E9" />
+                    <stop offset="100%" stopColor="#0EA5E9" />
+                  </linearGradient>
                 </defs>
-                {colorRanges.map((range, index) => (
-                  index < colorRanges.length - 1 && (
-                    <Line
-                      key={index}
-                      type="linear"
-                      dataKey="score"
-                      stroke={`url(#gradient-${index})`}
-                      strokeWidth={2}
-                      data={data.slice(index, index + 2)}
-                      dot={{ 
-                        stroke: range.color,
-                        strokeWidth: 2,
-                        r: 4,
-                        fill: 'white'
-                      }}
-                      activeDot={{
-                        stroke: range.color,
-                        strokeWidth: 2,
-                        r: 6,
-                        fill: 'white'
-                      }}
-                    />
-                  )
-                ))}
+                <Line
+                  type="linear"
+                  dataKey="score"
+                  stroke="url(#lineGradient)"
+                  strokeWidth={2}
+                  dot={{ 
+                    strokeWidth: 2,
+                    r: 4,
+                    fill: 'white',
+                    stroke: (dataPoint: any) => {
+                      const index = data.findIndex(d => d.score === dataPoint.score);
+                      return colorRanges[index].color;
+                    }
+                  }}
+                  activeDot={{
+                    strokeWidth: 2,
+                    r: 6,
+                    fill: 'white',
+                    stroke: (dataPoint: any) => {
+                      const index = data.findIndex(d => d.score === dataPoint.score);
+                      return colorRanges[index].color;
+                    }
+                  }}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
