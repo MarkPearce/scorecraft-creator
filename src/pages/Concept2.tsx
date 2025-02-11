@@ -13,38 +13,52 @@ const Concept2 = () => {
   const [range, setRange] = useState({ min: 180, max: 300 });
   const [targetScore, setTargetScore] = useState(260);
 
+  const getThresholds = () => {
+    const totalRange = range.max - range.min;
+    const segment = totalRange / 5;
+    return {
+      t1: range.min + segment,
+      t2: range.min + (segment * 2),
+      t3: range.min + (segment * 3),
+      t4: range.min + (segment * 4)
+    };
+  };
+
   const getScoreLevelName = (score: number) => {
-    if (score < 100) return "Critical";
-    if (score < 150) return "Needs Work";
-    if (score < 200) return "Developing";
-    if (score < 250) return "Strong";
+    const { t1, t2, t3, t4 } = getThresholds();
+    if (score < t1) return "Critical";
+    if (score < t2) return "Needs Work";
+    if (score < t3) return "Developing";
+    if (score < t4) return "Strong";
     return "Excellent";
   };
 
   const getScoreColor = (score: number) => {
-    if (score < 100) return "text-[#ED1B24]";
-    if (score < 150) return "text-[#F46523]";
-    if (score < 200) return "text-[#FFDD19]";
-    if (score < 250) return "text-[#8DC641]";
+    const { t1, t2, t3, t4 } = getThresholds();
+    if (score < t1) return "text-[#ED1B24]";
+    if (score < t2) return "text-[#F46523]";
+    if (score < t3) return "text-[#FFDD19]";
+    if (score < t4) return "text-[#8DC641]";
     return "text-[#019444]";
   };
 
   const getBackgroundColor = (score: number) => {
-    if (score < 100) return "bg-[#ED1B24]/15";
-    if (score < 150) return "bg-[#F46523]/15";
-    if (score < 200) return "bg-[#FFDD19]/15";
-    if (score < 250) return "bg-[#8DC641]/15";
+    const { t1, t2, t3, t4 } = getThresholds();
+    if (score < t1) return "bg-[#ED1B24]/15";
+    if (score < t2) return "bg-[#F46523]/15";
+    if (score < t3) return "bg-[#FFDD19]/15";
+    if (score < t4) return "bg-[#8DC641]/15";
     return "bg-[#019444]/15";
   };
 
   const getFaceIcon = (score: number) => {
+    const { t1, t2, t3, t4 } = getThresholds();
     const colorClass = getScoreColor(score);
-    if (score < 100) return <Angry className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 150) return <Frown className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 200) return <Meh className={`w-16 h-16 ${colorClass}`} />;
-    if (score < 250) return <Smile className={`w-16 h-16 ${colorClass}`} />;
-    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
-    return <AlertTriangle className={`w-16 h-16 ${colorClass}`} />;
+    if (score < t1) return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    if (score < t2) return <Frown className={`w-16 h-16 ${colorClass}`} />;
+    if (score < t3) return <Meh className={`w-16 h-16 ${colorClass}`} />;
+    if (score < t4) return <Smile className={`w-16 h-16 ${colorClass}`} />;
+    return <Laugh className={`w-16 h-16 ${colorClass}`} />;
   };
 
   const calculateRotation = (value: number) => {
