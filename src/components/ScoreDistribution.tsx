@@ -31,7 +31,7 @@ const generateData = () => {
 const data = generateData();
 
 // Mock student score - this would typically come from props or an API
-const studentScore = 250;
+const studentScore = 238;
 
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
