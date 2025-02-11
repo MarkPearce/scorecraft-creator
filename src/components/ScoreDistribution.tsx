@@ -18,9 +18,21 @@ const generateData = () => {
   
   for (let score = 180; score <= 300; score += 2) {
     const exponent = -Math.pow(score - mean, 2) / (2 * Math.pow(stdDev, 2));
-    const count = Math.round(35 * Math.exp(exponent));
+    // Scale the distribution to start at 10 and end at 1
+    let count;
+    if (score === 180) {
+      count = 10;
+    } else if (score === 300) {
+      count = 1;
+    } else {
+      count = Math.round(35 * Math.exp(exponent));
+    }
     points.push({ score, count });
   }
+  
+  // Ensure smooth transition to start and end points
+  points[1].count = 12; // Smooth transition from 10
+  points[points.length - 2].count = 3; // Smooth transition to 1
   
   return points;
 };
