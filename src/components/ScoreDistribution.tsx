@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import {
   Select,
@@ -97,11 +96,12 @@ const ScoreDistribution = () => {
           </AreaChart>
         </ResponsiveContainer>
         <div 
-          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center"
+          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center z-10"
           style={{
             left: `${scorePosition * 100}%`,
-            transform: 'translate(-50%, -50%)',
-            top: '20px'
+            transform: 'translate(-50%, 0)',
+            top: '10px',
+            minWidth: '100px'
           }}
         >
           <p className="text-sm text-gray-600">Estimated Score</p>
