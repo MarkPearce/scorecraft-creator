@@ -53,7 +53,7 @@ const Concept1 = () => {
 
         <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
           <div className="mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Line Chart</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Concept 1: Performance Tracking</h1>
             <div className="bg-cyan-100 text-cyan-900 p-4 rounded-lg mb-4">
               Do another question session to update your score
             </div>
