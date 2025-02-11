@@ -32,23 +32,27 @@ const Concept3 = () => {
               <Lock className="w-16 h-16 text-amber-400" />
             </div>
 
-            <PercentileDisplay percentile={currentPercentile} />
+            <div className="w-full h-2 bg-gray-200 rounded-full" />
 
-            <div className="w-full h-2 bg-gray-200 rounded-full my-8" />
-
-            <div className="space-y-6 max-w-2xl mx-auto">
+            <div className="space-y-6 max-w-4xl mx-auto">
               <p className="text-xl font-medium text-gray-900">
                 Exam date: June 24, 2025
               </p>
 
-              <div className="space-y-4 text-left text-gray-600">
-                <p>
-                  You are currently at the 30th percentile compared to other learners with an exam date at the end of June. Follow the recommendations below to improve your knowledge.
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div className="space-y-4 text-left text-gray-600">
+                  <p>
+                    You are currently at the 30th percentile compared to other learners with an exam date at the end of June. Follow the recommendations below to improve your knowledge.
+                  </p>
 
-                <p>
-                  On this percentile rank, learners usually end up scoring between 230-250 on a 3-digit-scale. Keep it up!
-                </p>
+                  <p>
+                    On this percentile rank, learners usually end up scoring between 230-250 on a 3-digit-scale. Keep it up!
+                  </p>
+                </div>
+                
+                <div>
+                  <PercentileDisplay percentile={currentPercentile} />
+                </div>
               </div>
             </div>
           </div>
