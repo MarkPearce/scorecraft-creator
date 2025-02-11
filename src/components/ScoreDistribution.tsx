@@ -42,7 +42,14 @@ const ScoreDistribution = () => {
               tick={{ fontSize: 11, dy: 10 }}
             />
             <YAxis 
-              label={{ value: 'Number of Students', angle: -90, position: 'insideLeft', offset: 10 }}
+              label={{ 
+                value: 'Number of Students', 
+                angle: -90, 
+                position: 'insideLeft',
+                offset: 0,
+                style: { textAnchor: 'middle' }
+              }}
+              tick={{ fontSize: 11, dx: -10 }}
             />
             <Tooltip 
               formatter={(value: number) => [`${value} students`, 'Frequency']}
