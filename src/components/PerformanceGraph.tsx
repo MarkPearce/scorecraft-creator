@@ -51,7 +51,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
 
       {/* Score indicators */}
       <div 
-        className="absolute -left-48 transition-all duration-300"
+        className="absolute right-0 transition-all duration-300"
         style={{ 
           top: calculatePosition(score),
           transform: 'translateY(-50%)'
@@ -64,7 +64,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
       </div>
 
       <div 
-        className="absolute -left-48 transition-all duration-300"
+        className="absolute right-0 transition-all duration-300"
         style={{ 
           top: calculatePosition(targetScore),
           transform: 'translateY(-50%)'
