@@ -28,7 +28,8 @@ const TopicsList = () => {
         {topics.map((topic) => (
           <div
             key={topic.id}
-            className="border rounded-lg p-4 hover:border-blue-200 transition-all duration-200"
+            onClick={() => setExpandedTopic(expandedTopic === topic.id ? null : topic.id)}
+            className="border rounded-lg p-4 hover:border-blue-200 transition-all duration-200 cursor-pointer"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
@@ -37,16 +38,11 @@ const TopicsList = () => {
               </div>
               <div className="flex items-center space-x-4">
                 <span className="text-sm text-gray-500">{topic.score}</span>
-                <button
-                  onClick={() => setExpandedTopic(expandedTopic === topic.id ? null : topic.id)}
-                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                >
-                  {expandedTopic === topic.id ? (
-                    <ChevronDown className="w-5 h-5 text-gray-500" />
-                  ) : (
-                    <ChevronRight className="w-5 h-5 text-gray-500" />
-                  )}
-                </button>
+                {expandedTopic === topic.id ? (
+                  <ChevronDown className="w-5 h-5 text-gray-500" />
+                ) : (
+                  <ChevronRight className="w-5 h-5 text-gray-500" />
+                )}
               </div>
             </div>
             {expandedTopic === topic.id && (
