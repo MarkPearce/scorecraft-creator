@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ScoreDistribution from "@/components/ScoreDistribution";
 import SystemsBreakdown from "@/components/SystemsBreakdown";
 
 const Index = () => {
@@ -45,6 +46,7 @@ const Index = () => {
             </div>
           </div>
           
+          <ScoreDistribution />
           <SystemsBreakdown />
         </div>
       </div>
