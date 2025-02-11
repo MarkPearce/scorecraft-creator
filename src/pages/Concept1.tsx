@@ -12,7 +12,6 @@ const data = [
   { date: '3/29', score: 85 },
 ];
 
-// Instead of separate segments, we'll use a single segment with color gradients
 const colorRanges = [
   { value: 45, color: '#ea384c' },  // Red
   { value: 72, color: '#F97316' },  // Yellow
@@ -86,20 +85,18 @@ const Concept1 = () => {
                   stroke="url(#lineGradient)"
                   strokeWidth={2}
                   dot={{ 
-                    strokeWidth: 2,
                     r: 4,
-                    fill: 'white',
-                    stroke: (dataPoint: any) => {
-                      const index = data.findIndex(d => d.score === dataPoint.score);
+                    strokeWidth: 0,
+                    fill: (entry) => {
+                      const index = data.findIndex(d => d.score === entry.score);
                       return colorRanges[index].color;
                     }
                   }}
                   activeDot={{
-                    strokeWidth: 2,
                     r: 6,
-                    fill: 'white',
-                    stroke: (dataPoint: any) => {
-                      const index = data.findIndex(d => d.score === dataPoint.score);
+                    strokeWidth: 0,
+                    fill: (entry) => {
+                      const index = data.findIndex(d => d.score === entry.score);
                       return colorRanges[index].color;
                     }
                   }}
