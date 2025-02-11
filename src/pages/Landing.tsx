@@ -70,7 +70,7 @@ const Landing = () => {
             onClick={() => navigate("/concept6")}
           >
             <LayoutGrid className="mr-2 h-5 w-5" />
-            Topic Breakdown
+            Study Tracker
           </Button>
 
           <Button

@@ -2,9 +2,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ScoreDistribution from "@/components/ScoreDistribution";
 import TopicsList from "@/components/TopicsList";
+import PerformanceSummary from "@/components/PerformanceSummary";
+import ProgressTracker from "@/components/ProgressTracker";
 
-const Topics = () => {
+const Index = () => {
   const navigate = useNavigate();
 
   return (
@@ -20,16 +23,19 @@ const Topics = () => {
         </Button>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Topic Analysis</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Continuous Score Estimate</h1>
           <p className="mt-2 text-gray-600">
-            Review your performance by topic and get personalized recommendations
+            Here is your assessment based on Qbank Performance. Check out your study recommendations below to optimize your study schedule.
           </p>
         </div>
         
+        <ScoreDistribution />
+        <PerformanceSummary />
         <TopicsList />
+        <ProgressTracker />
       </div>
     </div>
   );
 };
 
-export default Topics;
+export default Index;
