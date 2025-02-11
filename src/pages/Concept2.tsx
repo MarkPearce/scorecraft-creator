@@ -49,29 +49,28 @@ const Concept2 = () => {
             <div className="relative w-80 h-60">
               <svg viewBox="0 0 200 160" className="w-full h-full">
                 <defs>
-                  <linearGradient 
-                    id="gaugeGradient" 
-                    gradientUnits="userSpaceOnUse"
-                    x1="40" 
-                    y1="140" 
-                    x2="160" 
-                    y2="20"
-                  >
-                    <stop offset="0%" stopColor="#ed1b24" />
-                    <stop offset="25%" stopColor="#f46523" />
-                    <stop offset="50%" stopColor="#ffdd19" />
-                    <stop offset="75%" stopColor="#8dc641" />
-                    <stop offset="100%" stopColor="#019444" />
-                  </linearGradient>
+                  <radialGradient id="gaugeGradient" cx="50%" cy="50%">
+                    <stop offset="0%" stopColor="white" />
+                    <stop offset="100%" stopColor="white" stopOpacity="0" />
+                  </radialGradient>
                 </defs>
 
                 {/* Single gradient arc */}
                 <path
                   d="M 40 80 A 60 60 0 0 1 160 80"
                   fill="none"
-                  stroke="url(#gaugeGradient)"
+                  stroke="url(#conicGradient)"
                   strokeWidth="24"
                   strokeLinecap="butt"
+                  style={{
+                    stroke: `conic-gradient(from 180deg at 50% 50%, 
+                      #ed1b24 0%, 
+                      #f46523 20%, 
+                      #ffdd19 40%, 
+                      #8dc641 60%, 
+                      #019444 80%
+                    )`
+                  }}
                   className="opacity-90"
                 />
 
