@@ -46,7 +46,7 @@ const Concept2 = () => {
             </div>
 
             {/* Enhanced Gauge */}
-            <div className="relative w-80 h-60">
+            <div className="relative w-full max-w-md aspect-[2/1.5]">
               <svg viewBox="0 0 512 512" className="w-full h-full">
                 <g id="dial">
                   <g>
