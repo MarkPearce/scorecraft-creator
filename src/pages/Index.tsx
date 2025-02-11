@@ -6,6 +6,7 @@ import ScoreDistribution from "@/components/ScoreDistribution";
 import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import ProgressTracker from "@/components/ProgressTracker";
+import SystemsBreakdown from "@/components/SystemsBreakdown";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -23,16 +24,37 @@ const Index = () => {
         </Button>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Continuous Score Estimate</h1>
+          <h1 className="text-3xl font-bold text-gray-900">USMLE Step 1 Performance</h1>
           <p className="mt-2 text-gray-600">
-            Here is your assessment based on Qbank Performance. Check out your study recommendations below to optimize your study schedule.
+            Track your progress and identify areas for improvement
           </p>
         </div>
         
-        <ScoreDistribution />
-        <PerformanceSummary />
-        <TopicsList />
-        <ProgressTracker />
+        <div className="grid grid-cols-1 gap-8">
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h2 className="text-xl font-semibold mb-4">Overall Performance</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex flex-col items-center p-4 bg-blue-50 rounded-lg">
+                <span className="text-sm text-gray-600">Your Score</span>
+                <span className="text-3xl font-bold text-blue-600">238</span>
+              </div>
+              <div className="flex flex-col items-center p-4 bg-green-50 rounded-lg">
+                <span className="text-sm text-gray-600">Questions Tagged</span>
+                <span className="text-3xl font-bold text-green-600">1,459</span>
+              </div>
+              <div className="flex flex-col items-center p-4 bg-purple-50 rounded-lg">
+                <span className="text-sm text-gray-600">Target Score</span>
+                <span className="text-3xl font-bold text-purple-600">240</span>
+              </div>
+            </div>
+          </div>
+          
+          <ScoreDistribution />
+          <SystemsBreakdown />
+          <PerformanceSummary />
+          <TopicsList />
+          <ProgressTracker />
+        </div>
       </div>
     </div>
   );
