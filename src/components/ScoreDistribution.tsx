@@ -35,12 +35,23 @@ const studentScore = 238;
 const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: any }) => {
   console.log('Rendering CustomScoreLabel:', { x, y, payload });
   return (
-    <foreignObject x={x - 50} y={0} width={100} height={80} style={{ zIndex: 1000 }}>
-      <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
-        <p className="text-sm text-gray-600">Estimated Score</p>
-        <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
-      </div>
-    </foreignObject>
+    <g style={{ zIndex: 1000 }}>
+      <line 
+        x1={x} 
+        y1={80} 
+        x2={x} 
+        y2={y} 
+        stroke="#10B981" 
+        strokeWidth={2} 
+        strokeDasharray="3 3"
+      />
+      <foreignObject x={x - 50} y={0} width={100} height={80}>
+        <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
+          <p className="text-sm text-gray-600">Estimated Score</p>
+          <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
+        </div>
+      </foreignObject>
+    </g>
   );
 };
 
