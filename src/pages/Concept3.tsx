@@ -5,8 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import TopicsList from "@/components/TopicsList";
 
+const getPercentileColor = (percentile: number) => {
+  if (percentile < 40) return "text-red-700";
+  if (percentile < 70) return "text-yellow-600";
+  return "text-green-600";
+};
+
 const Concept3 = () => {
   const navigate = useNavigate();
+  const currentPercentile = 30;
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -28,6 +35,17 @@ const Concept3 = () => {
 
             <div className="flex justify-center">
               <Lock className="w-16 h-16 text-amber-400" />
+            </div>
+
+            <div className="flex items-center justify-center space-x-4">
+              <div className={`text-7xl font-bold ${getPercentileColor(currentPercentile)}`}>
+                {currentPercentile}
+              </div>
+              <div className="text-xl text-gray-600 text-left">
+                <span className="font-semibold">Percentile</span>
+                <br />
+                <span className="text-base">Current Standing</span>
+              </div>
             </div>
 
             <div className="w-full h-2 bg-gray-200 rounded-full my-8" />
