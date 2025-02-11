@@ -56,8 +56,9 @@ const Landing = () => {
           </Button>
 
           <Button
-            className="h-24 text-lg font-medium col-span-full bg-[#F97316] hover:bg-[#F97316]/90"
-            onClick={() => navigate("/")}
+            variant="outline"
+            className="h-24 text-lg font-medium col-span-full hover:bg-gray-100"
+            onClick={() => navigate("/report")}
           >
             <FileText className="mr-2 h-5 w-5" />
             Full Report
