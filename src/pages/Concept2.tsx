@@ -135,6 +135,9 @@ const Concept2 = () => {
                 
                 <path className="fill-[#019444]" d="M463,107.5l-45.7,33.2c24,32.9,38.2,73.5,38.2,117.2H512C512,201.8,493.8,149.8,463,107.5z"/>
                 
+                <path className="fill-none" d="M166,257.9c0-49.7,40.3-90,90-90s90,40.3,90,90H166z"/>
+                
+                {/* Target line */}
                 <g transform={`rotate(${calculateTargetRotation(targetScore)} 256 257.9)`}>
                   <line 
                     x1="256" 
@@ -146,12 +149,11 @@ const Concept2 = () => {
                   />
                 </g>
                 
+                {/* Needle */}
                 <g transform={`rotate(${calculateRotation(score)} 256 257.9)`}>
                   <polyline points="266.9,240.5 275.2,212.9 256,14.5 236.8,212.9 245.1,240.5" className="fill-gray-800"/>
                   <path className="fill-gray-800" d="M256,233.9c-13.3,0-24,10.7-24,24c0,13.3,10.7,24,24,24c13.3,0,24-10.7,24-24C280,244.7,269.3,233.9,256,233.9z M256,270.5c-6.9,0-12.5-5.6-12.5-12.5s5.6-12.5,12.5-12.5c6.9,0,12.5,5.6,12.5,12.5S262.9,270.5,256,270.5z"/>
                 </g>
-                
-                <path className="fill-none" d="M166,257.9c0-49.7,40.3-90,90-90s90,40.3,90,90H166z"/>
               </g>
             </svg>
           </div>
