@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -115,8 +116,8 @@ const PerformanceBarChart = () => {
                 </div>
               </div>
 
-              <div className="flex-1 flex items-center">
-                <div className="relative h-[300px] w-[60px]">
+              <div className="flex-1 flex items-center justify-end">
+                <div className="relative h-[300px] w-[60px] ml-[200px]">
                   {/* Score segments */}
                   {segments.map((segment, index) => (
                     <div 
@@ -138,7 +139,7 @@ const PerformanceBarChart = () => {
 
                   {/* Score indicator */}
                   <div 
-                    className="absolute -left-24 transition-all duration-300 flex items-center gap-2"
+                    className="absolute -left-[200px] transition-all duration-300 flex items-center gap-2"
                     style={{ 
                       top: calculatePosition(score),
                       transform: 'translateY(-50%)'
@@ -151,7 +152,7 @@ const PerformanceBarChart = () => {
 
                   {/* Target score indicator */}
                   <div 
-                    className="absolute -left-24 transition-all duration-300 flex items-center gap-2 opacity-50"
+                    className="absolute -left-[200px] transition-all duration-300 flex items-center gap-2 opacity-50"
                     style={{ 
                       top: calculatePosition(targetScore),
                       transform: 'translateY(-50%)'
