@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -208,27 +209,33 @@ const Concept2 = () => {
                 />
               </div>
             </div>
-            <div>
-              <label htmlFor="target-score" className="block text-sm font-medium text-gray-700 mb-1">
-                Target Score
-              </label>
-              <Input
-                id="target-score"
-                type="number"
-                value={targetScore}
-                onChange={(e) => setTargetScore(Number(e.target.value))}
-                className="w-full mb-4"
-              />
-            </div>
-            <div className="pt-2">
-              <Slider
-                value={[score]}
-                min={0}
-                max={300}
-                step={1}
-                onValueChange={(value) => setScore(value[0])}
-                className="w-full"
-              />
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="target-score" className="block text-sm font-medium text-gray-700 mb-1">
+                  Target Score: {targetScore}
+                </label>
+                <Slider
+                  value={[targetScore]}
+                  min={0}
+                  max={300}
+                  step={1}
+                  onValueChange={(value) => setTargetScore(value[0])}
+                  className="w-full h-1.5" // Thinner height for target slider
+                />
+              </div>
+              <div>
+                <label htmlFor="prediction-score" className="block text-sm font-medium text-gray-700 mb-1">
+                  Prediction: {score}
+                </label>
+                <Slider
+                  value={[score]}
+                  min={0}
+                  max={300}
+                  step={1}
+                  onValueChange={(value) => setScore(value[0])}
+                  className="w-full"
+                />
+              </div>
             </div>
           </div>
         </div>
