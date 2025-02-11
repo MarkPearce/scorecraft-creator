@@ -55,20 +55,12 @@ const Concept3 = () => {
                 Exam date: June 24, 2025
               </p>
 
-              <div className="space-y-4 text-gray-600">
-                <p className="text-center">
-                  You are currently at the 30th percentile compared to other learners with an exam date at the end of June. Follow{" "}
-                  <Button 
-                    variant="link" 
-                    className="text-blue-600 px-1 font-medium h-auto"
-                    onClick={() => navigate('/report')}
-                  >
-                    these
-                  </Button>{" "}
-                  learning recommendations to move up the percentile rank.
+              <div className="space-y-4 text-left text-gray-600">
+                <p>
+                  You are currently at the 30th percentile compared to other learners with an exam date at the end of June. Follow the recommendations below to improve your knowledge.
                 </p>
 
-                <p className="text-center">
+                <p>
                   On this percentile rank, learners usually end up scoring between 230-250 on a 3-digit-scale. Keep it up!
                 </p>
               </div>
