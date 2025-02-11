@@ -33,6 +33,12 @@ const studentScore = 250;
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
 
+  // Calculate the position considering the chart margins
+  const leftMargin = 40;
+  const rightMargin = 30;
+  const chartWidth = 100 - ((leftMargin + rightMargin) / 100);
+  const scorePosition = ((studentScore - 180) / (300 - 180)) * chartWidth + (leftMargin / 100);
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
@@ -84,7 +90,7 @@ const ScoreDistribution = () => {
         <div 
           className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center"
           style={{
-            left: `${((studentScore - 180) / (300 - 180)) * 100}%`,
+            left: `${scorePosition * 100}%`,
             transform: 'translate(-50%, -50%)',
             top: '20px'
           }}
