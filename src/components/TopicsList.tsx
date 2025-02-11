@@ -1,22 +1,23 @@
 
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Book } from 'lucide-react';
+import { Progress } from "@/components/ui/progress";
 
 interface Topic {
   id: number;
   title: string;
-  score: string;
+  score: number;
 }
 
 const topics: Topic[] = [
-  { id: 1, title: "Hepatitis B", score: "85%" },
-  { id: 2, title: "Muscle tissue", score: "78%" },
-  { id: 3, title: "Nephrolothiasis", score: "92%" },
-  { id: 4, title: "Disorders of sex development", score: "88%" },
-  { id: 5, title: "Hepatitis B", score: "75%" },
-  { id: 6, title: "Muscle tissue", score: "82%" },
-  { id: 7, title: "Nephrolothiasis", score: "90%" },
-];
+  { id: 1, title: "Hepatitis B", score: 54 },
+  { id: 2, title: "Muscle tissue", score: 62 },
+  { id: 3, title: "Nephrolothiasis", score: 68 },
+  { id: 4, title: "Disorders of sex development", score: 71 },
+  { id: 5, title: "Cardiovascular system", score: 75 },
+  { id: 6, title: "Respiratory physiology", score: 77 },
+  { id: 7, title: "Endocrine system", score: 80 },
+].sort((a, b) => a.score - b.score);
 
 const TopicsList = () => {
   const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
@@ -37,7 +38,34 @@ const TopicsList = () => {
                 <span className="font-medium">{topic.title}</span>
               </div>
               <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-500">{topic.score}</span>
+                <div className="relative w-10 h-10">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xs font-medium text-gray-700">{topic.score}%</span>
+                  </div>
+                  <svg className="w-10 h-10 transform -rotate-90">
+                    <circle
+                      className="text-gray-200"
+                      strokeWidth="2"
+                      stroke="currentColor"
+                      fill="transparent"
+                      r="16"
+                      cx="20"
+                      cy="20"
+                    />
+                    <circle
+                      className="text-blue-600"
+                      strokeWidth="2"
+                      strokeDasharray={100}
+                      strokeDashoffset={100 - topic.score}
+                      strokeLinecap="round"
+                      stroke="currentColor"
+                      fill="transparent"
+                      r="16"
+                      cx="20"
+                      cy="20"
+                    />
+                  </svg>
+                </div>
                 {expandedTopic === topic.id ? (
                   <ChevronDown className="w-5 h-5 text-gray-500" />
                 ) : (
