@@ -1,9 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Slider } from "@/components/ui/slider";
-import { Input } from "@/components/ui/input";
 import PrototypeControls from "@/components/PrototypeControls";
 
 const PerformanceBarChart = () => {
@@ -55,9 +54,7 @@ const PerformanceBarChart = () => {
   };
 
   const calculatePosition = (value: number) => {
-    const min = 0;
-    const max = 300;
-    const percentage = ((value - min) / (max - min)) * 100;
+    const percentage = ((value - range.min) / (range.max - range.min)) * 100;
     return `${100 - percentage}%`;
   };
 
@@ -72,11 +69,11 @@ const PerformanceBarChart = () => {
   };
 
   const segments = [
-    { score: 300, color: "bg-[#019444]", label: ">250" },
-    { score: 250, color: "bg-[#8DC641]", label: "235" },
-    { score: 200, color: "bg-[#FFDD19]", label: "205" },
-    { score: 150, color: "bg-[#F46523]", label: "185" },
-    { score: 100, color: "bg-[#ED1B24]", label: "<140" },
+    { score: range.max, color: "bg-[#019444]", label: `>${range.max-20}` },
+    { score: range.max-50, color: "bg-[#8DC641]", label: `${range.max-65}` },
+    { score: range.max-100, color: "bg-[#FFDD19]", label: `${range.max-95}` },
+    { score: range.max-150, color: "bg-[#F46523]", label: `${range.max-115}` },
+    { score: range.min, color: "bg-[#ED1B24]", label: `<${range.min+40}` },
   ];
 
   return (
@@ -131,10 +128,9 @@ const PerformanceBarChart = () => {
                   
                   {/* Score labels */}
                   <div className="absolute -right-8 h-full flex flex-col justify-between text-sm text-gray-600">
-                    {segments.map((segment, index) => (
+                    {segments.map((segment) => (
                       <span key={`label-${segment.score}`}>{segment.label}</span>
                     ))}
-                    <span>&lt;100</span>
                   </div>
 
                   {/* Score indicator */}
