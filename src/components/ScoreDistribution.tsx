@@ -44,19 +44,8 @@ const ScoreDistribution = () => {
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
       <div className="relative h-[300px] w-full">
-        <div 
-          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center z-10"
-          style={{
-            left: `${scorePosition * 100}%`,
-            transform: 'translate(-50%, 0)',
-            top: '40px'
-          }}
-        >
-          <p className="text-sm text-gray-600">Estimated Score</p>
-          <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
-        </div>
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 80, right: 30, left: 40, bottom: 30 }}>
+          <AreaChart data={data} margin={{ top: 50, right: 30, left: 40, bottom: 30 }}>
             <defs>
               <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
@@ -98,6 +87,17 @@ const ScoreDistribution = () => {
             />
           </AreaChart>
         </ResponsiveContainer>
+        <div 
+          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center"
+          style={{
+            left: `${scorePosition * 100}%`,
+            transform: 'translate(-50%, -50%)',
+            top: '20px'
+          }}
+        >
+          <p className="text-sm text-gray-600">Estimated Score</p>
+          <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
+        </div>
       </div>
 
       <div className="mt-4 w-[200px] space-y-2">
