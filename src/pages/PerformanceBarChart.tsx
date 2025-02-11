@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -118,9 +119,9 @@ const PerformanceBarChart = () => {
               </div>
 
               {/* Score Readout - Right Column */}
-              <div className="flex justify-center">
-                <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md`}>
-                  <div className="flex items-center gap-6">
+              <div className="flex items-center justify-center">
+                <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md w-full`}>
+                  <div className="flex items-center gap-6 justify-center">
                     {getFaceIcon(score)}
                     <div className="text-center">
                       <div className={`text-6xl font-bold ${getTextColor(score)}`}>{score}</div>
