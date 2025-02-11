@@ -65,7 +65,7 @@ const TopicsList = () => {
                   <svg className="w-12 h-12">
                     <path
                       d={calculateArc(topic.score).green}
-                      className="text-green-200"
+                      className="text-green-600"
                       strokeWidth="6"
                       stroke="currentColor"
                       fill="transparent"
@@ -73,7 +73,7 @@ const TopicsList = () => {
                     />
                     <path
                       d={calculateArc(topic.score).red}
-                      className="text-red-800"
+                      className="text-red-600"
                       strokeWidth="6"
                       stroke="currentColor"
                       fill="transparent"
