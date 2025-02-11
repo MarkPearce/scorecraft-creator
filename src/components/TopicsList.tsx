@@ -38,31 +38,31 @@ const TopicsList = () => {
                 <span className="font-medium">{topic.title}</span>
               </div>
               <div className="flex items-center space-x-4">
-                <div className="relative w-10 h-10">
+                <div className="relative w-12 h-12">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xs font-medium text-gray-700">{topic.score}%</span>
+                    <span className="text-sm font-medium text-gray-700">{topic.score}%</span>
                   </div>
-                  <svg className="w-10 h-10 transform -rotate-90">
+                  <svg className="w-12 h-12 transform -rotate-90">
                     <circle
-                      className="text-gray-200"
+                      className="text-red-200"
                       strokeWidth="2"
                       stroke="currentColor"
                       fill="transparent"
-                      r="16"
-                      cx="20"
-                      cy="20"
+                      r="20"
+                      cx="24"
+                      cy="24"
                     />
                     <circle
-                      className="text-blue-600"
+                      className="text-green-500"
                       strokeWidth="2"
                       strokeDasharray={100}
                       strokeDashoffset={100 - topic.score}
                       strokeLinecap="round"
                       stroke="currentColor"
                       fill="transparent"
-                      r="16"
-                      cx="20"
-                      cy="20"
+                      r="20"
+                      cx="24"
+                      cy="24"
                     />
                   </svg>
                 </div>
