@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Book } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
@@ -33,6 +32,12 @@ const calculateArc = (percentage: number, radius: number = 20) => {
     green: `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
     red: `M ${x2} ${y2} A ${radius} ${radius} 0 ${1 - largeArcFlag} 1 ${x1} ${y1}`
   };
+};
+
+const getScoreColor = (score: number) => {
+  if (score < 60) return "text-red-700";
+  if (score < 70) return "text-yellow-600";
+  return "text-green-600";
 };
 
 const TopicsList = () => {
@@ -85,8 +90,20 @@ const TopicsList = () => {
               </div>
             </div>
             {expandedTopic === topic.id && (
-              <div className="mt-4 pl-8 text-gray-600 animate-fadeIn">
-                <p>Your qbank performance for {topic.title} places you in the {Math.floor(topic.score / 2)}th percentile, among your peer group. Additional Practice is recommended.</p>
+              <div className="mt-4 pl-8 animate-fadeIn">
+                <div className="flex items-center space-x-4 mb-3">
+                  <div className={`text-5xl font-bold ${getScoreColor(Math.floor(topic.score / 2))}`}>
+                    {Math.floor(topic.score / 2)}
+                  </div>
+                  <div className="text-lg text-gray-600">
+                    <span className="font-semibold">Percentile</span>
+                    <br />
+                    <span className="text-sm">Peer Group Ranking</span>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">
+                  Your qbank performance for {topic.title} places you in the {Math.floor(topic.score / 2)}th percentile, among your peer group. Additional Practice is recommended.
+                </p>
                 <div className="mt-2 flex space-x-2">
                   <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
                     Read Article
