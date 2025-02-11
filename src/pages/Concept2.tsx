@@ -16,7 +16,7 @@ const Concept2 = () => {
   const getScoreLevelName = (score: number) => {
     if (score < 100) return "Critical";
     if (score < 150) return "Needs Work";
-    if (score < 200) return "On Track";
+    if (score < 200) return "Developing"; // Changed from "On Track" to "Developing"
     if (score < 250) return "Strong";
     return "Excellent";
   };
@@ -25,7 +25,7 @@ const Concept2 = () => {
   const getScoreColor = (score: number) => {
     if (score < 100) return "text-[#ED1B24]"; // Red - Critical
     if (score < 150) return "text-[#F46523]"; // Orange - Needs Work
-    if (score < 200) return "text-[#FFDD19]"; // Yellow - On Track
+    if (score < 200) return "text-[#FFDD19]"; // Yellow - Developing
     if (score < 250) return "text-[#8DC641]"; // Light Green - Strong
     return "text-[#019444]"; // Dark Green - Excellent
   };
@@ -34,7 +34,7 @@ const Concept2 = () => {
   const getBackgroundColor = (score: number) => {
     if (score < 100) return "bg-[#ED1B24]/15"; // Red - Critical
     if (score < 150) return "bg-[#F46523]/15"; // Orange - Needs Work
-    if (score < 200) return "bg-[#FFDD19]/15"; // Yellow - On Track
+    if (score < 200) return "bg-[#FFDD19]/15"; // Yellow - Developing
     if (score < 250) return "bg-[#8DC641]/15"; // Light Green - Strong
     return "bg-[#019444]/15"; // Dark Green - Excellent
   };
