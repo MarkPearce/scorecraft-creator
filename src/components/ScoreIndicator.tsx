@@ -7,12 +7,13 @@ interface ScoreIndicatorProps {
 
 const ScoreIndicator = ({ label, value, isTarget = false }: ScoreIndicatorProps) => {
   const baseColor = isTarget ? "bg-gray-500" : "bg-gray-800";
+  const borderColor = isTarget ? "border-gray-500" : "border-gray-800";
   const textColor = isTarget ? "text-gray-500" : "text-gray-900";
 
   return (
     <div className={`flex items-center gap-0 ${isTarget ? "opacity-70" : ""}`}>
       <span className={`text-sm font-medium ${textColor} mr-2`}>{label}</span>
-      <div className="border border-gray-300 px-2 py-0.5 rounded bg-white">
+      <div className={`border ${borderColor} px-2 py-0.5 rounded bg-white`}>
         {value}
       </div>
       <div className={`h-0.5 ${baseColor} min-w-[100px]`} />
