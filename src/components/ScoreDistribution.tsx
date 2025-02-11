@@ -1,4 +1,5 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts';
 import {
   Select,
   SelectContent,
@@ -32,14 +33,17 @@ const data = generateData();
 // Mock student score - this would typically come from props or an API
 const studentScore = 238;
 
+const CustomScoreLabel = ({ x, y }: { x: number, y: number }) => (
+  <foreignObject x={x - 50} y={0} width={100} height={80}>
+    <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
+      <p className="text-sm text-gray-600">Estimated Score</p>
+      <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
+    </div>
+  </foreignObject>
+);
+
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
-
-  // Calculate the position considering the chart margins
-  const leftMargin = 40;
-  const rightMargin = 30;
-  const chartWidth = 100 - ((leftMargin + rightMargin) / 100);
-  const scorePosition = ((studentScore - 180) / (300 - 180)) * chartWidth + (leftMargin / 100);
 
   // Generate ticks every 20 units
   const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + (i * 20));
@@ -50,7 +54,7 @@ const ScoreDistribution = () => {
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
       <div className="relative h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 20, right: 30, left: 40, bottom: 40 }}>
+          <AreaChart data={data} margin={{ top: 40, right: 30, left: 40, bottom: 40 }}>
             <defs>
               <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
@@ -93,20 +97,14 @@ const ScoreDistribution = () => {
               strokeWidth={2}
               strokeDasharray="3 3"
             />
+            <ReferenceDot
+              x={studentScore}
+              y={0}
+              r={0}
+              shape={CustomScoreLabel}
+            />
           </AreaChart>
         </ResponsiveContainer>
-        <div 
-          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center z-10"
-          style={{
-            left: `${scorePosition * 100}%`,
-            transform: 'translate(-50%, 0)',
-            top: '10px',
-            minWidth: '100px'
-          }}
-        >
-          <p className="text-sm text-gray-600">Estimated Score</p>
-          <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
-        </div>
       </div>
 
       <div className="mt-4 w-[200px] space-y-2">
