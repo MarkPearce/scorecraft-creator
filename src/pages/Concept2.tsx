@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +35,26 @@ const Concept2 = () => {
     if (score < 200) return "bg-[#FFDD19]/15";
     if (score < 250) return "bg-[#8DC641]/15";
     return "bg-[#019444]/15";
+  };
+
+  const getFaceIcon = (score: number) => {
+    const colorClass = getScoreColor(score);
+    if (score < 100) return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 150) return <Frown className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 200) return <Meh className={`w-16 h-16 ${colorClass}`} />;
+    if (score < 250) return <Smile className={`w-16 h-16 ${colorClass}`} />;
+    if (score <= 300) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+    return <AlertTriangle className={`w-16 h-16 ${colorClass}`} />;
+  };
+
+  const calculateRotation = (value: number) => {
+    // Map 0-300 range to -90 to 90 degrees
+    return ((value / 300) * 180) - 90;
+  };
+
+  const calculateTargetRotation = (value: number) => {
+    // Map 0-300 range to -90 to 90 degrees
+    return ((value / 300) * 180) - 90;
   };
 
   const handleRangeChange = (type: 'min' | 'max', value: string) => {

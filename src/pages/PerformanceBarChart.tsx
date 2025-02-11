@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
+import PrototypeControls from "@/components/PrototypeControls";
 
 const PerformanceBarChart = () => {
   const navigate = useNavigate();
