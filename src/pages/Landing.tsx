@@ -25,7 +25,7 @@ const Landing = () => {
             onClick={() => navigate("/concept1")}
           >
             <LayoutGrid className="mr-2 h-5 w-5" />
-            Concept 1
+            Line Chart
           </Button>
 
           <Button
