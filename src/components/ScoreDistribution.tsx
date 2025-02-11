@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts';
 import {
   Select,
@@ -52,60 +51,58 @@ const ScoreDistribution = () => {
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
-      <div className="relative h-[400px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 40, right: 30, left: 40, bottom: 40 }}>
-            <defs>
-              <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
-                <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis 
-              dataKey="score" 
-              label={{ value: 'Score', position: 'bottom', offset: 20 }}
-              ticks={xAxisTicks}
-              interval={0}
-              tick={{ fontSize: 11, dy: 10 }}
-            />
-            <YAxis 
-              domain={[0, 50]}
-              label={{ 
-                value: 'Peer Group', 
-                angle: -90, 
-                position: 'insideLeft',
-                offset: 0,
-                style: { textAnchor: 'middle' }
-              }}
-              tick={{ fontSize: 11, dx: -10 }}
-            />
-            <Tooltip 
-              formatter={(value: number) => [`${value} students`, 'Frequency']}
-              labelFormatter={(label: number) => `Score: ${label}`}
-            />
-            <Area 
-              type="natural"
-              dataKey="count" 
-              stroke="#3B82F6" 
-              fill="url(#colorCount)"
-              strokeWidth={2}
-            />
-            <ReferenceLine
-              x={studentScore}
-              stroke="#10B981"
-              strokeWidth={2}
-              strokeDasharray="3 3"
-            />
-            <ReferenceDot
-              x={studentScore}
-              y={0}
-              r={0}
-              shape={CustomScoreLabel}
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+      <ResponsiveContainer width="100%" height={400}>
+        <AreaChart data={data} margin={{ top: 40, right: 30, left: 40, bottom: 40 }}>
+          <defs>
+            <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
+              <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <XAxis 
+            dataKey="score" 
+            label={{ value: 'Score', position: 'bottom', offset: 20 }}
+            ticks={xAxisTicks}
+            interval={0}
+            tick={{ fontSize: 11, dy: 10 }}
+          />
+          <YAxis 
+            domain={[0, 50]}
+            label={{ 
+              value: 'Peer Group', 
+              angle: -90, 
+              position: 'insideLeft',
+              offset: 0,
+              style: { textAnchor: 'middle' }
+            }}
+            tick={{ fontSize: 11, dx: -10 }}
+          />
+          <Tooltip 
+            formatter={(value: number) => [`${value} students`, 'Frequency']}
+            labelFormatter={(label: number) => `Score: ${label}`}
+          />
+          <Area 
+            type="natural"
+            dataKey="count" 
+            stroke="#3B82F6" 
+            fill="url(#colorCount)"
+            strokeWidth={2}
+          />
+          <ReferenceLine
+            x={studentScore}
+            stroke="#10B981"
+            strokeWidth={2}
+            strokeDasharray="3 3"
+          />
+          <ReferenceDot
+            x={studentScore}
+            y={0}
+            r={0}
+            shape={CustomScoreLabel}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
 
       <div className="mt-4 w-[200px] space-y-2">
         <Label htmlFor="peer-group">Peer Group</Label>
