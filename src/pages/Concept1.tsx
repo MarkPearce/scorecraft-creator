@@ -5,23 +5,39 @@ import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const data = [
-  { date: '3/1', score: 45 },
-  { date: '3/8', score: 72 },
-  { date: '3/15', score: 68 },
-  { date: '3/22', score: 75 },
-  { date: '3/29', score: 85 },
-];
-
-const colorRanges = [
-  { value: 45, color: '#ea384c' },  // Red
-  { value: 72, color: '#F97316' },  // Yellow
-  { value: 68, color: '#F97316' },  // Yellow
-  { value: 75, color: '#0EA5E9' },  // Blue
-  { value: 85, color: '#0EA5E9' },  // Blue
+  { date: '3/1', score: 45, color: '#ea384c' },
+  { date: '3/8', score: 72, color: '#F97316' },
+  { date: '3/15', score: 68, color: '#F97316' },
+  { date: '3/22', score: 75, color: '#0EA5E9' },
+  { date: '3/29', score: 85, color: '#0EA5E9' },
 ];
 
 const Concept1 = () => {
   const navigate = useNavigate();
+
+  const CustomDot = (props: any) => {
+    const { cx, cy, payload } = props;
+    return (
+      <circle 
+        cx={cx} 
+        cy={cy} 
+        r={4} 
+        fill={payload.color} 
+      />
+    );
+  };
+
+  const CustomActiveDot = (props: any) => {
+    const { cx, cy, payload } = props;
+    return (
+      <circle 
+        cx={cx} 
+        cy={cy} 
+        r={6} 
+        fill={payload.color} 
+      />
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -84,22 +100,8 @@ const Concept1 = () => {
                   dataKey="score"
                   stroke="url(#lineGradient)"
                   strokeWidth={2}
-                  dot={{ 
-                    r: 4,
-                    strokeWidth: 0,
-                    fill: (entry) => {
-                      const index = data.findIndex(d => d.score === entry.score);
-                      return colorRanges[index].color;
-                    }
-                  }}
-                  activeDot={{
-                    r: 6,
-                    strokeWidth: 0,
-                    fill: (entry) => {
-                      const index = data.findIndex(d => d.score === entry.score);
-                      return colorRanges[index].color;
-                    }
-                  }}
+                  dot={<CustomDot />}
+                  activeDot={<CustomActiveDot />}
                 />
               </LineChart>
             </ResponsiveContainer>
