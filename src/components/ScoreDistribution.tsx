@@ -82,11 +82,11 @@ const ScoreDistribution = () => {
           </AreaChart>
         </ResponsiveContainer>
         <div 
-          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center"
+          className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center"
           style={{
             left: `${((studentScore - 180) / (300 - 180)) * 100}%`,
-            transform: 'translateX(-50%)',
-            top: '0'
+            transform: 'translate(-50%, -50%)',
+            top: '20px'
           }}
         >
           <p className="text-sm text-gray-600">Estimated Score</p>
