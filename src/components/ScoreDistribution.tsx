@@ -26,23 +26,21 @@ const ScoreDistribution = () => {
             <Tooltip />
             <Bar dataKey="count" fill="#3B82F6" radius={[4, 4, 0, 0]} />
             <ReferenceLine
-              x={Math.floor(studentScore / 10)}
+              x={studentScore >= 50 ? '41-50' : `${Math.floor(studentScore / 10) * 10 + 1}-${(Math.floor(studentScore / 10) + 1) * 10}`}
               stroke="#10B981"
               strokeWidth={2}
-              label={{
-                position: 'top',
-                value: 'Your Score',
-                fill: '#10B981',
-                fontSize: 12,
-              }}
-            >
-              <svg>
-                <circle cx="0" cy="0" r="4" fill="#10B981" />
-              </svg>
-            </ReferenceLine>
+              strokeDasharray="3 3"
+            />
           </BarChart>
         </ResponsiveContainer>
-        <div className="absolute top-0 right-0 bg-white/90 border border-emerald-200 rounded-md p-2 shadow-sm">
+        <div 
+          className="absolute bg-white/90 border border-emerald-200 rounded-md p-2 shadow-sm"
+          style={{
+            left: `${(Math.floor(studentScore / 10) / (data.length - 1)) * 100}%`,
+            transform: 'translateX(-50%)',
+            top: '0'
+          }}
+        >
           <p className="text-sm text-gray-600">Your Score</p>
           <p className="text-lg font-semibold text-emerald-600">{studentScore}</p>
         </div>
