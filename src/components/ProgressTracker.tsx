@@ -20,6 +20,12 @@ const ProgressTracker = () => {
   const isAssessmentUnlocked = questionsAnswered >= 50;
   const isInsightsUnlocked = questionsAnswered >= 75;
 
+  const getBarColor = (progress: number) => {
+    if (progress >= 75) return 'bg-emerald-500';
+    if (progress >= 50) return 'bg-[#0EA5E9]';
+    return 'bg-primary';
+  };
+
   const handleBoostAssessment = () => {
     setQuestionsAnswered(prev => Math.min(prev + 10, 100));
     setIsDialogOpen(false);
@@ -55,7 +61,7 @@ const ProgressTracker = () => {
       <div className="flex gap-6">
         <div className="w-4 h-[200px] bg-gray-100 rounded-full relative">
           <div 
-            className="absolute bottom-0 left-0 right-0 bg-primary transition-all duration-500 rounded-full"
+            className={`absolute bottom-0 left-0 right-0 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
             style={{ height: `${questionsAnswered}%` }}
           />
           
