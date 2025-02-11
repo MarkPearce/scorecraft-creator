@@ -12,11 +12,13 @@ const data = [
   { date: '3/29', score: 85 },
 ];
 
-const segments = [
-  { dataKey: 'score', startIndex: 0, endIndex: 1, color: '#ea384c' },  // Red
-  { dataKey: 'score', startIndex: 1, endIndex: 2, color: '#F97316' },  // Yellow
-  { dataKey: 'score', startIndex: 2, endIndex: 3, color: '#F97316' },  // Yellow
-  { dataKey: 'score', startIndex: 3, endIndex: 4, color: '#0EA5E9' },  // Green
+// Instead of separate segments, we'll use a single segment with color gradients
+const colorRanges = [
+  { value: 45, color: '#ea384c' },  // Red
+  { value: 72, color: '#F97316' },  // Yellow
+  { value: 68, color: '#F97316' },  // Yellow
+  { value: 75, color: '#0EA5E9' },  // Blue
+  { value: 85, color: '#0EA5E9' },  // Blue
 ];
 
 const Concept1 = () => {
@@ -69,28 +71,46 @@ const Concept1 = () => {
                   }}
                   formatter={(value: number) => [`${value}%`, 'Score']}
                 />
-                {segments.map((segment, index) => (
-                  <Line
-                    key={index}
-                    type="linear"
-                    dataKey={segment.dataKey}
-                    stroke={segment.color}
-                    strokeWidth={2}
-                    dot={{ 
-                      stroke: segment.color,
-                      strokeWidth: 2,
-                      r: 4,
-                      fill: 'white'
-                    }}
-                    activeDot={{
-                      stroke: segment.color,
-                      strokeWidth: 2,
-                      r: 6,
-                      fill: 'white'
-                    }}
-                    connectNulls
-                    data={data.slice(segment.startIndex, segment.endIndex + 1)}
-                  />
+                <defs>
+                  {colorRanges.map((range, index) => (
+                    index < colorRanges.length - 1 && (
+                      <linearGradient
+                        key={`gradient-${index}`}
+                        id={`gradient-${index}`}
+                        x1="0"
+                        y1="0"
+                        x2="1"
+                        y2="0"
+                      >
+                        <stop offset="0%" stopColor={range.color} />
+                        <stop offset="100%" stopColor={colorRanges[index + 1].color} />
+                      </linearGradient>
+                    )
+                  ))}
+                </defs>
+                {colorRanges.map((range, index) => (
+                  index < colorRanges.length - 1 && (
+                    <Line
+                      key={index}
+                      type="linear"
+                      dataKey="score"
+                      stroke={`url(#gradient-${index})`}
+                      strokeWidth={2}
+                      data={data.slice(index, index + 2)}
+                      dot={{ 
+                        stroke: range.color,
+                        strokeWidth: 2,
+                        r: 4,
+                        fill: 'white'
+                      }}
+                      activeDot={{
+                        stroke: range.color,
+                        strokeWidth: 2,
+                        r: 6,
+                        fill: 'white'
+                      }}
+                    />
+                  )
                 ))}
               </LineChart>
             </ResponsiveContainer>
