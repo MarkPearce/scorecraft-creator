@@ -91,16 +91,6 @@ const TopicsList = () => {
             </div>
             {expandedTopic === topic.id && (
               <div className="mt-4 pl-8 animate-fadeIn">
-                <div className="flex items-center space-x-4 mb-3">
-                  <div className={`text-5xl font-bold ${getScoreColor(Math.floor(topic.score / 2))}`}>
-                    {Math.floor(topic.score / 2)}
-                  </div>
-                  <div className="text-lg text-gray-600">
-                    <span className="font-semibold">Percentile</span>
-                    <br />
-                    <span className="text-sm">Peer Group Ranking</span>
-                  </div>
-                </div>
                 <p className="text-gray-600 mb-3">
                   Your qbank performance for {topic.title} places you in the {Math.floor(topic.score / 2)}th percentile, among your peer group. Additional Practice is recommended.
                 </p>
