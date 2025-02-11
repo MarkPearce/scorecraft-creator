@@ -67,7 +67,7 @@ const Landing = () => {
           <Button
             variant="outline"
             className="h-24 text-lg font-medium hover:bg-gray-100"
-            onClick={() => navigate("/concept6")}
+            onClick={() => navigate("/topics")}
           >
             <LayoutGrid className="mr-2 h-5 w-5" />
             Topic Breakdown
