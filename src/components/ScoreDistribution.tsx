@@ -46,7 +46,7 @@ const ScoreDistribution = () => {
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
       <div className="relative h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 20, right: 30, left: 40, bottom: 30 }}>
+          <AreaChart data={data} margin={{ top: 20, right: 30, left: 40, bottom: 50 }}>
             <defs>
               <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
@@ -56,10 +56,11 @@ const ScoreDistribution = () => {
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis 
               dataKey="score" 
-              label={{ value: 'Score', position: 'bottom', offset: 15 }}
-              tick={{ fontSize: 11, dy: 10 }}
+              label={{ value: 'Score', position: 'bottom', offset: 20 }}
+              tick={{ fontSize: 11, dy: 15 }}
               ticks={[180, 200, 220, 240, 260, 280, 300]}
               tickFormatter={(value) => `${value}`}
+              interval={0}
             />
             <YAxis 
               domain={[0, 50]}
