@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [questionsAnswered, setQuestionsAnswered] = useState(65); // out of 100
+  const [questionsAnswered, setQuestionsAnswered] = useState(30); // changed default to 30
   const { toast } = useToast();
   
   const isAssessmentUnlocked = questionsAnswered >= 50;
@@ -55,7 +55,7 @@ const ProgressTracker = () => {
           </Button>
         </div>
       </div>
-      <div className="flex gap-6">
+      <div className="flex gap-6 items-center">
         <div className="w-4 h-[200px] bg-gray-100 rounded-full relative">
           <div 
             className={`absolute bottom-0 left-0 right-0 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
@@ -92,12 +92,12 @@ const ProgressTracker = () => {
               </div>
             )}
           </div>
+        </div>
 
-          {/* Current progress marker */}
-          <div className="absolute w-28 -right-32 bottom-0 flex items-center gap-2">
-            <div className="h-0.5 w-4 bg-gray-300" />
-            <span className="text-sm text-gray-600">{questionsAnswered} Questions</span>
-          </div>
+        {/* Dashboard style readout */}
+        <div className="ml-auto flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg">
+          <div className="text-5xl font-bold text-gray-800">{questionsAnswered}</div>
+          <div className="text-sm text-gray-500 mt-2">Questions Completed</div>
         </div>
       </div>
 
