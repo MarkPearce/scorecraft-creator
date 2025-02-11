@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Progress } from "@/components/ui/progress";
-import { ChevronDown, ChevronRight, Check } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 
 interface SystemCardProps {
@@ -15,7 +15,6 @@ interface SystemCardProps {
 
 const SystemCard = ({ name, icon, score, questionsTagged, totalQuestions, targetScore }: SystemCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const isComplete = questionsTagged >= totalQuestions;
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -23,37 +22,14 @@ const SystemCard = ({ name, icon, score, questionsTagged, totalQuestions, target
         className="space-y-3 cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex items-center justify-between space-x-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             {icon}
             <span className="font-medium">{name}</span>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="relative flex-1 max-w-[200px]">
-              <Progress 
-                value={(questionsTagged / totalQuestions) * 100} 
-                className="h-2"
-                style={{
-                  backgroundColor: '#E2E8F0', // Slate 200 for background
-                }}
-              >
-                <div
-                  className={`h-full transition-all duration-300 rounded-full ${
-                    isComplete ? 'bg-green-500' : 'bg-slate-500'
-                  }`}
-                  style={{
-                    width: `${(questionsTagged / totalQuestions) * 100}%`,
-                  }}
-                />
-              </Progress>
-              {isComplete && (
-                <div className="absolute -right-6 top-1/2 -translate-y-1/2">
-                  <Check className="h-4 w-4 text-green-500" />
-                </div>
-              )}
-            </div>
-            <span className="text-sm text-gray-500 min-w-[80px] text-right">
-              {questionsTagged} / {totalQuestions}
+            <span className="text-sm text-gray-500">
+              {questionsTagged} / {totalQuestions} questions
             </span>
             <span className="font-semibold text-blue-600">{score}%</span>
             {isExpanded ? (
@@ -62,6 +38,14 @@ const SystemCard = ({ name, icon, score, questionsTagged, totalQuestions, target
               <ChevronRight className="h-5 w-5 text-gray-500" />
             )}
           </div>
+        </div>
+
+        <div className="relative">
+          <Progress value={score} className="h-2" />
+          <div 
+            className="absolute top-0 h-2 w-0.5 bg-green-500"
+            style={{ left: `${targetScore}%` }}
+          />
         </div>
       </div>
 
