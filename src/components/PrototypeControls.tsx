@@ -79,7 +79,7 @@ const PrototypeControls = ({
               max={range.max}
               step={1}
               onValueChange={onTargetScoreChange}
-              className="w-full h-1.5"
+              className="relative w-full h-2"
             />
           </div>
           <div>
@@ -92,7 +92,7 @@ const PrototypeControls = ({
               max={range.max}
               step={1}
               onValueChange={onScoreChange}
-              className="w-full"
+              className="relative w-full h-2"
             />
           </div>
         </div>
