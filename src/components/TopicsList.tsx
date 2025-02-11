@@ -19,6 +19,26 @@ const topics: Topic[] = [
   { id: 7, title: "Endocrine system", score: 80 },
 ].sort((a, b) => a.score - b.score);
 
+const calculateArc = (percentage: number, radius: number = 20) => {
+  // Start from top (12 o'clock) which is -90 degrees in SVG
+  const startAngle = -90;
+  const endAngle = (percentage / 100 * 360) - 90;
+  
+  // Calculate start and end points
+  const x1 = 24 + radius * Math.cos((startAngle * Math.PI) / 180);
+  const y1 = 24 + radius * Math.sin((startAngle * Math.PI) / 180);
+  const x2 = 24 + radius * Math.cos((endAngle * Math.PI) / 180);
+  const y2 = 24 + radius * Math.sin((endAngle * Math.PI) / 180);
+  
+  // Determine if we need the large arc flag
+  const largeArcFlag = percentage > 50 ? 1 : 0;
+  
+  return {
+    green: `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+    red: `M ${x2} ${y2} A ${radius} ${radius} 0 ${1 - largeArcFlag} 1 ${x1} ${y1}`
+  };
+};
+
 const TopicsList = () => {
   const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
 
@@ -42,27 +62,22 @@ const TopicsList = () => {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-xs font-medium text-gray-700">{topic.score}%</span>
                   </div>
-                  <svg className="w-12 h-12 transform -rotate-90">
-                    <circle
+                  <svg className="w-12 h-12">
+                    <path
+                      d={calculateArc(topic.score).green}
+                      className="text-green-200"
+                      strokeWidth="6"
+                      stroke="currentColor"
+                      fill="transparent"
+                      strokeLinecap="butt"
+                    />
+                    <path
+                      d={calculateArc(topic.score).red}
                       className="text-red-800"
                       strokeWidth="6"
                       stroke="currentColor"
                       fill="transparent"
-                      r="20"
-                      cx="24"
-                      cy="24"
-                    />
-                    <circle
-                      className="text-green-200"
-                      strokeWidth="6"
-                      strokeDasharray={100}
-                      strokeDashoffset={100 - topic.score}
                       strokeLinecap="butt"
-                      stroke="currentColor"
-                      fill="transparent"
-                      r="20"
-                      cx="24"
-                      cy="24"
                     />
                   </svg>
                 </div>
