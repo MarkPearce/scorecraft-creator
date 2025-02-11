@@ -8,7 +8,7 @@ const ScoreBox = ({ score, position }: ScoreBoxProps) => {
   return (
     <>
       <div 
-        className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center"
+        className="absolute bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center z-20"
         style={{
           left: `${position * 100}%`,
           transform: 'translate(-50%, -50%)',
@@ -19,7 +19,7 @@ const ScoreBox = ({ score, position }: ScoreBoxProps) => {
         <p className="text-2xl font-bold text-emerald-600">{score}</p>
       </div>
       <div 
-        className="absolute bg-emerald-600 w-[2px] opacity-50"
+        className="absolute bg-emerald-600 w-[2px] opacity-50 z-10"
         style={{
           left: `${position * 100}%`,
           transform: 'translateX(-50%)',
