@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -177,65 +176,14 @@ const PerformanceBarChart = () => {
           </div>
         </div>
 
-        <div className="mt-8 bg-gray-100 p-6 rounded-lg shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Prototype Controls</h2>
-          <div className="w-full max-w-md space-y-6 mx-auto">
-            <div className="flex gap-4">
-              <div className="flex-1">
-                <label htmlFor="min-range" className="block text-sm font-medium text-gray-700 mb-1">
-                  Min Range
-                </label>
-                <Input
-                  id="min-range"
-                  type="number"
-                  value={range.min}
-                  onChange={(e) => handleRangeChange('min', e.target.value)}
-                  className="w-full"
-                />
-              </div>
-              <div className="flex-1">
-                <label htmlFor="max-range" className="block text-sm font-medium text-gray-700 mb-1">
-                  Max Range
-                </label>
-                <Input
-                  id="max-range"
-                  type="number"
-                  value={range.max}
-                  onChange={(e) => handleRangeChange('max', e.target.value)}
-                  className="w-full"
-                />
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="target-score" className="block text-sm font-medium text-gray-700 mb-1">
-                  Target Score: {targetScore}
-                </label>
-                <Slider
-                  value={[targetScore]}
-                  min={0}
-                  max={300}
-                  step={1}
-                  onValueChange={(value) => setTargetScore(value[0])}
-                  className="w-full h-1.5"
-                />
-              </div>
-              <div>
-                <label htmlFor="prediction-score" className="block text-sm font-medium text-gray-700 mb-1">
-                  Prediction: {score}
-                </label>
-                <Slider
-                  value={[score]}
-                  min={0}
-                  max={300}
-                  step={1}
-                  onValueChange={(value) => setScore(value[0])}
-                  className="w-full"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <PrototypeControls 
+          range={range}
+          targetScore={targetScore}
+          score={score}
+          onRangeChange={handleRangeChange}
+          onTargetScoreChange={(value) => setTargetScore(value[0])}
+          onScoreChange={(value) => setScore(value[0])}
+        />
       </div>
     </div>
   );
