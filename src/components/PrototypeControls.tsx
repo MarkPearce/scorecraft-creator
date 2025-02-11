@@ -1,6 +1,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
+import { useEffect } from "react";
 
 interface PrototypeControlsProps {
   range: {
@@ -22,6 +23,21 @@ const PrototypeControls = ({
   onTargetScoreChange,
   onScoreChange,
 }: PrototypeControlsProps) => {
+  // Ensure scores stay within range when range changes
+  useEffect(() => {
+    if (targetScore < range.min) {
+      onTargetScoreChange([range.min]);
+    } else if (targetScore > range.max) {
+      onTargetScoreChange([range.max]);
+    }
+
+    if (score < range.min) {
+      onScoreChange([range.min]);
+    } else if (score > range.max) {
+      onScoreChange([range.max]);
+    }
+  }, [range.min, range.max]);
+
   return (
     <div className="mt-8 bg-gray-100 p-6 rounded-lg shadow-sm">
       <h2 className="text-lg font-semibold text-gray-900 mb-6">Prototype Controls</h2>
@@ -59,8 +75,8 @@ const PrototypeControls = ({
             </label>
             <Slider
               value={[targetScore]}
-              min={0}
-              max={300}
+              min={range.min}
+              max={range.max}
               step={1}
               onValueChange={onTargetScoreChange}
               className="w-full h-1.5"
@@ -72,8 +88,8 @@ const PrototypeControls = ({
             </label>
             <Slider
               value={[score]}
-              min={0}
-              max={300}
+              min={range.min}
+              max={range.max}
               step={1}
               onValueChange={onScoreChange}
               className="w-full"
