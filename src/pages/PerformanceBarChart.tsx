@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,7 @@ const PerformanceBarChart = () => {
   const navigate = useNavigate();
   const [score, setScore] = useState(249);
   const [range, setRange] = useState({ min: 241, max: 257 });
-  const [targetScore, setTargetScore] = useState(230);
+  const [targetScore, setTargetScore] = useState(249);
 
   const getScoreSegment = (score: number) => {
     const totalRange = range.max - range.min;
