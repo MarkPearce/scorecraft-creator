@@ -35,6 +35,7 @@ const CustomTick = (props: any) => {
   const { x, y, payload } = props;
   return (
     <g transform={`translate(${x},${y})`}>
+      <line y2="6" stroke="#666" />
       <text
         x={0}
         y={0}
@@ -58,8 +59,8 @@ const ScoreDistribution = () => {
   const chartWidth = 100 - ((leftMargin + rightMargin) / 100);
   const scorePosition = ((studentScore - 180) / (300 - 180)) * chartWidth + (leftMargin / 100);
 
-  // Generate ticks every 10 units
-  const xAxisTicks = Array.from({ length: 13 }, (_, i) => 180 + (i * 10));
+  // Generate ticks every 20 units
+  const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + (i * 20));
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
