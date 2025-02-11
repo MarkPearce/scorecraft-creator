@@ -3,6 +3,7 @@ import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucid
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PrototypeControls from "@/components/PrototypeControls";
+import ScoreIndicator from "@/components/ScoreIndicator";
 
 const PerformanceBarChart = () => {
   const navigate = useNavigate();
@@ -120,36 +121,32 @@ const PerformanceBarChart = () => {
                     ))}
                   </div>
 
-                  {/* Score indicator */}
+                  {/* Score indicators */}
                   <div 
-                    className="absolute -left-48 transition-all duration-300 flex items-center gap-2"
+                    className="absolute -left-48 transition-all duration-300"
                     style={{ 
                       top: calculatePosition(score),
                       transform: 'translateY(-50%)'
                     }}
                   >
-                    <span className="text-sm font-medium">Estimated Score</span>
-                    <div className="border border-gray-300 px-2 py-0.5 rounded bg-white">
-                      {score}
-                    </div>
-                    <div className="flex-1 h-0.5 bg-gray-800 min-w-[100px]" />
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-800" />
+                    <ScoreIndicator 
+                      label="Estimated Score"
+                      value={score}
+                    />
                   </div>
 
-                  {/* Target score indicator */}
                   <div 
-                    className="absolute -left-48 transition-all duration-300 flex items-center gap-2 opacity-70"
+                    className="absolute -left-48 transition-all duration-300"
                     style={{ 
                       top: calculatePosition(targetScore),
                       transform: 'translateY(-50%)'
                     }}
                   >
-                    <span className="text-sm font-medium text-gray-500">Target Score</span>
-                    <div className="border border-gray-300 px-2 py-0.5 rounded bg-white">
-                      {targetScore}
-                    </div>
-                    <div className="flex-1 h-0.5 bg-gray-500 min-w-[100px]" />
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-gray-500" />
+                    <ScoreIndicator 
+                      label="Target Score"
+                      value={targetScore}
+                      isTarget
+                    />
                   </div>
                 </div>
               </div>
