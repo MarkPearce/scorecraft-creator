@@ -1,6 +1,4 @@
 
-import { ReferenceLine } from 'recharts';
-
 interface ScoreBoxProps {
   score: number;
   position: number;
@@ -21,11 +19,12 @@ const ScoreBox = ({ score, position }: ScoreBoxProps) => {
         <p className="text-2xl font-bold text-emerald-600">{score}</p>
       </div>
       <div 
-        className="absolute bg-emerald-600 w-[2px] h-[calc(100%-40px)] opacity-50"
+        className="absolute bg-emerald-600 w-[2px] opacity-50"
         style={{
           left: `${position * 100}%`,
           transform: 'translateX(-50%)',
           top: '40px',
+          height: '100%',
           backgroundImage: 'linear-gradient(transparent 0%, transparent 50%, white 50%, white 100%)',
           backgroundSize: '4px 8px'
         }}
