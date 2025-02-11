@@ -45,7 +45,7 @@ const TopicsList = () => {
                   <svg className="w-12 h-12 transform -rotate-90">
                     <circle
                       stroke="#ea384c"
-                      strokeWidth="3"
+                      strokeWidth="6"
                       fill="transparent"
                       r="20"
                       cx="24"
@@ -53,7 +53,7 @@ const TopicsList = () => {
                     />
                     <circle
                       className="text-green-500"
-                      strokeWidth="3"
+                      strokeWidth="6"
                       strokeDasharray={100}
                       strokeDashoffset={100 - topic.score}
                       strokeLinecap="round"
