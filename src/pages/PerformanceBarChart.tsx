@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -140,7 +139,10 @@ const PerformanceBarChart = () => {
                   {/* Score indicator */}
                   <div 
                     className="absolute -left-24 transition-all duration-300 flex items-center gap-2"
-                    style={{ top: calculatePosition(score) }}
+                    style={{ 
+                      top: calculatePosition(score),
+                      transform: 'translateY(-50%)'
+                    }}
                   >
                     <span className="whitespace-nowrap text-sm font-medium">Your performance</span>
                     <div className="w-6 h-0.5 bg-gray-800" />
@@ -150,7 +152,10 @@ const PerformanceBarChart = () => {
                   {/* Target score indicator */}
                   <div 
                     className="absolute -left-24 transition-all duration-300 flex items-center gap-2 opacity-50"
-                    style={{ top: calculatePosition(targetScore) }}
+                    style={{ 
+                      top: calculatePosition(targetScore),
+                      transform: 'translateY(-50%)'
+                    }}
                   >
                     <span className="whitespace-nowrap text-sm font-medium">Target</span>
                     <div className="w-6 h-0.5 bg-gray-800" />
