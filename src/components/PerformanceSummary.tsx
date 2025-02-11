@@ -2,6 +2,13 @@
 import { BarChart, LayoutList, Columns, BookOpenCheck } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from './ui/dialog';
 
 interface PerformanceItem {
   subject: string;
@@ -25,9 +32,17 @@ type ViewMode = 'grouped' | 'list';
 
 const PerformanceSummary = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
+  const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  
   const lowerPerformance = performanceData.filter(item => item.performance === 'lower');
   const samePerformance = performanceData.filter(item => item.performance === 'same');
   const higherPerformance = performanceData.filter(item => item.performance === 'higher');
+
+  const handleStartSession = (subject: string) => {
+    setSelectedSubject(subject);
+    setDialogOpen(true);
+  };
 
   const Column = ({ title, items }: { title: string; items: PerformanceItem[] }) => (
     <div className="flex-1">
@@ -36,7 +51,7 @@ const PerformanceSummary = () => {
         {items.map((item, index) => (
           <div
             key={index}
-            onClick={() => console.log(`Start test session for ${item.subject}`)}
+            onClick={() => handleStartSession(item.subject)}
             className={`px-3 py-2 rounded-lg text-sm font-medium cursor-pointer transition-colors ${
               item.performance === 'higher'
                 ? 'bg-green-50 text-green-600 hover:bg-green-100'
@@ -89,7 +104,7 @@ const PerformanceSummary = () => {
           {performanceData.map((item, index) => (
             <div
               key={index}
-              onClick={() => console.log(`Start test session for ${item.subject}`)}
+              onClick={() => handleStartSession(item.subject)}
               className={`flex items-center justify-between py-2 px-3 hover:bg-gray-50 transition-colors rounded-lg cursor-pointer group`}
             >
               <span className="font-medium text-gray-900">{item.subject}</span>
@@ -123,6 +138,28 @@ const PerformanceSummary = () => {
           ))}
         </div>
       )}
+
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Start Question Session</DialogTitle>
+          </DialogHeader>
+          <p className="text-gray-600">
+            Are you ready to start a question session for {selectedSubject}?
+          </p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={() => {
+              console.log(`Starting session for ${selectedSubject}`);
+              setDialogOpen(false);
+            }}>
+              Start
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
