@@ -54,7 +54,7 @@ const TopicsList = () => {
                 <p>Additional details about {topic.title} would go here.</p>
                 <div className="mt-2 flex space-x-2">
                   <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
-                    Study Guide
+                    Read Article
                   </button>
                   <button className="px-3 py-1 text-sm bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors">
                     Practice Questions
