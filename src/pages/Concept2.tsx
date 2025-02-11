@@ -49,28 +49,55 @@ const Concept2 = () => {
             <div className="relative w-80 h-60">
               <svg viewBox="0 0 200 160" className="w-full h-full">
                 <defs>
-                  <radialGradient id="gaugeGradient" cx="50%" cy="50%">
-                    <stop offset="0%" stopColor="white" />
-                    <stop offset="100%" stopColor="white" stopOpacity="0" />
-                  </radialGradient>
+                  <linearGradient id="gauge-gradient-1" gradientTransform="rotate(90)">
+                    <stop offset="0%" stopColor="#ed1b24" />
+                    <stop offset="100%" stopColor="#f46523" />
+                  </linearGradient>
+                  <linearGradient id="gauge-gradient-2" gradientTransform="rotate(90)">
+                    <stop offset="0%" stopColor="#f46523" />
+                    <stop offset="100%" stopColor="#ffdd19" />
+                  </linearGradient>
+                  <linearGradient id="gauge-gradient-3" gradientTransform="rotate(90)">
+                    <stop offset="0%" stopColor="#ffdd19" />
+                    <stop offset="100%" stopColor="#8dc641" />
+                  </linearGradient>
+                  <linearGradient id="gauge-gradient-4" gradientTransform="rotate(90)">
+                    <stop offset="0%" stopColor="#8dc641" />
+                    <stop offset="100%" stopColor="#019444" />
+                  </linearGradient>
                 </defs>
 
-                {/* Single gradient arc */}
+                {/* Multiple gradient arcs */}
                 <path
-                  d="M 40 80 A 60 60 0 0 1 160 80"
+                  d="M 40 80 A 60 60 0 0 1 70 30"
                   fill="none"
-                  stroke="url(#conicGradient)"
+                  stroke="url(#gauge-gradient-1)"
                   strokeWidth="24"
                   strokeLinecap="butt"
-                  style={{
-                    stroke: `conic-gradient(from 180deg at 50% 50%, 
-                      #ed1b24 0%, 
-                      #f46523 20%, 
-                      #ffdd19 40%, 
-                      #8dc641 60%, 
-                      #019444 80%
-                    )`
-                  }}
+                  className="opacity-90"
+                />
+                <path
+                  d="M 70 30 A 60 60 0 0 1 100 20"
+                  fill="none"
+                  stroke="url(#gauge-gradient-2)"
+                  strokeWidth="24"
+                  strokeLinecap="butt"
+                  className="opacity-90"
+                />
+                <path
+                  d="M 100 20 A 60 60 0 0 1 130 30"
+                  fill="none"
+                  stroke="url(#gauge-gradient-3)"
+                  strokeWidth="24"
+                  strokeLinecap="butt"
+                  className="opacity-90"
+                />
+                <path
+                  d="M 130 30 A 60 60 0 0 1 160 80"
+                  fill="none"
+                  stroke="url(#gauge-gradient-4)"
+                  strokeWidth="24"
+                  strokeLinecap="butt"
                   className="opacity-90"
                 />
 
