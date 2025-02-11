@@ -57,6 +57,24 @@ const Landing = () => {
 
           <Button
             variant="outline"
+            className="h-24 text-lg font-medium hover:bg-gray-100"
+            onClick={() => navigate("/concept5")}
+          >
+            <LayoutGrid className="mr-2 h-5 w-5" />
+            Topic Analysis
+          </Button>
+
+          <Button
+            variant="outline"
+            className="h-24 text-lg font-medium hover:bg-gray-100"
+            onClick={() => navigate("/concept6")}
+          >
+            <LayoutGrid className="mr-2 h-5 w-5" />
+            Study Tracker
+          </Button>
+
+          <Button
+            variant="outline"
             className="h-24 text-lg font-medium col-span-full hover:bg-gray-100"
             onClick={() => navigate("/report")}
           >
