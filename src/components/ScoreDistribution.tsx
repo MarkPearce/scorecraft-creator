@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts';
 import {
   Select,
@@ -76,6 +77,11 @@ const ScoreDistribution = () => {
           />
           <YAxis 
             domain={[0, 50]}
+            allowDecimals={false}
+            width={60}
+            orientation="left"
+            type="number"
+            padding={{ top: 20, bottom: 20 }}
             label={{ 
               value: 'Peer Group', 
               angle: -90, 
