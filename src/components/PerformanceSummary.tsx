@@ -89,21 +89,35 @@ const PerformanceSummary = () => {
           {performanceData.map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-between py-2 hover:bg-gray-50 transition-colors rounded-lg px-3"
+              onClick={() => console.log(`Start test session for ${item.subject}`)}
+              className={`flex items-center justify-between py-2 px-3 hover:bg-gray-50 transition-colors rounded-lg cursor-pointer group`}
             >
-              <div className="flex items-center space-x-3 flex-1">
-                <span className="font-medium text-gray-900">{item.subject}</span>
-              </div>
-              <div
-                className={`px-3 py-1 rounded-full text-sm min-w-[80px] text-center ${
-                  item.performance === 'higher'
-                    ? 'bg-green-50 text-green-600'
-                    : item.performance === 'lower'
-                    ? 'bg-red-50 text-red-600'
-                    : 'bg-gray-50 text-gray-600'
-                }`}
-              >
-                {item.performance.charAt(0).toUpperCase() + item.performance.slice(1)}
+              <span className="font-medium text-gray-900">{item.subject}</span>
+              <div className="flex items-center gap-3">
+                <div
+                  className={`px-3 py-1 rounded-full text-sm min-w-[80px] text-center ${
+                    item.performance === 'higher'
+                      ? 'bg-green-50 text-green-600'
+                      : item.performance === 'lower'
+                      ? 'bg-red-50 text-red-600'
+                      : 'bg-gray-50 text-gray-600'
+                  }`}
+                >
+                  {item.performance.charAt(0).toUpperCase() + item.performance.slice(1)}
+                </div>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className={`h-6 w-6 bg-white border transition-colors ${
+                    item.performance === 'higher'
+                      ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
+                      : item.performance === 'lower'
+                      ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
+                      : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
+                  }`}
+                >
+                  <BookOpenCheck className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           ))}
