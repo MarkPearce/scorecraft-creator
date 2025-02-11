@@ -34,9 +34,23 @@ const ProgressTracker = () => {
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">Questions in last 30 days</h2>
-        <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
-          Boost Assessment
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="outline" 
+            onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}
+          >
+            -10
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}
+          >
+            +10
+          </Button>
+          <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
+            Boost Assessment
+          </Button>
+        </div>
       </div>
       <div className="flex gap-6">
         <div className="w-4 h-[200px] bg-gray-100 rounded-full relative">
