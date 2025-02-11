@@ -1,4 +1,4 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import {
   Select,
   SelectContent,
@@ -32,33 +32,10 @@ const data = generateData();
 // Mock student score - this would typically come from props or an API
 const studentScore = 238;
 
-const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: any }) => {
-  console.log('Rendering CustomScoreLabel:', { x, y, payload });
-  return (
-    <g style={{ zIndex: 1000 }}>
-      <line 
-        x1={x} 
-        y1={0} 
-        x2={x} 
-        y2={y} 
-        stroke="#10B981" 
-        strokeWidth={2} 
-        strokeDasharray="3 3"
-      />
-    </g>
-  );
-};
-
 const ScoreDistribution = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
   const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + (i * 20));
   
-  const closestPoint = data.reduce((prev, curr) => {
-    return Math.abs(curr.score - studentScore) < Math.abs(prev.score - studentScore) ? curr : prev;
-  });
-  
-  console.log('Closest point:', closestPoint);
-
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
@@ -116,16 +93,6 @@ const ScoreDistribution = () => {
             stroke="#10B981"
             strokeWidth={2}
             strokeDasharray="3 3"
-          />
-          <ReferenceDot
-            x={studentScore}
-            y={closestPoint.count}
-            r={4}
-            fill="#10B981"
-            stroke="#10B981"
-            ifOverflow="extendDomain"
-            shape={(props) => <CustomScoreLabel {...props} payload={closestPoint} />}
-            className="score-label"
           />
         </AreaChart>
       </ResponsiveContainer>
