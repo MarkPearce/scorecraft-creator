@@ -1,5 +1,5 @@
 
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import {
   Select,
   SelectContent,
@@ -45,7 +45,6 @@ const ScoreDistribution = () => {
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
       <div className="relative h-[400px] w-full">
-        <ScoreBox score={studentScore} position={scorePosition} />
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 50, right: 30, left: 40, bottom: 30 }}>
             <defs>
@@ -81,12 +80,7 @@ const ScoreDistribution = () => {
               fill="url(#colorCount)"
               strokeWidth={2}
             />
-            <ReferenceLine
-              x={studentScore}
-              stroke="#10B981"
-              strokeWidth={2}
-              strokeDasharray="3 3"
-            />
+            <ScoreBox score={studentScore} position={scorePosition} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
