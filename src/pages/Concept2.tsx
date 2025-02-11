@@ -31,7 +31,7 @@ const Concept2 = () => {
 
         <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
           <div className="mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Performance Gauge</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Predicted Score</h1>
           </div>
 
           <div className="flex flex-col items-center justify-center space-y-8">
@@ -45,58 +45,93 @@ const Concept2 = () => {
               </div>
             </div>
 
-            {/* Gauge */}
-            <div className="relative w-64 h-32 mt-8">
-              {/* Gauge Background */}
-              <div className="absolute w-full h-full">
-                <svg viewBox="0 0 200 100" className="w-full h-full">
-                  {/* Red Section */}
+            {/* Enhanced Gauge */}
+            <div className="relative w-80 h-60">
+              <svg viewBox="0 0 200 160" className="w-full h-full">
+                <defs>
+                  {/* Background circle gradient */}
+                  <linearGradient id="gaugeBackground" x1="0%" y1="0%" x2="100%" y1="0%">
+                    <stop offset="0%" stopColor="#f8f9fa"/>
+                    <stop offset="100%" stopColor="#e9ecef"/>
+                  </linearGradient>
+                </defs>
+
+                {/* Gauge sections */}
+                <path
+                  d="M 40 80 A 60 60 0 0 1 160 80"
+                  fill="none"
+                  stroke="#ea384c"
+                  strokeWidth="20"
+                  strokeLinecap="round"
+                  className="opacity-90"
+                />
+                <path
+                  d="M 40 80 A 60 60 0 0 1 160 80"
+                  fill="none"
+                  stroke="#F97316"
+                  strokeWidth="20"
+                  strokeLinecap="round"
+                  className="opacity-90"
+                  strokeDasharray="75 180"
+                />
+                <path
+                  d="M 40 80 A 60 60 0 0 1 160 80"
+                  fill="none"
+                  stroke="#ffd700"
+                  strokeWidth="20"
+                  strokeLinecap="round"
+                  className="opacity-90"
+                  strokeDasharray="45 180"
+                />
+                <path
+                  d="M 40 80 A 60 60 0 0 1 160 80"
+                  fill="none"
+                  stroke="#22c55e"
+                  strokeWidth="20"
+                  strokeLinecap="round"
+                  className="opacity-90"
+                  strokeDasharray="60 180"
+                />
+
+                {/* Center white circle */}
+                <circle cx="100" cy="80" r="40" fill="white" stroke="#e5e7eb" strokeWidth="1"/>
+
+                {/* Needle */}
+                <g transform={`rotate(${calculateRotation(score)} 100 80)`}>
                   <path
-                    d="M20 90 A 70 70 0 0 1 60 30"
-                    fill="none"
-                    stroke="#ea384c"
-                    strokeWidth="12"
-                    strokeLinecap="round"
+                    d="M 96 80 L 100 45 L 104 80 Z"
+                    fill="#1f2937"
                   />
-                  {/* Orange Section */}
-                  <path
-                    d="M60 30 A 70 70 0 0 1 100 20"
-                    fill="none"
-                    stroke="#F97316"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                  />
-                  {/* Yellow Section */}
-                  <path
-                    d="M100 20 A 70 70 0 0 1 140 30"
-                    fill="none"
-                    stroke="#FEF7CD"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                  />
-                  {/* Green Section */}
-                  <path
-                    d="M140 30 A 70 70 0 0 1 180 90"
-                    fill="none"
-                    stroke="#22c55e"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                  />
-                  
-                  {/* Needle */}
-                  <g transform={`rotate(${calculateRotation(score)} 100 90)`}>
-                    <line
-                      x1="100"
-                      y1="90"
-                      x2="100"
-                      y2="30"
-                      stroke="#333333"
-                      strokeWidth="2"
-                    />
-                    <circle cx="100" cy="90" r="5" fill="#333333" />
-                  </g>
-                </svg>
-              </div>
+                  <circle cx="100" cy="80" r="4" fill="#1f2937"/>
+                </g>
+
+                {/* Emoji faces */}
+                <g transform="translate(0, 120)">
+                  {/* Very Sad */}
+                  <circle cx="40" cy="0" r="12" fill="#ea384c" className="opacity-90"/>
+                  <path d="M 34 4 A 8 8 0 0 0 46 4" stroke="white" fill="none" strokeWidth="2"/>
+                  <circle cx="35" cy="-3" r="2" fill="white"/>
+                  <circle cx="45" cy="-3" r="2" fill="white"/>
+
+                  {/* Sad */}
+                  <circle cx="80" cy="0" r="12" fill="#F97316" className="opacity-90"/>
+                  <path d="M 74 3 A 6 6 0 0 0 86 3" stroke="white" fill="none" strokeWidth="2"/>
+                  <circle cx="75" cy="-3" r="2" fill="white"/>
+                  <circle cx="85" cy="-3" r="2" fill="white"/>
+
+                  {/* Neutral */}
+                  <circle cx="120" cy="0" r="12" fill="#ffd700" className="opacity-90"/>
+                  <line x1="114" y1="2" x2="126" y2="2" stroke="white" strokeWidth="2"/>
+                  <circle cx="115" cy="-3" r="2" fill="white"/>
+                  <circle cx="125" cy="-3" r="2" fill="white"/>
+
+                  {/* Happy */}
+                  <circle cx="160" cy="0" r="12" fill="#22c55e" className="opacity-90"/>
+                  <path d="M 154 0 A 6 6 0 0 1 166 0" stroke="white" fill="none" strokeWidth="2"/>
+                  <circle cx="155" cy="-3" r="2" fill="white"/>
+                  <circle cx="165" cy="-3" r="2" fill="white"/>
+                </g>
+              </svg>
             </div>
 
             {/* Action Buttons */}
