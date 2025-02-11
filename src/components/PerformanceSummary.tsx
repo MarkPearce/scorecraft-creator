@@ -36,13 +36,14 @@ const PerformanceSummary = () => {
         {items.map((item, index) => (
           <div
             key={index}
-            className={`px-3 py-2 rounded-lg text-sm font-medium ${
+            onClick={() => console.log(`Start test session for ${item.subject}`)}
+            className={`px-3 py-2 rounded-lg text-sm font-medium cursor-pointer transition-colors ${
               item.performance === 'higher'
-                ? 'bg-green-50 text-green-600'
+                ? 'bg-green-50 text-green-600 hover:bg-green-100'
                 : item.performance === 'lower'
-                ? 'bg-red-50 text-red-600'
-                : 'bg-gray-50 text-gray-600'
-            } flex justify-between items-center`}
+                ? 'bg-red-50 text-red-600 hover:bg-red-100'
+                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+            } flex justify-between items-center group`}
           >
             <span>{item.subject}</span>
             <Button
@@ -50,12 +51,11 @@ const PerformanceSummary = () => {
               size="icon"
               className={`h-6 w-6 bg-white border transition-colors ${
                 item.performance === 'higher'
-                  ? 'border-green-600 text-green-600 hover:bg-green-600 hover:text-white'
+                  ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
                   : item.performance === 'lower'
-                  ? 'border-red-600 text-red-600 hover:bg-red-600 hover:text-white'
-                  : 'border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white'
+                  ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
+                  : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
               }`}
-              onClick={() => console.log(`Start test session for ${item.subject}`)}
             >
               <BookOpenCheck className="h-4 w-4" />
             </Button>
