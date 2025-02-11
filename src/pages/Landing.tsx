@@ -61,7 +61,7 @@ const Landing = () => {
             onClick={() => navigate("/concept5")}
           >
             <LayoutGrid className="mr-2 h-5 w-5" />
-            Topic Analysis
+            Peer Group
           </Button>
 
           <Button
