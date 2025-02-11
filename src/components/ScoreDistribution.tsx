@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts';
 import {
   Select,
@@ -32,8 +33,8 @@ const data = generateData();
 // Mock student score - this would typically come from props or an API
 const studentScore = 238;
 
-const CustomScoreLabel = ({ x, y }: { x: number, y: number }) => (
-  <foreignObject x={x - 50} y={0} width={100} height={80}>
+const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: any }) => (
+  <foreignObject x={x - 50} y={y - 100} width={100} height={80}>
     <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
       <p className="text-sm text-gray-600">Estimated Score</p>
       <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
@@ -46,6 +47,10 @@ const ScoreDistribution = () => {
 
   // Generate ticks every 20 units
   const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + (i * 20));
+
+  // Find the count value for the student score
+  const scorePoint = data.find(point => point.score === Math.round(studentScore / 20) * 20);
+  const yValue = scorePoint ? scorePoint.count : 0;
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
@@ -97,7 +102,7 @@ const ScoreDistribution = () => {
           />
           <ReferenceDot
             x={studentScore}
-            y={0}
+            y={yValue}
             r={0}
             shape={CustomScoreLabel}
           />
