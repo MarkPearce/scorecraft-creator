@@ -21,8 +21,10 @@ const performanceData: PerformanceItem[] = [
   { subject: "Genetics", performance: "higher" }
 ];
 
+type ViewMode = 'grouped' | 'list';
+
 const PerformanceSummary = () => {
-  const [isColumnView, setIsColumnView] = useState(true);
+  const [viewMode, setViewMode] = useState<ViewMode>('grouped');
   const lowerPerformance = performanceData.filter(item => item.performance === 'lower');
   const samePerformance = performanceData.filter(item => item.performance === 'same');
   const higherPerformance = performanceData.filter(item => item.performance === 'higher');
@@ -56,13 +58,13 @@ const PerformanceSummary = () => {
         <Button
           variant="outline"
           size="sm"
-          onClick={() => setIsColumnView(!isColumnView)}
+          onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
         >
-          {isColumnView ? <LayoutList className="h-4 w-4" /> : <Columns className="h-4 w-4" />}
+          {viewMode === 'grouped' ? <LayoutList className="h-4 w-4" /> : <Columns className="h-4 w-4" />}
         </Button>
       </div>
       
-      {isColumnView ? (
+      {viewMode === 'grouped' ? (
         <div className="flex gap-6">
           <Column title="Lower" items={lowerPerformance} />
           <Column title="Same" items={samePerformance} />
