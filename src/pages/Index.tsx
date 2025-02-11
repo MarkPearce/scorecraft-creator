@@ -3,9 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ScoreDistribution from "@/components/ScoreDistribution";
-import TopicsList from "@/components/TopicsList";
-import PerformanceSummary from "@/components/PerformanceSummary";
-import ProgressTracker from "@/components/ProgressTracker";
 import SystemsBreakdown from "@/components/SystemsBreakdown";
 
 const Index = () => {
@@ -51,9 +48,6 @@ const Index = () => {
           
           <ScoreDistribution />
           <SystemsBreakdown />
-          <PerformanceSummary />
-          <TopicsList />
-          <ProgressTracker />
         </div>
       </div>
     </div>
