@@ -1,5 +1,5 @@
 
-import { BarChart, LayoutList, Columns, MessageCircle } from 'lucide-react';
+import { BarChart, LayoutList, Columns, TestTube } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 
@@ -42,16 +42,16 @@ const PerformanceSummary = () => {
                 : item.performance === 'lower'
                 ? 'bg-red-50 text-red-600'
                 : 'bg-gray-50 text-gray-600'
-            } flex justify-between items-center group`}
+            } flex justify-between items-center`}
           >
             <span>{item.subject}</span>
             <Button
               variant="ghost"
               size="icon"
-              className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6"
-              onClick={() => console.log(`Start question session for ${item.subject}`)}
+              className="h-6 w-6"
+              onClick={() => console.log(`Start test session for ${item.subject}`)}
             >
-              <MessageCircle className="h-4 w-4" />
+              <TestTube className="h-4 w-4" />
             </Button>
           </div>
         ))}
