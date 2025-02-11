@@ -93,6 +93,14 @@ const ScoreDistribution = () => {
             stroke="#10B981"
             strokeWidth={2}
             strokeDasharray="3 3"
+            label={{
+              value: `Estimated Score ${studentScore}`,
+              position: 'top',
+              fill: '#10B981',
+              fontSize: 12,
+              fontWeight: 500,
+              dy: -10
+            }}
           />
         </AreaChart>
       </ResponsiveContainer>
