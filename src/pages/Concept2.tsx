@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Frown, Meh, Smile, Laugh, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -15,6 +15,15 @@ const Concept2 = () => {
     const maxAngle = 90; // End angle
     const percentage = (score / 300) * 100;
     return minAngle + ((maxAngle - minAngle) * percentage) / 100;
+  };
+
+  // Get face icon based on score
+  const getFaceIcon = (score: number) => {
+    if (score < 100) return <Frown className="w-16 h-16 text-emerald-700" />;
+    if (score < 150) return <Meh className="w-16 h-16 text-emerald-700" />;
+    if (score < 200) return <Smile className="w-16 h-16 text-emerald-700" />;
+    if (score <= 300) return <Laugh className="w-16 h-16 text-emerald-700" />;
+    return <AlertTriangle className="w-16 h-16 text-emerald-700" />;
   };
 
   return (
@@ -37,10 +46,13 @@ const Concept2 = () => {
           <div className="flex flex-col items-center justify-center space-y-8">
             {/* Score Display */}
             <div className="bg-[#F0FBFA] p-6 rounded-lg w-full max-w-md">
-              <div className="text-center">
-                <div className="text-6xl font-bold text-emerald-700">{score}</div>
-                <div className="text-gray-600 mt-2">
-                  RANGE {range.min}-{range.max}
+              <div className="flex items-center justify-center gap-6">
+                {getFaceIcon(score)}
+                <div className="text-center">
+                  <div className="text-6xl font-bold text-emerald-700">{score}</div>
+                  <div className="text-gray-600 mt-2">
+                    RANGE {range.min}-{range.max}
+                  </div>
                 </div>
               </div>
             </div>
