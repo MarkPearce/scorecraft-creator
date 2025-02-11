@@ -36,16 +36,15 @@ const SystemCard = ({ name, icon, score, questionsTagged, totalQuestions, target
                 style={{
                   backgroundColor: '#E2E8F0', // Slate 200 for background
                 }}
-              >
-                <div
-                  className={`h-full transition-all duration-300 rounded-full ${
-                    isComplete ? 'bg-green-500' : 'bg-slate-500'
-                  }`}
-                  style={{
-                    width: `${(questionsTagged / totalQuestions) * 100}%`,
-                  }}
-                />
-              </Progress>
+              />
+              <div
+                className={`absolute top-0 left-0 h-2 transition-all duration-300 rounded-full ${
+                  isComplete ? 'bg-green-500' : 'bg-slate-500'
+                }`}
+                style={{
+                  width: `${(questionsTagged / totalQuestions) * 100}%`,
+                }}
+              />
               {isComplete && (
                 <div className="absolute -right-6 top-1/2 -translate-y-1/2">
                   <Check className="h-4 w-4 text-green-500" />
