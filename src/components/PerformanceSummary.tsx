@@ -1,5 +1,5 @@
 
-import { BarChart, LayoutList, Columns, TestTube } from 'lucide-react';
+import { BarChart, LayoutList, Columns, BookOpenCheck } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 
@@ -51,7 +51,7 @@ const PerformanceSummary = () => {
               className="h-6 w-6"
               onClick={() => console.log(`Start test session for ${item.subject}`)}
             >
-              <TestTube className="h-4 w-4" />
+              <BookOpenCheck className="h-4 w-4" />
             </Button>
           </div>
         ))}
