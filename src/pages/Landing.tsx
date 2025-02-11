@@ -34,7 +34,7 @@ const Landing = () => {
             onClick={() => navigate("/concept2")}
           >
             <LayoutGrid className="mr-2 h-5 w-5" />
-            Concept 2
+            Performance Gauge
           </Button>
 
           <Button
