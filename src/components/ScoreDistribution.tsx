@@ -35,7 +35,7 @@ const studentScore = 238;
 const CustomScoreLabel = ({ x, y, payload }: { x: number, y: number, payload?: any }) => {
   console.log('Rendering CustomScoreLabel:', { x, y, payload });
   return (
-    <foreignObject x={x - 50} y={y - 100} width={100} height={80}>
+    <foreignObject x={x - 50} y={0} width={100} height={80}>
       <div className="bg-white/90 border border-emerald-200 rounded-md p-3 shadow-sm flex flex-col items-center justify-center">
         <p className="text-sm text-gray-600">Estimated Score</p>
         <p className="text-2xl font-bold text-emerald-600">{studentScore}</p>
@@ -59,7 +59,7 @@ const ScoreDistribution = () => {
       <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
       <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
       <ResponsiveContainer width="100%" height={400}>
-        <AreaChart data={data} margin={{ top: 40, right: 30, left: 40, bottom: 40 }}>
+        <AreaChart data={data} margin={{ top: 80, right: 30, left: 40, bottom: 40 }}>
           <defs>
             <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
