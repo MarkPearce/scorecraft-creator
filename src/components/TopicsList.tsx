@@ -44,7 +44,7 @@ const TopicsList = () => {
                   </div>
                   <svg className="w-12 h-12 transform -rotate-90">
                     <circle
-                      className="text-red-100"
+                      className="text-red-800"
                       strokeWidth="6"
                       stroke="currentColor"
                       fill="transparent"
