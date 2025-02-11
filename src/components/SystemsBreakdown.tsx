@@ -1,6 +1,6 @@
 
-import { Progress } from "@/components/ui/progress";
-import { BeakerIcon, Brain, Heart, Stethoscope, ActivitySquare, PlusCircle, Baby } from 'lucide-react';
+import { BeakerIcon, Brain, Heart, Stethoscope, ActivitySquare, Baby } from 'lucide-react';
+import SystemCard from './SystemCard';
 
 interface SystemData {
   name: string;
@@ -64,38 +64,15 @@ const systems: SystemData[] = [
 
 const SystemsBreakdown = () => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
+    <div className="space-y-4">
       <h2 className="text-xl font-semibold mb-6">Systems Breakdown</h2>
-      <div className="space-y-6">
+      <div className="space-y-4">
         {systems.map((system) => (
-          <div key={system.name} className="space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                {system.icon}
-                <span className="font-medium">{system.name}</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-500">
-                  {system.questionsTagged} / {system.totalQuestions} questions
-                </span>
-                <span className="font-semibold text-blue-600">{system.score}%</span>
-              </div>
-            </div>
-            <div className="relative">
-              <Progress value={system.score} className="h-2" />
-              <div 
-                className="absolute top-0 h-2 w-0.5 bg-green-500"
-                style={{ left: `${system.targetScore}%` }}
-              />
-            </div>
-          </div>
+          <SystemCard
+            key={system.name}
+            {...system}
+          />
         ))}
-      </div>
-      <div className="mt-6 pt-4 border-t">
-        <button className="flex items-center text-sm text-gray-600 hover:text-gray-900">
-          <PlusCircle className="h-4 w-4 mr-2" />
-          Show more systems
-        </button>
       </div>
     </div>
   );
