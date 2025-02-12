@@ -1,6 +1,7 @@
+
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown, ChevronRight, LucideIcon, Newspaper } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 
@@ -30,6 +31,18 @@ const SubjectProgress = ({
   const progressPercentage = (questionsCompleted / totalQuestions) * 100;
   
   const isComplete = questionsCompleted === 50 && totalQuestions === 50;
+
+  // Calculate target score based on exam weight
+  const getTargetScore = () => {
+    if (!examWeight) return 80;
+    const weight = parseInt(examWeight.split('-')[0]); // Get lower bound of weight range
+    if (weight < 5) return 70; // Lower target for low-weight sections
+    if (weight < 10) return 75; // Medium target for medium-weight sections
+    return 80; // Higher target for high-weight sections
+  };
+
+  const targetScore = getTargetScore();
+  const meetsTarget = score >= targetScore;
   
   const getProgressColor = () => {
     if (isComplete) {
@@ -58,6 +71,9 @@ const SubjectProgress = ({
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
+              {meetsTarget && isComplete && (
+                <Star className="w-5 h-5 text-[#F97316] mr-1" fill="#F97316" />
+              )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
                 <div
                   className={`h-full transition-all duration-300 ${getProgressColor()}`}
@@ -69,7 +85,7 @@ const SubjectProgress = ({
               </span>
             </div>
             <span className="text-sm font-medium text-blue-600">
-              {score}/80%
+              {score}/{targetScore}%
             </span>
             {isExpanded ? (
               <ChevronDown className="w-5 h-5 text-gray-500" />
@@ -96,7 +112,7 @@ const SubjectProgress = ({
                       <div className="text-sm font-medium text-gray-600 mb-1 text-center">Target Score</div>
                       <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
                         {isComplete && (
-                          <div className="text-2xl font-bold text-green-600">80%</div>
+                          <div className="text-2xl font-bold text-green-600">{targetScore}%</div>
                         )}
                       </div>
                     </div>
