@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookOpenCheck } from "lucide-react";
@@ -29,7 +30,7 @@ const SubjectProgress = ({
   
   const progressPercentage = (questionsCompleted / totalQuestions) * 100;
   
-  const isComplete = questionsCompleted === 50 && totalQuestions === 50;
+  const isComplete = questionsCompleted === totalQuestions;
 
   const getTargetScore = () => {
     if (!examWeight) return 80;
@@ -143,17 +144,25 @@ const SubjectProgress = ({
                   strokeWidth={1.5}
                 />
               )}
-              {!isComplete && (
+              {(!meetsTarget || !isComplete) && (
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-7 w-7 -ml-1 transition-colors hover:bg-foreground hover:text-background"
+                  className={`h-7 w-7 -ml-1 transition-colors group
+                    ${isComplete && !meetsTarget 
+                      ? "bg-[#66BB6A] hover:bg-white border-[#66BB6A] hover:border-[#66BB6A]" 
+                      : "hover:bg-foreground hover:text-background"}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     // Add your practice questions navigation logic here
                   }}
                 >
-                  <BookOpenCheck className="h-4 w-4" />
+                  <BookOpenCheck 
+                    className={`h-4 w-4 
+                      ${isComplete && !meetsTarget 
+                        ? "text-white group-hover:text-[#66BB6A]" 
+                        : ""}`} 
+                  />
                 </Button>
               )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
