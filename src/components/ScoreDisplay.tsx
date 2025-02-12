@@ -26,7 +26,7 @@ export const ScoreDisplay = ({
   };
 
   return (
-    <div className="grid grid-cols-[1fr_80px] items-center gap-0.5">
+    <div className="grid grid-cols-[1fr_140px] items-center gap-0.5">
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-2">
           <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
@@ -40,8 +40,8 @@ export const ScoreDisplay = ({
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-end gap-2">
-        <span className="text-sm font-medium">
+      <div className="flex items-center justify-end gap-3">
+        <span className="text-sm font-medium whitespace-nowrap">
           {isComplete ? (
             <span className="text-blue-600">{score}/{targetScore}%</span>
           ) : (
