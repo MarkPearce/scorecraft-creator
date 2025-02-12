@@ -86,24 +86,31 @@ const SubjectProgress = ({
           <div className="mt-4 pl-8 animate-fadeIn">
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-6">
+                <div className="text-sm font-medium text-gray-600 mb-1">Performance Metrics:</div>
                 <div className="grid grid-cols-3 gap-4">
-                  <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
-                    <div className="text-sm text-gray-600">Current Score</div>
-                    {isComplete && (
-                      <div className="text-lg font-bold text-blue-600">{score}%</div>
-                    )}
+                  <div>
+                    <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
+                      {isComplete && (
+                        <div className="text-lg font-bold text-blue-600">{score}%</div>
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Current Score</div>
                   </div>
-                  <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
-                    <div className="text-sm text-gray-600">Target Score</div>
-                    {isComplete && (
-                      <div className="text-lg font-bold text-green-600">80%</div>
-                    )}
+                  <div>
+                    <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
+                      {isComplete && (
+                        <div className="text-lg font-bold text-green-600">80%</div>
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Target Score</div>
                   </div>
-                  <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
-                    <div className="text-sm text-gray-600">Percentile</div>
-                    {isComplete && (
-                      <div className="text-lg font-bold text-purple-600">75th</div>
-                    )}
+                  <div>
+                    <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
+                      {isComplete && (
+                        <div className="text-lg font-bold text-purple-600">75th</div>
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Percentile</div>
                   </div>
                 </div>
               </div>
