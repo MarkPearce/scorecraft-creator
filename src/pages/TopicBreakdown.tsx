@@ -1,9 +1,10 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Beaker, Heart, Brain } from "lucide-react";
+import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Lungs, Activity, Baby } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import SubjectProgress from "@/components/SubjectProgress";
+import { Card } from "@/components/ui/card";
 
 const TopicBreakdown = () => {
   const navigate = useNavigate();
@@ -21,10 +22,29 @@ const TopicBreakdown = () => {
         </Button>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Topic Breakdown</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">USMLE Step 1 Performance</h1>
           <div className="flex items-center justify-center text-gray-600 mb-8">
             <BookOpen className="h-5 w-5 mr-2" />
-            <p>Detailed analysis of your performance by topic</p>
+            <p>Track your progress and identify areas for improvement</p>
+          </div>
+        </div>
+
+        {/* Overall Performance Stats */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card className="p-6 bg-blue-50">
+              <div className="text-sm text-gray-600 mb-2">Your Score</div>
+              <div className="text-4xl font-bold text-blue-600">238</div>
+            </Card>
+            <Card className="p-6 bg-green-50">
+              <div className="text-sm text-gray-600 mb-2">Questions Tagged</div>
+              <div className="text-4xl font-bold text-green-600">1,459</div>
+            </Card>
+            <Card className="p-6 bg-purple-50">
+              <div className="text-sm text-gray-600 mb-2">Target Score</div>
+              <div className="text-4xl font-bold text-purple-600">240</div>
+            </Card>
           </div>
         </div>
 
@@ -35,6 +55,61 @@ const TopicBreakdown = () => {
           totalQuestions={2261}
           targetQuestions={2035}
         />
+
+        {/* Systems Breakdown */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-gray-900">Systems Breakdown</h2>
+          <div className="space-y-4">
+            <SubjectProgress 
+              subject="Biochemistry"
+              questionsCompleted={142}
+              totalQuestions={250}
+              targetQuestions={200}
+              score={75}
+              icon={Beaker}
+            />
+            <SubjectProgress 
+              subject="Cardiovascular"
+              questionsCompleted={178}
+              totalQuestions={300}
+              targetQuestions={240}
+              score={82}
+              icon={Heart}
+            />
+            <SubjectProgress 
+              subject="Neurology"
+              questionsCompleted={156}
+              totalQuestions={280}
+              targetQuestions={224}
+              score={68}
+              icon={Brain}
+            />
+            <SubjectProgress 
+              subject="Respiratory"
+              questionsCompleted={134}
+              totalQuestions={220}
+              targetQuestions={176}
+              score={71}
+              icon={Lungs}
+            />
+            <SubjectProgress 
+              subject="Endocrine"
+              questionsCompleted={112}
+              totalQuestions={190}
+              targetQuestions={152}
+              score={79}
+              icon={Activity}
+            />
+            <SubjectProgress 
+              subject="Reproductive"
+              questionsCompleted={98}
+              totalQuestions={180}
+              targetQuestions={144}
+              score={73}
+              icon={Baby}
+            />
+          </div>
+        </div>
 
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-900">Subject Performance</h2>
