@@ -35,10 +35,15 @@ const SubjectProgress = ({
   const targetScore = getTargetScore(examWeight);
   const meetsTarget = score >= targetScore;
 
+  const handleClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <Card className="animate-fadeIn">
       <div
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleClick}
         className="border rounded-lg p-4 hover:border-blue-200 transition-all duration-200 cursor-pointer"
       >
         <div className="flex items-center justify-between">
@@ -58,11 +63,13 @@ const SubjectProgress = ({
               meetsTarget={meetsTarget}
               progressPercentage={progressPercentage}
             />
-            {isExpanded ? (
-              <ChevronDown className="w-5 h-5 text-[#8A898C]" />
-            ) : (
-              <ChevronRight className="w-5 h-5 text-[#8A898C]" />
-            )}
+            <div onClick={(e) => e.stopPropagation()}>
+              {isExpanded ? (
+                <ChevronDown className="w-5 h-5 text-[#8A898C]" />
+              ) : (
+                <ChevronRight className="w-5 h-5 text-[#8A898C]" />
+              )}
+            </div>
           </div>
         </div>
 
