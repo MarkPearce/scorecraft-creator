@@ -41,6 +41,11 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
                 </div>
               </div>
             </div>
+            {!isComplete && (
+              <div className="mt-2 text-sm text-gray-500 text-center">
+                Complete 50 questions to activate the assessment
+              </div>
+            )}
           </div>
           <div className="col-span-6">
             <div className="flex flex-col">
