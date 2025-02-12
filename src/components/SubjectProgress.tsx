@@ -1,7 +1,7 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { LucideIcon } from "lucide-react";
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
 
 interface SubjectProgressProps {
   subject: string;
@@ -10,6 +10,7 @@ interface SubjectProgressProps {
   targetQuestions: number;
   score: number;
   icon: LucideIcon;
+  iconColor?: string;
 }
 
 const SubjectProgress = ({
@@ -18,34 +19,65 @@ const SubjectProgress = ({
   totalQuestions,
   targetQuestions,
   score,
-  icon: Icon
+  icon: Icon,
+  iconColor = "text-gray-500"
 }: SubjectProgressProps) => {
-  const questionsProgress = (questionsCompleted / targetQuestions) * 100;
-  const scoreProgress = (score / 100) * 100;
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium flex items-center gap-2">
-          <Icon className="h-5 w-5" /> {subject}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="text-sm text-gray-600 mb-2">
-          {questionsCompleted} / {totalQuestions} Questions Completed
+    <Card className="animate-fadeIn">
+      <div
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="border rounded-lg p-4 hover:border-blue-200 transition-all duration-200 cursor-pointer"
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Icon className={`w-5 h-5 ${iconColor}`} />
+            <span className="font-medium">{subject}</span>
+          </div>
+          <div className="flex items-center space-x-4">
+            <span className="text-sm text-gray-600">
+              {questionsCompleted}/{totalQuestions} questions
+            </span>
+            <span className="text-sm font-medium text-blue-600">
+              {score}%
+            </span>
+            {isExpanded ? (
+              <ChevronDown className="w-5 h-5 text-gray-500" />
+            ) : (
+              <ChevronRight className="w-5 h-5 text-gray-500" />
+            )}
+          </div>
         </div>
-        <Progress value={questionsProgress} className="h-2 mb-1" />
-        <div className="text-xs text-gray-500 text-right">
-          Target: {targetQuestions} ({Math.round(questionsProgress)}% complete)
-        </div>
-        <div className="text-sm text-gray-600 mt-2">
-          Score: {score}%
-        </div>
-        <Progress value={scoreProgress} className="h-2 mb-1" />
-        <div className="text-xs text-gray-500 text-right">
-          {Math.round(scoreProgress)}% complete
-        </div>
-      </CardContent>
+        {isExpanded && (
+          <div className="mt-4 pl-8 space-y-4 animate-fadeIn">
+            <div className="grid grid-cols-3 gap-4">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="text-sm text-gray-600">Current Score</div>
+                <div className="text-xl font-bold text-blue-600">{score}%</div>
+              </div>
+              <div className="bg-green-50 p-4 rounded-lg">
+                <div className="text-sm text-gray-600">Target Score</div>
+                <div className="text-xl font-bold text-green-600">80%</div>
+              </div>
+              <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="text-sm text-gray-600">Questions Done</div>
+                <div className="text-xl font-bold text-purple-600">
+                  {questionsCompleted}/{totalQuestions}
+                </div>
+              </div>
+            </div>
+            <div className="flex space-x-2">
+              <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
+                Study Materials
+              </button>
+              <button className="px-3 py-1 text-sm bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors">
+                Practice Questions
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </Card>
   );
 };

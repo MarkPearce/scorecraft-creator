@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -62,51 +61,57 @@ const TopicBreakdown = () => {
           <div className="space-y-4">
             <SubjectProgress 
               subject="Biochemistry"
-              questionsCompleted={142}
-              totalQuestions={250}
-              targetQuestions={200}
+              questionsCompleted={35}
+              totalQuestions={50}
+              targetQuestions={40}
               score={75}
               icon={Beaker}
+              iconColor="text-blue-500"
             />
             <SubjectProgress 
               subject="Cardiovascular"
-              questionsCompleted={178}
-              totalQuestions={300}
-              targetQuestions={240}
+              questionsCompleted={42}
+              totalQuestions={50}
+              targetQuestions={40}
               score={82}
               icon={Heart}
+              iconColor="text-red-500"
             />
             <SubjectProgress 
               subject="Neurology"
-              questionsCompleted={156}
-              totalQuestions={280}
-              targetQuestions={224}
+              questionsCompleted={38}
+              totalQuestions={50}
+              targetQuestions={40}
               score={68}
               icon={Brain}
+              iconColor="text-purple-500"
             />
             <SubjectProgress 
               subject="Respiratory"
-              questionsCompleted={134}
-              totalQuestions={220}
-              targetQuestions={176}
+              questionsCompleted={31}
+              totalQuestions={50}
+              targetQuestions={40}
               score={71}
               icon={Activity}
+              iconColor="text-green-500"
             />
             <SubjectProgress 
               subject="Endocrine"
-              questionsCompleted={112}
-              totalQuestions={190}
-              targetQuestions={152}
+              questionsCompleted={28}
+              totalQuestions={50}
+              targetQuestions={40}
               score={79}
               icon={Activity}
+              iconColor="text-orange-500"
             />
             <SubjectProgress 
               subject="Reproductive"
-              questionsCompleted={98}
-              totalQuestions={180}
-              targetQuestions={144}
+              questionsCompleted={25}
+              totalQuestions={50}
+              targetQuestions={40}
               score={73}
               icon={Baby}
+              iconColor="text-pink-500"
             />
           </div>
         </div>
