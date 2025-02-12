@@ -82,7 +82,7 @@ const SubjectProgress = ({
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-6 w-6"
+                  className="h-6 w-6 transition-colors hover:bg-foreground hover:text-background"
                   onClick={(e) => {
                     e.stopPropagation();
                     // Add your practice questions navigation logic here
