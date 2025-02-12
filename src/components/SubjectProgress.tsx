@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 interface SubjectProgressProps {
   subject: string;
@@ -25,6 +26,18 @@ const SubjectProgress = ({
   examWeight
 }: SubjectProgressProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Calculate progress percentage
+  const progressPercentage = (questionsCompleted / totalQuestions) * 100;
+  
+  // Determine progress bar color
+  const getProgressColor = () => {
+    if (questionsCompleted === 0) return "bg-[#FFDEE2]"; // Soft Pink when no progress
+    if (progressPercentage === 100) return "bg-green-500"; // Solid green when complete
+    // Simulate stale state - in real app, you'd compare with last activity timestamp
+    if (questionsCompleted > 0 && Math.random() > 0.8) return "bg-[#FEF7CD]"; // Soft Yellow for stale
+    return "bg-[#FFDEE2]"; // Default soft pink
+  };
 
   return (
     <Card className="animate-fadeIn">
@@ -38,9 +51,17 @@ const SubjectProgress = ({
             <span className="font-medium">{subject}</span>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600">
-              {questionsCompleted}/{totalQuestions} questions
-            </span>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm text-gray-600">
+                {questionsCompleted}/{totalQuestions}
+              </span>
+              <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
+                <div
+                  className={`h-full transition-all duration-300 ${getProgressColor()}`}
+                  style={{ width: `${progressPercentage}%` }}
+                />
+              </div>
+            </div>
             <span className="text-sm font-medium text-blue-600">
               {score}%
             </span>
