@@ -67,7 +67,7 @@ export const ScoreDisplay = ({
           />
         </div>
       </div>
-      <span className="text-sm text-[#8A898C] text-right">
+      <span className="text-sm text-[#8A898C] text-right -ml-2">
         {questionsCompleted}/{totalQuestions}
       </span>
       <span className="text-sm font-medium text-right">
