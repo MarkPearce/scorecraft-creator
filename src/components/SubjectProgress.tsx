@@ -72,7 +72,12 @@ const SubjectProgress = ({
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               {meetsTarget && isComplete && (
-                <Star className="w-5 h-5 text-[#F97316] mr-1" fill="#F97316" />
+                <Star 
+                  className="w-5 h-5 text-[#F97316] mr-1" 
+                  fill="#FACC15" 
+                  stroke="#F97316"
+                  strokeWidth={1.5}
+                />
               )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
                 <div
