@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookOpenCheck } from "lucide-react";
@@ -148,13 +147,13 @@ const SubjectProgress = ({
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-7 w-7 -ml-1 bg-[#F2FCE2] hover:bg-white border-[#F2FCE2] hover:border-[#F2FCE2] transition-colors group"
+                  className="h-7 w-7 -ml-1 transition-colors hover:bg-foreground hover:text-background"
                   onClick={(e) => {
                     e.stopPropagation();
                     // Add your practice questions navigation logic here
                   }}
                 >
-                  <BookOpenCheck className="h-4 w-4 text-white group-hover:text-[#F2FCE2]" />
+                  <BookOpenCheck className="h-4 w-4" />
                 </Button>
               )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
