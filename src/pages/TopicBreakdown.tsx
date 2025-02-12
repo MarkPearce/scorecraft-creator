@@ -48,20 +48,19 @@ const TopicBreakdown = () => {
           </div>
         </div>
 
-        {/* Overall Performance Stats */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="p-6 bg-blue-50">
-              <div className="text-sm text-gray-600 mb-2">Your Score</div>
+              <div className="text-sm text-[#403E43] mb-2">Your Score</div>
               <div className="text-4xl font-bold text-blue-600">238</div>
             </Card>
             <Card className="p-6 bg-green-50">
-              <div className="text-sm text-gray-600 mb-2">Questions Answered</div>
+              <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
               <div className="text-4xl font-bold text-green-600">{totalQuestionsAnswered}</div>
             </Card>
             <Card className="p-6 bg-purple-50">
-              <div className="text-sm text-gray-600 mb-2">Target Score</div>
+              <div className="text-sm text-[#403E43] mb-2">Target Score</div>
               <div className="text-4xl font-bold text-purple-600">240</div>
             </Card>
           </div>
@@ -75,7 +74,6 @@ const TopicBreakdown = () => {
           targetQuestions={2035}
         />
 
-        {/* Systems Breakdown */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-900">Systems Breakdown</h2>
           <div className="space-y-4">
