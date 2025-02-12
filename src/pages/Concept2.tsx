@@ -35,11 +35,11 @@ const Concept2 = () => {
 
   const getScoreColor = (score: number) => {
     const { t1, t2, t3, t4 } = getThresholds();
-    if (score < t1) return "text-[#ED1B24]";
-    if (score < t2) return "text-[#F46523]";
-    if (score < t3) return "text-[#FFDD19]";
-    if (score < t4) return "text-[#8DC641]";
-    return "text-[#019444]";
+    if (score < t1) return "text-yellow-500";
+    if (score < t2) return "text-yellow-500";
+    if (score < t3) return "text-yellow-500";
+    if (score < t4) return "text-yellow-500";
+    return "text-yellow-500";
   };
 
   const getBackgroundColor = (score: number) => {
