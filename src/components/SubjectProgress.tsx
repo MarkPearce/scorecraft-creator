@@ -69,7 +69,7 @@ const SubjectProgress = ({
               </span>
             </div>
             <span className="text-sm font-medium text-blue-600">
-              {score}%
+              {score}/80%
             </span>
             {isExpanded ? (
               <ChevronDown className="w-5 h-5 text-gray-500" />
