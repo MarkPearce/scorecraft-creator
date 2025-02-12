@@ -26,8 +26,8 @@ export const ScoreDisplay = ({
   };
 
   return (
-    <div className="grid grid-cols-[auto_85px_80px] gap-0.5 items-center">
-      <div className="flex items-center space-x-1">
+    <div className="grid grid-cols-[1fr_80px] items-center gap-0.5">
+      <div className="flex items-center gap-1">
         <div className="w-5 flex items-center justify-center">
           {meetsTarget && isComplete && (
             <Star 
@@ -60,16 +60,18 @@ export const ScoreDisplay = ({
             </Button>
           )}
         </div>
-        <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
-          <div
-            className={`h-full transition-all duration-300 ${getProgressColor()}`}
-            style={{ width: `${progressPercentage}%` }}
-          />
+        <div className="flex items-center gap-2">
+          <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
+            <div
+              className={`h-full transition-all duration-300 ${getProgressColor()}`}
+              style={{ width: `${progressPercentage}%` }}
+            />
+          </div>
+          <span className="text-sm text-[#8A898C]">
+            {questionsCompleted}/{totalQuestions}
+          </span>
         </div>
       </div>
-      <span className="text-sm text-[#8A898C] text-right">
-        {questionsCompleted}/{totalQuestions}
-      </span>
       <span className="text-sm font-medium text-right">
         {isComplete ? (
           <span className="text-blue-600">{score}/{targetScore}%</span>
