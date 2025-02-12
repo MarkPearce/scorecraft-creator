@@ -84,7 +84,7 @@ const SubjectProgress = ({
               <div className="col-span-6">
                 <div className="grid auto-cols-min grid-flow-col gap-4 h-full">
                   <div className="flex flex-col w-[90px]">
-                    <div className="text-sm font-medium text-gray-600 mb-1">Current Score</div>
+                    <div className="text-sm font-medium text-gray-600 mb-1 text-center">Current Score</div>
                     <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
                         <div className="text-2xl font-bold text-blue-600">{score}%</div>
@@ -92,7 +92,7 @@ const SubjectProgress = ({
                     </div>
                   </div>
                   <div className="flex flex-col w-[90px]">
-                    <div className="text-sm font-medium text-gray-600 mb-1">Target Score</div>
+                    <div className="text-sm font-medium text-gray-600 mb-1 text-center">Target Score</div>
                     <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
                         <div className="text-2xl font-bold text-green-600">80%</div>
@@ -100,7 +100,7 @@ const SubjectProgress = ({
                     </div>
                   </div>
                   <div className="flex flex-col w-[90px]">
-                    <div className="text-sm font-medium text-gray-600 mb-1">Percentile</div>
+                    <div className="text-sm font-medium text-gray-600 mb-1 text-center">Percentile</div>
                     <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
                         <div className="text-2xl font-bold text-purple-600">75th</div>
