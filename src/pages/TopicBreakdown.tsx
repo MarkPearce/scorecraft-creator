@@ -16,7 +16,7 @@ const TopicBreakdown = () => {
     { questionsCompleted: 38 }, // Behavioral Health & Nervous Systems
     { questionsCompleted: 50 }, // Musculoskeletal & Skin
     { questionsCompleted: 28 }, // Cardiovascular System
-    { questionsCompleted: 33 }, // Respiratory & Renal/Urinary Systems
+    { questionsCompleted: 50 }, // Respiratory & Renal/Urinary Systems - Updated to 50
     { questionsCompleted: 29 }, // Gastrointestinal System
     { questionsCompleted: 36 }, // Reproductive & Endocrine Systems
     { questionsCompleted: 34 }, // Multisystem Processes & Disorders
@@ -129,7 +129,7 @@ const TopicBreakdown = () => {
             />
             <SubjectProgress 
               subject="Respiratory & Renal/Urinary Systems"
-              questionsCompleted={33}
+              questionsCompleted={50}
               totalQuestions={50}
               targetQuestions={40}
               score={73}
