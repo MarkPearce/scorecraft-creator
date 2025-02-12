@@ -75,17 +75,17 @@ const SubjectProgress = ({
         {isExpanded && (
           <div className="mt-4 pl-8 space-y-4 animate-fadeIn">
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="bg-blue-50 p-3 rounded-lg border border-blue-600">
                 <div className="text-sm text-gray-600">Current Score</div>
-                <div className="text-xl font-bold text-blue-600">{score}%</div>
+                <div className="text-lg font-bold text-blue-600">{score}%</div>
               </div>
-              <div className="bg-green-50 p-4 rounded-lg">
+              <div className="bg-green-50 p-3 rounded-lg border border-green-600">
                 <div className="text-sm text-gray-600">Target Score</div>
-                <div className="text-xl font-bold text-green-600">80%</div>
+                <div className="text-lg font-bold text-green-600">80%</div>
               </div>
-              <div className="bg-purple-50 p-4 rounded-lg">
+              <div className="bg-purple-50 p-3 rounded-lg border border-purple-600">
                 <div className="text-sm text-gray-600">Questions Done</div>
-                <div className="text-xl font-bold text-purple-600">
+                <div className="text-lg font-bold text-purple-600">
                   {questionsCompleted}/{totalQuestions}
                 </div>
               </div>
