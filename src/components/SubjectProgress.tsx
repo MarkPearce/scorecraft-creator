@@ -127,7 +127,7 @@ const SubjectProgress = ({
             <div className="flex items-center space-x-2">
               <span className="font-medium">{subject}</span>
               {examWeight && (
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-[#8A898C]">
                   ({examWeight}%)
                 </span>
               )}
@@ -170,7 +170,7 @@ const SubjectProgress = ({
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-[#8A898C]">
                 {questionsCompleted}/{totalQuestions}
               </span>
             </div>
@@ -178,13 +178,13 @@ const SubjectProgress = ({
               {isComplete ? (
                 <span className="text-blue-600">{score}/{targetScore}%</span>
               ) : (
-                <span className="text-gray-500">-/{targetScore}%</span>
+                <span className="text-[#F1F1F1]">-/{targetScore}%</span>
               )}
             </span>
             {isExpanded ? (
-              <ChevronDown className="w-5 h-5 text-gray-500" />
+              <ChevronDown className="w-5 h-5 text-[#8A898C]" />
             ) : (
-              <ChevronRight className="w-5 h-5 text-gray-500" />
+              <ChevronRight className="w-5 h-5 text-[#8A898C]" />
             )}
           </div>
         </div>
