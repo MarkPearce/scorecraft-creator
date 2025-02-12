@@ -52,15 +52,15 @@ const SubjectProgress = ({
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600">
-                {questionsCompleted}/{totalQuestions}
-              </span>
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
                 <div
                   className={`h-full transition-all duration-300 ${getProgressColor()}`}
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
+              <span className="text-sm text-gray-600">
+                {questionsCompleted}/{totalQuestions}
+              </span>
             </div>
             <span className="text-sm font-medium text-blue-600">
               {score}%
