@@ -25,6 +25,10 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
     setIsDialogOpen(true);
   };
 
+  const handleDialogChange = (open: boolean) => {
+    setIsDialogOpen(open);
+  };
+
   return (
     <>
       <div className="mt-4 pl-8 animate-slide-down">
@@ -95,8 +99,8 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
         </div>
       </div>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+      <Dialog open={isDialogOpen} onOpenChange={handleDialogChange}>
+        <DialogContent onClick={(e) => e.stopPropagation()}>
           <DialogTitle>Question Session</DialogTitle>
           <DialogDescription className="py-4">
             Ready to start your practice questions?
