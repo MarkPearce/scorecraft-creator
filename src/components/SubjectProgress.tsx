@@ -1,6 +1,7 @@
+
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookOpen } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookOpenCheck } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 
@@ -79,7 +80,7 @@ const SubjectProgress = ({
               )}
               {!isComplete && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="icon"
                   className="h-6 w-6"
                   onClick={(e) => {
@@ -87,7 +88,7 @@ const SubjectProgress = ({
                     // Add your practice questions navigation logic here
                   }}
                 >
-                  <BookOpen className="h-4 w-4" />
+                  <BookOpenCheck className="h-4 w-4" />
                 </Button>
               )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
