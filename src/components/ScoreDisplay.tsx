@@ -43,7 +43,7 @@ export const ScoreDisplay = ({
             className={`h-7 w-7 -ml-1 transition-colors group
               ${isComplete && !meetsTarget 
                 ? "bg-[#66BB6A] hover:bg-white border-[#66BB6A] hover:border-[#66BB6A]" 
-                : "hover:bg-foreground hover:text-background"}`}
+                : "border-gray-600 hover:bg-foreground hover:text-background"}`}
             onClick={(e) => {
               e.stopPropagation();
               // Add your practice questions navigation logic here
@@ -53,7 +53,9 @@ export const ScoreDisplay = ({
               className={`h-4 w-4 
                 ${isComplete && !meetsTarget 
                   ? "text-white group-hover:text-[#66BB6A]" 
-                  : ""}`} 
+                  : "text-gray-600"}`}
+              fill="currentColor"
+              strokeWidth={1.5}
             />
           </Button>
         )}
