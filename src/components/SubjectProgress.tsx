@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon, Newspaper } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 
 interface SubjectProgressProps {
   subject: string;
@@ -131,9 +132,9 @@ const SubjectProgress = ({
                 </a>
               </div>
               <div className="flex flex-col items-end space-y-2 mt-4">
-                <button className="px-4 py-1.5 text-sm border border-green-600 text-green-600 rounded-full hover:bg-green-50 transition-colors">
+                <Button variant="outline" size="sm">
                   Practice Questions
-                </button>
+                </Button>
                 {examWeight && (
                   <div className="text-xs text-gray-500">
                     Exam weight: {examWeight}%
