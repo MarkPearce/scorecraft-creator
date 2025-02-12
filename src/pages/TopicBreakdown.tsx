@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Lungs, Activity, Baby } from "lucide-react";
+import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import SubjectProgress from "@/components/SubjectProgress";
@@ -90,7 +90,7 @@ const TopicBreakdown = () => {
               totalQuestions={220}
               targetQuestions={176}
               score={71}
-              icon={Lungs}
+              icon={Activity}
             />
             <SubjectProgress 
               subject="Endocrine"
