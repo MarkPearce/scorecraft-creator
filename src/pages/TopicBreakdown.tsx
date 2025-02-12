@@ -38,7 +38,7 @@ const TopicBreakdown = () => {
               <div className="text-4xl font-bold text-blue-600">238</div>
             </Card>
             <Card className="p-6 bg-green-50">
-              <div className="text-sm text-gray-600 mb-2">Questions Tagged</div>
+              <div className="text-sm text-gray-600 mb-2">Questions Answered</div>
               <div className="text-4xl font-bold text-green-600">1,459</div>
             </Card>
             <Card className="p-6 bg-purple-50">
