@@ -82,8 +82,8 @@ const SubjectProgress = ({
           <div className="mt-4 pl-8 animate-fadeIn">
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-6">
-                <div className="grid grid-cols-3 gap-4 h-full">
-                  <div className="flex flex-col">
+                <div className="grid auto-cols-min grid-flow-col gap-4 h-full">
+                  <div className="flex flex-col w-[90px]">
                     <div className="text-sm font-medium text-gray-600 mb-1">Current Score</div>
                     <div className={`flex-1 px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
@@ -91,7 +91,7 @@ const SubjectProgress = ({
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-[90px]">
                     <div className="text-sm font-medium text-gray-600 mb-1">Target Score</div>
                     <div className={`flex-1 px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
@@ -99,7 +99,7 @@ const SubjectProgress = ({
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-[90px]">
                     <div className="text-sm font-medium text-gray-600 mb-1">Percentile</div>
                     <div className={`flex-1 px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
