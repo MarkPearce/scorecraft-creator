@@ -9,6 +9,23 @@ import { Card } from "@/components/ui/card";
 const TopicBreakdown = () => {
   const navigate = useNavigate();
 
+  // Calculate total questions answered from all systems
+  const systemsData = [
+    { questionsCompleted: 50 }, // Human Development
+    { questionsCompleted: 50 }, // Blood & Lymphoreticular/Immune Systems
+    { questionsCompleted: 38 }, // Behavioral Health & Nervous Systems
+    { questionsCompleted: 50 }, // Musculoskeletal & Skin
+    { questionsCompleted: 28 }, // Cardiovascular System
+    { questionsCompleted: 33 }, // Respiratory & Renal/Urinary Systems
+    { questionsCompleted: 29 }, // Gastrointestinal System
+    { questionsCompleted: 36 }, // Reproductive & Endocrine Systems
+    { questionsCompleted: 34 }, // Multisystem Processes & Disorders
+    { questionsCompleted: 27 }, // Biostatistics & Epidemiology
+    { questionsCompleted: 30 }  // Social Sciences & Communication
+  ];
+
+  const totalQuestionsAnswered = systemsData.reduce((sum, system) => sum + system.questionsCompleted, 0);
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
@@ -39,7 +56,7 @@ const TopicBreakdown = () => {
             </Card>
             <Card className="p-6 bg-green-50">
               <div className="text-sm text-gray-600 mb-2">Questions Answered</div>
-              <div className="text-4xl font-bold text-green-600">1,459</div>
+              <div className="text-4xl font-bold text-green-600">{totalQuestionsAnswered}</div>
             </Card>
             <Card className="p-6 bg-purple-50">
               <div className="text-sm text-gray-600 mb-2">Target Score</div>
