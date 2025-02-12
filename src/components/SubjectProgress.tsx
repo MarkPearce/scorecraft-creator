@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon, Newspaper } from "lucide-react";
@@ -28,13 +27,10 @@ const SubjectProgress = ({
 }: SubjectProgressProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
-  // Calculate progress percentage
   const progressPercentage = (questionsCompleted / totalQuestions) * 100;
   
-  // Determine if system is complete
   const isComplete = questionsCompleted === 50 && totalQuestions === 50;
   
-  // Determine progress bar color - medium grey or medium green
   const getProgressColor = () => {
     if (isComplete) {
       return "bg-[#66BB6A]";
@@ -86,31 +82,30 @@ const SubjectProgress = ({
           <div className="mt-4 pl-8 animate-fadeIn">
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-6">
-                <div className="text-sm font-medium text-gray-600 mb-1">Performance Metrics:</div>
                 <div className="grid grid-cols-3 gap-4">
                   <div>
+                    <div className="text-sm font-medium text-gray-600 mb-1">Current Score</div>
                     <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
                         <div className="text-lg font-bold text-blue-600">{score}%</div>
                       )}
                     </div>
-                    <div className="text-sm text-gray-600 mt-1">Current Score</div>
                   </div>
                   <div>
+                    <div className="text-sm font-medium text-gray-600 mb-1">Target Score</div>
                     <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
                         <div className="text-lg font-bold text-green-600">80%</div>
                       )}
                     </div>
-                    <div className="text-sm text-gray-600 mt-1">Target Score</div>
                   </div>
                   <div>
+                    <div className="text-sm font-medium text-gray-600 mb-1">Percentile</div>
                     <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
                       {isComplete && (
                         <div className="text-lg font-bold text-purple-600">75th</div>
                       )}
                     </div>
-                    <div className="text-sm text-gray-600 mt-1">Percentile</div>
                   </div>
                 </div>
               </div>
