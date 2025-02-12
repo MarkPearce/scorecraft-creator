@@ -42,29 +42,29 @@ export const ScoreDisplay = ({
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_160px] items-center gap-0.5">
+      <div className="grid grid-cols-[1fr_180px] items-center gap-0.5">
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
               <div
                 className={`h-full transition-all duration-300 ${getProgressColor()}`}
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
-            <span className="text-sm text-[#8A898C]">
+            <span className="text-sm text-[#8A898C] whitespace-nowrap flex-shrink-0">
               {questionsCompleted}/{totalQuestions}
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-end gap-3">
-          <span className="text-sm font-medium whitespace-nowrap">
+        <div className="flex items-center justify-end gap-3 flex-shrink-0">
+          <span className="text-sm font-medium whitespace-nowrap flex-shrink-0">
             {isComplete ? (
               <span className="text-blue-600">{score}/{targetScore}%</span>
             ) : (
               <span className="text-gray-400">-/{targetScore}%</span>
             )}
           </span>
-          <div className="w-8 flex items-center justify-center">
+          <div className="w-8 flex items-center justify-center flex-shrink-0">
             {meetsTarget && isComplete && (
               <Star 
                 className="w-8 h-8 text-[#F97316]" 
