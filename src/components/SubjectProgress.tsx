@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, ScrollText } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookCheck } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 
@@ -89,7 +89,10 @@ const SubjectProgress = ({
                     // Add your practice questions navigation logic here
                   }}
                 >
-                  <ScrollText className="h-4 w-4 text-blue-600" />
+                  <BookCheck 
+                    className="h-4 w-4 text-blue-600" 
+                    strokeWidth={2}
+                  />
                 </Button>
               )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
