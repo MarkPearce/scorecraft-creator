@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookOpenCheck } from "lucide-react";
@@ -42,7 +41,7 @@ const SubjectProgress = ({
 
   const targetScore = getTargetScore();
   const meetsTarget = score >= targetScore;
-  
+
   const getProgressColor = () => {
     if (isComplete) {
       return "bg-[#66BB6A]";
@@ -175,8 +174,12 @@ const SubjectProgress = ({
                 {questionsCompleted}/{totalQuestions}
               </span>
             </div>
-            <span className="text-sm font-medium text-blue-600">
-              {score}/{targetScore}%
+            <span className="text-sm font-medium">
+              {isComplete ? (
+                <span className="text-blue-600">{score}/{targetScore}%</span>
+              ) : (
+                <span className="text-gray-500">-/{targetScore}%</span>
+              )}
             </span>
             {isExpanded ? (
               <ChevronDown className="w-5 h-5 text-gray-500" />
