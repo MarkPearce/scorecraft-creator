@@ -79,15 +79,15 @@ export const ScoreDisplay = ({
                 size="icon"
                 className={`h-8 w-8 transition-colors group p-0
                   ${isComplete && !meetsTarget 
-                    ? "bg-[#66BB6A] hover:bg-white border-[#66BB6A] hover:border-[#66BB6A]" 
-                    : "border-gray-600 hover:bg-foreground hover:text-background"}`}
+                    ? "bg-[#66BB6A] hover:bg-[#86CB8A] border-[#66BB6A]" 
+                    : "border-gray-600 hover:bg-gray-100"}`}
                 onClick={handleQuestionClick}
               >
                 <BookOpenCheck 
                   className={`h-6 w-6 
                     ${isComplete && !meetsTarget 
-                      ? "text-white group-hover:text-[#66BB6A]" 
-                      : "text-gray-600"}`}
+                      ? "text-white" 
+                      : "text-gray-600 group-hover:text-gray-800"}`}
                   strokeWidth={1.5}
                 />
               </Button>
