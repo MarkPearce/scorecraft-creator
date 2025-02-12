@@ -11,7 +11,7 @@ interface StudyMaterialsProps {
 
 export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsProps) => {
   return (
-    <div className="mt-4 pl-8 animate-[fade-in_0.3s_ease-out,translate-y-3_0.3s_ease-out]">
+    <div className="mt-4 pl-8 animate-enter">
       <div className="flex flex-col space-y-4">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6">
