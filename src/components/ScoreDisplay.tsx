@@ -42,7 +42,7 @@ export const ScoreDisplay = ({
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_140px] items-center gap-0.5">
+      <div className="grid grid-cols-[1fr_160px] items-center gap-0.5">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
