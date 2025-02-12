@@ -6,6 +6,7 @@ import SubjectProgress from "@/components/SubjectProgress";
 import { Card } from "@/components/ui/card";
 import { GastroIcon } from "@/components/icons/GastroIcon";
 import { LungsIcon } from "@/components/icons/LungsIcon";
+import { ReproductiveIcon } from "@/components/icons/ReproductiveIcon";
 
 const TopicBreakdown = () => {
   const navigate = useNavigate();
@@ -154,8 +155,8 @@ const TopicBreakdown = () => {
               totalQuestions={50}
               targetQuestions={40}
               score={81}
-              icon={Activity}
-              iconColor="text-green-500"
+              icon={ReproductiveIcon}
+              iconColor="text-rose-500"
               examWeight="12-16"
             />
             <SubjectProgress 
