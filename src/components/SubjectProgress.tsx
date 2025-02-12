@@ -40,6 +40,11 @@ const SubjectProgress = ({
     setIsExpanded(!isExpanded);
   };
 
+  const handleChevronClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <Card className="animate-fadeIn">
       <div
@@ -63,7 +68,7 @@ const SubjectProgress = ({
               meetsTarget={meetsTarget}
               progressPercentage={progressPercentage}
             />
-            <div onClick={(e) => e.stopPropagation()}>
+            <div onClick={handleChevronClick}>
               {isExpanded ? (
                 <ChevronDown className="w-5 h-5 text-[#8A898C]" />
               ) : (
