@@ -11,6 +11,7 @@ interface SubjectProgressProps {
   score: number;
   icon: LucideIcon;
   iconColor?: string;
+  examWeight?: string;
 }
 
 const SubjectProgress = ({
@@ -20,7 +21,8 @@ const SubjectProgress = ({
   targetQuestions,
   score,
   icon: Icon,
-  iconColor = "text-gray-500"
+  iconColor = "text-gray-500",
+  examWeight
 }: SubjectProgressProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -50,7 +52,12 @@ const SubjectProgress = ({
           </div>
         </div>
         {isExpanded && (
-          <div className="mt-4 pl-8 space-y-4 animate-fadeIn">
+          <div className="mt-4 pl-8 space-y-4 animate-fadeIn relative">
+            {examWeight && (
+              <div className="absolute top-0 left-0 text-xs text-gray-500">
+                Exam weight: {examWeight}%
+              </div>
+            )}
             <div className="grid grid-cols-3 gap-4">
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="text-sm text-gray-600">Current Score</div>

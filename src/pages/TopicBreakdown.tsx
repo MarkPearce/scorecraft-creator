@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby } from "lucide-react";
+import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, Lungs, Container, FlaskConical, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import SubjectProgress from "@/components/SubjectProgress";
@@ -61,58 +61,114 @@ const TopicBreakdown = () => {
           <h2 className="text-2xl font-semibold text-gray-900">Systems Breakdown</h2>
           <div className="space-y-4">
             <SubjectProgress 
-              subject="Biochemistry"
+              subject="Human Development"
               questionsCompleted={35}
               totalQuestions={50}
               targetQuestions={40}
               score={75}
-              icon={Beaker}
-              iconColor="text-blue-500"
+              icon={Baby}
+              iconColor="text-pink-500"
+              examWeight="1-3"
             />
             <SubjectProgress 
-              subject="Cardiovascular"
+              subject="Blood & Lymphoreticular/Immune Systems"
               questionsCompleted={42}
               totalQuestions={50}
               targetQuestions={40}
               score={82}
-              icon={Heart}
+              icon={Droplets}
               iconColor="text-red-500"
+              examWeight="9-13"
             />
             <SubjectProgress 
-              subject="Neurology"
+              subject="Behavioral Health & Nervous Systems"
               questionsCompleted={38}
               totalQuestions={50}
               targetQuestions={40}
               score={68}
               icon={Brain}
               iconColor="text-purple-500"
+              examWeight="10-14"
             />
             <SubjectProgress 
-              subject="Respiratory"
+              subject="Musculoskeletal & Skin"
               questionsCompleted={31}
               totalQuestions={50}
               targetQuestions={40}
               score={71}
-              icon={Activity}
-              iconColor="text-green-500"
+              icon={Bone}
+              iconColor="text-amber-500"
+              examWeight="8-12"
             />
             <SubjectProgress 
-              subject="Endocrine"
+              subject="Cardiovascular System"
               questionsCompleted={28}
               totalQuestions={50}
               targetQuestions={40}
               score={79}
-              icon={Activity}
-              iconColor="text-orange-500"
+              icon={Heart}
+              iconColor="text-red-500"
+              examWeight="7-11"
             />
             <SubjectProgress 
-              subject="Reproductive"
-              questionsCompleted={25}
+              subject="Respiratory & Renal/Urinary Systems"
+              questionsCompleted={33}
               totalQuestions={50}
               targetQuestions={40}
               score={73}
-              icon={Baby}
-              iconColor="text-pink-500"
+              icon={Lungs}
+              iconColor="text-blue-500"
+              examWeight="11-15"
+            />
+            <SubjectProgress 
+              subject="Gastrointestinal System"
+              questionsCompleted={29}
+              totalQuestions={50}
+              targetQuestions={40}
+              score={77}
+              icon={Container}
+              iconColor="text-orange-500"
+              examWeight="6-10"
+            />
+            <SubjectProgress 
+              subject="Reproductive & Endocrine Systems"
+              questionsCompleted={36}
+              totalQuestions={50}
+              targetQuestions={40}
+              score={81}
+              icon={Activity}
+              iconColor="text-green-500"
+              examWeight="12-16"
+            />
+            <SubjectProgress 
+              subject="Multisystem Processes & Disorders"
+              questionsCompleted={34}
+              totalQuestions={50}
+              targetQuestions={40}
+              score={69}
+              icon={FlaskConical}
+              iconColor="text-violet-500"
+              examWeight="8-12"
+            />
+            <SubjectProgress 
+              subject="Biostatistics & Epidemiology"
+              questionsCompleted={27}
+              totalQuestions={50}
+              targetQuestions={40}
+              score={72}
+              icon={Beaker}
+              iconColor="text-blue-500"
+              examWeight="4-6"
+            />
+            <SubjectProgress 
+              subject="Social Sciences & Communication"
+              questionsCompleted={30}
+              totalQuestions={50}
+              targetQuestions={40}
+              score={76}
+              icon={MessageCircle}
+              iconColor="text-teal-500"
+              examWeight="6-9"
             />
           </div>
         </div>
