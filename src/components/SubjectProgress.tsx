@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Newspaper } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 interface SubjectProgressProps {
@@ -100,11 +100,36 @@ const SubjectProgress = ({
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <div className="flex space-x-2">
-                <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
-                  Study Materials
-                </button>
-                <button className="px-3 py-1 text-sm bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors">
+              <div className="flex flex-col space-y-2">
+                <div className="text-sm font-medium text-gray-600 mb-1">Study Materials:</div>
+                <a 
+                  href="#" 
+                  className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Newspaper className="w-4 h-4" />
+                  <span>Overview & Fundamentals</span>
+                </a>
+                <a 
+                  href="#" 
+                  className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Newspaper className="w-4 h-4" />
+                  <span>Clinical Manifestations</span>
+                </a>
+                <a 
+                  href="#" 
+                  className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Newspaper className="w-4 h-4" />
+                  <span>Treatment Guidelines</span>
+                </a>
+                <button className="px-3 py-1 text-sm bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors mt-2">
                   Practice Questions
                 </button>
               </div>
