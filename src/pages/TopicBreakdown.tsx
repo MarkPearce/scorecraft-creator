@@ -135,7 +135,7 @@ const TopicBreakdown = () => {
               targetQuestions={40}
               score={73}
               icon={LungsIcon}
-              iconColor="text-blue-500"
+              iconColor="text-cyan-600"
               examWeight="11-15"
             />
             <SubjectProgress 
@@ -145,7 +145,7 @@ const TopicBreakdown = () => {
               targetQuestions={40}
               score={77}
               icon={GastroIcon}
-              iconColor="text-orange-500"
+              iconColor="text-amber-600"
               examWeight="6-10"
             />
             <SubjectProgress 
