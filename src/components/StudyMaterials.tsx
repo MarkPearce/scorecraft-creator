@@ -18,25 +18,25 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
             <div className="grid auto-cols-min grid-flow-col gap-4 h-full">
               <div className="flex flex-col w-[120px]">
                 <div className="text-sm font-medium text-[#403E43] mb-1 text-center whitespace-nowrap">Current Score</div>
-                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-100 border-gray-300'}`}>
+                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-blue-50 border-blue-500' : 'bg-gray-100 border-gray-300'}`}>
                   {isComplete && (
-                    <div className="text-2xl font-bold text-yellow-500">{score}%</div>
+                    <div className="text-2xl font-bold text-blue-600">{score}%</div>
                   )}
                 </div>
               </div>
               <div className="flex flex-col w-[120px]">
                 <div className="text-sm font-medium text-[#403E43] mb-1 text-center whitespace-nowrap">Target Score</div>
-                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-100 border-gray-300'}`}>
+                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-purple-50 border-purple-500' : 'bg-gray-100 border-gray-300'}`}>
                   {isComplete && (
-                    <div className="text-2xl font-bold text-yellow-500">80%</div>
+                    <div className="text-2xl font-bold text-purple-600">80%</div>
                   )}
                 </div>
               </div>
               <div className="flex flex-col w-[120px]">
                 <div className="text-sm font-medium text-[#403E43] mb-1 text-center whitespace-nowrap">Percentile</div>
-                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-100 border-gray-300'}`}>
+                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-green-50 border-green-500' : 'bg-gray-100 border-gray-300'}`}>
                   {isComplete && (
-                    <div className="text-2xl font-bold text-yellow-500">75th</div>
+                    <div className="text-2xl font-bold text-green-600">75th</div>
                   )}
                 </div>
               </div>
