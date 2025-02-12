@@ -30,13 +30,13 @@ const SubjectProgress = ({
   // Calculate progress percentage
   const progressPercentage = (questionsCompleted / totalQuestions) * 100;
   
-  // Determine progress bar color - light grey or dark grey
+  // Determine progress bar color - medium grey or medium green
   const getProgressColor = () => {
-    // Dark grey only when exactly 50/50 questions are completed
+    // Medium green only when exactly 50/50 questions are completed
     if (questionsCompleted === 50 && totalQuestions === 50) {
-      return "bg-gray-600"; // Dark grey for completed subjects
+      return "bg-[#66BB6A]"; // Medium green for completed subjects
     }
-    return "bg-gray-200"; // Light grey for all others
+    return "bg-[#8A898C]"; // Medium grey for all others
   };
 
   return (
