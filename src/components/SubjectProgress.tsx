@@ -99,7 +99,7 @@ const SubjectProgress = ({
                 )}
               </div>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col">
               <div className="flex flex-col space-y-2">
                 <div className="text-sm font-medium text-gray-600 mb-1">Study Materials:</div>
                 <a 
@@ -129,15 +129,17 @@ const SubjectProgress = ({
                   <Newspaper className="w-4 h-4" />
                   <span>Treatment Guidelines</span>
                 </a>
-                <button className="px-3 py-1 text-sm bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors mt-2">
+              </div>
+              <div className="flex flex-col items-end space-y-2 mt-4">
+                <button className="px-4 py-1.5 text-sm border border-green-600 text-green-600 rounded-full hover:bg-green-50 transition-colors">
                   Practice Questions
                 </button>
+                {examWeight && (
+                  <div className="text-xs text-gray-500">
+                    Exam weight: {examWeight}%
+                  </div>
+                )}
               </div>
-              {examWeight && (
-                <div className="text-xs text-gray-500">
-                  Exam weight: {examWeight}%
-                </div>
-              )}
             </div>
           </div>
         )}
