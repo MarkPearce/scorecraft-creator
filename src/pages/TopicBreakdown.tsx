@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import TopicsList from "@/components/TopicsList";
+import PerformanceGraph from "@/components/PerformanceGraph";
+import ScoreDistribution from "@/components/ScoreDistribution";
+import { PercentileDisplay } from "@/components/PercentileDisplay";
 
 const TopicBreakdown = () => {
   const navigate = useNavigate();
@@ -27,7 +30,47 @@ const TopicBreakdown = () => {
           </div>
         </div>
 
-        <TopicsList />
+        {/* Performance Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h2 className="text-xl font-semibold mb-4">Performance Overview</h2>
+            <div className="flex justify-between items-center">
+              <PerformanceGraph
+                score={238}
+                targetScore={245}
+                range={{ min: 180, max: 300 }}
+              />
+              <PercentileDisplay percentile={75} />
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h2 className="text-xl font-semibold mb-4">Study Progress</h2>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Questions Tagged</span>
+                <span className="font-semibold">19 of 2261</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Targets Met</span>
+                <span className="font-semibold">0 of 2</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Time to Target</span>
+                <span className="font-semibold">~4 weeks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Score Distribution Chart */}
+        <ScoreDistribution />
+
+        {/* Systems Breakdown */}
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          <h2 className="text-xl font-semibold mb-6">Systems Breakdown</h2>
+          <TopicsList />
+        </div>
       </div>
     </div>
   );

@@ -5,15 +5,7 @@ interface PercentileDisplayProps {
   percentile: number;
 }
 
-const getPercentileBackground = (percentile: number) => {
-  if (percentile < 40) return "bg-amber-50";
-  if (percentile < 70) return "bg-amber-100";
-  return "bg-amber-200";
-};
-
-const ordinalSuffix = "th";
-
-export const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {
+const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {
   return (
     <div className={`rounded-2xl p-6 ${getPercentileBackground(percentile)}`}>
       <div className="grid grid-cols-2 gap-12">
@@ -28,3 +20,5 @@ export const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {
     </div>
   );
 };
+
+export default PercentileDisplay;
