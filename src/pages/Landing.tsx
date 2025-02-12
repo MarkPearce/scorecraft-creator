@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { LayoutGrid, MessageCircle } from "lucide-react";
@@ -112,10 +111,13 @@ const Landing = () => {
             <DialogTrigger asChild>
               <Button
                 variant="outline"
-                className="h-24 text-lg font-medium border-dashed hover:bg-gray-100"
+                className="h-24 text-lg font-medium border-dashed border-2 border-gray-300 bg-gray-50/50 hover:bg-gray-100 flex flex-col items-center justify-center space-y-1"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
-                None of the above? Tell us more.
+                <div className="flex items-center">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  <span>None of the above?</span>
+                </div>
+                <span className="text-gray-600 text-base">Tell us more.</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
