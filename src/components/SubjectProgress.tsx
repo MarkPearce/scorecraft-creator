@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, ScrollText } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 
@@ -78,6 +78,19 @@ const SubjectProgress = ({
                   stroke="#F97316"
                   strokeWidth={1.5}
                 />
+              )}
+              {!isComplete && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-6 w-6 mr-1 hover:bg-blue-50"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Add your practice questions navigation logic here
+                  }}
+                >
+                  <ScrollText className="h-4 w-4 text-blue-600" />
+                </Button>
               )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
                 <div
