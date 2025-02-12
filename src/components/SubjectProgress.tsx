@@ -78,64 +78,70 @@ const SubjectProgress = ({
         {isExpanded && (
           <div className="mt-4 pl-8 space-y-4 animate-fadeIn">
             {examWeight && (
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500 mb-3">
                 Exam weight: {examWeight}%
               </div>
             )}
-            <div className="grid grid-cols-3 gap-4">
-              <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
-                <div className="text-sm text-gray-600">Current Score</div>
-                {isComplete && (
-                  <div className="text-lg font-bold text-blue-600">{score}%</div>
-                )}
-              </div>
-              <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
-                <div className="text-sm text-gray-600">Target Score</div>
-                {isComplete && (
-                  <div className="text-lg font-bold text-green-600">80%</div>
-                )}
-              </div>
-              <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
-                <div className="text-sm text-gray-600">Percentile</div>
-                {isComplete && (
-                  <div className="text-lg font-bold text-purple-600">
-                    75th
+            <div className="grid grid-cols-12 gap-4">
+              <div className="col-span-5">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
+                    <div className="text-sm text-gray-600">Current Score</div>
+                    {isComplete && (
+                      <div className="text-lg font-bold text-blue-600">{score}%</div>
+                    )}
                   </div>
-                )}
+                  <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
+                    <div className="text-sm text-gray-600">Target Score</div>
+                    {isComplete && (
+                      <div className="text-lg font-bold text-green-600">80%</div>
+                    )}
+                  </div>
+                  <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
+                    <div className="text-sm text-gray-600">Percentile</div>
+                    {isComplete && (
+                      <div className="text-lg font-bold text-purple-600">
+                        75th
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col">
-              <div className="flex flex-col space-y-2">
-                <div className="text-sm font-medium text-gray-600 mb-1">Study Materials:</div>
-                <a 
-                  href="#" 
-                  className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Newspaper className="w-4 h-4" />
-                  <span>Overview & Fundamentals</span>
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Newspaper className="w-4 h-4" />
-                  <span>Clinical Manifestations</span>
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Newspaper className="w-4 h-4" />
-                  <span>Treatment Guidelines</span>
-                </a>
+              <div className="col-span-5">
+                <div className="flex flex-col">
+                  <div className="text-sm font-medium text-gray-600 mb-1">Study Materials:</div>
+                  <div className="space-y-1">
+                    <a 
+                      href="#" 
+                      className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Newspaper className="w-4 h-4" />
+                      <span>Overview & Fundamentals</span>
+                    </a>
+                    <a 
+                      href="#" 
+                      className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Newspaper className="w-4 h-4" />
+                      <span>Clinical Manifestations</span>
+                    </a>
+                    <a 
+                      href="#" 
+                      className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Newspaper className="w-4 h-4" />
+                      <span>Treatment Guidelines</span>
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="flex justify-end mt-4">
+              <div className="col-span-2 flex items-start justify-end">
                 <Button variant="outline" size="sm">
                   Practice Questions
                 </Button>
