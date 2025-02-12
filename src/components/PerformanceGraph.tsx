@@ -23,7 +23,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
   const segments = [
     { score: range.max, color: "bg-[#019444]", label: `${Math.round(range.max)}` },
     { score: range.max - segmentSize, color: "bg-[#8DC641]", label: `${Math.round(range.max - segmentSize)}` },
-    { score: range.max - (segmentSize * 2), color: "bg-[#FFDD19]", label: `${Math.round(range.max - (segmentSize * 2))}` },
+    { score: range.max - (segmentSize * 2), color: "bg-yellow-500", label: `${Math.round(range.max - (segmentSize * 2))}` },
     { score: range.max - (segmentSize * 3), color: "bg-[#F46523]", label: `${Math.round(range.max - (segmentSize * 3))}` },
     { score: range.min, color: "bg-[#ED1B24]", label: `${Math.round(range.min)}` },
   ];

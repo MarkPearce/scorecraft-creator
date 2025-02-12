@@ -39,7 +39,7 @@ const PerformanceBarChart = () => {
     switch (segment) {
       case 5: return "bg-[#019444]";
       case 4: return "bg-[#8DC641]";
-      case 3: return "bg-[#FFDD19]";
+      case 3: return "bg-yellow-500";
       case 2: return "bg-[#F46523]";
       default: return "bg-[#ED1B24]";
     }
@@ -50,7 +50,7 @@ const PerformanceBarChart = () => {
     switch (segment) {
       case 5: return "bg-[#019444]/15";
       case 4: return "bg-[#8DC641]/15";
-      case 3: return "bg-[#FFDD19]/15";
+      case 3: return "bg-yellow-500/15";
       case 2: return "bg-[#F46523]/15";
       default: return "bg-[#ED1B24]/15";
     }
@@ -61,7 +61,7 @@ const PerformanceBarChart = () => {
     switch (segment) {
       case 5: return "text-[#019444]";
       case 4: return "text-[#8DC641]";
-      case 3: return "text-[#FFDD19]";
+      case 3: return "text-yellow-500";
       case 2: return "text-[#F46523]";
       default: return "text-[#ED1B24]";
     }
