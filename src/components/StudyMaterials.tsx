@@ -17,26 +17,26 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
           <div className="col-span-6">
             <div className="grid auto-cols-min grid-flow-col gap-4 h-full">
               <div className="flex flex-col w-[120px]">
-                <div className="text-sm font-medium text-gray-600 mb-1 text-center whitespace-nowrap">Current Score</div>
-                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
+                <div className="text-sm font-medium text-yellow-500 mb-1 text-center whitespace-nowrap">Current Score</div>
+                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-100 border-gray-300'}`}>
                   {isComplete && (
-                    <div className="text-2xl font-bold text-blue-600">{score}%</div>
+                    <div className="text-2xl font-bold text-yellow-500">{score}%</div>
                   )}
                 </div>
               </div>
               <div className="flex flex-col w-[120px]">
-                <div className="text-sm font-medium text-gray-600 mb-1 text-center whitespace-nowrap">Target Score</div>
-                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
+                <div className="text-sm font-medium text-yellow-500 mb-1 text-center whitespace-nowrap">Target Score</div>
+                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-100 border-gray-300'}`}>
                   {isComplete && (
-                    <div className="text-2xl font-bold text-green-600">80%</div>
+                    <div className="text-2xl font-bold text-yellow-500">80%</div>
                   )}
                 </div>
               </div>
               <div className="flex flex-col w-[120px]">
-                <div className="text-sm font-medium text-gray-600 mb-1 text-center whitespace-nowrap">Percentile</div>
-                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
+                <div className="text-sm font-medium text-yellow-500 mb-1 text-center whitespace-nowrap">Percentile</div>
+                <div className={`flex-1 px-2.5 py-1.5 rounded-lg border flex items-center justify-center ${isComplete ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-100 border-gray-300'}`}>
                   {isComplete && (
-                    <div className="text-2xl font-bold text-purple-600">75th</div>
+                    <div className="text-2xl font-bold text-yellow-500">75th</div>
                   )}
                 </div>
               </div>
@@ -44,13 +44,13 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
           </div>
           <div className="col-span-6">
             <div className="flex flex-col">
-              <div className="text-sm font-medium text-gray-600 mb-1">Study Materials</div>
+              <div className="text-sm font-medium text-yellow-500 mb-1">Study Materials</div>
               <div className="space-y-1">
                 {getArticleTitles(subject).map((title, index) => (
                   <a 
                     key={index}
                     href="#" 
-                    className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                    className="flex items-center space-x-2 text-sm text-yellow-500 hover:text-yellow-600 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
