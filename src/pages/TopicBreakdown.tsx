@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -112,36 +113,6 @@ const TopicBreakdown = () => {
               score={73}
               icon={Baby}
               iconColor="text-pink-500"
-            />
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-gray-900">Subject Performance</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <SubjectProgress 
-              subject="Biochemistry"
-              questionsCompleted={0}
-              totalQuestions={142}
-              targetQuestions={128}
-              score={0}
-              icon={Beaker}
-            />
-            <SubjectProgress 
-              subject="Cardiology"
-              questionsCompleted={0}
-              totalQuestions={73}
-              targetQuestions={66}
-              score={0}
-              icon={Heart}
-            />
-            <SubjectProgress 
-              subject="Neurology"
-              questionsCompleted={0}
-              totalQuestions={95}
-              targetQuestions={85}
-              score={0}
-              icon={Brain}
             />
           </div>
         </div>
