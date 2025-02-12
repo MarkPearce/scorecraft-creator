@@ -32,14 +32,8 @@ const SubjectProgress = ({
   
   // Determine progress bar color - only pink or green
   const getProgressColor = () => {
-    // Set specific subjects as completed (100%)
-    const completedSubjects = [
-      "Blood & Lymphoreticular/Immune Systems",
-      "Reproductive & Endocrine Systems",
-      "Social Sciences & Communication"
-    ];
-    
-    if (completedSubjects.includes(subject)) {
+    // Green only when exactly 50/50 questions are completed
+    if (questionsCompleted === 50 && totalQuestions === 50) {
       return "bg-green-500"; // Solid green for completed subjects
     }
     return "bg-[#FFDEE2]"; // Soft Pink for all others
