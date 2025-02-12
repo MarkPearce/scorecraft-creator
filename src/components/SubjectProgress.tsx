@@ -30,10 +30,13 @@ const SubjectProgress = ({
   // Calculate progress percentage
   const progressPercentage = (questionsCompleted / totalQuestions) * 100;
   
+  // Determine if system is complete
+  const isComplete = questionsCompleted === 50 && totalQuestions === 50;
+  
   // Determine progress bar color - medium grey or medium green
   const getProgressColor = () => {
     // Medium green only when exactly 50/50 questions are completed
-    if (questionsCompleted === 50 && totalQuestions === 50) {
+    if (isComplete) {
       return "bg-[#66BB6A]"; // Medium green for completed subjects
     }
     return "bg-[#8A898C]"; // Medium grey for all others
@@ -75,19 +78,25 @@ const SubjectProgress = ({
         {isExpanded && (
           <div className="mt-4 pl-8 space-y-4 animate-fadeIn">
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-blue-50 p-3 rounded-lg border border-blue-600">
+              <div className={`p-3 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
                 <div className="text-sm text-gray-600">Current Score</div>
-                <div className="text-lg font-bold text-blue-600">{score}%</div>
+                {isComplete && (
+                  <div className="text-lg font-bold text-blue-600">{score}%</div>
+                )}
               </div>
-              <div className="bg-green-50 p-3 rounded-lg border border-green-600">
+              <div className={`p-3 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
                 <div className="text-sm text-gray-600">Target Score</div>
-                <div className="text-lg font-bold text-green-600">80%</div>
+                {isComplete && (
+                  <div className="text-lg font-bold text-green-600">80%</div>
+                )}
               </div>
-              <div className="bg-purple-50 p-3 rounded-lg border border-purple-600">
+              <div className={`p-3 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
                 <div className="text-sm text-gray-600">Questions Done</div>
-                <div className="text-lg font-bold text-purple-600">
-                  {questionsCompleted}/{totalQuestions}
-                </div>
+                {isComplete && (
+                  <div className="text-lg font-bold text-purple-600">
+                    {questionsCompleted}/{totalQuestions}
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex justify-between items-center">
