@@ -26,7 +26,7 @@ export const ScoreDisplay = ({
   };
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="grid grid-cols-[auto_100px_80px] gap-4 items-center">
       <div className="flex items-center space-x-2">
         <div className="w-5 flex items-center justify-center">
           {meetsTarget && isComplete && (
@@ -66,11 +66,11 @@ export const ScoreDisplay = ({
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
-        <span className="text-sm text-[#8A898C]">
-          {questionsCompleted}/{totalQuestions}
-        </span>
       </div>
-      <span className="text-sm font-medium">
+      <span className="text-sm text-[#8A898C] text-right">
+        {questionsCompleted}/{totalQuestions}
+      </span>
+      <span className="text-sm font-medium text-right">
         {isComplete ? (
           <span className="text-blue-600">{score}/{targetScore}%</span>
         ) : (
