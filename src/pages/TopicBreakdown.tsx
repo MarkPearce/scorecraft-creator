@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, Stethoscope, FlaskConical, MessageCircle } from "lucide-react";
+import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, FlaskConical, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import SubjectProgress from "@/components/SubjectProgress";
 import { Card } from "@/components/ui/card";
 import { GastroIcon } from "@/components/icons/GastroIcon";
+import { LungsIcon } from "@/components/icons/LungsIcon";
 
 const TopicBreakdown = () => {
   const navigate = useNavigate();
@@ -133,7 +134,7 @@ const TopicBreakdown = () => {
               totalQuestions={50}
               targetQuestions={40}
               score={73}
-              icon={Stethoscope}
+              icon={LungsIcon}
               iconColor="text-blue-500"
               examWeight="11-15"
             />
