@@ -97,10 +97,10 @@ const SubjectProgress = ({
                 )}
               </div>
               <div className={`p-3 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
-                <div className="text-sm text-gray-600">Questions Done</div>
+                <div className="text-sm text-gray-600">Percentile</div>
                 {isComplete && (
                   <div className="text-lg font-bold text-purple-600">
-                    {questionsCompleted}/{totalQuestions}
+                    75th
                   </div>
                 )}
               </div>
