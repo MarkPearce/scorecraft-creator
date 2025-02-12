@@ -1,11 +1,10 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import TopicsList from "@/components/TopicsList";
 import PerformanceGraph from "@/components/PerformanceGraph";
 import ScoreDistribution from "@/components/ScoreDistribution";
-import { PercentileDisplay } from "@/components/PercentileDisplay";
+import PercentileDisplay from "@/components/PercentileDisplay";
 
 const TopicBreakdown = () => {
   const navigate = useNavigate();

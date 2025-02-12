@@ -1,10 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import TopicsList from "@/components/TopicsList";
-import { PercentileDisplay } from "@/components/PercentileDisplay";
+import PercentileDisplay from "@/components/PercentileDisplay";
 
 const Concept3 = () => {
   const navigate = useNavigate();
