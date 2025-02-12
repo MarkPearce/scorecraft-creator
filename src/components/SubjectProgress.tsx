@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon, Newspaper } from "lucide-react";
@@ -84,19 +83,19 @@ const SubjectProgress = ({
               </div>
             )}
             <div className="grid grid-cols-3 gap-4">
-              <div className={`p-3 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
+              <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
                 <div className="text-sm text-gray-600">Current Score</div>
                 {isComplete && (
                   <div className="text-lg font-bold text-blue-600">{score}%</div>
                 )}
               </div>
-              <div className={`p-3 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
+              <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-green-50 border-green-600' : 'bg-gray-100 border-gray-300'}`}>
                 <div className="text-sm text-gray-600">Target Score</div>
                 {isComplete && (
                   <div className="text-lg font-bold text-green-600">80%</div>
                 )}
               </div>
-              <div className={`p-3 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
+              <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
                 <div className="text-sm text-gray-600">Percentile</div>
                 {isComplete && (
                   <div className="text-lg font-bold text-purple-600">
