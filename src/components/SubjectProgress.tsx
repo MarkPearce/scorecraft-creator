@@ -30,13 +30,19 @@ const SubjectProgress = ({
   // Calculate progress percentage
   const progressPercentage = (questionsCompleted / totalQuestions) * 100;
   
-  // Determine progress bar color
+  // Determine progress bar color - only pink or green
   const getProgressColor = () => {
-    if (questionsCompleted === 0) return "bg-[#FFDEE2]"; // Soft Pink when no progress
-    if (progressPercentage === 100) return "bg-green-500"; // Solid green when complete
-    // Simulate stale state - in real app, you'd compare with last activity timestamp
-    if (questionsCompleted > 0 && Math.random() > 0.8) return "bg-[#FEF7CD]"; // Soft Yellow for stale
-    return "bg-[#FFDEE2]"; // Default soft pink
+    // Set specific subjects as completed (100%)
+    const completedSubjects = [
+      "Blood & Lymphoreticular/Immune Systems",
+      "Reproductive & Endocrine Systems",
+      "Social Sciences & Communication"
+    ];
+    
+    if (completedSubjects.includes(subject)) {
+      return "bg-green-500"; // Solid green for completed subjects
+    }
+    return "bg-[#FFDEE2]"; // Soft Pink for all others
   };
 
   return (
