@@ -20,6 +20,11 @@ interface StudyMaterialsProps {
 export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  const handlePracticeClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsDialogOpen(true);
+  };
+
   return (
     <>
       <div className="mt-4 pl-8 animate-slide-down">
@@ -82,7 +87,7 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
             <Button 
               variant="outline" 
               size="sm"
-              onClick={() => setIsDialogOpen(true)}
+              onClick={handlePracticeClick}
             >
               Practice Questions
             </Button>
