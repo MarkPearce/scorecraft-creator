@@ -62,7 +62,7 @@ const TopicBreakdown = () => {
           <div className="space-y-4">
             <SubjectProgress 
               subject="Human Development"
-              questionsCompleted={35}
+              questionsCompleted={50}
               totalQuestions={50}
               targetQuestions={40}
               score={75}
@@ -72,7 +72,7 @@ const TopicBreakdown = () => {
             />
             <SubjectProgress 
               subject="Blood & Lymphoreticular/Immune Systems"
-              questionsCompleted={42}
+              questionsCompleted={50}
               totalQuestions={50}
               targetQuestions={40}
               score={82}
@@ -92,7 +92,7 @@ const TopicBreakdown = () => {
             />
             <SubjectProgress 
               subject="Musculoskeletal & Skin"
-              questionsCompleted={31}
+              questionsCompleted={50}
               totalQuestions={50}
               targetQuestions={40}
               score={71}
