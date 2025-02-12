@@ -71,7 +71,7 @@ export const ScoreDisplay = ({
         {isComplete ? (
           <span className="text-blue-600">{score}/{targetScore}%</span>
         ) : (
-          <span className="text-[#F1F1F1]">-/{targetScore}%</span>
+          <span className="text-gray-400">-/{targetScore}%</span>
         )}
       </span>
     </div>
