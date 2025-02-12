@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
-import ScoreDistribution from "@/components/ScoreDistribution";
 import SubjectProgress from "@/components/SubjectProgress";
 
 const TopicBreakdown = () => {
@@ -36,8 +35,6 @@ const TopicBreakdown = () => {
           totalQuestions={2261}
           targetQuestions={2035}
         />
-
-        <ScoreDistribution />
 
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-900">Subject Performance</h2>
