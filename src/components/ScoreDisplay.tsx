@@ -26,7 +26,7 @@ export const ScoreDisplay = ({
   };
 
   return (
-    <div className="grid grid-cols-[auto_100px_80px] gap-4 items-center">
+    <div className="grid grid-cols-[auto_100px_80px] gap-2 items-center">
       <div className="flex items-center space-x-2">
         <div className="w-5 flex items-center justify-center">
           {meetsTarget && isComplete && (
