@@ -40,6 +40,11 @@ export const ScoreDisplay = ({
     setIsDialogOpen(true);
   };
 
+  const handleDialogChange = (open: boolean) => {
+    event?.stopPropagation?.();
+    setIsDialogOpen(open);
+  };
+
   return (
     <>
       <div className="grid grid-cols-[1fr_180px] items-center gap-0.5">
@@ -64,7 +69,7 @@ export const ScoreDisplay = ({
               <span className="text-gray-400">-/{targetScore}%</span>
             )}
           </span>
-          <div className="w-8 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 flex items-center justify-center flex-shrink-0" onClick={(e) => e.stopPropagation()}>
             {meetsTarget && isComplete && (
               <Star 
                 className="w-8 h-8 text-[#F97316]" 
@@ -96,14 +101,14 @@ export const ScoreDisplay = ({
         </div>
       </div>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+      <Dialog open={isDialogOpen} onOpenChange={handleDialogChange}>
+        <DialogContent onClick={(e) => e.stopPropagation()}>
           <DialogTitle>Question Session</DialogTitle>
           <DialogDescription className="py-4">
             Ready to start your practice questions?
           </DialogDescription>
           <DialogClose asChild>
-            <Button variant="default" className="w-full">OK</Button>
+            <Button variant="default" className="w-full" onClick={(e) => e.stopPropagation()}>OK</Button>
           </DialogClose>
         </DialogContent>
       </Dialog>
