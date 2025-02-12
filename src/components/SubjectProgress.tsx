@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookCheck } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Newspaper, Star, BookOpen } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 
@@ -32,7 +31,6 @@ const SubjectProgress = ({
   
   const isComplete = questionsCompleted === 50 && totalQuestions === 50;
 
-  // Calculate target score based on exam weight
   const getTargetScore = () => {
     if (!examWeight) return 80;
     const weight = parseInt(examWeight.split('-')[0]); // Get lower bound of weight range
@@ -83,16 +81,13 @@ const SubjectProgress = ({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-6 w-6 mr-1 hover:bg-blue-50"
+                  className="h-6 w-6"
                   onClick={(e) => {
                     e.stopPropagation();
                     // Add your practice questions navigation logic here
                   }}
                 >
-                  <BookCheck 
-                    className="h-4 w-4 text-blue-600" 
-                    strokeWidth={2}
-                  />
+                  <BookOpen className="h-4 w-4" />
                 </Button>
               )}
               <div className="w-20 h-2 rounded-full overflow-hidden bg-gray-100">
