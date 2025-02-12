@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { LucideIcon } from "lucide-react";
@@ -17,7 +18,7 @@ const SubjectProgress = ({
   totalQuestions,
   targetQuestions,
   score,
-  icon
+  icon: Icon
 }: SubjectProgressProps) => {
   const questionsProgress = (questionsCompleted / targetQuestions) * 100;
   const scoreProgress = (score / 100) * 100;
@@ -25,7 +26,9 @@ const SubjectProgress = ({
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium flex items-center gap-2">{icon} {subject}</CardTitle>
+        <CardTitle className="text-sm font-medium flex items-center gap-2">
+          <Icon className="h-5 w-5" /> {subject}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="text-sm text-gray-600 mb-2">

@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Flask, Heart, BrainCircuit } from "lucide-react";
+import { ArrowLeft, BookOpen, Beaker, Heart, Brain } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import ScoreDistribution from "@/components/ScoreDistribution";
@@ -48,7 +48,7 @@ const TopicBreakdown = () => {
               totalQuestions={142}
               targetQuestions={128}
               score={0}
-              icon={<Flask className="text-blue-500" />}
+              icon={Beaker}
             />
             <SubjectProgress 
               subject="Cardiology"
@@ -56,7 +56,7 @@ const TopicBreakdown = () => {
               totalQuestions={73}
               targetQuestions={66}
               score={0}
-              icon={<Heart className="text-red-500" />}
+              icon={Heart}
             />
             <SubjectProgress 
               subject="Neurology"
@@ -64,7 +64,7 @@ const TopicBreakdown = () => {
               totalQuestions={95}
               targetQuestions={85}
               score={0}
-              icon={<BrainCircuit className="text-purple-500" />}
+              icon={Brain}
             />
           </div>
         </div>
