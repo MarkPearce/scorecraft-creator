@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import TopicsList from "@/components/TopicsList";
 
 const TopicBreakdown = () => {
   const navigate = useNavigate();
@@ -26,8 +25,6 @@ const TopicBreakdown = () => {
             <p>Detailed analysis of your performance by topic</p>
           </div>
         </div>
-
-        <TopicsList />
       </div>
     </div>
   );
