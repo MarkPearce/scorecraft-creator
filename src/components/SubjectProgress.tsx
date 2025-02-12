@@ -78,6 +78,11 @@ const SubjectProgress = ({
         </div>
         {isExpanded && (
           <div className="mt-4 pl-8 space-y-4 animate-fadeIn">
+            {examWeight && (
+              <div className="text-xs text-gray-500">
+                Exam weight: {examWeight}%
+              </div>
+            )}
             <div className="grid grid-cols-3 gap-4">
               <div className={`p-3 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
                 <div className="text-sm text-gray-600">Current Score</div>
@@ -131,15 +136,10 @@ const SubjectProgress = ({
                   <span>Treatment Guidelines</span>
                 </a>
               </div>
-              <div className="flex flex-col items-end space-y-2 mt-4">
+              <div className="flex justify-end mt-4">
                 <Button variant="outline" size="sm">
                   Practice Questions
                 </Button>
-                {examWeight && (
-                  <div className="text-xs text-gray-500">
-                    Exam weight: {examWeight}%
-                  </div>
-                )}
               </div>
             </div>
           </div>
