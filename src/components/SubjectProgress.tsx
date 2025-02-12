@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon, Newspaper } from "lucide-react";
@@ -35,11 +36,10 @@ const SubjectProgress = ({
   
   // Determine progress bar color - medium grey or medium green
   const getProgressColor = () => {
-    // Medium green only when exactly 50/50 questions are completed
     if (isComplete) {
-      return "bg-[#66BB6A]"; // Medium green for completed subjects
+      return "bg-[#66BB6A]";
     }
-    return "bg-[#8A898C]"; // Medium grey for all others
+    return "bg-[#8A898C]";
   };
 
   return (
@@ -51,7 +51,14 @@ const SubjectProgress = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Icon className={`w-5 h-5 ${iconColor}`} />
-            <span className="font-medium">{subject}</span>
+            <div className="flex items-center space-x-2">
+              <span className="font-medium">{subject}</span>
+              {examWeight && (
+                <span className="text-xs text-gray-500">
+                  ({examWeight}%)
+                </span>
+              )}
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
@@ -76,14 +83,9 @@ const SubjectProgress = ({
           </div>
         </div>
         {isExpanded && (
-          <div className="mt-4 pl-8 space-y-4 animate-fadeIn">
-            {examWeight && (
-              <div className="text-xs text-gray-500 mb-3">
-                Exam weight: {examWeight}%
-              </div>
-            )}
+          <div className="mt-4 pl-8 animate-fadeIn">
             <div className="grid grid-cols-12 gap-4">
-              <div className="col-span-5">
+              <div className="col-span-6">
                 <div className="grid grid-cols-3 gap-4">
                   <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-blue-50 border-blue-600' : 'bg-gray-100 border-gray-300'}`}>
                     <div className="text-sm text-gray-600">Current Score</div>
@@ -100,14 +102,12 @@ const SubjectProgress = ({
                   <div className={`px-2.5 py-1.5 rounded-lg border ${isComplete ? 'bg-purple-50 border-purple-600' : 'bg-gray-100 border-gray-300'}`}>
                     <div className="text-sm text-gray-600">Percentile</div>
                     {isComplete && (
-                      <div className="text-lg font-bold text-purple-600">
-                        75th
-                      </div>
+                      <div className="text-lg font-bold text-purple-600">75th</div>
                     )}
                   </div>
                 </div>
               </div>
-              <div className="col-span-5">
+              <div className="col-span-4">
                 <div className="flex flex-col">
                   <div className="text-sm font-medium text-gray-600 mb-1">Study Materials:</div>
                   <div className="space-y-1">
