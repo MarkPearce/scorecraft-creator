@@ -26,11 +26,12 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
   };
 
   const handleDialogChange = (open: boolean) => {
+    event?.stopPropagation?.();
     setIsDialogOpen(open);
   };
 
   return (
-    <>
+    <div onClick={(e) => e.stopPropagation()}>
       <div className="mt-4 pl-8 animate-slide-down">
         <div className="flex flex-col space-y-4">
           <div className="grid grid-cols-12 gap-4">
@@ -106,10 +107,10 @@ export const StudyMaterials = ({ subject, isComplete, score }: StudyMaterialsPro
             Ready to start your practice questions?
           </DialogDescription>
           <DialogClose asChild>
-            <Button variant="default" className="w-full">OK</Button>
+            <Button variant="default" className="w-full" onClick={(e) => e.stopPropagation()}>OK</Button>
           </DialogClose>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 };
