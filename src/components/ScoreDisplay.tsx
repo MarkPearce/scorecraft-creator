@@ -85,7 +85,7 @@ export const ScoreDisplay = ({
                 className={`h-8 w-8 transition-colors group p-0
                   ${isComplete && !meetsTarget 
                     ? "bg-[#66BB6A] hover:bg-[#86CB8A] border-[#66BB6A]" 
-                    : "border-gray-600 hover:bg-gray-100"}`}
+                    : "border-gray-400 hover:bg-gray-100"}`}
                 onClick={handleQuestionClick}
               >
                 <BookOpenCheck 
