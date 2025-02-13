@@ -109,7 +109,7 @@ const Concept1 = () => {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <Button className="bg-[#F97316] hover:bg-[#F97316]/90">
+            <Button className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90">
               Start New Question Session
             </Button>
           </div>
