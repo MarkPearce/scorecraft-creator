@@ -9,7 +9,7 @@ export const ReproductiveIcon: LucideIcon = React.forwardRef((props, ref) => (
     height="24"
     viewBox="0 0 128 128"
     xmlns="http://www.w3.org/2000/svg"
-    strokeWidth="0.8"
+    strokeWidth="1.2"
     stroke="currentColor"
     fill="currentColor"
     {...props}
