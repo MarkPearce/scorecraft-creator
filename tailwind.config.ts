@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 /*
@@ -18,6 +17,7 @@ Brand Colors
 - bg-blue-600 → Amboss background.accent (#047a88)
 - bg-blue-700 → Amboss background.accent.hover (#054f57)
 - bg-blue-100 → Amboss background.accentSubtle (#e7f6f8)
+- bg-amboss-brand → Amboss brand color (#0aa6b8)
 
 Semantic Colors
 Success:
@@ -172,6 +172,7 @@ export default {
           600: '#df9411',  // background.warning
           700: '#9a6304',  // text.warning
         },
+        'amboss-brand': '#0aa6b8',
       },
       spacing: {
         1: '2px',    // xxxs

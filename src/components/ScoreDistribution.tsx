@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import {
   Select,
@@ -44,8 +45,8 @@ const ScoreDistribution = () => {
         <AreaChart data={data} margin={{ top: 80, right: 30, left: 40, bottom: 40 }}>
           <defs>
             <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
-              <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
+              <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.2}/>
+              <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0}/>
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -84,7 +85,7 @@ const ScoreDistribution = () => {
           <Area 
             type="natural"
             dataKey="count" 
-            stroke="#3B82F6" 
+            stroke="#0aa6b8" 
             fill="url(#colorCount)"
             strokeWidth={2}
           />
@@ -124,3 +125,4 @@ const ScoreDistribution = () => {
 };
 
 export default ScoreDistribution;
+
