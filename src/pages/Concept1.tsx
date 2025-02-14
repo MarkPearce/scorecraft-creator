@@ -68,14 +68,25 @@ const Concept1 = () => {
                   dataKey="date"
                   tick={{ fontSize: 12 }}
                   tickLine={false}
-                  label={{ value: 'Week (2025)', position: 'bottom', offset: 20 }}
+                  label={{ 
+                    value: 'Week (2025)', 
+                    position: 'bottom', 
+                    offset: 10,
+                    style: { fontWeight: 'bold' }
+                  }}
                 />
                 <YAxis 
                   tick={{ fontSize: 12 }}
                   tickLine={false}
                   domain={[180, 300]}
                   ticks={[180, 200, 220, 240, 260, 280, 300]}
-                  label={{ value: 'Score', angle: -90, position: 'left', offset: 35 }}
+                  label={{ 
+                    value: 'Score', 
+                    angle: -90, 
+                    position: 'left', 
+                    offset: 25,
+                    style: { fontWeight: 'bold' }
+                  }}
                 />
                 <Tooltip 
                   contentStyle={{ 
