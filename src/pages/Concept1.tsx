@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/ui/header";
-import ProgressTracker from "@/components/ProgressTracker";
+import PerformanceGraph from "@/components/PerformanceGraph";
 
 const Concept1 = () => {
   const navigate = useNavigate();
@@ -22,7 +22,13 @@ const Concept1 = () => {
             Back to Dashboard
           </Button>
 
-          <ProgressTracker />
+          <div className="flex justify-center">
+            <PerformanceGraph 
+              score={240}
+              targetScore={260}
+              range={{ min: 180, max: 300 }}
+            />
+          </div>
         </div>
       </div>
     </div>
