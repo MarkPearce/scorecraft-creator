@@ -24,9 +24,9 @@ const Concept3 = () => {
 
         <Card className="p-8 animate-fadeIn mb-8">
           <div className="text-center space-y-6">
-            <h1 className="text-3xl font-semibold text-gray-900 font-lato">
+            <h2 className="text-3xl font-semibold text-gray-900 font-lato">
               Exam readiness
-            </h1>
+            </h2>
 
             <div className="flex justify-center">
               <Lock className="w-16 h-16 text-amber-400" />
