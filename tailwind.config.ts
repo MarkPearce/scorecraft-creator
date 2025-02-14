@@ -20,7 +20,6 @@ export default {
     },
     extend: {
       fontFamily: {
-        'playfair': ['Playfair Display', 'serif'],
         'lato': ['Lato', 'sans-serif'],
       },
       colors: {

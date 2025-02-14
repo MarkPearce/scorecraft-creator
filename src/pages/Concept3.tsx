@@ -24,7 +24,7 @@ const Concept3 = () => {
 
         <Card className="p-8 animate-fadeIn mb-8">
           <div className="text-center space-y-6">
-            <h1 className="text-3xl font-semibold text-gray-900">
+            <h1 className="text-3xl font-semibold text-gray-900 font-lato">
               Exam readiness
             </h1>
 
@@ -35,12 +35,12 @@ const Concept3 = () => {
             <div className="w-full h-2 bg-gray-200 rounded-full" />
 
             <div className="space-y-6 max-w-4xl mx-auto">
-              <p className="text-xl font-medium text-gray-900">
+              <p className="text-xl font-medium text-gray-900 font-lato">
                 Exam date: June 24, 2025
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                <div className="space-y-4 text-left text-gray-600">
+                <div className="space-y-4 text-left text-gray-600 font-lato">
                   <p>
                     You are currently at the 30<sup>th</sup> percentile compared to other learners with an exam date at the end of June. Follow the recommendations below to improve your knowledge.
                   </p>
