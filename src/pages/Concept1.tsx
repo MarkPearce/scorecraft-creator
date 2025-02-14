@@ -62,18 +62,20 @@ const Concept1 = () => {
 
           <div className="h-[400px] w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+              <LineChart data={data} margin={{ top: 20, right: 30, left: 50, bottom: 40 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis 
                   dataKey="date"
                   tick={{ fontSize: 12 }}
                   tickLine={false}
+                  label={{ value: 'Week (2025)', position: 'bottom', offset: 20 }}
                 />
                 <YAxis 
                   tick={{ fontSize: 12 }}
                   tickLine={false}
                   domain={[180, 300]}
                   ticks={[180, 200, 220, 240, 260, 280, 300]}
+                  label={{ value: 'Score', angle: -90, position: 'left', offset: 35 }}
                 />
                 <Tooltip 
                   contentStyle={{ 
