@@ -44,9 +44,11 @@ const getScoreColor = (score: number) => {
 const TopicsList = () => {
   const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
 
+  console.log("TopicsList rendering"); // Added for debugging
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
-      <h2 className="text-xl font-semibold mb-4 font-lato">Recommendations</h2>
+      <h2 className="text-xl font-semibold mb-4 text-gray-900">Recommendations</h2>
       <div className="space-y-3">
         {topics.map((topic) => (
           <div
@@ -57,7 +59,7 @@ const TopicsList = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <Book className="w-5 h-5 text-gray-500" />
-                <span className="font-medium font-lato">{topic.title}</span>
+                <span className="font-medium text-gray-900">{topic.title}</span>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="relative w-12 h-12">
@@ -67,17 +69,15 @@ const TopicsList = () => {
                   <svg className="w-12 h-12">
                     <path
                       d={calculateArc(topic.score).green}
-                      className="text-green-400"
+                      className="stroke-green-600"
                       strokeWidth="6"
-                      stroke="currentColor"
                       fill="transparent"
                       strokeLinecap="butt"
                     />
                     <path
                       d={calculateArc(topic.score).red}
-                      className="text-red-700"
+                      className="stroke-red-600"
                       strokeWidth="6"
-                      stroke="currentColor"
                       fill="transparent"
                       strokeLinecap="butt"
                     />
