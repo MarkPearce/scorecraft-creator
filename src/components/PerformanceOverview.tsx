@@ -23,7 +23,7 @@ const PerformanceOverview = ({
   return (
     <Card className="p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold">Overall Performance</h2>
+        <h2 className="text-xl font-semibold font-lato">Overall Performance</h2>
         <div className="flex items-center gap-2 text-gray-600">
           <Target className="h-5 w-5" />
           <span>{targetsMetCount} of 1 target met</span>
