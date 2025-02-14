@@ -54,9 +54,6 @@ const Concept1 = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Concept 1: Performance Tracking</h1>
-            <div className="bg-cyan-100 text-cyan-900 p-4 rounded-lg mb-4">
-              Do another question session to update your score
-            </div>
             <div className="text-sm text-gray-600 space-y-1">
               <p>250 Questions taken in to account</p>
               <p>Last updated 1 week ago</p>
