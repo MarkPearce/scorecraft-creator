@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import PerformanceGraph from "@/components/PerformanceGraph";
+import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 
 const Concept1 = () => {
   const navigate = useNavigate();
@@ -20,11 +20,7 @@ const Concept1 = () => {
         </Button>
 
         <div className="flex justify-center">
-          <PerformanceGraph 
-            score={240}
-            targetScore={260}
-            range={{ min: 180, max: 300 }}
-          />
+          <PerformanceTrackingContainer />
         </div>
       </div>
     </div>
