@@ -19,33 +19,6 @@ export default {
       },
     },
     extend: {
-      // Custom spacing tokens that can be used for padding, margin, width, height, etc.
-      spacing: {
-        '4.5': '1.125rem',  // 18px
-        '13': '3.25rem',    // 52px
-        '15': '3.75rem',    // 60px
-        '128': '32rem',     // 512px
-        '144': '36rem',     // 576px
-      },
-      // Custom width and height specific tokens
-      width: {
-        'button': '240px',
-        'card': '380px',
-        'dialog': '520px',
-      },
-      height: {
-        'header': '64px',
-        'footer': '48px',
-        'modal': '90vh',
-      },
-      maxWidth: {
-        'card': '400px',
-        'container': '1280px',
-      },
-      minHeight: {
-        'card': '200px',
-        'section': '480px',
-      },
       fontFamily: {
         'lato': ['Lato', 'sans-serif'],
       },
