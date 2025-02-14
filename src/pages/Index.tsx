@@ -29,10 +29,12 @@ const Index = () => {
           </p>
         </div>
         
-        <ScoreDistribution />
-        <PerformanceSummary />
-        <TopicsList />
-        <ProgressTracker />
+        <div className="space-y-6">
+          <ScoreDistribution />
+          <PerformanceSummary />
+          <TopicsList />
+          <ProgressTracker />
+        </div>
       </div>
     </div>
   );

@@ -21,9 +21,9 @@ const ProgressTracker = () => {
   const isInsightsUnlocked = questionsAnswered >= 75;
 
   const getBarColor = (progress: number) => {
-    if (progress >= 75) return 'bg-emerald-500';
-    if (progress >= 50) return 'bg-[#F97316]'; // Changed to orange for better contrast
-    return 'bg-primary';
+    if (progress >= 75) return 'bg-green-600';
+    if (progress >= 50) return 'bg-blue-600';
+    return 'bg-gray-500';
   };
 
   const handleBoostAssessment = () => {
@@ -39,7 +39,7 @@ const ProgressTracker = () => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold">Questions in last 30 days</h2>
+        <h2 className="text-xl font-semibold text-gray-900">Questions in last 30 days</h2>
         <div className="flex items-center gap-2">
           <Button 
             variant="outline" 
@@ -66,7 +66,7 @@ const ProgressTracker = () => {
           <div className="absolute w-28 -right-32 top-[25%] flex items-center gap-2">
             <div className="h-0.5 w-4 bg-gray-300" />
             {isInsightsUnlocked ? (
-              <div className="flex items-center gap-2 text-emerald-600">
+              <div className="flex items-center gap-2 text-green-600">
                 <Unlock className="w-4 h-4" />
                 <span className="text-sm">Insights</span>
               </div>
@@ -81,7 +81,7 @@ const ProgressTracker = () => {
           <div className="absolute w-28 -right-32 top-[50%] flex items-center gap-2">
             <div className="h-0.5 w-4 bg-gray-300" />
             {isAssessmentUnlocked ? (
-              <div className="flex items-center gap-2 text-emerald-600">
+              <div className="flex items-center gap-2 text-green-600">
                 <Unlock className="w-4 h-4" />
                 <span className="text-sm">Continuous Assessment</span>
               </div>
@@ -96,7 +96,7 @@ const ProgressTracker = () => {
 
         {/* Dashboard style readout */}
         <div className="ml-auto flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg">
-          <div className="text-5xl font-bold text-gray-800">{questionsAnswered}</div>
+          <div className="text-5xl font-bold text-gray-900">{questionsAnswered}</div>
           <div className="text-sm text-gray-500 mt-2">Questions Completed</div>
         </div>
       </div>
@@ -113,7 +113,7 @@ const ProgressTracker = () => {
           <DialogHeader>
             <DialogTitle>Start Assessment Boost</DialogTitle>
           </DialogHeader>
-          <p className="py-4">
+          <p className="py-4 text-gray-600">
             You'll be presented with 10 new questions to boost your progress. Ready to begin?
           </p>
           <DialogFooter>
