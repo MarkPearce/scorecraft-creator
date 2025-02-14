@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 /*
@@ -131,9 +132,9 @@ export default {
           100: '#eef2f5',  // background.secondary.hover
           200: '#e0e6eb',  // border.primary
           300: '#a3b2bd',  // text.quaternary
-          400: '#5a7183',  // text.tertiary
-          500: '#40515e',  // text.secondary
-          600: '#314554',  // background.contrast
+          400: '#8291a0',  // adjusted for better scale
+          500: '#5a7183',  // text.tertiary
+          600: '#40515e',  // text.secondary
           900: '#1a1c1c',  // text.primary
         },
         blue: {
@@ -141,6 +142,7 @@ export default {
           100: '#e7effe',  // background.infoSubtle
           200: '#85d3dc',  // border.accentSubtle
           300: '#6e95cf',  // text.info.hover
+          400: '#295dae',  // background.info
           500: '#0aa6b8',  // brand.default
           600: '#047a88',  // background.accent
           700: '#054f57',  // background.accent.hover
@@ -166,7 +168,7 @@ export default {
           50: '#fef3e1',   // background.warningSubtle
           100: '#fceaca',  // border.warningSubtle
           300: '#f6bc56',  // text.warning.hover
-          500: '#f6bc56',  // warning.default
+          500: '#df9411',  // warning.default (adjusted)
           600: '#df9411',  // background.warning
           700: '#9a6304',  // text.warning
         },
@@ -197,7 +199,6 @@ export default {
         'xl': '16px',   // l
         '2xl': '24px',  // xl
       },
-      // Preserve existing animations
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
