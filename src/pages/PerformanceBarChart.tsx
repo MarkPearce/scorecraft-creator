@@ -6,7 +6,6 @@ import { useState } from "react";
 import PrototypeControls from "@/components/PrototypeControls";
 import PerformanceGraph from "@/components/PerformanceGraph";
 import PerformanceScore from "@/components/PerformanceScore";
-import { getScoreSegment } from "@/utils/scoreUtils";
 import {
   Dialog,
   DialogContent,
@@ -14,6 +13,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+const getScoreSegment = (score: number, range: { min: number; max: number }) => {
+  const totalRange = range.max - range.min;
+  const segmentSize = totalRange / 5;
+  
+  if (score >= range.max - segmentSize) return 5; // Excellent
+  if (score >= range.max - (segmentSize * 2)) return 4; // Strong
+  if (score >= range.max - (segmentSize * 3)) return 3; // Developing
+  if (score >= range.max - (segmentSize * 4)) return 2; // Needs Work
+  return 1; // Critical
+};
 
 const PerformanceBarChart = () => {
   const navigate = useNavigate();
