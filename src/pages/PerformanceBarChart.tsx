@@ -100,7 +100,7 @@ const PerformanceBarChart = () => {
 
         <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
           <div className="mb-8 flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">Performance Score</h1>
+            <h1 className="text-2xl font-bold text-gray-900 font-playfair">Performance Score</h1>
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2">
@@ -110,7 +110,7 @@ const PerformanceBarChart = () => {
               </DialogTrigger>
               <DialogContent className="max-w-2xl">
                 <DialogHeader>
-                  <DialogTitle>Prototype Controls</DialogTitle>
+                  <DialogTitle className="font-playfair">Prototype Controls</DialogTitle>
                 </DialogHeader>
                 <div className="py-4">
                   <PrototypeControls 
@@ -143,8 +143,8 @@ const PerformanceBarChart = () => {
                   <div className="flex items-center gap-6 justify-center">
                     {getFaceIcon(score)}
                     <div className="text-center">
-                      <div className={`text-6xl font-bold ${getTextColor(score)}`}>{score}</div>
-                      <div className="text-gray-600 mt-2">
+                      <div className={`text-6xl font-bold ${getTextColor(score)} font-playfair`}>{score}</div>
+                      <div className="text-gray-600 mt-2 font-playfair">
                         RANGE {range.min}-{range.max}
                       </div>
                     </div>
