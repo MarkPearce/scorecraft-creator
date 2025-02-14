@@ -107,12 +107,6 @@ const Concept1 = () => {
               </LineChart>
             </ResponsiveContainer>
           </div>
-
-          <div className="mt-8 flex justify-center">
-            <Button className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90">
-              Start New Question Session
-            </Button>
-          </div>
         </div>
       </div>
     </div>
