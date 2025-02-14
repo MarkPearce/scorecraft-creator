@@ -5,11 +5,11 @@ import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const data = [
-  { date: '3/1', score: 45, color: '#ea384c' },
-  { date: '3/8', score: 72, color: '#F97316' },
-  { date: '3/15', score: 68, color: '#F97316' },
-  { date: '3/22', score: 75, color: '#22c55e' },
-  { date: '3/29', score: 85, color: '#22c55e' },
+  { date: '3/1', score: 204, color: '#ea384c' },  // transformed from 45
+  { date: '3/8', score: 244, color: '#F97316' },  // transformed from 72
+  { date: '3/15', score: 238, color: '#F97316' }, // transformed from 68
+  { date: '3/22', score: 248, color: '#22c55e' }, // transformed from 75
+  { date: '3/29', score: 262, color: '#22c55e' }, // transformed from 85
 ];
 
 const Concept1 = () => {
@@ -82,7 +82,7 @@ const Concept1 = () => {
                     borderRadius: '6px',
                     padding: '8px'
                   }}
-                  formatter={(value: number) => [`${value}%`, 'Score']}
+                  formatter={(value: number) => [`${value}`, 'Score']}
                 />
                 <defs>
                   <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
