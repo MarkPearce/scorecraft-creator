@@ -72,7 +72,7 @@ const Concept1 = () => {
                     value: 'Week (2025)', 
                     position: 'bottom', 
                     offset: 10,
-                    style: { fontWeight: 'bold', fontSize: '14px' }
+                    style: { fontWeight: 'bold', fontSize: 'sm' }
                   }}
                 />
                 <YAxis 
@@ -84,8 +84,8 @@ const Concept1 = () => {
                     value: 'Score', 
                     angle: -90, 
                     position: 'left', 
-                    offset: 25,
-                    style: { fontWeight: 'bold', fontSize: '14px' }
+                    offset: 15,
+                    style: { fontWeight: 'bold', fontSize: 'sm' }
                   }}
                 />
                 <Tooltip 
