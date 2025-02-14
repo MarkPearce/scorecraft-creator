@@ -85,6 +85,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        lato: ['Lato', 'sans-serif'],
+      },
       colors: {
         // Preserve existing shadcn theme colors
         border: "hsl(var(--border))",
