@@ -23,17 +23,6 @@ const PerformanceBarChart = () => {
     return 1; // Critical
   };
 
-  const getScoreLevelName = (score: number) => {
-    const segment = getScoreSegment(score);
-    switch (segment) {
-      case 5: return "Excellent";
-      case 4: return "Strong";
-      case 3: return "Developing";
-      case 2: return "Needs Work";
-      default: return "Critical";
-    }
-  };
-
   const getScoreColor = (score: number) => {
     const segment = getScoreSegment(score);
     switch (segment) {
@@ -127,9 +116,6 @@ const PerformanceBarChart = () => {
                       <div className={`text-6xl font-bold ${getTextColor(score)}`}>{score}</div>
                       <div className="text-gray-600 mt-2">
                         RANGE {range.min}-{range.max}
-                      </div>
-                      <div className={`text-sm font-medium ${getTextColor(score)} mt-1`}>
-                        {getScoreLevelName(score)}
                       </div>
                     </div>
                   </div>
