@@ -28,22 +28,22 @@ const Landing = () => {
             Exam Readiness
           </Button>
 
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept4")}>
+          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/performance")}>
             <LayoutGrid className="mr-2 h-5 w-5" />
             Performance Bar Chart
           </Button>
 
-          <Button variant="outline" onClick={() => navigate("/concept5")} className="h-24 text-lg font-medium hover:bg-gray-100 px-0 rounded-md">
+          <Button variant="outline" onClick={() => navigate("/peer-group")} className="h-24 text-lg font-medium hover:bg-gray-100 px-0 rounded-md">
             <LayoutGrid className="mr-2 h-5 w-5" />
             Peer Group
           </Button>
 
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept6")}>
+          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/topic-breakdown")}>
             <LayoutGrid className="mr-2 h-5 w-5" />
             Topic Breakdown
           </Button>
 
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/report")}>
+          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/dashboard")}>
             <LayoutGrid className="mr-2 h-5 w-5" />
             Full Report
           </Button>
