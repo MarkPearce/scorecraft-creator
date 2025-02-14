@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -102,7 +103,8 @@ const PerformanceBarChart = () => {
             <h1 className="text-2xl font-bold text-gray-900">Performance Score</h1>
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" className="flex items-center gap-2">
+                  <span className="text-sm text-gray-600">Prototype Settings</span>
                   <Settings className="h-5 w-5" />
                 </Button>
               </DialogTrigger>
