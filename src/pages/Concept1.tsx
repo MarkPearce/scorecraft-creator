@@ -5,11 +5,11 @@ import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const data = [
-  { date: '3/1', score: 204, color: '#ea384c' },  // transformed from 45
-  { date: '3/8', score: 244, color: '#F97316' },  // transformed from 72
-  { date: '3/15', score: 238, color: '#F97316' }, // transformed from 68
-  { date: '3/22', score: 248, color: '#22c55e' }, // transformed from 75
-  { date: '3/29', score: 262, color: '#22c55e' }, // transformed from 85
+  { date: 'Wk 7', score: 204, color: '#ea384c' },  // transformed from 45
+  { date: 'Wk 8', score: 244, color: '#F97316' },  // transformed from 72
+  { date: 'Wk 9', score: 238, color: '#F97316' }, // transformed from 68
+  { date: 'Wk 10', score: 248, color: '#22c55e' }, // transformed from 75
+  { date: 'Wk 11', score: 262, color: '#22c55e' }, // transformed from 85
 ];
 
 const Concept1 = () => {
