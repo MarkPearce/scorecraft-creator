@@ -136,22 +136,6 @@ const PerformanceBarChart = () => {
                 </div>
               </div>
             </div>
-
-            {/* Buttons - Bottom */}
-            <div className="flex flex-col space-y-4 w-full max-w-md mx-auto">
-              <Button 
-                onClick={() => navigate('/report')}
-                variant="outline"
-                className="w-full py-6 text-lg"
-              >
-                See full performance report
-              </Button>
-              <Button 
-                className="w-full py-6 text-lg bg-[#06B6D4] hover:bg-[#06B6D4]/90"
-              >
-                Take another mini-assessment
-              </Button>
-            </div>
           </div>
         </div>
 
