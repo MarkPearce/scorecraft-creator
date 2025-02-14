@@ -91,13 +91,13 @@ const ScoreDistribution = () => {
           />
           <ReferenceLine
             x={studentScore}
-            stroke="#000000"
+            stroke="#10B981"
             strokeWidth={2}
             strokeDasharray="3 3"
             label={{
               value: `Estimated Score ${studentScore}`,
               position: 'top',
-              fill: '#000000',
+              fill: '#10B981',
               fontSize: 12,
               fontWeight: 500,
               dy: -10
@@ -125,3 +125,4 @@ const ScoreDistribution = () => {
 };
 
 export default ScoreDistribution;
+
