@@ -1,10 +1,17 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
+import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PrototypeControls from "@/components/PrototypeControls";
 import PerformanceGraph from "@/components/PerformanceGraph";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const PerformanceBarChart = () => {
   const navigate = useNavigate();
@@ -82,14 +89,38 @@ const PerformanceBarChart = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate('/')}
-          className="mb-6"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Dashboard
-        </Button>
+        <div className="flex justify-between items-center mb-6">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate('/')}
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Dashboard
+          </Button>
+
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Settings className="h-5 w-5" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle>Prototype Controls</DialogTitle>
+              </DialogHeader>
+              <div className="py-4">
+                <PrototypeControls 
+                  range={range}
+                  targetScore={targetScore}
+                  score={score}
+                  onRangeChange={handleRangeChange}
+                  onTargetScoreChange={(value) => setTargetScore(value[0])}
+                  onScoreChange={(value) => setScore(value[0])}
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
 
         <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
           <div className="mb-8">
@@ -124,15 +155,6 @@ const PerformanceBarChart = () => {
             </div>
           </div>
         </div>
-
-        <PrototypeControls 
-          range={range}
-          targetScore={targetScore}
-          score={score}
-          onRangeChange={handleRangeChange}
-          onTargetScoreChange={(value) => setTargetScore(value[0])}
-          onScoreChange={(value) => setScore(value[0])}
-        />
       </div>
     </div>
   );
