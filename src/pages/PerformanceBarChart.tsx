@@ -100,7 +100,7 @@ const PerformanceBarChart = () => {
 
         <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
           <div className="mb-8 flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900 font-playfair">Performance Score</h1>
+            <h2 className="text-2xl font-bold text-gray-900 font-playfair">Performance Score</h2>
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2">
