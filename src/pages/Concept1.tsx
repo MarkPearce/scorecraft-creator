@@ -72,7 +72,8 @@ const Concept1 = () => {
                 <YAxis 
                   tick={{ fontSize: 12 }}
                   tickLine={false}
-                  domain={[0, 100]}
+                  domain={[180, 300]}
+                  ticks={[180, 200, 220, 240, 260, 280, 300]}
                 />
                 <Tooltip 
                   contentStyle={{ 
