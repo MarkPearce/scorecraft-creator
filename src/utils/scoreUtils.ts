@@ -1,5 +1,6 @@
 
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
+import { ReactNode } from "react";
 
 export const getScoreSegment = (score: number, range: { min: number; max: number }) => {
   const totalRange = range.max - range.min;
@@ -12,14 +13,20 @@ export const getScoreSegment = (score: number, range: { min: number; max: number
   return 1; // Critical
 };
 
-export const getFaceIcon = (score: number, colorClass: string) => {
+export const getFaceIcon = (score: number, colorClass: string): ReactNode => {
   const segment = getScoreSegment(score, { min: 180, max: 300 });
+  const iconProps = { className: `w-16 h-16 ${colorClass}` };
   
   switch (segment) {
-    case 5: return <Laugh className={`w-16 h-16 ${colorClass}`} />;
-    case 4: return <Smile className={`w-16 h-16 ${colorClass}`} />;
-    case 3: return <Meh className={`w-16 h-16 ${colorClass}`} />;
-    case 2: return <Frown className={`w-16 h-16 ${colorClass}`} />;
-    default: return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    case 5:
+      return <Laugh {...iconProps} />;
+    case 4:
+      return <Smile {...iconProps} />;
+    case 3:
+      return <Meh {...iconProps} />;
+    case 2:
+      return <Frown {...iconProps} />;
+    default:
+      return <Angry {...iconProps} />;
   }
 };
