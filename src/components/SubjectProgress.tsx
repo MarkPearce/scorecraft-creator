@@ -25,7 +25,7 @@ const SubjectProgress = ({
   targetQuestions,
   score,
   icon,
-  iconColor = "text-gray-500",
+  iconColor = "text-gray-500", // Updated to use new gray-500 (tertiary text)
   examWeight
 }: SubjectProgressProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -70,9 +70,9 @@ const SubjectProgress = ({
             />
             <div onClick={handleChevronClick}>
               {isExpanded ? (
-                <ChevronDown className="w-5 h-5 text-[#8A898C]" />
+                <ChevronDown className="w-5 h-5 text-gray-500" /> // Updated to use new gray-500
               ) : (
-                <ChevronRight className="w-5 h-5 text-[#8A898C]" />
+                <ChevronRight className="w-5 h-5 text-gray-500" /> // Updated to use new gray-500
               )}
             </div>
           </div>
