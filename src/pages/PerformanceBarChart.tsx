@@ -129,16 +129,7 @@ const PerformanceBarChart = () => {
 
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Bar Graph - Left Column */}
-              <div className="flex items-center justify-center pl-[200px]">
-                <PerformanceGraph 
-                  score={score}
-                  targetScore={targetScore}
-                  range={range}
-                />
-              </div>
-
-              {/* Score Readout - Right Column */}
+              {/* Score Readout - Left Column (moved from right) */}
               <div className="flex items-center justify-center">
                 <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md w-full`}>
                   <div className="flex items-center gap-6 justify-center">
@@ -151,6 +142,15 @@ const PerformanceBarChart = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Bar Graph - Right Column (moved from left) */}
+              <div className="flex items-center justify-center pl-[200px]">
+                <PerformanceGraph 
+                  score={score}
+                  targetScore={targetScore}
+                  range={range}
+                />
               </div>
             </div>
           </CardContent>
