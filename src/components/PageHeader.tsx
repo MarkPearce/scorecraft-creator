@@ -37,7 +37,7 @@ export function PageHeader() {
               placeholder="Search the AMBOSS library"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
-              <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-1 font-mono text-[10px] font-medium text-gray-600">
+              <kbd className="hidden sm:inline-flex h-5 select-none items-center justify-center gap-1 pl-2 font-mono text-[10px] font-medium text-gray-600">
                 <span className="text-xs">⌘</span>K
               </kbd>
             </div>
