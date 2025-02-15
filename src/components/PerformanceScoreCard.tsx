@@ -135,25 +135,25 @@ const PerformanceScoreCard = ({
 
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex items-center justify-center">
-            <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md w-full`}>
-              <div className="flex items-center gap-6 justify-center">
-                {getFaceIcon(score)}
-                <div className="text-center">
-                  <div className={`text-6xl font-bold ${getTextColor(score)} font-playfair`}>{score}</div>
-                  <div className="text-gray-600 mt-2 font-playfair">
-                    RANGE {range.min}-{range.max}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center order-2 md:order-1">
             <PerformanceGraph 
               score={score}
               targetScore={targetScore}
               range={range}
             />
+          </div>
+          <div className="flex items-center justify-center order-1 md:order-2">
+            <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md w-full`}>
+              <div className="flex items-center gap-6 justify-center">
+                {getFaceIcon(score)}
+                <div className="text-center">
+                  <div className={`text-6xl font-bold ${getTextColor(score)} font-playfair`}>{score}</div>
+                  <div className="text-gray-500 mt-2 font-playfair">
+                    RANGE {range.min}-{range.max}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </CardContent>
