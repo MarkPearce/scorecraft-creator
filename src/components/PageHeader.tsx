@@ -18,7 +18,7 @@ export function PageHeader() {
       <div className="h-full px-4 flex items-center justify-between gap-4 max-w-[1920px] mx-auto">
         <div className="flex items-center gap-6">
           <Button variant="ghost" size="icon" className="shrink-0">
-            <Menu size={48} className="text-gray-600" />
+            <Menu size={48} />
           </Button>
           <AmbossLogo />
           <Select>
