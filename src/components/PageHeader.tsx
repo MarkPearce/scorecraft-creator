@@ -1,5 +1,4 @@
-
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Avatar, AvatarFallback } from "./ui/avatar";
@@ -15,7 +14,7 @@ export function PageHeader() {
           </Button>
           <AmbossLogo />
           <div 
-            className="w-[98px] h-[26px] border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] text-xs font-bold tracking-[1px] flex items-center justify-center uppercase antialiased leading-4"
+            className="w-[98px] h-[26px] border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] text-xs font-bold tracking-[1px] flex items-center justify-center gap-1 uppercase antialiased leading-4"
             style={{
               textRendering: 'optimizeLegibility',
               WebkitFontSmoothing: 'antialiased',
@@ -25,6 +24,7 @@ export function PageHeader() {
             }}
           >
             Student
+            <ChevronDown className="w-5 h-5 stroke-[2px] text-[rgb(6,124,137)]" />
           </div>
         </div>
 
