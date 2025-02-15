@@ -45,7 +45,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
       ))}
       
       {/* Score labels aligned with color transitions */}
-      <div className="absolute -right-8 h-full w-8">
+      <div className="absolute -right-12 h-full w-8">
         {segments.map((segment, index) => (
           <div
             key={`label-${segment.score}`}
