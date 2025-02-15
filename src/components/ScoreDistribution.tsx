@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -30,7 +29,7 @@ const ScoreDistribution = () => {
   }, (_, i) => 180 + i * 20);
   return <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
       <h2 className="text-xl font-semibold mb-4">Peer group Comparison</h2>
-      <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
+      
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={data} margin={{
         top: 80,
