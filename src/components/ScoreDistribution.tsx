@@ -72,13 +72,13 @@ const ScoreDistribution = () => {
         }} />
           <Tooltip formatter={(value: number) => [`${value} students`, 'Frequency']} labelFormatter={(label: number) => `Score: ${label}`} />
           <Area type="natural" dataKey="count" stroke="#0aa6b8" fill="url(#colorCount)" strokeWidth={2} />
-          <ReferenceLine x={studentScore} stroke="#374151" strokeWidth={2} strokeDasharray="3 3" label={{
+          <ReferenceLine x={studentScore} stroke="#374151" strokeWidth={2} label={{
           value: `Estimated Score ${studentScore}`,
           position: 'top',
           fill: '#374151',
           fontSize: 14,
           fontWeight: 600,
-          dy: -15
+          dy: -5
         }} />
         </AreaChart>
       </ResponsiveContainer>
