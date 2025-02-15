@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const PerformanceBarChart = () => {
   const navigate = useNavigate();
@@ -98,9 +99,9 @@ const PerformanceBarChart = () => {
           Back to Dashboard
         </Button>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
-          <div className="mb-8 flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900 font-playfair">Performance Score</h1>
+        <Card className="animate-fadeIn">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0">
+            <CardTitle className="text-2xl font-bold text-gray-900 font-playfair">Performance Score</CardTitle>
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2">
@@ -124,9 +125,9 @@ const PerformanceBarChart = () => {
                 </div>
               </DialogContent>
             </Dialog>
-          </div>
+          </CardHeader>
 
-          <div className="flex flex-col space-y-8">
+          <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Bar Graph - Left Column */}
               <div className="flex items-center justify-center pl-[200px]">
@@ -152,8 +153,8 @@ const PerformanceBarChart = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
