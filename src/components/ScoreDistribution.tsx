@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -27,12 +28,12 @@ const ScoreDistribution = () => {
   const xAxisTicks = Array.from({
     length: 7
   }, (_, i) => 180 + i * 20);
-  return <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
-      <h2 className="text-xl font-semibold mb-4">Peer group Comparison</h2>
+  return <div className="bg-white p-4 rounded-lg shadow-sm animate-fadeIn">
+      <h2 className="text-xl font-semibold mb-2">Peer group Comparison</h2>
       
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={data} margin={{
-        top: 80,
+        top: 60,
         right: 30,
         left: 40,
         bottom: 40
@@ -72,18 +73,18 @@ const ScoreDistribution = () => {
         }} />
           <Tooltip formatter={(value: number) => [`${value} students`, 'Frequency']} labelFormatter={(label: number) => `Score: ${label}`} />
           <Area type="natural" dataKey="count" stroke="#0aa6b8" fill="url(#colorCount)" strokeWidth={2} />
-          <ReferenceLine x={studentScore} stroke="#10B981" strokeWidth={2} strokeDasharray="3 3" label={{
+          <ReferenceLine x={studentScore} stroke="#374151" strokeWidth={2} strokeDasharray="3 3" label={{
           value: `Estimated Score ${studentScore}`,
           position: 'top',
-          fill: '#10B981',
-          fontSize: 12,
-          fontWeight: 500,
-          dy: -10
+          fill: '#374151',
+          fontSize: 14,
+          fontWeight: 600,
+          dy: -15
         }} />
         </AreaChart>
       </ResponsiveContainer>
 
-      <div className="mt-4 w-[200px] space-y-2">
+      <div className="mt-3 w-[200px] space-y-2">
         <Label htmlFor="peer-group">Peer Group</Label>
         <Select value={selectedPeerGroup} onValueChange={setSelectedPeerGroup}>
           <SelectTrigger id="peer-group" className="w-full">
