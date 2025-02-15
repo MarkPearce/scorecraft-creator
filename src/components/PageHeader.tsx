@@ -30,17 +30,15 @@ export function PageHeader() {
         </div>
 
         <div className="flex-1 max-w-xl flex items-center gap-6">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 [&_svg]:size-5 text-gray-500" />
+          <div className="flex-1 flex items-center relative bg-gray-50 rounded-full border border-gray-200">
+            <Search className="ml-3 [&_svg]:size-5 text-gray-500" />
             <Input 
-              className="w-full pl-10 pr-16 h-9 rounded-full bg-gray-50 border-gray-200"
+              className="border-0 bg-transparent pl-2 h-9 focus-visible:ring-0 focus-visible:ring-offset-0"
               placeholder="Search the AMBOSS library"
             />
-            <div className="absolute right-6 top-1/2 -translate-y-1/2">
-              <kbd className="hidden sm:inline-flex h-5 select-none items-center justify-center gap-1 ml-2 font-mono text-[10px] font-medium text-gray-600">
-                <span className="text-xs">⌘</span>K
-              </kbd>
-            </div>
+            <kbd className="hidden sm:inline-flex h-5 select-none items-center justify-center gap-1 mr-4 font-mono text-[10px] font-medium text-gray-600">
+              <span className="text-xs">⌘</span>K
+            </kbd>
           </div>
         </div>
 
