@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -44,7 +43,7 @@ const ScoreDistribution = () => {
               <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="score" type="number" allowDecimals={false} domain={['dataMin', 'dataMax']} label={{
           value: 'Score',
           position: 'bottom',
