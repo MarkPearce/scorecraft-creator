@@ -6,6 +6,7 @@ import PeerGroup from "@/components/PeerGroup";
 import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import ProgressTracker from "@/components/ProgressTracker";
+import AmbossLogo from "@/components/AmbossLogo";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -13,14 +14,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate('/')}
-          className="mb-6"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Dashboard
-        </Button>
+        <div className="flex items-center justify-between">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate('/')}
+            className="mb-6"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Dashboard
+          </Button>
+          <AmbossLogo />
+        </div>
 
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Continuous Score Estimate</h1>
