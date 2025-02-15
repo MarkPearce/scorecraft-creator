@@ -36,7 +36,7 @@ export function PageHeader() {
               className="w-full pl-10 pr-16 h-9 rounded-full bg-gray-50 border-gray-200"
               placeholder="Search the AMBOSS library"
             />
-            <div className="absolute right-3 top-1/2 -translate-y-1/2">
+            <div className="absolute right-6 top-1/2 -translate-y-1/2">
               <kbd className="hidden sm:inline-flex h-5 select-none items-center justify-center gap-1 ml-2 font-mono text-[10px] font-medium text-gray-600">
                 <span className="text-xs">⌘</span>K
               </kbd>
