@@ -51,7 +51,7 @@ export function PageHeader() {
             className="h-10 w-10 rounded-full"
           >
             <Avatar>
-              <AvatarFallback>U</AvatarFallback>
+              <AvatarFallback className="bg-[#24A3AA] text-white">U</AvatarFallback>
             </Avatar>
           </Button>
         </div>
