@@ -142,8 +142,8 @@ const PerformanceScoreCard = ({
               range={range}
             />
           </div>
-          <div className="flex items-center justify-center order-1 md:order-2">
-            <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md w-full`}>
+          <div className="flex items-center justify-center h-full order-1 md:order-2">
+            <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full mx-auto max-w-[280px]`}>
               <div className="flex items-center gap-6 justify-center">
                 {getFaceIcon(score)}
                 <div className="text-center">
