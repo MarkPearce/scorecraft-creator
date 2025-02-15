@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -24,13 +24,14 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/dashboard" element={<Index />} />
+          <Route path="/report" element={<Index />} />
           <Route path="/concept1" element={<Concept1 />} />
           <Route path="/concept2" element={<Concept2 />} />
           <Route path="/concept3" element={<Concept3 />} />
-          <Route path="/performance" element={<PerformanceBarChart />} />
-          <Route path="/peer-group" element={<PeerGroup />} />
-          <Route path="/topic-breakdown" element={<TopicBreakdown />} />
+          <Route path="/concept4" element={<PerformanceBarChart />} />
+          <Route path="/concept5" element={<PeerGroup />} />
+          <Route path="/concept6" element={<TopicBreakdown />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

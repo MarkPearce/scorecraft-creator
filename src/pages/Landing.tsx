@@ -9,7 +9,6 @@ const Landing = () => {
   return <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <img src="/logo.svg" alt="Logo" className="h-8 mx-auto mb-8" />
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Continuous Assessment User Test
           </h1>
@@ -29,22 +28,22 @@ const Landing = () => {
             Exam Readiness
           </Button>
 
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/performance")}>
+          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept4")}>
             <LayoutGrid className="mr-2 h-5 w-5" />
             Performance Bar Chart
           </Button>
 
-          <Button variant="outline" onClick={() => navigate("/peer-group")} className="h-24 text-lg font-medium hover:bg-gray-100 px-0 rounded-md">
+          <Button variant="outline" onClick={() => navigate("/concept5")} className="h-24 text-lg font-medium hover:bg-gray-100 px-0 rounded-md">
             <LayoutGrid className="mr-2 h-5 w-5" />
             Peer Group
           </Button>
 
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/topic-breakdown")}>
+          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept6")}>
             <LayoutGrid className="mr-2 h-5 w-5" />
             Topic Breakdown
           </Button>
 
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/dashboard")}>
+          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/report")}>
             <LayoutGrid className="mr-2 h-5 w-5" />
             Full Report
           </Button>

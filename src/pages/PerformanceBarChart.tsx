@@ -1,11 +1,10 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Settings } from "lucide-react";
+import { ArrowLeft, Angry, Frown, Meh, Smile, Laugh, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PrototypeControls from "@/components/PrototypeControls";
 import PerformanceGraph from "@/components/PerformanceGraph";
-import PerformanceScore from "@/components/PerformanceScore";
 import {
   Dialog,
   DialogContent,
@@ -14,25 +13,25 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const getScoreSegment = (score: number, range: { min: number; max: number }) => {
-  const totalRange = range.max - range.min;
-  const segmentSize = totalRange / 5;
-  
-  if (score >= range.max - segmentSize) return 5; // Excellent
-  if (score >= range.max - (segmentSize * 2)) return 4; // Strong
-  if (score >= range.max - (segmentSize * 3)) return 3; // Developing
-  if (score >= range.max - (segmentSize * 4)) return 2; // Needs Work
-  return 1; // Critical
-};
-
 const PerformanceBarChart = () => {
   const navigate = useNavigate();
   const [score, setScore] = useState(240);
   const [range, setRange] = useState({ min: 180, max: 300 });
   const [targetScore, setTargetScore] = useState(260);
 
+  const getScoreSegment = (score: number) => {
+    const totalRange = range.max - range.min;
+    const segmentSize = totalRange / 5;
+    
+    if (score >= range.max - segmentSize) return 5; // Excellent
+    if (score >= range.max - (segmentSize * 2)) return 4; // Strong
+    if (score >= range.max - (segmentSize * 3)) return 3; // Developing
+    if (score >= range.max - (segmentSize * 4)) return 2; // Needs Work
+    return 1; // Critical
+  };
+
   const getScoreColor = (score: number) => {
-    const segment = getScoreSegment(score, range);
+    const segment = getScoreSegment(score);
     switch (segment) {
       case 5: return "bg-[#019444]";
       case 4: return "bg-[#8DC641]";
@@ -43,7 +42,7 @@ const PerformanceBarChart = () => {
   };
 
   const getBackgroundColor = (score: number) => {
-    const segment = getScoreSegment(score, range);
+    const segment = getScoreSegment(score);
     switch (segment) {
       case 5: return "bg-[#019444]/15";
       case 4: return "bg-[#8DC641]/15";
@@ -54,13 +53,26 @@ const PerformanceBarChart = () => {
   };
 
   const getTextColor = (score: number) => {
-    const segment = getScoreSegment(score, range);
+    const segment = getScoreSegment(score);
     switch (segment) {
       case 5: return "text-[#019444]";
       case 4: return "text-[#8DC641]";
       case 3: return "text-yellow-500";
       case 2: return "text-[#F46523]";
       default: return "text-[#ED1B24]";
+    }
+  };
+
+  const getFaceIcon = (score: number) => {
+    const segment = getScoreSegment(score);
+    const colorClass = getTextColor(score);
+    
+    switch (segment) {
+      case 5: return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+      case 4: return <Smile className={`w-16 h-16 ${colorClass}`} />;
+      case 3: return <Meh className={`w-16 h-16 ${colorClass}`} />;
+      case 2: return <Frown className={`w-16 h-16 ${colorClass}`} />;
+      default: return <Angry className={`w-16 h-16 ${colorClass}`} />;
     }
   };
 
@@ -88,7 +100,7 @@ const PerformanceBarChart = () => {
 
         <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
           <div className="mb-8 flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-gray-900 font-playfair">Performance Score</h2>
+            <h1 className="text-2xl font-bold text-gray-900 font-playfair">Performance Score</h1>
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2">
@@ -116,6 +128,7 @@ const PerformanceBarChart = () => {
 
           <div className="flex flex-col space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Bar Graph - Left Column */}
               <div className="flex items-center justify-center pl-[200px]">
                 <PerformanceGraph 
                   score={score}
@@ -124,13 +137,19 @@ const PerformanceBarChart = () => {
                 />
               </div>
 
+              {/* Score Readout - Right Column */}
               <div className="flex items-center justify-center">
-                <PerformanceScore 
-                  score={score}
-                  range={range}
-                  getBackgroundColor={getBackgroundColor}
-                  getTextColor={getTextColor}
-                />
+                <div className={`${getBackgroundColor(score)} p-6 rounded-lg max-w-md w-full`}>
+                  <div className="flex items-center gap-6 justify-center">
+                    {getFaceIcon(score)}
+                    <div className="text-center">
+                      <div className={`text-6xl font-bold ${getTextColor(score)} font-playfair`}>{score}</div>
+                      <div className="text-gray-600 mt-2 font-playfair">
+                        RANGE {range.min}-{range.max}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

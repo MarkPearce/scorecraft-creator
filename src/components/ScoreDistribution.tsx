@@ -39,6 +39,8 @@ const ScoreDistribution = () => {
   
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
+      <h2 className="text-xl font-semibold mb-4">Estimated Score compared to peers</h2>
+      <p className="text-sm text-gray-600 mb-4">Your score compared to peer group performance</p>
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={data} margin={{ top: 80, right: 30, left: 40, bottom: 40 }}>
           <defs>
@@ -89,15 +91,15 @@ const ScoreDistribution = () => {
           />
           <ReferenceLine
             x={studentScore}
-            stroke="#555555"
+            stroke="#10B981"
             strokeWidth={2}
             strokeDasharray="3 3"
             label={{
               value: `Estimated Score ${studentScore}`,
               position: 'top',
-              fill: '#555555',
-              fontSize: 14,
-              fontWeight: 600,
+              fill: '#10B981',
+              fontSize: 12,
+              fontWeight: 500,
               dy: -10
             }}
           />
@@ -112,7 +114,7 @@ const ScoreDistribution = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Students</SelectItem>
-            <SelectItem value="same-state">Same State</SelectItem>
+            <SelectItem value="same-major">Same Major</SelectItem>
             <SelectItem value="same-year">Same Year</SelectItem>
             <SelectItem value="same-school">Same School</SelectItem>
           </SelectContent>

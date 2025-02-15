@@ -18,6 +18,13 @@ const PeerGroup = () => {
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Dashboard
         </Button>
+
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-900">Peer Group Comparison</h2>
+          <p className="mt-2 text-gray-600">
+            Compare your performance with different peer groups to better understand your standing
+          </p>
+        </div>
         
         <ScoreDistribution />
       </div>
@@ -26,4 +33,3 @@ const PeerGroup = () => {
 };
 
 export default PeerGroup;
-
