@@ -6,7 +6,7 @@ const AmbossLogo = () => {
       fill="none" 
       viewBox="0 0 126 20" 
       role="img" 
-      className="h-5"
+      className="h-8"
       data-testid="amboss-logo"
     >
       <path 
