@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -22,7 +23,8 @@ const data = generateData();
 
 // Mock student score - this would typically come from props or an API
 const studentScore = 238;
-const ScoreDistribution = () => {
+
+const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
   const xAxisTicks = Array.from({
     length: 7
@@ -99,4 +101,4 @@ const ScoreDistribution = () => {
       </div>
     </div>;
 };
-export default ScoreDistribution;
+export default PeerGroup;
