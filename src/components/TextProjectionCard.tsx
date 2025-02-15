@@ -1,5 +1,5 @@
 
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PercentileDisplay } from "@/components/PercentileDisplay";
 
 interface TextProjectionCardProps {
@@ -8,12 +8,11 @@ interface TextProjectionCardProps {
 
 export const TextProjectionCard = ({ percentile }: TextProjectionCardProps) => {
   return (
-    <Card className="p-8 animate-fadeIn">
-      <div className="space-y-6">
-        <h2 className="text-gray-900 font-lato text-left text-xl font-bold">
-          Text Projection
-        </h2>
-
+    <Card className="animate-fadeIn">
+      <CardHeader>
+        <CardTitle className="font-lato">Text Projection</CardTitle>
+      </CardHeader>
+      <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div className="space-y-4 text-left text-gray-600 font-lato">
             <p>
@@ -29,7 +28,7 @@ export const TextProjectionCard = ({ percentile }: TextProjectionCardProps) => {
             <PercentileDisplay percentile={percentile} />
           </div>
         </div>
-      </div>
+      </CardContent>
     </Card>
   );
 };
