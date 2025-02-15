@@ -21,36 +21,38 @@ export function PageHeader() {
             <Menu className="h-5 w-5 text-gray-600" />
           </Button>
           <AmbossLogo />
-          <Select>
-            <SelectTrigger 
-              className="w-[98px] h-6 border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] cursor-pointer text-xs font-bold tracking-[1px] flex items-center gap-1 px-3 py-2 text-left uppercase antialiased leading-4 box-border [font-feature-settings:'lnum','pnum','kern','liga','clig'] [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-[rgb(6,124,137)]"
-              data-e2e-test-id="badge"
-              data-testid="mode-switcher-button"
-              style={{
-                textRendering: 'optimizeLegibility',
-                WebkitFontSmoothing: 'antialiased',
-                textSizeAdjust: '100%',
-                unicodeBidi: 'isolate',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              <SelectValue placeholder="Student" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem 
-                value="student"
-                className="text-[rgb(6,124,137)] font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
+          <div className="relative" data-lovable-select="true">
+            <Select>
+              <SelectTrigger 
+                className="w-[98px] h-6 border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] cursor-pointer text-xs font-bold tracking-[1px] flex items-center gap-1 px-3 py-2 text-left uppercase antialiased leading-4 box-border [font-feature-settings:'lnum','pnum','kern','liga','clig'] [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-[rgb(6,124,137)]"
+                data-e2e-test-id="badge"
+                data-testid="mode-switcher-button"
+                style={{
+                  textRendering: 'optimizeLegibility',
+                  WebkitFontSmoothing: 'antialiased',
+                  textSizeAdjust: '100%',
+                  unicodeBidi: 'isolate',
+                  whiteSpace: 'nowrap'
+                }}
               >
-                Student
-              </SelectItem>
-              <SelectItem 
-                value="clinician"
-                className="text-gray-600 font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
-              >
-                Clinician
-              </SelectItem>
-            </SelectContent>
-          </Select>
+                <SelectValue placeholder="Student" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem 
+                  value="student"
+                  className="text-[rgb(6,124,137)] font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
+                >
+                  Student
+                </SelectItem>
+                <SelectItem 
+                  value="clinician"
+                  className="text-gray-600 font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
+                >
+                  Clinician
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         <div className="flex-1 max-w-xl flex items-center gap-6">
