@@ -27,7 +27,7 @@ const ScoreDistribution = () => {
   const xAxisTicks = Array.from({
     length: 7
   }, (_, i) => 180 + i * 20);
-  return <div className="bg-white p-4 rounded-lg shadow-sm animate-fadeIn">
+  return <div className="bg-white p-4 rounded-lg shadow-sm animate-fadeIn px-6 py-6">
       <h2 className="text-xl font-semibold mb-2">Peer group comparison</h2>
       
       <ResponsiveContainer width="100%" height={400}>
