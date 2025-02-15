@@ -21,9 +21,6 @@ export function PageHeader() {
             <Menu className="h-5 w-5 text-gray-600" />
           </Button>
           <AmbossLogo />
-        </div>
-
-        <div className="flex-1 max-w-xl flex items-center gap-6">
           <Select>
             <SelectTrigger 
               className="w-[98px] h-6 border-none hover:bg-gray-50 transition-colors font-lato text-[rgb(6,124,137)] cursor-pointer text-xs font-bold tracking-[1px] px-2 py-1 text-left uppercase antialiased leading-4 box-border [font-feature-settings:'lnum','pnum','kern','liga','clig'] [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-[rgb(6,124,137)]"
@@ -54,7 +51,9 @@ export function PageHeader() {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
 
+        <div className="flex-1 max-w-xl flex items-center gap-6">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
             <Input 
