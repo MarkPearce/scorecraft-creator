@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import ScoreDistribution from "@/components/ScoreDistribution";
+import PeerGroup from "@/components/PeerGroup";
 import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import ProgressTracker from "@/components/ProgressTracker";
@@ -30,7 +30,7 @@ const Index = () => {
         </div>
         
         <div className="space-y-6">
-          <ScoreDistribution />
+          <PeerGroup />
           <PerformanceSummary />
           <TopicsList />
           <ProgressTracker />
