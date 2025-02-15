@@ -135,7 +135,7 @@ const PerformanceScoreCard = ({
 
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex items-center justify-center order-2 md:order-1">
+          <div className="flex items-center justify-center order-2 md:order-1 w-fit mx-auto">
             <PerformanceGraph 
               score={score}
               targetScore={targetScore}
