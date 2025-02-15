@@ -20,7 +20,7 @@ const PeerGroup = () => {
         </Button>
 
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">Peer Group Comparison</h2>
+          <h2 className="text-3xl font-bold text-gray-900">Estimated Score</h2>
           <p className="mt-2 text-gray-600">
             Compare your performance with different peer groups to better understand your standing
           </p>
