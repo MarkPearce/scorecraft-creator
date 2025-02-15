@@ -7,6 +7,7 @@ import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import ProgressTracker from "@/components/ProgressTracker";
 import AmbossLogo from "@/components/AmbossLogo";
+import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ const Index = () => {
         
         <div className="space-y-6">
           <PeerGroup />
+          <PerformanceTrackingContainer />
           <PerformanceSummary />
           <TopicsList />
           <ProgressTracker />
@@ -45,3 +47,4 @@ const Index = () => {
 };
 
 export default Index;
+
