@@ -1,5 +1,5 @@
 
-import { Menu, Search, User } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import {
@@ -25,12 +25,26 @@ export function PageHeader() {
 
         <div className="flex-1 max-w-xl flex items-center gap-6">
           <Select>
-            <SelectTrigger className="w-[120px] h-9">
-              <SelectValue placeholder="STUDENT" />
+            <SelectTrigger 
+              className="w-[120px] h-9 border-none hover:bg-gray-50 transition-colors font-medium text-blue-600 [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-blue-600"
+              data-e2e-test-id="badge"
+              data-testid="mode-switcher-button"
+            >
+              <SelectValue placeholder="Student" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="student">STUDENT</SelectItem>
-              <SelectItem value="faculty">FACULTY</SelectItem>
+              <SelectItem 
+                value="student"
+                className="text-blue-600 font-medium"
+              >
+                Student
+              </SelectItem>
+              <SelectItem 
+                value="faculty"
+                className="text-gray-600 font-medium"
+              >
+                Faculty
+              </SelectItem>
             </SelectContent>
           </Select>
 
