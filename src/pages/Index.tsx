@@ -8,9 +8,11 @@ import PerformanceSummary from "@/components/PerformanceSummary";
 import ProgressTracker from "@/components/ProgressTracker";
 import AmbossLogo from "@/components/AmbossLogo";
 import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
+import { TextProjectionCard } from "@/components/TextProjectionCard";
 
 const Index = () => {
   const navigate = useNavigate();
+  const currentPercentile = 30;
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -35,6 +37,7 @@ const Index = () => {
         </div>
         
         <div className="space-y-6">
+          <TextProjectionCard percentile={currentPercentile} />
           <PeerGroup />
           <PerformanceTrackingContainer />
           <PerformanceSummary />
@@ -47,4 +50,3 @@ const Index = () => {
 };
 
 export default Index;
-
