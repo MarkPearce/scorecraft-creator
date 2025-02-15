@@ -43,7 +43,7 @@ const ScoreDistribution = () => {
               <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" horizontalPoints={[8, 16, 24, 32]} />
+          <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="score" type="number" allowDecimals={false} domain={['dataMin', 'dataMax']} label={{
           value: 'Score',
           position: 'bottom',
