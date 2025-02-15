@@ -34,7 +34,7 @@ export function PageHeader() {
                 whiteSpace: 'nowrap'
               }}
             >
-              <SelectValue placeholder="Student" />
+              <SelectValue placeholder="Student" className="pl-2" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem 
