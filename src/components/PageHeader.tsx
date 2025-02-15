@@ -30,7 +30,7 @@ export function PageHeader() {
               data-e2e-test-id="badge"
               data-testid="mode-switcher-button"
               style={{
-                textRendering: 'optimizelegibility',
+                textRendering: 'optimizeLegibility',
                 WebkitFontSmoothing: 'antialiased',
                 textSizeAdjust: '100%',
                 unicodeBidi: 'isolate',
