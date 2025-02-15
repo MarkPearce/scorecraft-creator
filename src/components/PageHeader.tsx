@@ -37,7 +37,11 @@ export function PageHeader() {
               >
                 <SelectValue placeholder="Student" />
               </SelectTrigger>
-              <SelectContent className="bg-white">
+              <SelectContent 
+                className="bg-white w-[98px] min-w-0" 
+                position="popper" 
+                sideOffset={5}
+              >
                 <SelectItem 
                   value="student"
                   className="text-[rgb(6,124,137)] font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
