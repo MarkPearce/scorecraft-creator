@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -35,7 +36,7 @@ const ScoreDistribution = () => {
         top: 60,
         right: 30,
         left: 40,
-        bottom: 40
+        bottom: 0
       }}>
           <defs>
             <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
@@ -55,9 +56,9 @@ const ScoreDistribution = () => {
           left: 20,
           right: 20
         }} orientation="bottom" />
-          <YAxis domain={[0, 50]} allowDecimals={false} width={60} orientation="left" type="number" padding={{
+          <YAxis domain={[0, 40]} allowDecimals={false} width={60} orientation="left" type="number" padding={{
           top: 20,
-          bottom: 20
+          bottom: 0
         }} label={{
           value: 'Peer Group',
           angle: -90,
