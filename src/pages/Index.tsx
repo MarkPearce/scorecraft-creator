@@ -6,7 +6,6 @@ import PeerGroup from "@/components/PeerGroup";
 import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import ProgressTracker from "@/components/ProgressTracker";
-import AmbossLogo from "@/components/AmbossLogo";
 import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 import { TextProjectionCard } from "@/components/TextProjectionCard";
 import { PageHeader } from "@/components/PageHeader";
@@ -29,7 +28,6 @@ const Index = () => {
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Dashboard
             </Button>
-            <AmbossLogo />
           </div>
 
           <div>
