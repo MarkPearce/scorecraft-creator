@@ -23,7 +23,7 @@ const Index = () => {
         </Button>
 
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">Continuous Score Estimate</h2>
+          <h1 className="text-3xl font-bold text-gray-900">Continuous Score Estimate</h1>
           <p className="mt-2 text-gray-600">
             Here is your assessment based on Qbank Performance. Check out your study recommendations below to optimize your study schedule.
           </p>
