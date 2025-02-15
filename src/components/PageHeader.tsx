@@ -47,10 +47,10 @@ export function PageHeader() {
                 Student
               </SelectItem>
               <SelectItem 
-                value="faculty"
+                value="clinician"
                 className="text-gray-600 font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
               >
-                Faculty
+                Clinician
               </SelectItem>
             </SelectContent>
           </Select>
