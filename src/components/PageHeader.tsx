@@ -2,13 +2,6 @@
 import { Menu, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import AmbossLogo from "./AmbossLogo";
 
@@ -21,36 +14,18 @@ export function PageHeader() {
             <Menu />
           </Button>
           <AmbossLogo />
-          <Select>
-            <SelectTrigger 
-              className="w-[98px] h-[26px] border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] cursor-pointer text-xs font-bold tracking-[1px] flex items-center gap-1 px-2 py-1 pl-2 text-left uppercase antialiased leading-4 box-border [font-feature-settings:'lnum','pnum','kern','liga','clig'] [&>svg]:w-5 [&>svg]:h-5 [&>svg]:stroke-[2px] [&>svg]:text-[rgb(6,124,137)]"
-              data-e2e-test-id="badge"
-              data-testid="mode-switcher-button"
-              style={{
-                textRendering: 'optimizeLegibility',
-                WebkitFontSmoothing: 'antialiased',
-                textSizeAdjust: '100%',
-                unicodeBidi: 'isolate',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              <SelectValue placeholder="Student" className="pl-2" />
-            </SelectTrigger>
-            <SelectContent className="p-2">
-              <SelectItem 
-                value="student"
-                className="text-[rgb(6,124,137)] font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
-              >
-                Student
-              </SelectItem>
-              <SelectItem 
-                value="clinician"
-                className="text-gray-600 font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
-              >
-                Clinician
-              </SelectItem>
-            </SelectContent>
-          </Select>
+          <div 
+            className="w-[98px] h-[26px] border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] text-xs font-bold tracking-[1px] flex items-center justify-center uppercase antialiased leading-4"
+            style={{
+              textRendering: 'optimizeLegibility',
+              WebkitFontSmoothing: 'antialiased',
+              textSizeAdjust: '100%',
+              unicodeBidi: 'isolate',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Student
+          </div>
         </div>
 
         <div className="flex-1 max-w-xl flex items-center gap-6">
