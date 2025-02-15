@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -91,7 +92,7 @@ const ScoreDistribution = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Students</SelectItem>
-            <SelectItem value="same-major">Same Major</SelectItem>
+            <SelectItem value="same-state">Same State</SelectItem>
             <SelectItem value="same-year">Same Year</SelectItem>
             <SelectItem value="same-school">Same School</SelectItem>
           </SelectContent>
