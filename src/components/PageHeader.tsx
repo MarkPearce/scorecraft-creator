@@ -26,22 +26,29 @@ export function PageHeader() {
         <div className="flex-1 max-w-xl flex items-center gap-6">
           <Select>
             <SelectTrigger 
-              className="w-[120px] h-9 border-none hover:bg-gray-50 transition-colors font-medium text-blue-600 [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-blue-600"
+              className="w-[98px] h-6 border-none hover:bg-gray-50 transition-colors font-lato text-[rgb(6,124,137)] cursor-pointer text-xs font-bold tracking-[1px] px-2 py-1 text-left uppercase antialiased leading-4 box-border [font-feature-settings:'lnum','pnum','kern','liga','clig'] [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-[rgb(6,124,137)]"
               data-e2e-test-id="badge"
               data-testid="mode-switcher-button"
+              style={{
+                textRendering: 'optimizelegibility',
+                WebkitFontSmoothing: 'antialiased',
+                textSizeAdjust: '100%',
+                unicodeBidi: 'isolate',
+                whiteSpace: 'nowrap'
+              }}
             >
               <SelectValue placeholder="Student" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem 
                 value="student"
-                className="text-blue-600 font-medium"
+                className="text-[rgb(6,124,137)] font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
               >
                 Student
               </SelectItem>
               <SelectItem 
                 value="faculty"
-                className="text-gray-600 font-medium"
+                className="text-gray-600 font-lato text-xs font-bold tracking-[1px] uppercase antialiased"
               >
                 Faculty
               </SelectItem>
