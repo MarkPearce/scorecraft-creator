@@ -23,7 +23,7 @@ export function PageHeader() {
           <AmbossLogo />
           <Select>
             <SelectTrigger 
-              className="w-[98px] h-6 border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] cursor-pointer text-xs font-bold tracking-[1px] flex items-center gap-1 px-3 py-2 text-left uppercase antialiased leading-4 box-border [font-feature-settings:'lnum','pnum','kern','liga','clig'] [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-[rgb(6,124,137)]"
+              className="w-[98px] min-h-[24px] border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] cursor-pointer text-xs font-bold tracking-[1px] flex items-center gap-1 px-3 text-left uppercase antialiased leading-4 box-border [font-feature-settings:'lnum','pnum','kern','liga','clig'] [&>svg]:w-4 [&>svg]:h-4 [&>svg]:stroke-[2px] [&>svg]:text-[rgb(6,124,137)]"
               data-e2e-test-id="badge"
               data-testid="mode-switcher-button"
               style={{
