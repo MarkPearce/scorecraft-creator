@@ -16,33 +16,32 @@ const Concept3 = () => {
           Back to Dashboard
         </Button>
 
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <Card className="p-8 animate-fadeIn">
-            <div className="space-y-6">
-              <h2 className="text-gray-900 font-lato text-left text-xl font-bold">
-                Text Projection
-              </h2>
+        <Card className="p-8 animate-fadeIn">
+          <div className="space-y-6">
+            <h2 className="text-gray-900 font-lato text-left text-xl font-bold">
+              Text Projection
+            </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                <div className="space-y-4 text-left text-gray-600 font-lato">
-                  <p>
-                    You are currently at the 30<sup>th</sup> percentile compared to other learners.
-                  </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <div className="space-y-4 text-left text-gray-600 font-lato">
+                <p>
+                  You are currently at the 30<sup>th</sup> percentile compared to other learners.
+                </p>
 
-                  <p>
-                    On this percentile rank, learners usually end up scoring <span className="font-bold">230-250 on a 3-digit-scale</span>. Keep it up!
-                  </p>
-                </div>
-                
-                <div>
-                  <PercentileDisplay percentile={currentPercentile} />
-                </div>
+                <p>
+                  On this percentile rank, learners usually end up scoring <span className="font-bold">230-250 on a 3-digit-scale</span>. Keep it up!
+                </p>
+              </div>
+              
+              <div>
+                <PercentileDisplay percentile={currentPercentile} />
               </div>
             </div>
-          </Card>
-        </div>
+          </div>
+        </Card>
       </div>
     </div>;
 };
 
 export default Concept3;
+
