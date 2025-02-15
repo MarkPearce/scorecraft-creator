@@ -1,4 +1,3 @@
-
 import { Settings } from "lucide-react";
 import { useState } from "react";
 import PrototypeControls from "./PrototypeControls";
@@ -134,26 +133,25 @@ const PerformanceScoreCard = ({
       </CardHeader>
 
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex items-center justify-center order-2 md:order-1 w-fit mx-auto">
+        <div className="grid md:grid-cols-[1fr_auto] gap-8">
+          <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full mx-auto max-w-[280px]`}>
+            <div className="flex items-center gap-6 justify-center">
+              {getFaceIcon(score)}
+              <div className="text-center">
+                <div className={`text-6xl font-bold ${getTextColor(score)} font-playfair`}>{score}</div>
+                <div className="text-gray-500 mt-2 font-playfair">
+                  RANGE {range.min}-{range.max}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex justify-center items-center">
             <PerformanceGraph 
               score={score}
               targetScore={targetScore}
               range={range}
             />
-          </div>
-          <div className="flex items-center justify-center h-full order-1 md:order-2">
-            <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full mx-auto max-w-[280px]`}>
-              <div className="flex items-center gap-6 justify-center">
-                {getFaceIcon(score)}
-                <div className="text-center">
-                  <div className={`text-6xl font-bold ${getTextColor(score)} font-playfair`}>{score}</div>
-                  <div className="text-gray-500 mt-2 font-playfair">
-                    RANGE {range.min}-{range.max}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </CardContent>
