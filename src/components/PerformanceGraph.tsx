@@ -31,25 +31,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
   ];
 
   return (
-    <div className="h-[300px] w-[60px] relative ml-12">
-      {/* Score labels aligned with color transitions */}
-      <div className="absolute left-0 h-full w-8 -translate-x-12">
-        {segments.map((segment, index) => (
-          <div
-            key={`label-${segment.score}`}
-            className="absolute text-sm text-gray-600"
-            style={{
-              top: calculatePosition(segment.score),
-              transform: 'translateY(-50%)',
-              width: '100%',
-              textAlign: 'right'
-            }}
-          >
-            {segment.label}
-          </div>
-        ))}
-      </div>
-
+    <div className="h-[300px] w-[60px] relative">
       {/* Color segments */}
       {segments.slice(0, -1).map((segment, index) => (
         <div 
@@ -61,10 +43,28 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
           }}
         />
       ))}
+      
+      {/* Score labels aligned with color transitions */}
+      <div className="absolute -right-12 h-full w-8">
+        {segments.map((segment, index) => (
+          <div
+            key={`label-${segment.score}`}
+            className="absolute text-sm text-gray-600"
+            style={{
+              top: calculatePosition(segment.score),
+              transform: 'translateY(-50%)',
+              width: '100%',
+              textAlign: 'left'
+            }}
+          >
+            {segment.label}
+          </div>
+        ))}
+      </div>
 
       {/* Target indicator */}
       <div 
-        className="absolute left-0 transition-all duration-300"
+        className="absolute right-0 transition-all duration-300"
         style={{ 
           top: calculatePosition(targetScore),
           transform: 'translateY(-50%)'
@@ -79,7 +79,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
 
       {/* Score indicator */}
       <div 
-        className="absolute left-0 transition-all duration-300"
+        className="absolute right-0 transition-all duration-300"
         style={{ 
           top: calculatePosition(score),
           transform: 'translateY(-50%)'
