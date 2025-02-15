@@ -31,7 +31,7 @@ export function PageHeader() {
 
         <div className="flex-1 max-w-xl flex items-center gap-6">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 [&_svg]:size-6 text-gray-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 [&_svg]:size-5 text-gray-500" />
             <Input 
               className="w-full pl-10 h-9"
               placeholder="Search the AMBOSS library"
