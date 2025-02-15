@@ -16,22 +16,24 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
     return `${100 - percentage}%`;
   };
 
-  // Calculate segment boundaries based on the range
+  // Calculate segment size
   const totalRange = range.max - range.min;
   const segmentSize = totalRange / 5;
   
+  // Calculate segment boundaries from bottom to top
   const segments = [
-    { score: range.max, color: "bg-[#019444]", label: `${Math.round(range.max)}` },
-    { score: range.max - segmentSize, color: "bg-[#8DC641]", label: `${Math.round(range.max - segmentSize)}` },
-    { score: range.max - (segmentSize * 2), color: "bg-yellow-500", label: `${Math.round(range.max - (segmentSize * 2))}` },
-    { score: range.max - (segmentSize * 3), color: "bg-[#F46523]", label: `${Math.round(range.max - (segmentSize * 3))}` },
-    { score: range.min, color: "bg-[#ED1B24]", label: `${Math.round(range.min)}` },
+    { score: range.min, color: "bg-[#ED1B24]", label: `${Math.round(range.min)}` },  // Red starts
+    { score: range.min + segmentSize, color: "bg-[#F46523]", label: `${Math.round(range.min + segmentSize)}` },  // Orange starts
+    { score: range.min + (segmentSize * 2), color: "bg-yellow-500", label: `${Math.round(range.min + (segmentSize * 2))}` },  // Yellow starts
+    { score: range.min + (segmentSize * 3), color: "bg-[#8DC641]", label: `${Math.round(range.min + (segmentSize * 3))}` },  // Light green starts
+    { score: range.min + (segmentSize * 4), color: "bg-[#019444]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Dark green starts
+    { score: range.max, label: `${Math.round(range.max)}` }  // Top value
   ];
 
   return (
     <div className="h-[300px] w-[60px] relative">
-      {/* Score segments */}
-      {segments.map((segment, index) => (
+      {/* Color segments */}
+      {segments.slice(0, -1).map((segment, index) => (
         <div 
           key={segment.score}
           className={`absolute w-full ${segment.color}`}
@@ -42,14 +44,25 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
         />
       ))}
       
-      {/* Score labels */}
-      <div className="absolute -right-8 h-full flex flex-col justify-between text-sm text-gray-600">
-        {segments.map((segment) => (
-          <span key={`label-${segment.score}`}>{segment.label}</span>
+      {/* Score labels aligned with color transitions */}
+      <div className="absolute -right-8 h-full w-8">
+        {segments.map((segment, index) => (
+          <div
+            key={`label-${segment.score}`}
+            className="absolute text-sm text-gray-600"
+            style={{
+              top: calculatePosition(segment.score),
+              transform: 'translateY(-50%)',
+              width: '100%',
+              textAlign: 'left'
+            }}
+          >
+            {segment.label}
+          </div>
         ))}
       </div>
 
-      {/* Target indicator (rendered first, so it appears behind) */}
+      {/* Target indicator */}
       <div 
         className="absolute right-0 transition-all duration-300"
         style={{ 
@@ -64,7 +77,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
         />
       </div>
 
-      {/* Score indicator (rendered last, so it appears in front) */}
+      {/* Score indicator */}
       <div 
         className="absolute right-0 transition-all duration-300"
         style={{ 
@@ -82,3 +95,4 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
 };
 
 export default PerformanceGraph;
+
