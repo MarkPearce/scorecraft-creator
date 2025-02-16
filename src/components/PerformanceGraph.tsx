@@ -147,11 +147,11 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   const getScoreStatus = (currentScore: number, target: number) => {
     if (currentScore > target) {
-      return "Exceeding target score";
+      return "Your predicted score exceeds your target score";
     } else if (currentScore === target) {
-      return "Met target score";
+      return "Your predicted score meets your target score";
     } else {
-      return "Below target score";
+      return "Your predicted score is lower than your target score";
     }
   };
 
