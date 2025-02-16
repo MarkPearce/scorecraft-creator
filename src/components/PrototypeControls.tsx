@@ -1,5 +1,6 @@
 
 import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
 import { useEffect } from "react";
 
 interface PrototypeControlsProps {
@@ -65,7 +66,7 @@ const PrototypeControls = ({
           />
         </div>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Target Score: {targetScore}
@@ -75,9 +76,17 @@ const PrototypeControls = ({
           </p>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Current Score: {score}
+          <label htmlFor="prediction-score" className="block text-sm font-medium text-gray-700 mb-1">
+            Prediction: {score}
           </label>
+          <Slider
+            value={[score]}
+            min={range.min}
+            max={range.max}
+            step={1}
+            onValueChange={onScoreChange}
+            className="relative w-full h-2"
+          />
         </div>
       </div>
     </div>
