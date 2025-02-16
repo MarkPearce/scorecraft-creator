@@ -60,7 +60,7 @@ const TopicBreakdown = () => {
                 </div>
                 <div>
                   <div className="text-sm text-[#403E43] mb-2">Target Score</div>
-                  <div className="text-4xl font-bold text-blue-600">240</div>
+                  <div className="text-4xl font-bold text-[#403E43]">240</div>
                 </div>
               </div>
             </Card>
