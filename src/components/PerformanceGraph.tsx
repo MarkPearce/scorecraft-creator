@@ -69,14 +69,15 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
               ))}
             </div>
 
-            {/* 3. Score indicators section - Now positioned relative to color bar */}
-            <div className="absolute h-full" style={{ left: '60px' }}>
+            {/* 3. Score indicators section - positioned absolutely from the right edge of color bar */}
+            <div className="absolute h-full w-0" style={{ left: 0 }}>
               {/* Target indicator */}
               <div 
                 className="absolute transition-all duration-300"
                 style={{ 
                   top: calculatePosition(targetScore),
                   transform: 'translateY(-50%)',
+                  right: '-60px'
                 }}
               >
                 <ScoreIndicator 
@@ -92,6 +93,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
                 style={{ 
                   top: calculatePosition(score),
                   transform: 'translateY(-50%)',
+                  right: '-60px'
                 }}
               >
                 <ScoreIndicator 
