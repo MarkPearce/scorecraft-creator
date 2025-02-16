@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -25,7 +24,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       }
     };
 
-    // Prevent all touch move events while dragging
     document.addEventListener('touchmove', preventDefault, { passive: false });
     
     return () => {
@@ -153,12 +151,31 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       onTouchMove={(e) => isDragging && e.preventDefault()}
     >
       <div className="flex items-center justify-center">
-        <div className="w-fit relative p-6 pl-52 rounded-lg">
+        <div className="relative w-full max-w-[500px]">
           <div 
-            className="relative h-[300px] flex graph-container"
+            className="relative h-[300px] flex"
             ref={containerRef}
           >
-            <div className="flex relative">
+            <div className="relative h-full">
+              {segments.map((segment) => (
+                <div
+                  key={`label-${segment.score}`}
+                  className="absolute text-sm text-gray-600"
+                  style={{
+                    top: calculatePosition(segment.score),
+                    transform: 'translateY(-50%)',
+                    left: '0',
+                    width: '40px',
+                    textAlign: 'right',
+                    paddingRight: '8px'
+                  }}
+                >
+                  {segment.label}
+                </div>
+              ))}
+            </div>
+
+            <div className="relative mx-4">
               <div className="w-[60px] h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
                   <div 
@@ -171,56 +188,39 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                   />
                 ))}
               </div>
+            </div>
 
-              <div className="relative h-full ml-2">
-                {segments.map((segment) => (
-                  <div
-                    key={`label-${segment.score}`}
-                    className="absolute text-sm text-gray-600"
-                    style={{
-                      top: calculatePosition(segment.score),
-                      transform: 'translateY(-50%)',
-                      width: '100%',
-                      textAlign: 'left'
-                    }}
-                  >
-                    {segment.label}
-                  </div>
-                ))}
-              </div>
-
-              <div className="absolute h-full w-0" style={{ left: 0 }}>
-                <div 
-                  className="absolute"
-                  style={{ 
-                    top: calculatePosition(targetScore),
-                    right: '-60px'
-                  }}
-                  onMouseDown={handleDragStart}
-                  onTouchStart={handleDragStart}
-                >
-                  <div className="flex items-center">
-                    <ScoreIndicator 
-                      label="Target Score"
-                      value={targetScore}
-                      isTarget
-                      showMoveIcon
-                    />
-                  </div>
-                </div>
-
-                <div 
-                  className="absolute"
-                  style={{ 
-                    top: calculatePosition(score),
-                    right: '-60px'
-                  }}
-                >
+            <div className="relative h-full flex-grow">
+              <div 
+                className="absolute"
+                style={{ 
+                  top: calculatePosition(targetScore),
+                  left: '0'
+                }}
+                onMouseDown={handleDragStart}
+                onTouchStart={handleDragStart}
+              >
+                <div className="flex items-center">
                   <ScoreIndicator 
-                    label="Estimated Score"
-                    value={score}
+                    label="Target Score"
+                    value={targetScore}
+                    isTarget
+                    showMoveIcon
                   />
                 </div>
+              </div>
+
+              <div 
+                className="absolute"
+                style={{ 
+                  top: calculatePosition(score),
+                  left: '0'
+                }}
+              >
+                <ScoreIndicator 
+                  label="Estimated Score"
+                  value={score}
+                />
               </div>
             </div>
           </div>
