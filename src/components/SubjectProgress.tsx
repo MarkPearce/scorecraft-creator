@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
 import { SubjectHeader } from "./SubjectHeader";
-import { ScoreDisplay } from "./ScoreDisplay";
+import ScoreDisplay from "./ScoreDisplay"; // Fixed: Changed from named import to default import
 import { StudyMaterials } from "./StudyMaterials";
 import { getTargetScore } from "@/utils/subjectUtils";
 
