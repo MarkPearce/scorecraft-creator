@@ -71,7 +71,7 @@ const ProgressTracker = () => {
                   <div className="absolute left-[60%] top-4 h-4 w-0.5 bg-gray-300" />
                 </div>
 
-                <div className="absolute -bottom-16 left-[60%] -translate-x-1/2 flex items-center gap-2">
+                <div className="absolute -bottom-18 left-[60%] -translate-x-1/2 flex items-center gap-2">
                   {isAssessmentUnlocked ? (
                     <div className="flex flex-col items-center text-green-600">
                       <Unlock className="w-8 h-8" />
