@@ -26,7 +26,7 @@ const Index = () => {
             <Button 
               variant="ghost" 
               onClick={() => navigate('/')}
-              className="mb-6"
+              className="flex items-center"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to dashboard
