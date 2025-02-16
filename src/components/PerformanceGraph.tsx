@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -51,7 +52,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
     if (isDragging) {
       window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('touchmove', handleTouchMove);
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
       window.addEventListener('mouseup', handleDragEnd);
       window.addEventListener('touchend', handleDragEnd);
       window.addEventListener('mouseleave', handleDragEnd);
@@ -64,7 +65,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       window.removeEventListener('touchend', handleDragEnd);
       window.removeEventListener('mouseleave', handleDragEnd);
     };
-  }, [isDragging, onTargetScoreChange]);
+  }, [isDragging, onTargetScoreChange, range]);
 
   const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     if (!onTargetScoreChange) return;
@@ -83,20 +84,20 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
   const segmentSize = totalRange / 5;
   
   const segments = [
-    { score: range.min, color: "bg-[#019444]", label: `${Math.round(range.min)}` },  // Dark green starts (top)
-    { score: range.min + segmentSize, color: "bg-[#8DC641]", label: `${Math.round(range.min + segmentSize)}` },  // Light green starts
-    { score: range.min + (segmentSize * 2), color: "bg-[#FFC107]", label: `${Math.round(range.min + (segmentSize * 2))}` },  // Bright yellow starts
-    { score: range.min + (segmentSize * 3), color: "bg-[#F46523]", label: `${Math.round(range.min + (segmentSize * 3))}` },  // Orange starts
-    { score: range.min + (segmentSize * 4), color: "bg-[#ED1B24]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Red starts (bottom)
-    { score: range.max, label: `${Math.round(range.max)}` }  // Top value
+    { score: range.min, color: "bg-[#019444]", label: `${Math.round(range.min)}` },
+    { score: range.min + segmentSize, color: "bg-[#8DC641]", label: `${Math.round(range.min + segmentSize)}` },
+    { score: range.min + (segmentSize * 2), color: "bg-[#FFC107]", label: `${Math.round(range.min + (segmentSize * 2))}` },
+    { score: range.min + (segmentSize * 3), color: "bg-[#F46523]", label: `${Math.round(range.min + (segmentSize * 3))}` },
+    { score: range.min + (segmentSize * 4), color: "bg-[#ED1B24]", label: `${Math.round(range.min + (segmentSize * 4))}` },
+    { score: range.max, label: `${Math.round(range.max)}` }
   ];
 
   const getScoreSegment = (score: number) => {
-    if (score >= range.max - segmentSize) return 5; // Excellent
-    if (score >= range.max - (segmentSize * 2)) return 4; // Strong
-    if (score >= range.max - (segmentSize * 3)) return 3; // Developing
-    if (score >= range.max - (segmentSize * 4)) return 2; // Needs Work
-    return 1; // Critical
+    if (score >= range.max - segmentSize) return 5;
+    if (score >= range.max - (segmentSize * 2)) return 4;
+    if (score >= range.max - (segmentSize * 3)) return 3;
+    if (score >= range.max - (segmentSize * 4)) return 2;
+    return 1;
   };
 
   const getScoreColor = (score: number) => {
@@ -136,17 +137,13 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   return (
     <div className="grid grid-cols-2 w-full gap-6">
-      {/* Left Column - Graph Container */}
       <div className="flex items-center justify-center">
-        {/* Graph wrapper - contains all graph elements */}
         <div className="w-fit relative p-6 pl-52 rounded-lg">
           <div 
             className="relative h-[300px] flex graph-container"
             ref={containerRef}
           >
-            {/* Graph container with three distinct sections */}
             <div className="flex relative">
-              {/* 1. Colored bar section */}
               <div className="w-[60px] h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
                   <div 
@@ -160,7 +157,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                 ))}
               </div>
 
-              {/* 2. Score labels section */}
               <div className="relative h-full ml-2">
                 {segments.map((segment) => (
                   <div
@@ -178,11 +174,9 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                 ))}
               </div>
 
-              {/* 3. Score indicators section */}
               <div className="absolute h-full w-0" style={{ left: 0 }}>
-                {/* Target indicator */}
                 <div 
-                  className="absolute transition-all duration-300 group"
+                  className="absolute group"
                   style={{ 
                     top: calculatePosition(targetScore),
                     right: '-60px'
@@ -200,9 +194,8 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                   </div>
                 </div>
 
-                {/* Score indicator */}
                 <div 
-                  className="absolute transition-all duration-300"
+                  className="absolute"
                   style={{ 
                     top: calculatePosition(score),
                     right: '-60px'
@@ -219,7 +212,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
         </div>
       </div>
 
-      {/* Right Column - Score Display with Smiley Face */}
       <div className="flex items-center justify-center">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg`}>
           <div className="flex items-center justify-center gap-6">
