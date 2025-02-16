@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
 import { SubjectHeader } from "./SubjectHeader";
-import ScoreDisplay from "./ScoreDisplay"; // Fixed: Changed from named import to default import
+import ScoreDisplay from "./ScoreDisplay";
 import { StudyMaterials } from "./StudyMaterials";
 import { getTargetScore } from "@/utils/subjectUtils";
 
@@ -25,7 +25,7 @@ const SubjectProgress = ({
   targetQuestions,
   score,
   icon,
-  iconColor = "text-gray-500", // Updated to use new gray-500 (tertiary text)
+  iconColor = "text-gray-500",
   examWeight
 }: SubjectProgressProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -70,9 +70,9 @@ const SubjectProgress = ({
             />
             <div onClick={handleChevronClick}>
               {isExpanded ? (
-                <ChevronDown className="w-5 h-5 text-gray-500" /> // Updated to use new gray-500
+                <ChevronDown className="w-5 h-5 text-gray-500" />
               ) : (
-                <ChevronRight className="w-5 h-5 text-gray-500" /> // Updated to use new gray-500
+                <ChevronRight className="w-5 h-5 text-gray-500" />
               )}
             </div>
           </div>
