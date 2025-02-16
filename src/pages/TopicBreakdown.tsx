@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, FlaskConical, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -52,16 +53,24 @@ const TopicBreakdown = () => {
           <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="p-6 bg-blue-50">
-              <div className="text-sm text-[#403E43] mb-2">Your Score</div>
-              <div className="text-4xl font-bold text-blue-600">238</div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="text-sm text-[#403E43] mb-2">Your Score</div>
+                  <div className="text-4xl font-bold text-blue-600">238</div>
+                </div>
+                <div>
+                  <div className="text-sm text-[#403E43] mb-2">Target Score</div>
+                  <div className="text-4xl font-bold text-blue-600">240</div>
+                </div>
+              </div>
             </Card>
             <Card className="p-6 bg-green-50">
               <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
               <div className="text-4xl font-bold text-green-600">{totalQuestionsAnswered}</div>
             </Card>
             <Card className="p-6 bg-purple-50">
-              <div className="text-sm text-[#403E43] mb-2">Target Score</div>
-              <div className="text-4xl font-bold text-purple-600">240</div>
+              <div className="text-sm text-[#403E43] mb-2">Exam Date</div>
+              <div className="text-4xl font-bold text-purple-600">Oct 15, 2025</div>
             </Card>
           </div>
         </div>
