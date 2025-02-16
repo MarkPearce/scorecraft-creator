@@ -110,13 +110,13 @@ const ProgressTracker = () => {
           </div>
 
           <div className="mt-6 flex gap-4">
-            <Button variant="outline" className="text-sm" onClick={() => setIsDialogOpen(true)}>
+            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>
               Boost assessment
             </Button>
             <Button 
               disabled={!isAssessmentUnlocked}
               onClick={() => navigate('/report')}
-              className="font-bold"
+              className="text-base"
             >
               Start prototype
             </Button>
