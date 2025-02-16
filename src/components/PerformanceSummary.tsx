@@ -123,11 +123,11 @@ const PerformanceSummary = () => {
                   <th className="col-span-1 pb-3"></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="pt-2">
                 {sortedItems.map((item, index) => (
                   <tr 
                     key={index}
-                    className="group hover:bg-gray-50 transition-colors cursor-pointer grid grid-cols-12 gap-4"
+                    className="group hover:bg-gray-50 transition-colors cursor-pointer grid grid-cols-12 gap-4 mt-2"
                     onClick={() => handleStartSession(item.subject)}
                   >
                     <td className="col-span-9 py-2 font-medium text-gray-900">{item.subject}</td>
