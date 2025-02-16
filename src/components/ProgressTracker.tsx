@@ -41,7 +41,7 @@ const ProgressTracker = () => {
     <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <span>{isAssessmentUnlocked ? "Questions answered" : "Unlock continuous assessment"}</span>
+          <span>{isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}</span>
           <div className="flex items-center gap-3">
             <Button 
               variant="outline" 
