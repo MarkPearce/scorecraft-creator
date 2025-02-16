@@ -31,9 +31,9 @@ const ScoreIndicator = ({
       {/* Line and Value box container */}
       <div className="flex items-center">
         {/* Line */}
-        <div className="relative min-w-[80px]">
+        <div className="relative min-w-[120px]">
           <div className="h-1.5 bg-white absolute inset-y-[-2px] w-full z-0" />
-          <div className={`h-0.5 ${baseColor} relative z-10 min-w-[80px] ${isTarget ? "opacity-70" : ""}`} />
+          <div className={`h-0.5 ${baseColor} relative z-10 min-w-[120px] ${isTarget ? "opacity-70" : ""}`} />
         </div>
 
         {/* Value box - positioned over the lines */}
