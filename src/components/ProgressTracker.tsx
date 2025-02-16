@@ -42,15 +42,19 @@ const ProgressTracker = () => {
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           <span>Questions answered</span>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Button 
               variant="outline" 
+              size="icon"
+              className="h-8 w-8 p-0"
               onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}
             >
               -10
             </Button>
             <Button 
-              variant="outline" 
+              variant="outline"
+              size="icon"
+              className="h-8 w-8 p-0"
               onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}
             >
               +10
