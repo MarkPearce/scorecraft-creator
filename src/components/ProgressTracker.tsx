@@ -12,11 +12,13 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(45);
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const isAssessmentUnlocked = questionsAnswered >= 60;
 
@@ -107,9 +109,15 @@ const ProgressTracker = () => {
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-6 flex gap-4">
             <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
               Boost assessment
+            </Button>
+            <Button 
+              disabled={!isAssessmentUnlocked}
+              onClick={() => navigate('/report')}
+            >
+              Start prototype
             </Button>
           </div>
         </div>
