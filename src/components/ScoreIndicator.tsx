@@ -46,8 +46,8 @@ const ScoreIndicator = ({
         </div>
       </div>
 
-      {/* Icon and Label container with gray background */}
-      <div className="flex items-center ml-2 bg-gray-50 px-2 py-1 rounded">
+      {/* Icon and Label container */}
+      <div className={`flex items-center ml-2 ${isTarget ? 'bg-gray-50 px-2 py-1 rounded' : ''}`}>
         {showMoveIcon && (
           <MoveVertical className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} ${textColor}`} />
         )}
