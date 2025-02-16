@@ -135,14 +135,14 @@ const PerformanceScoreCard = ({
 
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex items-center justify-center order-2 md:order-1 w-fit mx-auto">
+          <div className="flex items-center justify-center">
             <PerformanceGraph 
               score={score}
               targetScore={targetScore}
               range={range}
             />
           </div>
-          <div className="flex items-center justify-center h-full order-1 md:order-2">
+          <div className="flex items-center justify-center h-full">
             <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full mx-auto max-w-[280px]`}>
               <div className="flex items-center gap-6 justify-center">
                 {getFaceIcon(score)}
