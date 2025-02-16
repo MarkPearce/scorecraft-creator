@@ -32,7 +32,7 @@ const Index = () => {
               Back to dashboard
             </Button>
 
-            <RadioGroup defaultValue="step1" className="flex gap-4">
+            <RadioGroup defaultValue="step2" className="flex gap-4">
               <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
                 <RadioGroupItem value="step1" id="step1" />
                 <Label htmlFor="step1" className="text-sm font-medium cursor-pointer">USMLE Step 1</Label>
