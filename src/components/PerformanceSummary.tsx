@@ -1,4 +1,3 @@
-
 import { BarChart, LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
@@ -96,13 +95,12 @@ const PerformanceSummary = () => {
         <CardTitle>Your relative strengths and weaknesses</CardTitle>
         <Button
           variant="outline"
-          size="sm"
-          className="h-8 w-8 p-0"
+          className="h-8 w-8 p-0 [&_svg]:size-5"
           onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
         >
           {viewMode === 'grouped' ? 
-            <LayoutList className="h-5 w-5" /> : 
-            <Columns className="h-5 w-5" />
+            <LayoutList /> : 
+            <Columns />
           }
         </Button>
       </CardHeader>
