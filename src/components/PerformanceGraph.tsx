@@ -36,9 +36,9 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
       <div className="w-fit relative p-2">
         <div className="relative h-[300px] flex">
           {/* Graph container with three distinct sections */}
-          <div className="flex gap-2 relative">
+          <div className="flex relative">
             {/* 1. Colored bar section */}
-            <div className="w-[60px] h-full">
+            <div className="w-[60px] h-full relative">
               {segments.slice(0, -1).map((segment, index) => (
                 <div 
                   key={segment.score}
@@ -52,7 +52,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
             </div>
 
             {/* 2. Score labels section */}
-            <div className="relative h-full">
+            <div className="relative h-full ml-2">
               {segments.map((segment) => (
                 <div
                   key={`label-${segment.score}`}
@@ -70,13 +70,14 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
             </div>
 
             {/* 3. Score indicators section */}
-            <div className="relative h-full">
+            <div className="relative h-full -ml-[60px]">
               {/* Target indicator */}
               <div 
                 className="absolute transition-all duration-300"
                 style={{ 
                   top: calculatePosition(targetScore),
-                  transform: 'translateY(-50%)'
+                  transform: 'translateY(-50%)',
+                  left: '60px'
                 }}
               >
                 <ScoreIndicator 
@@ -91,7 +92,8 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
                 className="absolute transition-all duration-300"
                 style={{ 
                   top: calculatePosition(score),
-                  transform: 'translateY(-50%)'
+                  transform: 'translateY(-50%)',
+                  left: '60px'
                 }}
               >
                 <ScoreIndicator 
