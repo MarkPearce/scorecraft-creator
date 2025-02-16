@@ -154,7 +154,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       <div className="flex items-center justify-center w-[350px]">
         <div className="relative">
           <div 
-            className="relative h-[300px] flex bg-[#D3E4FD] p-1 rounded-lg"
+            className="relative h-[300px] flex p-1 rounded-lg"
             ref={containerRef}
           >
             {/* Labels on the left */}
