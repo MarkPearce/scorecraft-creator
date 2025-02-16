@@ -61,32 +61,34 @@ const ProgressTracker = () => {
         <div className="flex flex-col gap-6">
           <div className="flex gap-8">
             <div className="flex flex-col flex-grow">
-              <div className="relative h-[140px]">
-                {/* Lock icon and label */}
-                <div className="absolute top-0 left-[60%] -translate-x-1/2 flex flex-col items-center">
-                  {isAssessmentUnlocked ? (
-                    <div className="flex flex-col items-center text-green-600">
-                      <Unlock className="w-8 h-8" />
-                      <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center text-gray-400">
-                      <Lock className="w-8 h-8" />
-                      <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
-                    </div>
-                  )}
-                </div>
+              <div className="relative h-[116px]">
+                <div className="h-full flex flex-col justify-between">
+                  {/* Lock icon and label */}
+                  <div className="absolute top-0 left-[60%] -translate-x-1/2 flex flex-col items-center">
+                    {isAssessmentUnlocked ? (
+                      <div className="flex flex-col items-center text-green-600">
+                        <Unlock className="w-8 h-8" />
+                        <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center text-gray-400">
+                        <Lock className="w-8 h-8" />
+                        <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
+                      </div>
+                    )}
+                  </div>
 
-                {/* Tick mark */}
-                <div className="absolute bottom-8 left-[60%] w-0.5 h-3 bg-gray-300" />
+                  {/* Tick mark */}
+                  <div className="absolute bottom-8 left-[60%] w-0.5 h-3 bg-gray-300" />
 
-                {/* Progress bar at the bottom */}
-                <div className="absolute bottom-0 w-full">
-                  <div className="h-4 w-full bg-gray-100 rounded-full">
-                    <div 
-                      className={`absolute left-0 top-0 h-4 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
-                      style={{ width: `${questionsAnswered}%` }}
-                    />
+                  {/* Progress bar at the bottom */}
+                  <div className="absolute bottom-0 w-full">
+                    <div className="h-4 w-full bg-gray-100 rounded-full">
+                      <div 
+                        className={`absolute left-0 top-0 h-4 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
+                        style={{ width: `${questionsAnswered}%` }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
