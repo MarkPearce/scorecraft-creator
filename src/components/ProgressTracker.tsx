@@ -68,10 +68,10 @@ const ProgressTracker = () => {
                     style={{ width: `${questionsAnswered}%` }}
                   />
                   {/* Vertical line at 60% */}
-                  <div className="absolute left-[60%] top-4 h-8 w-0.5 bg-gray-300" />
+                  <div className="absolute left-[60%] top-4 h-4 w-0.5 bg-gray-300" />
                 </div>
 
-                <div className="absolute -bottom-16 left-[60%] -translate-x-1/2 flex items-center gap-2">
+                <div className="absolute -bottom-20 left-[60%] -translate-x-1/2 flex items-center gap-2">
                   {isAssessmentUnlocked ? (
                     <div className="flex flex-col items-center text-green-600">
                       <Unlock className="w-12 h-12" />
