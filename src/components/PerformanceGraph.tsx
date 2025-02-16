@@ -1,5 +1,6 @@
+
 import ScoreIndicator from "./ScoreIndicator";
-import { Angry, Frown, Meh, Smile, Laugh, MoveVertical } from "lucide-react";
+import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -8,9 +9,10 @@ interface PerformanceGraphProps {
     min: number;
     max: number;
   };
+  onTargetScoreChange?: (value: number) => void;
 }
 
-const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) => {
+const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: PerformanceGraphProps) => {
   const calculatePosition = (value: number) => {
     const percentage = ((value - range.min) / (range.max - range.min)) * 100;
     return `${100 - percentage}%`;
@@ -131,6 +133,9 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
                       value={targetScore}
                       isTarget
                       showMoveIcon
+                      onValueChange={onTargetScoreChange}
+                      min={range.min}
+                      max={range.max}
                     />
                   </div>
                 </div>
