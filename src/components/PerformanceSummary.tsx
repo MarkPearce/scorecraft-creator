@@ -29,7 +29,7 @@ const performanceData: PerformanceItem[] = [
 ];
 
 const PencilIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" style={{ minWidth: '24px', minHeight: '24px' }}>
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" style={{ minWidth: '20px', minHeight: '20px' }}>
     <path fill="currentColor" d="M12 8a1 1 0 1 0-2 0v4a1 1 0 0 0 2 0z"></path>
     <path fill="currentColor" fillRule="evenodd" d="M8 2a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2v.723a9.02 9.02 0 0 1 6.197 5.056 3.121 3.121 0 0 1 3.63 5.045h-.002l-10.197 8.947a1 1 0 0 1-.665.248L8.494 23a1 1 0 0 1-.969-1.223l.192-.839-.013-.005C4.374 19.653 2 16.353 2 12.5a9 9 0 0 1 7-8.777V3a1 1 0 0 1-1-1m3 3.5a7 7 0 0 1 6.583 4.613l-8.987 7.835a1 1 0 0 0-.318.531l-.11.484C5.739 17.91 4 15.42 4 12.5a7 7 0 0 1 7-7m9.85 4.853a1.12 1.12 0 0 0-.813.274l-7.521 6.557 1.611 1.612 7.382-6.477.002-.002a1.121 1.121 0 0 0-.66-1.964Zm-8.23 9.764-1.615-1.615-.85.74-.402 1.765 1.842.01z" clipRule="evenodd"></path>
   </svg>
