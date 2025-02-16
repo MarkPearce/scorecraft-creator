@@ -33,14 +33,14 @@ const ScoreIndicator = ({
         {/* Line */}
         <div className="relative min-w-[80px]">
           <div className="h-1.5 bg-white absolute inset-y-[-2px] w-full z-0" />
-          <div className={`h-0.5 ${baseColor} relative min-w-[80px] z-10 ${isTarget ? "opacity-70" : ""}`} />
+          <div className={`h-0.5 ${baseColor} relative z-10 min-w-[80px] ${isTarget ? "opacity-70" : ""}`} />
         </div>
 
-        {/* Value box - removed gap and positioned directly next to line */}
+        {/* Value box - positioned over the lines */}
         <div className={`
           border-[0.5px] ${borderColor} px-2 py-0.5 rounded shadow-sm bg-white
           ${isTarget ? 'active:scale-105' : ''}
-          -ml-[1px]
+          -ml-[1px] relative z-20
         `}>
           <span className={isTarget ? "opacity-70" : ""}>{value}</span>
         </div>
