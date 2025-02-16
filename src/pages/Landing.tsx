@@ -8,20 +8,20 @@ const Landing = () => {
 
   return <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center">
+          <div className="flex justify-center mb-6">
+            <AmbossLogo />
+          </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-8">
             Continuous Assessment User Test
           </h1>
-          <div className="flex justify-center mb-12">
-            <AmbossLogo />
-          </div>
         </div>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-sm mx-auto">
           <Button 
             variant="default"
-            className="w-full h-24 text-lg"
             onClick={() => navigate("/report")}
+            className="w-full"
           >
             Start prototype
           </Button>
