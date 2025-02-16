@@ -1,5 +1,6 @@
 
 import ScoreIndicator from "./ScoreIndicator";
+import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -29,6 +30,49 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
     { score: range.min + (segmentSize * 4), color: "bg-[#019444]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Dark green starts
     { score: range.max, label: `${Math.round(range.max)}` }  // Top value
   ];
+
+  const getScoreSegment = (score: number) => {
+    if (score >= range.max - segmentSize) return 5; // Excellent
+    if (score >= range.max - (segmentSize * 2)) return 4; // Strong
+    if (score >= range.max - (segmentSize * 3)) return 3; // Developing
+    if (score >= range.max - (segmentSize * 4)) return 2; // Needs Work
+    return 1; // Critical
+  };
+
+  const getScoreColor = (score: number) => {
+    const segment = getScoreSegment(score);
+    switch (segment) {
+      case 5: return "text-[#019444]";
+      case 4: return "text-[#8DC641]";
+      case 3: return "text-yellow-500";
+      case 2: return "text-[#F46523]";
+      default: return "text-[#ED1B24]";
+    }
+  };
+
+  const getBackgroundColor = (score: number) => {
+    const segment = getScoreSegment(score);
+    switch (segment) {
+      case 5: return "bg-[#019444]/15";
+      case 4: return "bg-[#8DC641]/15";
+      case 3: return "bg-yellow-500/15";
+      case 2: return "bg-[#F46523]/15";
+      default: return "bg-[#ED1B24]/15";
+    }
+  };
+
+  const getFaceIcon = (score: number) => {
+    const segment = getScoreSegment(score);
+    const colorClass = getScoreColor(score);
+    
+    switch (segment) {
+      case 5: return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+      case 4: return <Smile className={`w-16 h-16 ${colorClass}`} />;
+      case 3: return <Meh className={`w-16 h-16 ${colorClass}`} />;
+      case 2: return <Frown className={`w-16 h-16 ${colorClass}`} />;
+      default: return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    }
+  };
 
   return (
     <div className="grid grid-cols-2 w-full gap-6">
@@ -109,11 +153,16 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
         </div>
       </div>
 
-      {/* Right Column - Score Display */}
+      {/* Right Column - Score Display with Smiley Face */}
       <div className="flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl font-bold text-gray-900 mb-2">{score}</div>
-          <div className="text-sm text-gray-600">Current Score</div>
+        <div className={`${getBackgroundColor(score)} p-6 rounded-lg`}>
+          <div className="flex items-center justify-center gap-6">
+            {getFaceIcon(score)}
+            <div className="text-center">
+              <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
+              <div className="text-gray-600 mt-2">Current Score</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
