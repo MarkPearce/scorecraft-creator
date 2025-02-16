@@ -1,5 +1,6 @@
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
+import { useRef, useState } from "react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -12,9 +13,21 @@ interface PerformanceGraphProps {
 }
 
 const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: PerformanceGraphProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
   const calculatePosition = (value: number) => {
     const percentage = ((value - range.min) / (range.max - range.min)) * 100;
     return `${100 - percentage}%`;
+  };
+
+  const calculateValueFromPosition = (clientY: number) => {
+    if (!containerRef.current) return targetScore;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const relativeY = (clientY - rect.top) / rect.height;
+    const value = range.max - (relativeY * (range.max - range.min));
+    return Math.round(Math.max(range.min, Math.min(range.max, value)));
   };
 
   // Calculate segment size
@@ -30,6 +43,32 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
     { score: range.min + (segmentSize * 4), color: "bg-[#ED1B24]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Red starts (bottom)
     { score: range.max, label: `${Math.round(range.max)}` }  // Top value
   ];
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!onTargetScoreChange) return;
+    e.preventDefault();
+    setIsDragging(true);
+    const newValue = calculateValueFromPosition(e.clientY);
+    onTargetScoreChange(newValue);
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging || !onTargetScoreChange) return;
+    e.preventDefault();
+    const newValue = calculateValueFromPosition(e.clientY);
+    onTargetScoreChange(newValue);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isDragging || !onTargetScoreChange) return;
+    e.preventDefault();
+    const newValue = calculateValueFromPosition(e.touches[0].clientY);
+    onTargetScoreChange(newValue);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
 
   const getScoreSegment = (score: number) => {
     if (score >= range.max - segmentSize) return 5; // Excellent
@@ -80,7 +119,10 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       <div className="flex items-center justify-center">
         {/* Graph wrapper - contains all graph elements */}
         <div className="w-fit relative p-6 pl-52 rounded-lg">
-          <div className="relative h-[300px] flex graph-container">
+          <div 
+            className="relative h-[300px] flex graph-container"
+            ref={containerRef}
+          >
             {/* Graph container with three distinct sections */}
             <div className="flex relative">
               {/* 1. Colored bar section */}
@@ -124,6 +166,13 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                     top: calculatePosition(targetScore),
                     right: '-60px'
                   }}
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={isDragging ? handleMouseMove : undefined}
+                  onMouseUp={handleDragEnd}
+                  onMouseLeave={handleDragEnd}
+                  onTouchStart={handleMouseDown}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleDragEnd}
                 >
                   <div className="flex items-center">
                     <ScoreIndicator 
@@ -131,9 +180,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                       value={targetScore}
                       isTarget
                       showMoveIcon
-                      onValueChange={onTargetScoreChange}
-                      min={range.min}
-                      max={range.max}
                     />
                   </div>
                 </div>
