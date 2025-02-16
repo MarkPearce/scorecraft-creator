@@ -79,7 +79,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
       {/* Left Column - Graph Container */}
       <div className="flex items-center justify-center">
         {/* Graph wrapper - contains all graph elements */}
-        <div className="w-fit relative p-6 border-r border-gray-200 bg-[#D3E4FD] rounded-lg">
+        <div className="w-fit relative p-6 pl-20 border-r border-gray-200 bg-[#D3E4FD] rounded-lg">
           <div className="relative h-[300px] flex">
             {/* Graph container with three distinct sections */}
             <div className="flex relative">
