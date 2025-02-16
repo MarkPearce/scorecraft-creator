@@ -236,7 +236,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       <div className="flex items-center justify-center w-[350px]">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
           <div className="text-sm font-bold text-gray-600 mb-4">Predicted Score</div>
-          <div className="flex items-start gap-6">
+          <div className="flex items-center gap-4">
             {getFaceIcon(score)}
             <div>
               <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
