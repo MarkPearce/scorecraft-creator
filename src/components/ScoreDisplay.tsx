@@ -32,7 +32,7 @@ export const ScoreDisplay = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   const getProgressColor = () => {
-    return isComplete ? "bg-green-600" : "bg-gray-500"; // Updated to use semantic colors
+    return isComplete ? "bg-green-600" : "bg-gray-500";
   };
 
   const handleQuestionClick = (e: React.MouseEvent) => {
@@ -72,7 +72,7 @@ export const ScoreDisplay = ({
           <div className="w-8 flex items-center justify-center flex-shrink-0" onClick={(e) => e.stopPropagation()}>
             {meetsTarget && isComplete && (
               <Star 
-                className="w-8 h-8 text-yellow-600" // Updated to use new yellow-600
+                className="w-8 h-8 text-yellow-600"
                 fill="#f6bc56"
                 stroke="#df9411"
                 strokeWidth={1.5}
