@@ -10,7 +10,7 @@ export const TextProjectionCard = ({ percentile }: TextProjectionCardProps) => {
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
-        <CardTitle className="font-lato">Text Projection</CardTitle>
+        <CardTitle className="font-lato">Percentile ranking</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">

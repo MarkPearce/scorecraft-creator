@@ -41,7 +41,7 @@ const PerformanceTrackingContainer = () => {
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
-        <CardTitle>Performance Tracking</CardTitle>
+        <CardTitle>Performance tracking</CardTitle>
         <CardDescription>
           <div className="text-sm text-gray-600 space-y-1">
             <p>250 Questions taken in to account</p>
