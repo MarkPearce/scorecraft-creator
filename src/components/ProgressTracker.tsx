@@ -3,9 +3,16 @@ import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(45);
@@ -27,15 +34,24 @@ const ProgressTracker = () => {
       duration: 3000
     });
   };
-  return <Card>
+  return (
+    <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           <span>{isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}</span>
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="h-8 w-8 p-0" onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}>
+            <Button 
+              variant="outline" 
+              className="h-8 w-8 p-0"
+              onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}
+            >
               -10
             </Button>
-            <Button variant="outline" className="h-8 w-8 p-0" onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}>
+            <Button 
+              variant="outline"
+              className="h-8 w-8 p-0"
+              onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}
+            >
               +10
             </Button>
           </div>
@@ -48,25 +64,34 @@ const ProgressTracker = () => {
               <div className="h-[116px] flex flex-col">
                 <div className="flex-grow flex flex-col justify-end mt-4">
                   <div className="relative">
-                    <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
-                      <div className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`} style={{
-                      width: `${questionsAnswered}%`,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0
-                    }} />
-                    </div>
-
-                    <div className="absolute left-[60%] -translate-x-1/2 -top-8 flex flex-col items-center">
-                      {isAssessmentUnlocked ? <div className="text-green-600 [&_svg]:size-8">
+                    <div className="absolute left-[60%] -translate-x-1/2 bottom-0 flex flex-col-reverse items-center">
+                      <div className="h-6 w-0.5 bg-gray-300 mb-4" />
+                      {isAssessmentUnlocked ? (
+                        <div className="text-green-600 [&_svg]:size-8">
                           <Unlock />
-                        </div> : <div className="text-gray-400 [&_svg]:size-8">
+                        </div>
+                      ) : (
+                        <div className="text-gray-400 [&_svg]:size-8">
                           <Lock />
-                        </div>}
-                      <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
+                        </div>
+                      )}
                     </div>
 
-                    <p className="text-sm text-gray-600 mt-4">Unlock continuous self assessment by completing more than 60 questions.
-The more questions you answer, the more accurate the assessment is.</p>
+                    <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
+                      <div 
+                        className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
+                        style={{ 
+                          width: `${questionsAnswered}%`,
+                          borderTopRightRadius: 0,
+                          borderBottomRightRadius: 0
+                        }}
+                      />
+                    </div>
+
+                    <p className="text-sm text-gray-600 mt-4">
+                      Unlock continuous self assessment by completing more than 60 questions. 
+                      The more questions you answer, the more accurate the assessment is.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -82,7 +107,11 @@ The more questions you answer, the more accurate the assessment is.</p>
             <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>
               Boost assessment
             </Button>
-            <Button disabled={!isAssessmentUnlocked} onClick={() => navigate('/report')} className="text-base font-medium">
+            <Button 
+              disabled={!isAssessmentUnlocked}
+              onClick={() => navigate('/report')}
+              className="text-base font-medium"
+            >
               Start prototype
             </Button>
           </div>
@@ -107,6 +136,8 @@ The more questions you answer, the more accurate the assessment is.</p>
           </DialogContent>
         </Dialog>
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };
+
 export default ProgressTracker;
