@@ -63,17 +63,20 @@ const ProgressTracker = () => {
             <div className="flex flex-col flex-grow">
               <div className="relative h-[116px]">
                 <div className="h-full flex flex-col justify-between">
-                  {/* Lock icon and label */}
-                  <div className="absolute top-0 left-[60%] -translate-x-1/2 flex flex-col items-center">
+                  {/* Text label */}
+                  <div className="absolute top-2 left-[60%] -translate-x-1/2">
+                    <span className="text-sm whitespace-nowrap">Continuous assessment</span>
+                  </div>
+
+                  {/* Lock icon */}
+                  <div className="absolute top-8 left-[60%] -translate-x-1/2">
                     {isAssessmentUnlocked ? (
-                      <div className="flex flex-col items-center text-green-600">
+                      <div className="text-green-600">
                         <Unlock className="w-8 h-8" />
-                        <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
                       </div>
                     ) : (
-                      <div className="flex flex-col items-center text-gray-400">
+                      <div className="text-gray-400">
                         <Lock className="w-8 h-8" />
-                        <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
                       </div>
                     )}
                   </div>
