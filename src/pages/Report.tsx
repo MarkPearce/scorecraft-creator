@@ -11,6 +11,7 @@ import { PageHeader } from "@/components/PageHeader";
 import PerformanceScoreCard from "@/components/PerformanceScoreCard";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import OverallPerformance from "@/components/OverallPerformance";
 
 const Report = () => {
   const navigate = useNavigate();
@@ -51,6 +52,12 @@ const Report = () => {
           </div>
           
           <div className="space-y-6">
+            <OverallPerformance 
+              yourScore={245}
+              targetScore={260}
+              questionsAnswered={422}
+              examDate="Oct 15, 2025"
+            />
             <TextProjectionCard percentile={currentPercentile} />
             <PeerGroup />
             <PerformanceScoreCard 
@@ -70,4 +77,3 @@ const Report = () => {
 };
 
 export default Report;
-
