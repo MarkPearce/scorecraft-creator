@@ -65,26 +65,27 @@ const PerformanceSummary = () => {
                 : item.performance === 'lower'
                 ? 'bg-red-50 text-red-600 hover:bg-red-100'
                 : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-          } flex justify-between items-center group`}
-        >
-          <span>{item.subject}</span>
-          <Button
-            variant="outline"
-            className={`flex items-center justify-center border transition-colors ${
-              item.performance === 'higher'
-                ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
-                : item.performance === 'lower'
-                ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
-                : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
-            }`}
+            } flex justify-between items-center group`}
           >
-            <PencilIcon />
-          </Button>
-        </div>
-      ))}
+            <span>{item.subject}</span>
+            <Button
+              variant="outline"
+              size="sm"
+              className={`h-8 w-8 p-0 flex items-center justify-center border transition-colors ${
+                item.performance === 'higher'
+                  ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
+                  : item.performance === 'lower'
+                  ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
+                  : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
+              }`}
+            >
+              <PencilIcon />
+            </Button>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 
   const sortedItems = [...lowerPerformance, ...samePerformance, ...higherPerformance];
 
@@ -134,7 +135,8 @@ const PerformanceSummary = () => {
                     </div>
                     <Button
                       variant="outline"
-                      className={`flex items-center justify-center border transition-colors ${
+                      size="sm"
+                      className={`h-8 w-8 p-0 flex items-center justify-center border transition-colors ${
                         item.performance === 'higher'
                           ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
                           : item.performance === 'lower'
