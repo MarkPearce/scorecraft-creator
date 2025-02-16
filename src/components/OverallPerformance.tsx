@@ -22,7 +22,7 @@ const OverallPerformance = ({
       <CardContent>
         <div className="flex justify-between gap-8">
           <div>
-            <div className="text-sm text-[#403E43] mb-2">Your Score</div>
+            <div className="text-sm text-[#403E43] mb-2">Predicted Score</div>
             <div className="text-4xl font-bold text-gray-600">{yourScore}</div>
           </div>
           <div>
