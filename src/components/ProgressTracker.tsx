@@ -39,9 +39,12 @@ const ProgressTracker = () => {
 
   return (
     <Card>
+      {/* === Header Section === */}
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
+          {/* Title Text */}
           <span>{isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}</span>
+          {/* Question Adjustment Controls */}
           <div className="flex items-center gap-3">
             <Button 
               variant="outline" 
@@ -60,15 +63,24 @@ const ProgressTracker = () => {
           </div>
         </CardTitle>
       </CardHeader>
+
       <CardContent>
+        {/* === Main Container === */}
         <div className="flex flex-col gap-6">
+          {/* Progress Section */}
           <div className="flex gap-8">
+            {/* Progress Tracking Area */}
             <div className="flex flex-col flex-grow">
+              {/* Progress Bar Container */}
               <div className="flex flex-col">
+                {/* Progress Bar Wrapper */}
                 <div className="flex flex-col">
                   <div className="relative">
+                    {/* Progress Bar Track */}
                     <div className="relative h-4 mb-4">
+                      {/* Progress Bar Background */}
                       <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
+                        {/* Progress Bar Fill */}
                         <div 
                           className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
                           style={{ 
@@ -79,6 +91,7 @@ const ProgressTracker = () => {
                         />
                       </div>
 
+                      {/* Lock Icon Container */}
                       <div className="absolute left-[60%] -translate-x-1/2 -top-14 flex flex-col items-center">
                         {isAssessmentUnlocked ? (
                           <div className="text-green-600 [&_svg]:size-8">
@@ -89,10 +102,12 @@ const ProgressTracker = () => {
                             <Lock />
                           </div>
                         )}
+                        {/* Vertical Line */}
                         <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
                       </div>
                     </div>
 
+                    {/* Instruction Text */}
                     <p className="text-sm text-gray-600">
                       Unlock continuous self assessment by completing more than 60 questions.
                       The more questions you answer, the more accurate the assessment is.
@@ -102,16 +117,22 @@ const ProgressTracker = () => {
               </div>
             </div>
 
+            {/* Stats Box */}
             <div className="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg h-[116px]">
+              {/* Question Count */}
               <div className="text-5xl font-bold text-gray-900">{questionsAnswered}</div>
+              {/* Stats Label */}
               <div className="text-sm text-gray-500 mt-2">Questions completed</div>
             </div>
           </div>
 
+          {/* Action Buttons */}
           <div className="mt-6 flex gap-4">
+            {/* Boost Button */}
             <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>
               Boost assessment
             </Button>
+            {/* Start Button */}
             <Button 
               disabled={!isAssessmentUnlocked}
               onClick={() => navigate('/report')}
@@ -122,6 +143,7 @@ const ProgressTracker = () => {
           </div>
         </div>
 
+        {/* === Boost Dialog === */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent>
             <DialogHeader>
