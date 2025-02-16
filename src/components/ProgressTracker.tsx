@@ -19,7 +19,6 @@ const ProgressTracker = () => {
   const { toast } = useToast();
   
   const isAssessmentUnlocked = questionsAnswered >= 50;
-  const isInsightsUnlocked = questionsAnswered >= 75;
 
   const getBarColor = (progress: number) => {
     if (progress >= 75) return 'bg-green-600';
@@ -31,7 +30,7 @@ const ProgressTracker = () => {
     setQuestionsAnswered(prev => Math.min(prev + 10, 100));
     setIsDialogOpen(false);
     toast({
-      title: "Assessment Completed",
+      title: "Assessment completed",
       description: "You've answered 10 more questions!",
       duration: 3000,
     });
@@ -59,60 +58,46 @@ const ProgressTracker = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex gap-6 items-center">
-          <div className="w-4 h-[200px] bg-gray-100 rounded-full relative">
-            <div 
-              className={`absolute bottom-0 left-0 right-0 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
-              style={{ height: `${questionsAnswered}%` }}
-            />
-            
-            <div className="absolute w-28 -right-32 top-[25%] flex items-center gap-2">
-              <div className="h-0.5 w-4 bg-gray-300" />
-              {isInsightsUnlocked ? (
-                <div className="flex items-center gap-2 text-green-600">
-                  <Unlock className="w-4 h-4" />
-                  <span className="text-sm">Insights</span>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 text-gray-400">
-                  <Lock className="w-4 h-4" />
-                  <span className="text-sm">Insights</span>
-                </div>
-              )}
+        <div className="flex flex-col gap-6">
+          <div className="relative w-full">
+            <div className="h-4 w-full bg-gray-100 rounded-full">
+              <div 
+                className={`absolute left-0 top-0 h-4 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
+                style={{ width: `${questionsAnswered}%` }}
+              />
             </div>
 
-            <div className="absolute w-28 -right-32 top-[50%] flex items-center gap-2">
-              <div className="h-0.5 w-4 bg-gray-300" />
+            <div className="absolute -bottom-8 left-[50%] flex items-center gap-2">
               {isAssessmentUnlocked ? (
                 <div className="flex items-center gap-2 text-green-600">
                   <Unlock className="w-4 h-4" />
-                  <span className="text-sm">Continuous Assessment</span>
+                  <span className="text-sm whitespace-nowrap">Continuous assessment</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-2 text-gray-400">
                   <Lock className="w-4 h-4" />
-                  <span className="text-sm">Continuous Assessment</span>
+                  <span className="text-sm whitespace-nowrap">Continuous assessment</span>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="ml-auto flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg">
+          <div className="flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg mt-8">
             <div className="text-5xl font-bold text-gray-900">{questionsAnswered}</div>
-            <div className="text-sm text-gray-500 mt-2">Questions Completed</div>
+            <div className="text-sm text-gray-500 mt-2">Questions completed</div>
           </div>
-        </div>
 
-        <div className="mt-6">
-          <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
-            Boost Assessment
-          </Button>
+          <div className="mt-6">
+            <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
+              Boost assessment
+            </Button>
+          </div>
         </div>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Start Assessment Boost</DialogTitle>
+              <DialogTitle>Start assessment boost</DialogTitle>
             </DialogHeader>
             <p className="py-4 text-gray-600">
               You'll be presented with 10 new questions to boost your progress. Ready to begin?
@@ -122,7 +107,7 @@ const ProgressTracker = () => {
                 Cancel
               </Button>
               <Button onClick={handleBoostAssessment}>
-                Start Assessment
+                Start assessment
               </Button>
             </DialogFooter>
           </DialogContent>
