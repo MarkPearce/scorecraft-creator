@@ -193,11 +193,28 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
             {/* Score indicators */}
             <div className="relative h-full -ml-[60px] flex-grow">
+              {/* Estimated Score - Now rendered first (below) */}
+              <div 
+                className="absolute"
+                style={{ 
+                  top: calculatePosition(score),
+                  left: '0',
+                  zIndex: 10
+                }}
+              >
+                <ScoreIndicator 
+                  label="Estimated Score"
+                  value={score}
+                />
+              </div>
+
+              {/* Target Score - Now rendered second (above) */}
               <div 
                 className="absolute"
                 style={{ 
                   top: calculatePosition(targetScore),
-                  left: '0'
+                  left: '0',
+                  zIndex: 20
                 }}
                 onMouseDown={handleDragStart}
                 onTouchStart={handleDragStart}
@@ -207,19 +224,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                   value={targetScore}
                   isTarget
                   showMoveIcon
-                />
-              </div>
-
-              <div 
-                className="absolute"
-                style={{ 
-                  top: calculatePosition(score),
-                  left: '0'
-                }}
-              >
-                <ScoreIndicator 
-                  label="Estimated Score"
-                  value={score}
                 />
               </div>
             </div>
