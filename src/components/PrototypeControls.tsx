@@ -1,3 +1,4 @@
+
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { useEffect } from "react";
@@ -70,14 +71,9 @@ const PrototypeControls = ({
           <label htmlFor="target-score" className="block text-sm font-medium text-gray-700 mb-1">
             Target Score: {targetScore}
           </label>
-          <Slider
-            value={[targetScore]}
-            min={range.min}
-            max={range.max}
-            step={1}
-            onValueChange={onTargetScoreChange}
-            className="relative w-full h-2"
-          />
+          <p className="text-sm text-gray-500">
+            Drag the target score indicator in the graph to adjust
+          </p>
         </div>
         <div>
           <label htmlFor="prediction-score" className="block text-sm font-medium text-gray-700 mb-1">
@@ -98,3 +94,4 @@ const PrototypeControls = ({
 };
 
 export default PrototypeControls;
+
