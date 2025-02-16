@@ -28,21 +28,28 @@ const ScoreIndicator = ({
       ${isTarget ? 'active:bg-gray-50/50 rounded-lg' : ''}
       ${isMobile && isTarget ? 'p-2 -m-2' : ''}
     `}>
-      <div className="flex items-center gap-2 w-[140px] justify-end">
-        <span className={`text-sm font-medium ${textColor}`}>{label}</span>
+      {/* Line */}
+      <div className="relative min-w-[100px]">
+        <div className="h-1.5 bg-white absolute inset-y-[-2px] w-full z-0" />
+        <div className={`h-0.5 ${baseColor} relative min-w-[100px] z-10 ${isTarget ? "opacity-70" : ""}`} />
       </div>
-      {showMoveIcon && (
-        <MoveVertical className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} mx-2 ${textColor}`} />
-      )}
+
+      {/* Value box */}
       <div className={`
-        border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm bg-white
+        border-[0.5px] ${borderColor} px-2 py-0.5 rounded shadow-sm bg-white
         ${isTarget ? 'active:scale-105' : ''}
       `}>
         <span className={isTarget ? "opacity-70" : ""}>{value}</span>
       </div>
-      <div className="relative min-w-[100px]">
-        <div className="h-1.5 bg-white absolute inset-y-[-2px] w-full z-0" />
-        <div className={`h-0.5 ${baseColor} relative min-w-[100px] z-10 ${isTarget ? "opacity-70" : ""}`} />
+
+      {/* Arrow icon (if present) */}
+      {showMoveIcon && (
+        <MoveVertical className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} ${textColor}`} />
+      )}
+
+      {/* Label */}
+      <div className="flex items-center">
+        <span className={`text-sm font-medium ${textColor}`}>{label}</span>
       </div>
     </div>
   );

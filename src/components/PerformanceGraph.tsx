@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -156,6 +157,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             className="relative h-[300px] flex"
             ref={containerRef}
           >
+            {/* Labels on the left */}
             <div className="relative h-full">
               {segments.map((segment) => (
                 <div
@@ -175,6 +177,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
               ))}
             </div>
 
+            {/* Color bar in the middle */}
             <div className="relative mx-4">
               <div className="w-[60px] h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
@@ -190,7 +193,8 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
               </div>
             </div>
 
-            <div className="relative h-full flex-grow">
+            {/* Score indicators */}
+            <div className="relative h-full ml-4">
               <div 
                 className="absolute"
                 style={{ 
@@ -200,14 +204,12 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                 onMouseDown={handleDragStart}
                 onTouchStart={handleDragStart}
               >
-                <div className="flex items-center">
-                  <ScoreIndicator 
-                    label="Target Score"
-                    value={targetScore}
-                    isTarget
-                    showMoveIcon
-                  />
-                </div>
+                <ScoreIndicator 
+                  label="Target Score"
+                  value={targetScore}
+                  isTarget
+                  showMoveIcon
+                />
               </div>
 
               <div 
@@ -227,6 +229,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
         </div>
       </div>
 
+      {/* Right column with emoji and score */}
       <div className="flex items-center justify-center">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg`}>
           <div className="flex items-center justify-center gap-6">
