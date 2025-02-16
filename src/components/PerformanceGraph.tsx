@@ -22,15 +22,15 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
   const totalRange = range.max - range.min;
   const segmentSize = totalRange / 5;
   
-  // Calculate segment boundaries from bottom to top, now with green at top
+  // Calculate segment boundaries from bottom to top
   const segments = [
-    { score: range.min, color: "bg-[#ED1B24]", label: `${Math.round(range.min)}` },  // Red starts (bottom)
+    { score: range.min, color: "bg-[#ED1B24]", label: `${Math.round(range.min)}` },  // Red starts
     { score: range.min + segmentSize, color: "bg-[#F46523]", label: `${Math.round(range.min + segmentSize)}` },  // Orange starts
     { score: range.min + (segmentSize * 2), color: "bg-yellow-500", label: `${Math.round(range.min + (segmentSize * 2))}` },  // Yellow starts
     { score: range.min + (segmentSize * 3), color: "bg-[#8DC641]", label: `${Math.round(range.min + (segmentSize * 3))}` },  // Light green starts
     { score: range.min + (segmentSize * 4), color: "bg-[#019444]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Dark green starts
     { score: range.max, label: `${Math.round(range.max)}` }  // Top value
-  ].reverse();  // Reverse the array to put green at top
+  ];
 
   const getScoreSegment = (score: number) => {
     if (score >= range.max - segmentSize) return 5; // Excellent
@@ -177,4 +177,3 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 };
 
 export default PerformanceGraph;
-
