@@ -34,10 +34,11 @@ const ScoreIndicator = ({
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
     if (!isTarget) return;
     e.preventDefault();
+    e.stopPropagation();
     
     if ('touches' in e) {
       setTouchStartTime(Date.now());
-      return; // Don't start dragging immediately on touch
+      return;
     }
     
     setIsDragging(true);
@@ -46,17 +47,20 @@ const ScoreIndicator = ({
   const handleDrag = (e: MouseEvent | TouchEvent) => {
     if (!isDragging || !containerRef.current || !onValueChange) return;
 
-    const container = containerRef.current;
-    const rect = container.getBoundingClientRect();
-    const height = rect.height;
-    
+    const parentRect = containerRef.current.parentElement?.getBoundingClientRect();
+    if (!parentRect) return;
+
     // Get Y position based on mouse or touch event
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-    const relativeY = clientY - rect.top;
-    const percentage = 1 - (relativeY / height);
+    const relativeY = clientY - parentRect.top;
+    const parentHeight = parentRect.height;
+    
+    // Calculate percentage from bottom to top (reversed Y-axis)
+    const percentage = Math.max(0, Math.min(1, 1 - (relativeY / parentHeight)));
     
     // Calculate new value based on percentage and range
-    const newValue = Math.round(min + (percentage * (max - min)));
+    const rangeSize = max - min;
+    const newValue = Math.round(min + (percentage * rangeSize));
     const clampedValue = Math.max(min, Math.min(max, newValue));
     
     onValueChange(clampedValue);
@@ -70,7 +74,6 @@ const ScoreIndicator = ({
   const handleTouchMove = (e: TouchEvent) => {
     if (!isTarget || !touchStartTime) return;
     
-    // Only start dragging after delay
     if (Date.now() - touchStartTime > TOUCH_DELAY) {
       setIsDragging(true);
       handleDrag(e);
@@ -81,28 +84,36 @@ const ScoreIndicator = ({
     if (isDragging) {
       window.addEventListener('mousemove', handleDrag);
       window.addEventListener('mouseup', handleDragEnd);
-      window.addEventListener('touchmove', handleTouchMove);
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
       window.addEventListener('touchend', handleDragEnd);
-    }
 
-    return () => {
-      window.removeEventListener('mousemove', handleDrag);
-      window.removeEventListener('mouseup', handleDragEnd);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleDragEnd);
-    };
+      return () => {
+        window.removeEventListener('mousemove', handleDrag);
+        window.removeEventListener('mouseup', handleDragEnd);
+        window.removeEventListener('touchmove', handleTouchMove);
+        window.removeEventListener('touchend', handleDragEnd);
+      };
+    }
   }, [isDragging, touchStartTime]);
 
+  // Calculate position based on value
+  const position = ((value - min) / (max - min)) * 100;
+  
   return (
     <div 
       className={`
-        flex items-center gap-0 
+        flex items-center gap-2
         ${isTarget ? 'select-none touch-none' : ''} 
         ${!isMobile && isTarget ? 'cursor-grab' : ''}
         ${!isMobile && isDragging ? 'cursor-grabbing' : ''}
         ${isTarget ? 'active:bg-gray-50/50 rounded-lg transition-colors' : ''}
         ${isMobile && isTarget ? 'p-2 -m-2' : ''}
+        relative
       `}
+      style={{
+        top: `${100 - position}%`,
+        transform: 'translateY(-50%)',
+      }}
       onMouseDown={handleDragStart}
       onTouchStart={handleDragStart}
       ref={containerRef}
@@ -119,7 +130,6 @@ const ScoreIndicator = ({
       `}>
         <span className={isTarget ? "opacity-70" : ""}>{value}</span>
       </div>
-      {/* Add white outline by using two lines - one white underneath and one colored on top */}
       <div className="relative min-w-[100px]">
         <div className="h-1.5 bg-white absolute inset-y-[-2px] w-full z-0" />
         <div className={`h-0.5 ${baseColor} relative min-w-[100px] z-10 ${isTarget ? "opacity-70" : ""}`} />
