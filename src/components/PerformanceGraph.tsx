@@ -194,9 +194,9 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
             {/* Score indicators */}
             <div className="relative h-full -ml-[60px] w-[200px]">
-              {/* Estimated Score - Now rendered first (below) */}
+              {/* Estimated Score */}
               <div 
-                className="absolute"
+                className="absolute -translate-y-1/2"
                 style={{ 
                   top: calculatePosition(score),
                   left: '0',
@@ -209,9 +209,9 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                 />
               </div>
 
-              {/* Target Score - Now rendered second (above) */}
+              {/* Target Score */}
               <div 
-                className="absolute"
+                className="absolute -translate-y-1/2"
                 style={{ 
                   top: calculatePosition(targetScore),
                   left: '0',
