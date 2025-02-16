@@ -148,11 +148,11 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   return (
     <div 
-      className="grid grid-cols-2 w-full gap-6"
+      className="flex flex-wrap items-start gap-6"
       onTouchMove={(e) => isDragging && e.preventDefault()}
     >
       <div className="flex items-center justify-center">
-        <div className="relative w-full max-w-[500px]">
+        <div className="relative">
           <div 
             className="relative h-[300px] flex bg-[#D3E4FD] p-1 rounded-lg"
             ref={containerRef}
@@ -193,7 +193,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             </div>
 
             {/* Score indicators */}
-            <div className="relative h-full -ml-[60px] flex-grow">
+            <div className="relative h-full -ml-[60px] w-[200px]">
               {/* Estimated Score - Now rendered first (below) */}
               <div 
                 className="absolute"
