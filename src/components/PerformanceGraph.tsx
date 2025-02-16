@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 
@@ -176,3 +177,4 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 };
 
 export default PerformanceGraph;
+
