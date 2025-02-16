@@ -80,10 +80,10 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       {/* Left Column - Graph Container */}
       <div className="flex items-center justify-center">
         {/* Graph wrapper - contains all graph elements */}
-        <div className="w-fit relative p-6 pl-52 rounded-lg">
-          <div className="relative h-[300px] flex">
+        <div className="w-fit relative p-6 pl-52">
+          <div className="relative h-[300px]">
             {/* Graph container with three distinct sections */}
-            <div className="flex relative">
+            <div className="flex absolute inset-0">
               {/* 1. Colored bar section */}
               <div className="w-[60px] h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
@@ -117,43 +117,23 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
               </div>
 
               {/* 3. Score indicators section */}
-              <div className="absolute h-full w-0" style={{ left: 0 }}>
+              <div className="absolute inset-0">
                 {/* Target indicator */}
-                <div 
-                  className="absolute transition-all duration-300 group"
-                  style={{ 
-                    top: calculatePosition(targetScore),
-                    transform: 'translateY(-50%)',
-                    right: '-60px'
-                  }}
-                >
-                  <div className="flex items-center">
-                    <ScoreIndicator 
-                      label="Target Score"
-                      value={targetScore}
-                      isTarget
-                      showMoveIcon
-                      onValueChange={onTargetScoreChange}
-                      min={range.min}
-                      max={range.max}
-                    />
-                  </div>
-                </div>
+                <ScoreIndicator 
+                  label="Target Score"
+                  value={targetScore}
+                  isTarget
+                  showMoveIcon
+                  onValueChange={onTargetScoreChange}
+                  min={range.min}
+                  max={range.max}
+                />
 
                 {/* Score indicator */}
-                <div 
-                  className="absolute transition-all duration-300"
-                  style={{ 
-                    top: calculatePosition(score),
-                    transform: 'translateY(-50%)',
-                    right: '-60px'
-                  }}
-                >
-                  <ScoreIndicator 
-                    label="Estimated Score"
-                    value={score}
-                  />
-                </div>
+                <ScoreIndicator 
+                  label="Estimated Score"
+                  value={score}
+                />
               </div>
             </div>
           </div>
