@@ -68,7 +68,7 @@ const ProgressTracker = () => {
         <div className="flex flex-col gap-6">
           <div className="flex gap-8">
             <div className="flex flex-col flex-grow">
-              <div className="h-[116px] flex flex-col">
+              <div className="flex flex-col">
                 <div className="flex-grow flex flex-col justify-end">
                   <div className="relative">
                     <p className="text-sm text-gray-600 mb-4">
