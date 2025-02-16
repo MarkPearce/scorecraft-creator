@@ -79,7 +79,7 @@ const ProgressTracker = () => {
                   </div>
 
                   {/* Tick mark */}
-                  <div className="absolute bottom-8 left-[60%] w-0.5 h-3 bg-gray-300" />
+                  <div className="absolute bottom-4 left-[60%] w-0.5 h-4 bg-gray-300" />
 
                   {/* Progress bar at the bottom */}
                   <div className="absolute bottom-0 w-full">
