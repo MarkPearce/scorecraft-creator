@@ -31,78 +31,89 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
   ];
 
   return (
-    <div className="flex items-center justify-start">
-      {/* Graph wrapper - contains all graph elements */}
-      <div className="w-fit relative p-2">
-        <div className="relative h-[300px] flex">
-          {/* Graph container with three distinct sections */}
-          <div className="flex relative">
-            {/* 1. Colored bar section */}
-            <div className="w-[60px] h-full relative">
-              {segments.slice(0, -1).map((segment, index) => (
-                <div 
-                  key={segment.score}
-                  className={`absolute w-full ${segment.color}`}
-                  style={{
-                    height: '20%',
-                    top: `${index * 20}%`,
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* 2. Score labels section */}
-            <div className="relative h-full ml-2">
-              {segments.map((segment) => (
-                <div
-                  key={`label-${segment.score}`}
-                  className="absolute text-sm text-gray-600"
-                  style={{
-                    top: calculatePosition(segment.score),
-                    transform: 'translateY(-50%)',
-                    width: '100%',
-                    textAlign: 'left'
-                  }}
-                >
-                  {segment.label}
-                </div>
-              ))}
-            </div>
-
-            {/* 3. Score indicators section - positioned absolutely from the right edge of color bar */}
-            <div className="absolute h-full w-0" style={{ left: 0 }}>
-              {/* Target indicator */}
-              <div 
-                className="absolute transition-all duration-300"
-                style={{ 
-                  top: calculatePosition(targetScore),
-                  transform: 'translateY(-50%)',
-                  right: '-60px'
-                }}
-              >
-                <ScoreIndicator 
-                  label="Target Score"
-                  value={targetScore}
-                  isTarget
-                />
+    <div className="grid grid-cols-2 w-full gap-6">
+      {/* Left Column - Graph Container */}
+      <div className="flex items-center justify-center">
+        {/* Graph wrapper - contains all graph elements */}
+        <div className="w-fit relative p-2 border-r border-gray-200">
+          <div className="relative h-[300px] flex">
+            {/* Graph container with three distinct sections */}
+            <div className="flex relative">
+              {/* 1. Colored bar section */}
+              <div className="w-[60px] h-full relative">
+                {segments.slice(0, -1).map((segment, index) => (
+                  <div 
+                    key={segment.score}
+                    className={`absolute w-full ${segment.color}`}
+                    style={{
+                      height: '20%',
+                      top: `${index * 20}%`,
+                    }}
+                  />
+                ))}
               </div>
 
-              {/* Score indicator */}
-              <div 
-                className="absolute transition-all duration-300"
-                style={{ 
-                  top: calculatePosition(score),
-                  transform: 'translateY(-50%)',
-                  right: '-60px'
-                }}
-              >
-                <ScoreIndicator 
-                  label="Estimated Score"
-                  value={score}
-                />
+              {/* 2. Score labels section */}
+              <div className="relative h-full ml-2">
+                {segments.map((segment) => (
+                  <div
+                    key={`label-${segment.score}`}
+                    className="absolute text-sm text-gray-600"
+                    style={{
+                      top: calculatePosition(segment.score),
+                      transform: 'translateY(-50%)',
+                      width: '100%',
+                      textAlign: 'left'
+                    }}
+                  >
+                    {segment.label}
+                  </div>
+                ))}
+              </div>
+
+              {/* 3. Score indicators section */}
+              <div className="absolute h-full w-0" style={{ left: 0 }}>
+                {/* Target indicator */}
+                <div 
+                  className="absolute transition-all duration-300"
+                  style={{ 
+                    top: calculatePosition(targetScore),
+                    transform: 'translateY(-50%)',
+                    right: '-60px'
+                  }}
+                >
+                  <ScoreIndicator 
+                    label="Target Score"
+                    value={targetScore}
+                    isTarget
+                  />
+                </div>
+
+                {/* Score indicator */}
+                <div 
+                  className="absolute transition-all duration-300"
+                  style={{ 
+                    top: calculatePosition(score),
+                    transform: 'translateY(-50%)',
+                    right: '-60px'
+                  }}
+                >
+                  <ScoreIndicator 
+                    label="Estimated Score"
+                    value={score}
+                  />
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Right Column - Score Display */}
+      <div className="flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-4xl font-bold text-gray-900 mb-2">{score}</div>
+          <div className="text-sm text-gray-600">Current Score</div>
         </div>
       </div>
     </div>
