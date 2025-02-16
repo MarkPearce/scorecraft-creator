@@ -52,20 +52,20 @@ const TopicBreakdown = () => {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
           <Card className="p-6">
-            <div className="grid grid-cols-12 gap-8">
-              <div className="col-span-2">
+            <div className="flex justify-between gap-8">
+              <div>
                 <div className="text-sm text-[#403E43] mb-2">Your Score</div>
                 <div className="text-4xl font-bold text-gray-600">238</div>
               </div>
-              <div className="col-span-2">
+              <div>
                 <div className="text-sm text-[#403E43] mb-2">Target Score</div>
                 <div className="text-4xl font-bold text-gray-600">240</div>
               </div>
-              <div className="col-span-3">
+              <div>
                 <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
                 <div className="text-4xl font-bold text-gray-600">{totalQuestionsAnswered}</div>
               </div>
-              <div className="col-span-5">
+              <div>
                 <div className="text-sm text-[#403E43] mb-2">Exam Date</div>
                 <div className="text-4xl font-bold text-gray-600">Oct 15, 2025</div>
               </div>
