@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -16,6 +15,24 @@ interface PerformanceGraphProps {
 const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: PerformanceGraphProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    if (isDragging) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [isDragging]);
 
   const calculatePosition = (value: number) => {
     const percentage = ((value - range.min) / (range.max - range.min)) * 100;
@@ -69,16 +86,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     if (!onTargetScoreChange) return;
-    
-    // Don't prevent default here to allow touch events to work naturally
     setIsDragging(true);
-    
-    const clientY = 'touches' in e 
-      ? e.touches[0].clientY 
-      : e.clientY;
-    
-    const newValue = calculateValueFromPosition(clientY);
-    onTargetScoreChange(newValue);
   };
 
   const totalRange = range.max - range.min;
