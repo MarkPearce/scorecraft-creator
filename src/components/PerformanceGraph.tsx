@@ -241,11 +241,13 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       <div className="flex items-center justify-center w-[350px]">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
           <h3 className="text-gray-900 font-semibold text-lg mb-4">Predicted Score</h3>
-          <div className="flex items-center gap-4">
-            {getFaceIcon(score)}
-            <div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex items-center gap-4">
+              {getFaceIcon(score)}
               <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
-              <div className="text-sm font-medium mt-1">
+            </div>
+            <div className="flex items-center">
+              <div className="text-sm font-medium">
                 {scoreStatus}
               </div>
             </div>
