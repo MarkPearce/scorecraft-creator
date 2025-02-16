@@ -32,8 +32,8 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
 
   return (
     <div className="flex items-center justify-start">
-      {/* Content-fit wrapper */}
-      <div className="w-fit relative">
+      {/* Content-fit wrapper with light blue background */}
+      <div className="w-fit relative bg-[#D3E4FD] p-4">
         <div className="relative h-[300px]">
           <div className="w-[60px] h-full relative">
             {/* Color segments */}
