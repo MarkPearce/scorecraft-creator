@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -146,6 +145,18 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
     }
   };
 
+  const getScoreStatus = (currentScore: number, target: number) => {
+    if (currentScore > target) {
+      return { message: "Exceeding target score", className: "text-[#019444]" };
+    } else if (currentScore === target) {
+      return { message: "Met target score", className: "text-[#8DC641]" };
+    } else {
+      return { message: "Below target score", className: "text-[#ED1B24]" };
+    }
+  };
+
+  const scoreStatus = getScoreStatus(score, targetScore);
+
   return (
     <div 
       className="flex flex-wrap items-start justify-center gap-6"
@@ -157,7 +168,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             className="relative h-[300px] flex p-1 rounded-lg"
             ref={containerRef}
           >
-            {/* Labels on the left */}
             <div className="relative h-full w-[50px] flex-shrink-0">
               {segments.map((segment) => (
                 <div
@@ -176,7 +186,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
               ))}
             </div>
 
-            {/* Color bar */}
             <div className="relative ml-2 w-[60px] flex-shrink-0">
               <div className="h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
@@ -192,9 +201,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
               </div>
             </div>
 
-            {/* Score indicators */}
             <div className="relative h-full -ml-[60px] w-[200px]">
-              {/* Predicted Score */}
               <div 
                 className="absolute -translate-y-1/2"
                 style={{ 
@@ -209,7 +216,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                 />
               </div>
 
-              {/* Target Score */}
               <div 
                 className="absolute -translate-y-1/2"
                 style={{ 
@@ -232,7 +238,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
         </div>
       </div>
 
-      {/* Right column with emoji and score */}
       <div className="flex items-center justify-center w-[350px]">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
           <h3 className="text-gray-900 font-semibold text-lg mb-4">Predicted Score</h3>
@@ -240,6 +245,9 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             {getFaceIcon(score)}
             <div>
               <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
+              <div className={`text-sm font-medium mt-1 ${scoreStatus.className}`}>
+                {scoreStatus.message}
+              </div>
             </div>
           </div>
         </div>
@@ -249,4 +257,3 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 };
 
 export default PerformanceGraph;
-
