@@ -105,7 +105,7 @@ const PerformanceSummary = () => {
           }
         </Button>
       </CardHeader>
-      <CardContent>
+      <CardContent className="mt-4">
         {viewMode === 'grouped' ? (
           <div className="flex gap-6">
             <Column title="Lower" items={lowerPerformance} />
