@@ -38,7 +38,7 @@ const ScoreIndicator = ({
 
         {/* Value box - positioned over the lines */}
         <div className={`
-          border-[0.5px] ${borderColor} px-2 py-0.5 rounded shadow-sm bg-white
+          border-[0.5px] ${borderColor} px-2 py-0.5 rounded shadow-sm bg-white text-sm
           ${isTarget ? 'active:scale-105' : ''}
           -ml-[1px] relative z-20
         `}>
