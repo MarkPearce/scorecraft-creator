@@ -22,7 +22,7 @@ const ScoreIndicator = ({
 
   return (
     <div className={`
-      flex items-center
+      flex items-center whitespace-nowrap
       ${isTarget ? 'select-none' : ''} 
       ${!isMobile && isTarget ? 'cursor-grab active:cursor-grabbing' : ''}
       ${isTarget ? 'active:bg-gray-50/50' : ''}
