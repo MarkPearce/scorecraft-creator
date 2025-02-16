@@ -15,7 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [questionsAnswered, setQuestionsAnswered] = useState(30);
+  const [questionsAnswered, setQuestionsAnswered] = useState(35);
   const { toast } = useToast();
   
   const isAssessmentUnlocked = questionsAnswered >= 60;
@@ -27,11 +27,11 @@ const ProgressTracker = () => {
   };
 
   const handleBoostAssessment = () => {
-    setQuestionsAnswered(prev => Math.min(prev + 10, 100));
+    setQuestionsAnswered(prev => Math.min(prev + 20, 100));
     setIsDialogOpen(false);
     toast({
       title: "Assessment completed",
-      description: "You've answered 10 more questions!",
+      description: "You've answered 20 more questions!",
       duration: 3000,
     });
   };
@@ -115,7 +115,7 @@ const ProgressTracker = () => {
               <DialogTitle>Start assessment boost</DialogTitle>
             </DialogHeader>
             <p className="py-4 text-gray-600">
-              You'll be presented with 10 new questions to boost your progress. Ready to begin?
+              You'll be presented with 20 new questions to boost your progress. Ready to begin?
             </p>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
