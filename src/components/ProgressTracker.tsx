@@ -74,29 +74,33 @@ const ProgressTracker = () => {
                     <p className="text-sm text-gray-600 mb-4">
                       Unlock continuous self assessment by completing more than 60 questions. This gives us enough data to provide analysis and recommendations. The more questions you answer, the more accurate the assessment is.
                     </p>
-                    <div className="relative">
-                      <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
-                        <div 
-                          className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
-                          style={{ 
-                            width: `${questionsAnswered}%`,
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0
-                          }}
-                        />
-                      </div>
-                      
-                      <div className="absolute left-[60%] -translate-x-1/2 bottom-full flex flex-col items-center">
-                        {isAssessmentUnlocked ? (
-                          <div className="text-green-600 [&_svg]:size-8">
-                            <Unlock />
+                    <div className="flex items-end mb-2">
+                      <div className="w-full">
+                        <div className="relative">
+                          <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
+                            <div 
+                              className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
+                              style={{ 
+                                width: `${questionsAnswered}%`,
+                                borderTopRightRadius: 0,
+                                borderBottomRightRadius: 0
+                              }}
+                            />
                           </div>
-                        ) : (
-                          <div className="text-gray-400 [&_svg]:size-8">
-                            <Lock />
+                          
+                          <div className="absolute left-[60%] -translate-x-1/2 -top-10 flex flex-col items-center">
+                            {isAssessmentUnlocked ? (
+                              <div className="text-green-600 [&_svg]:size-8">
+                                <Unlock />
+                              </div>
+                            ) : (
+                              <div className="text-gray-400 [&_svg]:size-8">
+                                <Lock />
+                              </div>
+                            )}
+                            <div className="h-6 w-0.5 bg-gray-300 mt-1" />
                           </div>
-                        )}
-                        <div className="h-6 w-0.5 bg-gray-300 mt-1" />
+                        </div>
                       </div>
                     </div>
                   </div>
