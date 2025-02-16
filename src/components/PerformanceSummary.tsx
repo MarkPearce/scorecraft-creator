@@ -96,9 +96,13 @@ const PerformanceSummary = () => {
         <Button
           variant="outline"
           size="sm"
+          className="h-8 w-8 p-0"
           onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
         >
-          {viewMode === 'grouped' ? <LayoutList className="h-4 w-4" /> : <Columns className="h-4 w-4" />}
+          {viewMode === 'grouped' ? 
+            <LayoutList className="h-5 w-5" /> : 
+            <Columns className="h-5 w-5" />
+          }
         </Button>
       </CardHeader>
       <CardContent>
