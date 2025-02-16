@@ -66,28 +66,18 @@ const PrototypeControls = ({
           />
         </div>
       </div>
-      <div className="space-y-6">
-        <div>
-          <label htmlFor="target-score" className="block text-sm font-medium text-gray-700 mb-1">
-            Target Score: {targetScore}
-          </label>
-          <p className="text-sm text-gray-500">
-            Drag the target score indicator in the graph to adjust
-          </p>
-        </div>
-        <div>
-          <label htmlFor="prediction-score" className="block text-sm font-medium text-gray-700 mb-1">
-            Prediction: {score}
-          </label>
-          <Slider
-            value={[score]}
-            min={range.min}
-            max={range.max}
-            step={1}
-            onValueChange={onScoreChange}
-            className="relative w-full h-2"
-          />
-        </div>
+      <div>
+        <label htmlFor="prediction-score" className="block text-sm font-medium text-gray-700 mb-1">
+          Prediction: {score}
+        </label>
+        <Slider
+          value={[score]}
+          min={range.min}
+          max={range.max}
+          step={1}
+          onValueChange={onScoreChange}
+          className="relative w-full h-2"
+        />
       </div>
     </div>
   );
