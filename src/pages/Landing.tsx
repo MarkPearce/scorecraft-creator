@@ -19,8 +19,8 @@ const Landing = () => {
 
         <div className="max-w-2xl mx-auto">
           <Button 
-            variant="outline" 
-            className="w-full h-24 text-lg font-medium hover:bg-gray-200" 
+            variant="default"
+            className="w-full h-24 text-lg"
             onClick={() => navigate("/report")}
           >
             Start prototype
