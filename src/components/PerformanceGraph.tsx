@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -158,7 +157,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             ref={containerRef}
           >
             {/* Labels on the left */}
-            <div className="relative h-full">
+            <div className="relative h-full w-[50px] flex-shrink-0">
               {segments.map((segment) => (
                 <div
                   key={`label-${segment.score}`}
@@ -166,10 +165,9 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                   style={{
                     top: calculatePosition(segment.score),
                     transform: 'translateY(-50%)',
-                    left: '0',
-                    width: '40px',
-                    textAlign: 'right',
-                    paddingRight: '8px'
+                    right: '8px',
+                    width: '100%',
+                    textAlign: 'right'
                   }}
                 >
                   {segment.label}
@@ -177,9 +175,9 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
               ))}
             </div>
 
-            {/* Color bar in the middle */}
-            <div className="relative mx-4">
-              <div className="w-[60px] h-full relative">
+            {/* Color bar */}
+            <div className="relative ml-2 w-[60px] flex-shrink-0">
+              <div className="h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
                   <div 
                     key={segment.score}
@@ -194,7 +192,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             </div>
 
             {/* Score indicators */}
-            <div className="relative h-full ml-4">
+            <div className="relative h-full ml-4 flex-grow">
               <div 
                 className="absolute"
                 style={{ 
