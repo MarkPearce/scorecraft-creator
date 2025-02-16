@@ -1,10 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, FlaskConical, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import SubjectProgress from "@/components/SubjectProgress";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import OverallPerformance from "@/components/OverallPerformance";
 import { GastroIcon } from "@/components/icons/GastroIcon";
 import { LungsIcon } from "@/components/icons/LungsIcon";
 import { ReproductiveIcon } from "@/components/icons/ReproductiveIcon";
@@ -49,31 +48,12 @@ const TopicBreakdown = () => {
           </div>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Overall Performance</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-between gap-8">
-              <div>
-                <div className="text-sm text-[#403E43] mb-2">Your Score</div>
-                <div className="text-4xl font-bold text-gray-600">238</div>
-              </div>
-              <div>
-                <div className="text-sm text-[#403E43] mb-2">Target Score</div>
-                <div className="text-4xl font-bold text-gray-600">240</div>
-              </div>
-              <div>
-                <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
-                <div className="text-4xl font-bold text-gray-600">{totalQuestionsAnswered}</div>
-              </div>
-              <div>
-                <div className="text-sm text-[#403E43] mb-2">Exam Date</div>
-                <div className="text-4xl font-bold text-gray-600">Oct 15, 2025</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <OverallPerformance
+          yourScore={238}
+          targetScore={240}
+          questionsAnswered={totalQuestionsAnswered}
+          examDate="Oct 15, 2025"
+        />
 
         <PerformanceOverview 
           score={33}
