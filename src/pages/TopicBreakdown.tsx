@@ -61,11 +61,11 @@ const TopicBreakdown = () => {
                 <div className="text-sm text-[#403E43] mb-2">Target Score</div>
                 <div className="text-4xl font-bold text-gray-600">240</div>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-3">
                 <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
                 <div className="text-4xl font-bold text-gray-600">{totalQuestionsAnswered}</div>
               </div>
-              <div className="col-span-6">
+              <div className="col-span-5">
                 <div className="text-sm text-[#403E43] mb-2">Exam Date</div>
                 <div className="text-4xl font-bold text-gray-600">Oct 15, 2025</div>
               </div>
