@@ -64,27 +64,31 @@ const ProgressTracker = () => {
               <div className="h-[116px] flex flex-col">
                 {/* Main content area */}
                 <div className="flex-grow flex flex-col">
-                  {/* Assessment section with label, icon and tick */}
-                  <div className="flex-grow flex flex-col items-center" style={{ paddingLeft: '60%' }}>
-                    <span className="text-sm whitespace-nowrap mb-2">Continuous assessment</span>
-                    {isAssessmentUnlocked ? (
-                      <div className="text-green-600">
-                        <Unlock className="w-8 h-8" />
-                      </div>
-                    ) : (
-                      <div className="text-gray-400">
-                        <Lock className="w-8 h-8" />
-                      </div>
-                    )}
-                    <div className="h-4 w-0.5 bg-gray-300 mt-auto" />
-                  </div>
+                  {/* Label on the left */}
+                  <span className="text-sm whitespace-nowrap mb-2">Continuous assessment</span>
+                  
+                  <div className="flex-grow flex flex-col">
+                    {/* Lock icon and tick mark container */}
+                    <div className="flex-grow flex flex-col items-center" style={{ paddingLeft: '60%' }}>
+                      {isAssessmentUnlocked ? (
+                        <div className="text-green-600">
+                          <Unlock className="w-8 h-8" />
+                        </div>
+                      ) : (
+                        <div className="text-gray-400">
+                          <Lock className="w-8 h-8" />
+                        </div>
+                      )}
+                      <div className="h-4 w-0.5 bg-gray-300 mt-auto" />
+                    </div>
 
-                  {/* Progress bar */}
-                  <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
-                    <div 
-                      className={`h-full transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
-                      style={{ width: `${questionsAnswered}%` }}
-                    />
+                    {/* Progress bar */}
+                    <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
+                      <div 
+                        className={`h-full transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
+                        style={{ width: `${questionsAnswered}%` }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
