@@ -1,3 +1,4 @@
+
 import { Settings } from "lucide-react";
 import { useState } from "react";
 import PrototypeControls from "./PrototypeControls";
@@ -133,12 +134,14 @@ const PerformanceScoreCard = ({
       </CardHeader>
 
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
-          <PerformanceGraph 
-            score={score}
-            targetScore={targetScore}
-            range={range}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex justify-end">
+            <PerformanceGraph 
+              score={score}
+              targetScore={targetScore}
+              range={range}
+            />
+          </div>
           
           <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full max-w-[280px]`}>
             <div className="flex items-center gap-6 justify-center">
