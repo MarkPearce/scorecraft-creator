@@ -28,60 +28,49 @@ const ScoreIndicator = ({
   const textColor = isTarget ? "text-gray-500" : "text-gray-900";
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [touchStartTime, setTouchStartTime] = useState(0);
-  const TOUCH_DELAY = 100; // ms delay before starting drag on mobile
+  const [initialY, setInitialY] = useState<number | null>(null);
+  const [initialValue, setInitialValue] = useState<number | null>(null);
 
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
     if (!isTarget) return;
     e.preventDefault();
     e.stopPropagation();
     
-    if ('touches' in e) {
-      setTouchStartTime(Date.now());
-      return;
-    }
-    
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    setInitialY(clientY);
+    setInitialValue(value);
     setIsDragging(true);
   };
 
   const handleDrag = (e: MouseEvent | TouchEvent) => {
-    if (!isDragging || !containerRef.current || !onValueChange) return;
+    if (!isDragging || !containerRef.current || !onValueChange || initialY === null || initialValue === null) return;
+    e.preventDefault();
 
-    const parentRect = containerRef.current.parentElement?.getBoundingClientRect();
-    if (!parentRect) return;
-
-    // Get Y position based on mouse or touch event
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-    const relativeY = clientY - parentRect.top;
-    const parentHeight = parentRect.height;
+    const deltaY = initialY - clientY;
+    const parentHeight = containerRef.current.parentElement?.getBoundingClientRect().height || 1;
     
-    // Calculate percentage from bottom to top (reversed Y-axis)
-    const percentage = Math.max(0, Math.min(1, 1 - (relativeY / parentHeight)));
+    // Convert deltaY to value change (scale factor determines sensitivity)
+    const scaleFactor = (max - min) / parentHeight;
+    const valueChange = Math.round(deltaY * scaleFactor);
+    const newValue = Math.max(min, Math.min(max, initialValue + valueChange));
     
-    // Calculate new value based on percentage and range
-    const rangeSize = max - min;
-    const newValue = Math.round(min + (percentage * rangeSize));
-    const clampedValue = Math.max(min, Math.min(max, newValue));
-    
-    onValueChange(clampedValue);
+    onValueChange(newValue);
   };
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    setTouchStartTime(0);
-  };
-
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!isTarget || !touchStartTime) return;
-    
-    if (Date.now() - touchStartTime > TOUCH_DELAY) {
-      setIsDragging(true);
-      handleDrag(e);
-    }
+    setInitialY(null);
+    setInitialValue(null);
   };
 
   useEffect(() => {
     if (isDragging) {
+      const handleTouchMove = (e: TouchEvent) => {
+        e.preventDefault();
+        handleDrag(e);
+      };
+
       window.addEventListener('mousemove', handleDrag);
       window.addEventListener('mouseup', handleDragEnd);
       window.addEventListener('touchmove', handleTouchMove, { passive: false });
@@ -94,7 +83,7 @@ const ScoreIndicator = ({
         window.removeEventListener('touchend', handleDragEnd);
       };
     }
-  }, [isDragging, touchStartTime]);
+  }, [isDragging, initialY, initialValue]);
 
   // Calculate position based on value
   const position = ((value - min) / (max - min)) * 100;
