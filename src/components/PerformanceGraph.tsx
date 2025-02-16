@@ -148,7 +148,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   return (
     <div 
-      className="flex flex-wrap items-start gap-6"
+      className="flex flex-wrap items-center justify-center gap-6"
       onTouchMove={(e) => isDragging && e.preventDefault()}
     >
       <div className="flex items-center justify-center">
