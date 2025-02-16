@@ -19,7 +19,7 @@ const ScoreIndicator = ({ label, value, isTarget = false, showMoveIcon = false }
         <span className={`text-sm font-medium ${textColor}`}>{label}</span>
       </div>
       {showMoveIcon && (
-        <MoveVertical className={`h-3 w-3 mx-2 ${textColor}`} />
+        <MoveVertical className={`h-1.5 w-1.5 mx-2 ${textColor}`} />
       )}
       <div className={`border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm bg-white`}>
         <span className={isTarget ? "opacity-70" : ""}>{value}</span>
