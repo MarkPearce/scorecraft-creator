@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 
@@ -28,7 +27,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
     { score: range.min + segmentSize, color: "bg-[#8DC641]", label: `${Math.round(range.min + segmentSize)}` },  // Light green starts
     { score: range.min + (segmentSize * 2), color: "bg-[#FFC107]", label: `${Math.round(range.min + (segmentSize * 2))}` },  // Bright yellow starts
     { score: range.min + (segmentSize * 3), color: "bg-[#F46523]", label: `${Math.round(range.min + (segmentSize * 3))}` },  // Orange starts
-    { score: range.min + (segmentSize * 4), color: "bg-[#ED1B24]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Red starts (bottom)
+    { score: range.min + (segmentSize * 4), color: "bg-[#C41E3A]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Darker red starts (bottom)
     { score: range.max, label: `${Math.round(range.max)}` }  // Top value
   ];
 
@@ -47,7 +46,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       case 4: return "text-[#8DC641]";
       case 3: return "text-yellow-500";
       case 2: return "text-[#F46523]";
-      default: return "text-[#ED1B24]";
+      default: return "text-[#C41E3A]";
     }
   };
 
@@ -58,7 +57,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       case 4: return "bg-[#8DC641]/15";
       case 3: return "bg-yellow-500/15";
       case 2: return "bg-[#F46523]/15";
-      default: return "bg-[#ED1B24]/15";
+      default: return "bg-[#C41E3A]/15";
     }
   };
 
@@ -177,4 +176,3 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 };
 
 export default PerformanceGraph;
-
