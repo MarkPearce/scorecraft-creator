@@ -67,28 +67,30 @@ const ProgressTracker = () => {
               <div className="h-[116px] flex flex-col">
                 <div className="flex-grow flex flex-col justify-end mt-4">
                   <div className="relative">
-                    <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
-                      <div 
-                        className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
-                        style={{ 
-                          width: `${questionsAnswered}%`,
-                          borderTopRightRadius: 0,
-                          borderBottomRightRadius: 0
-                        }}
-                      />
-                    </div>
+                    <div className="relative h-4">
+                      <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
+                        <div 
+                          className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
+                          style={{ 
+                            width: `${questionsAnswered}%`,
+                            borderTopRightRadius: 0,
+                            borderBottomRightRadius: 0
+                          }}
+                        />
+                      </div>
 
-                    <div className="absolute left-[60%] -translate-x-1/2 bottom-0 flex flex-col items-center">
-                      {isAssessmentUnlocked ? (
-                        <div className="text-green-600 [&_svg]:size-8">
-                          <Unlock />
-                        </div>
-                      ) : (
-                        <div className="text-gray-400 [&_svg]:size-8">
-                          <Lock />
-                        </div>
-                      )}
-                      <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
+                      <div className="absolute left-[60%] -translate-x-1/2 -top-14 flex flex-col items-center">
+                        {isAssessmentUnlocked ? (
+                          <div className="text-green-600 [&_svg]:size-8">
+                            <Unlock />
+                          </div>
+                        ) : (
+                          <div className="text-gray-400 [&_svg]:size-8">
+                            <Lock />
+                          </div>
+                        )}
+                        <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
+                      </div>
                     </div>
 
                     <p className="text-sm text-gray-600 mt-4">
