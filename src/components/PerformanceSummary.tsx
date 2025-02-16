@@ -1,4 +1,3 @@
-
 import { BarChart, LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
@@ -66,27 +65,26 @@ const PerformanceSummary = () => {
                 : item.performance === 'lower'
                 ? 'bg-red-50 text-red-600 hover:bg-red-100'
                 : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-            } flex justify-between items-center group`}
+          } flex justify-between items-center group`}
+        >
+          <span>{item.subject}</span>
+          <Button
+            variant="outline"
+            className={`flex items-center justify-center border transition-colors ${
+              item.performance === 'higher'
+                ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
+                : item.performance === 'lower'
+                ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
+                : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
+            }`}
           >
-            <span>{item.subject}</span>
-            <Button
-              variant="outline"
-              size="icon"
-              className={`h-6 w-6 bg-white border transition-colors ${
-                item.performance === 'higher'
-                  ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
-                  : item.performance === 'lower'
-                  ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
-                  : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
-              }`}
-            >
-              <PencilIcon />
-            </Button>
-          </div>
-        ))}
-      </div>
+            <PencilIcon />
+          </Button>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 
   const sortedItems = [...lowerPerformance, ...samePerformance, ...higherPerformance];
 
@@ -136,8 +134,7 @@ const PerformanceSummary = () => {
                     </div>
                     <Button
                       variant="outline"
-                      size="icon"
-                      className={`h-6 w-6 bg-white border transition-colors ${
+                      className={`flex items-center justify-center border transition-colors ${
                         item.performance === 'higher'
                           ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
                           : item.performance === 'lower'
