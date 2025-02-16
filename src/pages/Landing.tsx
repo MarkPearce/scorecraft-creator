@@ -1,29 +1,18 @@
 
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import AmbossLogo from "@/components/AmbossLogo";
+import { PageHeader } from "@/components/PageHeader";
+import ProgressTracker from "@/components/ProgressTracker";
 
 const Landing = () => {
-  const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center">
-          <div className="flex justify-center mb-6">
-            <AmbossLogo />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">
-            Continuous Assessment User Test
-          </h1>
-        </div>
-
-        <div className="flex justify-center">
-          <Button variant="default" onClick={() => navigate("/report")} className="py-px px-5">
-            Start prototype
-          </Button>
+    <>
+      <PageHeader />
+      <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+          <ProgressTracker />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import PeerGroup from "@/components/PeerGroup";
 import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
-import ProgressTracker from "@/components/ProgressTracker";
 import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 import { TextProjectionCard } from "@/components/TextProjectionCard";
 import { PageHeader } from "@/components/PageHeader";
@@ -63,7 +62,6 @@ const Index = () => {
             <PerformanceTrackingContainer />
             <PerformanceSummary />
             <TopicsList />
-            <ProgressTracker />
           </div>
         </div>
       </div>
