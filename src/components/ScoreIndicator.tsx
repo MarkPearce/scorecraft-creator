@@ -1,6 +1,7 @@
 
 import { MoveVertical } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ScoreIndicatorProps {
   label: string;
@@ -21,15 +22,24 @@ const ScoreIndicator = ({
   min = 0,
   max = 100
 }: ScoreIndicatorProps) => {
+  const isMobile = useIsMobile();
   const baseColor = isTarget ? "bg-gray-500" : "bg-gray-800";
   const borderColor = isTarget ? "border-gray-500" : "border-gray-800";
   const textColor = isTarget ? "text-gray-500" : "text-gray-900";
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [touchStartTime, setTouchStartTime] = useState(0);
+  const TOUCH_DELAY = 100; // ms delay before starting drag on mobile
 
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
     if (!isTarget) return;
     e.preventDefault();
+    
+    if ('touches' in e) {
+      setTouchStartTime(Date.now());
+      return; // Don't start dragging immediately on touch
+    }
+    
     setIsDragging(true);
   };
 
@@ -54,27 +64,45 @@ const ScoreIndicator = ({
 
   const handleDragEnd = () => {
     setIsDragging(false);
+    setTouchStartTime(0);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isTarget || !touchStartTime) return;
+    
+    // Only start dragging after delay
+    if (Date.now() - touchStartTime > TOUCH_DELAY) {
+      setIsDragging(true);
+      handleDrag(e);
+    }
   };
 
   useEffect(() => {
     if (isDragging) {
       window.addEventListener('mousemove', handleDrag);
       window.addEventListener('mouseup', handleDragEnd);
-      window.addEventListener('touchmove', handleDrag);
+      window.addEventListener('touchmove', handleTouchMove);
       window.addEventListener('touchend', handleDragEnd);
     }
 
     return () => {
       window.removeEventListener('mousemove', handleDrag);
       window.removeEventListener('mouseup', handleDragEnd);
-      window.removeEventListener('touchmove', handleDrag);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleDragEnd);
     };
-  }, [isDragging]);
+  }, [isDragging, touchStartTime]);
 
   return (
     <div 
-      className={`flex items-center gap-0 cursor-${isTarget ? 'grab' : 'default'} ${isDragging ? 'cursor-grabbing' : ''}`}
+      className={`
+        flex items-center gap-0 
+        ${isTarget ? 'select-none touch-none' : ''} 
+        ${!isMobile && isTarget ? 'cursor-grab' : ''}
+        ${!isMobile && isDragging ? 'cursor-grabbing' : ''}
+        ${isTarget ? 'active:bg-gray-50/50 rounded-lg transition-colors' : ''}
+        ${isMobile && isTarget ? 'p-2 -m-2' : ''}
+      `}
       onMouseDown={handleDragStart}
       onTouchStart={handleDragStart}
       ref={containerRef}
@@ -83,9 +111,12 @@ const ScoreIndicator = ({
         <span className={`text-sm font-medium ${textColor}`}>{label}</span>
       </div>
       {showMoveIcon && (
-        <MoveVertical className={`h-5 w-5 mx-2 ${textColor}`} />
+        <MoveVertical className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} mx-2 ${textColor}`} />
       )}
-      <div className={`border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm bg-white`}>
+      <div className={`
+        border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm bg-white
+        ${isTarget ? 'active:scale-105 transition-transform' : ''}
+      `}>
         <span className={isTarget ? "opacity-70" : ""}>{value}</span>
       </div>
       {/* Add white outline by using two lines - one white underneath and one colored on top */}
@@ -98,3 +129,4 @@ const ScoreIndicator = ({
 };
 
 export default ScoreIndicator;
+
