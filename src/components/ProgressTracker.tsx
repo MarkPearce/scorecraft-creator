@@ -1,4 +1,3 @@
-
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -45,16 +44,14 @@ const ProgressTracker = () => {
           <div className="flex items-center gap-3">
             <Button 
               variant="outline" 
-              size="sm"
-              className="h-8 w-8 p-0"
+              className="min-h-[2rem] min-w-[2rem] h-8 w-8 p-0"
               onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}
             >
               -10
             </Button>
             <Button 
               variant="outline"
-              size="sm"
-              className="h-8 w-8 p-0"
+              className="min-h-[2rem] min-w-[2rem] h-8 w-8 p-0"
               onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}
             >
               +10
@@ -68,15 +65,12 @@ const ProgressTracker = () => {
             <div className="flex flex-col flex-grow">
               <div className="h-[116px] flex flex-col">
                 <div className="flex-grow flex flex-col justify-end">
-                  {/* Progress bar section */}
                   <div className="relative">
-                    {/* Label and tick mark container */}
                     <div className="flex items-end mb-2">
                       <span className={`text-sm font-bold ${isAssessmentUnlocked ? 'text-green-600' : 'text-gray-900'}`}>
                         {isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}
                       </span>
                       
-                      {/* Lock icon and tick mark - absolute positioned at 60% */}
                       <div className="absolute left-[60%] -translate-x-1/2 bottom-0 flex flex-col items-center">
                         {isAssessmentUnlocked ? (
                           <div className="text-green-600">
@@ -91,7 +85,6 @@ const ProgressTracker = () => {
                       </div>
                     </div>
 
-                    {/* Progress bar */}
                     <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
                       <div 
                         className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
