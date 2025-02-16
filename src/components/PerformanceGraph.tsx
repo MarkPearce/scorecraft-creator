@@ -33,7 +33,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
   return (
     <div className="flex items-center justify-center w-full">
       {/* Content-fit wrapper with temporary border for visualization */}
-      <div className="w-fit relative border border-transparent">
+      <div className="w-fit relative border-2 border-gray-400">
         <div className="relative h-[300px]">
           <div className="w-[60px] h-full relative">
             {/* Color segments */}
