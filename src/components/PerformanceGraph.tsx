@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -15,16 +16,20 @@ interface PerformanceGraphProps {
 const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: PerformanceGraphProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const initialTouchY = useRef<number | null>(null);
 
   useEffect(() => {
-    if (isDragging) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    const preventDefault = (e: TouchEvent) => {
+      if (isDragging) {
+        e.preventDefault();
+      }
+    };
 
+    // Prevent all touch move events while dragging
+    document.addEventListener('touchmove', preventDefault, { passive: false });
+    
     return () => {
-      document.body.style.overflow = '';
+      document.removeEventListener('touchmove', preventDefault);
     };
   }, [isDragging]);
 
@@ -59,6 +64,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
     const handleDragEnd = () => {
       setIsDragging(false);
+      initialTouchY.current = null;
     };
 
     if (isDragging) {
@@ -80,6 +86,9 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     if (!onTargetScoreChange) return;
+    if ('touches' in e) {
+      initialTouchY.current = e.touches[0].clientY;
+    }
     setIsDragging(true);
   };
 
@@ -139,7 +148,10 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
   };
 
   return (
-    <div className="grid grid-cols-2 w-full gap-6">
+    <div 
+      className="grid grid-cols-2 w-full gap-6"
+      onTouchMove={(e) => isDragging && e.preventDefault()}
+    >
       <div className="flex items-center justify-center">
         <div className="w-fit relative p-6 pl-52 rounded-lg">
           <div 
