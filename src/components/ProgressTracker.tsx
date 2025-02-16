@@ -77,7 +77,7 @@ const ProgressTracker = () => {
                 <div className="flex flex-col">
                   <div className="relative">
                     {/* Progress Bar Track */}
-                    <div className="relative h-4 mb-4">
+                    <div className="relative h-4">
                       {/* Progress Bar Background */}
                       <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
                         {/* Progress Bar Fill */}
@@ -92,7 +92,7 @@ const ProgressTracker = () => {
                       </div>
 
                       {/* Lock Icon Container */}
-                      <div className="absolute left-[60%] -translate-x-1/2 -top-14 flex flex-col items-center">
+                      <div className="absolute left-[60%] -translate-x-1/2 bottom-full flex flex-col items-center">
                         {isAssessmentUnlocked ? (
                           <div className="text-green-600 [&_svg]:size-8">
                             <Unlock />
@@ -103,12 +103,12 @@ const ProgressTracker = () => {
                           </div>
                         )}
                         {/* Vertical Line */}
-                        <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
+                        <div className="h-6 w-0.5 bg-gray-300 mt-1" />
                       </div>
                     </div>
 
                     {/* Instruction Text */}
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 mt-4">
                       Unlock continuous self assessment by completing more than 60 questions.
                       The more questions you answer, the more accurate the assessment is.
                     </p>
