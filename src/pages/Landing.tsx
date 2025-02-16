@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { LayoutGrid } from "lucide-react";
+import AmbossLogo from "@/components/AmbossLogo";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -9,43 +9,21 @@ const Landing = () => {
   return <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">
             Continuous Assessment User Test
           </h1>
-          <p className="text-lg text-gray-600">
-            Track your progress and master key concepts
-          </p>
+          <div className="flex justify-center mb-12">
+            <AmbossLogo />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept1")}>
-            <LayoutGrid className="mr-2 h-5 w-5" />
-            Line Chart
-          </Button>
-
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept3")}>
-            <LayoutGrid className="mr-2 h-5 w-5" />
-            Exam Readiness
-          </Button>
-
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept4")}>
-            <LayoutGrid className="mr-2 h-5 w-5" />
-            Performance Bar Chart
-          </Button>
-
-          <Button variant="outline" onClick={() => navigate("/concept5")} className="h-24 text-lg font-medium hover:bg-gray-100 px-0 rounded-md">
-            <LayoutGrid className="mr-2 h-5 w-5" />
-            Peer Group
-          </Button>
-
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/concept6")}>
-            <LayoutGrid className="mr-2 h-5 w-5" />
-            Topic Breakdown
-          </Button>
-
-          <Button variant="outline" className="h-24 text-lg font-medium hover:bg-gray-100" onClick={() => navigate("/report")}>
-            <LayoutGrid className="mr-2 h-5 w-5" />
-            Full Report
+        <div className="max-w-2xl mx-auto">
+          <Button 
+            variant="outline" 
+            className="w-full h-24 text-lg font-medium hover:bg-gray-200" 
+            onClick={() => navigate("/report")}
+          >
+            Start prototype
           </Button>
         </div>
       </div>
