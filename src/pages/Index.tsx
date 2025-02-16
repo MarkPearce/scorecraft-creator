@@ -9,6 +9,7 @@ import ProgressTracker from "@/components/ProgressTracker";
 import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 import { TextProjectionCard } from "@/components/TextProjectionCard";
 import { PageHeader } from "@/components/PageHeader";
+import PerformanceScoreCard from "@/components/PerformanceScoreCard";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -40,6 +41,12 @@ const Index = () => {
           <div className="space-y-6">
             <TextProjectionCard percentile={currentPercentile} />
             <PeerGroup />
+            <PerformanceScoreCard 
+              initialScore={245}
+              initialTargetScore={260}
+              showControls={false}
+              title="Current Performance"
+            />
             <PerformanceTrackingContainer />
             <PerformanceSummary />
             <TopicsList />
