@@ -67,7 +67,7 @@ const ProgressTracker = () => {
               <div className="h-[116px] flex flex-col">
                 <div className="flex-grow flex flex-col justify-end mt-4">
                   <div className="relative">
-                    <div className="relative h-4">
+                    <div className="relative h-4 mb-4">
                       <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
                         <div 
                           className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
@@ -93,7 +93,7 @@ const ProgressTracker = () => {
                       </div>
                     </div>
 
-                    <p className="text-sm text-gray-600 mt-4">
+                    <p className="text-sm text-gray-600">
                       Unlock continuous self assessment by completing more than 60 questions.
                       The more questions you answer, the more accurate the assessment is.
                     </p>
