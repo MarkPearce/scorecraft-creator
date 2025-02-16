@@ -235,7 +235,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       {/* Right column with emoji and score */}
       <div className="flex items-center justify-center w-[350px]">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
-          <div className="text-sm font-bold text-gray-600 mb-4">Predicted Score</div>
+          <h3 className="text-gray-900 font-semibold text-lg mb-4">Predicted Score</h3>
           <div className="flex items-center gap-4">
             {getFaceIcon(score)}
             <div>
