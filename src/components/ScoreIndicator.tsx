@@ -28,83 +28,92 @@ const ScoreIndicator = ({
   const textColor = isTarget ? "text-gray-500" : "text-gray-900";
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [initialY, setInitialY] = useState<number | null>(null);
-  const [initialValue, setInitialValue] = useState<number | null>(null);
+  const [startY, setStartY] = useState<number | null>(null);
+  const [startValue, setStartValue] = useState<number | null>(null);
 
-  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!isTarget) return;
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!isTarget || !onValueChange) return;
     e.preventDefault();
-    e.stopPropagation();
     
-    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-    setInitialY(clientY);
-    setInitialValue(value);
+    setStartY(e.clientY);
+    setStartValue(value);
     setIsDragging(true);
   };
 
-  const handleDrag = (e: MouseEvent | TouchEvent) => {
-    if (!isDragging || !containerRef.current || !onValueChange || initialY === null || initialValue === null) return;
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isTarget || !onValueChange) return;
+    e.preventDefault();
+    
+    setStartY(e.touches[0].clientY);
+    setStartValue(value);
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging || startY === null || startValue === null || !onValueChange) return;
     e.preventDefault();
 
-    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-    const deltaY = initialY - clientY;
-    const parentHeight = containerRef.current.parentElement?.getBoundingClientRect().height || 1;
+    const deltaY = startY - e.clientY;
+    const parentHeight = containerRef.current?.parentElement?.getBoundingClientRect().height || 300;
+    const valueRange = max - min;
+    const pixelsPerUnit = parentHeight / valueRange;
     
-    // Convert deltaY to value change (scale factor determines sensitivity)
-    const scaleFactor = (max - min) / parentHeight;
-    const valueChange = Math.round(deltaY * scaleFactor);
-    const newValue = Math.max(min, Math.min(max, initialValue + valueChange));
+    const valueDelta = Math.round(deltaY / pixelsPerUnit);
+    const newValue = Math.max(min, Math.min(max, startValue + valueDelta));
+    
+    onValueChange(newValue);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isDragging || startY === null || startValue === null || !onValueChange) return;
+    e.preventDefault();
+
+    const deltaY = startY - e.touches[0].clientY;
+    const parentHeight = containerRef.current?.parentElement?.getBoundingClientRect().height || 300;
+    const valueRange = max - min;
+    const pixelsPerUnit = parentHeight / valueRange;
+    
+    const valueDelta = Math.round(deltaY / pixelsPerUnit);
+    const newValue = Math.max(min, Math.min(max, startValue + valueDelta));
     
     onValueChange(newValue);
   };
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    setInitialY(null);
-    setInitialValue(null);
+    setStartY(null);
+    setStartValue(null);
   };
 
   useEffect(() => {
     if (isDragging) {
-      const handleTouchMove = (e: TouchEvent) => {
-        e.preventDefault();
-        handleDrag(e);
-      };
-
-      window.addEventListener('mousemove', handleDrag);
+      window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleDragEnd);
       window.addEventListener('touchmove', handleTouchMove, { passive: false });
       window.addEventListener('touchend', handleDragEnd);
 
       return () => {
-        window.removeEventListener('mousemove', handleDrag);
+        window.removeEventListener('mousemove', handleMouseMove);
         window.removeEventListener('mouseup', handleDragEnd);
         window.removeEventListener('touchmove', handleTouchMove);
         window.removeEventListener('touchend', handleDragEnd);
       };
     }
-  }, [isDragging, initialY, initialValue]);
+  }, [isDragging, startY, startValue]);
 
-  // Calculate position based on value
-  const position = ((value - min) / (max - min)) * 100;
-  
   return (
     <div 
       className={`
         flex items-center gap-2
         ${isTarget ? 'select-none touch-none' : ''} 
-        ${!isMobile && isTarget ? 'cursor-grab' : ''}
+        ${!isMobile && isTarget ? 'cursor-ns-resize' : ''}
         ${!isMobile && isDragging ? 'cursor-grabbing' : ''}
         ${isTarget ? 'active:bg-gray-50/50 rounded-lg transition-colors' : ''}
         ${isMobile && isTarget ? 'p-2 -m-2' : ''}
         relative
       `}
-      style={{
-        top: `${100 - position}%`,
-        transform: 'translateY(-50%)',
-      }}
-      onMouseDown={handleDragStart}
-      onTouchStart={handleDragStart}
+      onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
       ref={containerRef}
     >
       <div className="flex items-center gap-2 w-[140px] justify-end">
