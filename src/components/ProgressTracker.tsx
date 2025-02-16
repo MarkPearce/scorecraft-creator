@@ -68,7 +68,7 @@ const ProgressTracker = () => {
                     style={{ width: `${questionsAnswered}%` }}
                   />
                   {/* Vertical line at 60% */}
-                  <div className="absolute left-[60%] top-4 h-6 w-0.5 bg-gray-300" />
+                  <div className="absolute left-[60%] top-4 h-3 w-0.5 bg-gray-300" />
                 </div>
 
                 <div className="absolute -bottom-20 left-[60%] -translate-x-1/2 flex items-center gap-2">
