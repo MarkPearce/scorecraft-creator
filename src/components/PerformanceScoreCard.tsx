@@ -1,3 +1,4 @@
+
 import { Settings } from "lucide-react";
 import { useState } from "react";
 import PrototypeControls from "./PrototypeControls";
@@ -138,6 +139,7 @@ const PerformanceScoreCard = ({
             score={score}
             targetScore={targetScore}
             range={range}
+            onTargetScoreChange={setTargetScore}
           />
         </div>
       </CardContent>
@@ -146,3 +148,4 @@ const PerformanceScoreCard = ({
 };
 
 export default PerformanceScoreCard;
+
