@@ -28,14 +28,21 @@ const ScoreIndicator = ({
   const textColor = isTarget ? "text-gray-500" : "text-gray-900";
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [startY, setStartY] = useState<number | null>(null);
+  const [startRelativeY, setStartRelativeY] = useState<number | null>(null);
   const [startValue, setStartValue] = useState<number | null>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!isTarget || !onValueChange) return;
     e.preventDefault();
     
-    setStartY(e.clientY);
+    const graphContainer = containerRef.current?.closest('.graph-container');
+    if (!graphContainer) return;
+
+    const rect = graphContainer.getBoundingClientRect();
+    // Calculate relative position within container (0 to 1)
+    const relativeY = (e.clientY - rect.top) / rect.height;
+    
+    setStartRelativeY(relativeY);
     setStartValue(value);
     setIsDragging(true);
   };
@@ -44,44 +51,55 @@ const ScoreIndicator = ({
     if (!isTarget || !onValueChange) return;
     e.preventDefault();
     
-    setStartY(e.touches[0].clientY);
+    const graphContainer = containerRef.current?.closest('.graph-container');
+    if (!graphContainer) return;
+
+    const rect = graphContainer.getBoundingClientRect();
+    // Calculate relative position within container (0 to 1)
+    const relativeY = (e.touches[0].clientY - rect.top) / rect.height;
+    
+    setStartRelativeY(relativeY);
     setStartValue(value);
     setIsDragging(true);
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || startY === null || startValue === null || !onValueChange) return;
+    if (!isDragging || startRelativeY === null || startValue === null || !onValueChange) return;
     e.preventDefault();
 
-    // Get the direct parent height (the graph container)
     const graphContainer = containerRef.current?.closest('.graph-container');
     if (!graphContainer) return;
 
     const rect = graphContainer.getBoundingClientRect();
-    const deltaY = startY - e.clientY;
-    const valueRange = max - min;
-    const pixelsPerUnit = rect.height / valueRange;
+    // Calculate current relative position (0 to 1)
+    const currentRelativeY = (e.clientY - rect.top) / rect.height;
+    // Calculate relative movement
+    const deltaRelative = startRelativeY - currentRelativeY;
     
-    const valueDelta = Math.round(deltaY / pixelsPerUnit);
+    // Convert relative movement to value change
+    const valueRange = max - min;
+    const valueDelta = Math.round(deltaRelative * valueRange);
     const newValue = Math.max(min, Math.min(max, startValue + valueDelta));
     
     onValueChange(newValue);
   };
 
   const handleTouchMove = (e: TouchEvent) => {
-    if (!isDragging || startY === null || startValue === null || !onValueChange) return;
+    if (!isDragging || startRelativeY === null || startValue === null || !onValueChange) return;
     e.preventDefault();
 
-    // Get the direct parent height (the graph container)
     const graphContainer = containerRef.current?.closest('.graph-container');
     if (!graphContainer) return;
 
     const rect = graphContainer.getBoundingClientRect();
-    const deltaY = startY - e.touches[0].clientY;
-    const valueRange = max - min;
-    const pixelsPerUnit = rect.height / valueRange;
+    // Calculate current relative position (0 to 1)
+    const currentRelativeY = (e.touches[0].clientY - rect.top) / rect.height;
+    // Calculate relative movement
+    const deltaRelative = startRelativeY - currentRelativeY;
     
-    const valueDelta = Math.round(deltaY / pixelsPerUnit);
+    // Convert relative movement to value change
+    const valueRange = max - min;
+    const valueDelta = Math.round(deltaRelative * valueRange);
     const newValue = Math.max(min, Math.min(max, startValue + valueDelta));
     
     onValueChange(newValue);
@@ -89,7 +107,7 @@ const ScoreIndicator = ({
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    setStartY(null);
+    setStartRelativeY(null);
     setStartValue(null);
   };
 
@@ -107,7 +125,7 @@ const ScoreIndicator = ({
         window.removeEventListener('touchend', handleDragEnd);
       };
     }
-  }, [isDragging, startY, startValue]);
+  }, [isDragging, startRelativeY, startValue]);
 
   return (
     <div 
