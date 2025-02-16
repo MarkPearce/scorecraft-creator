@@ -62,24 +62,29 @@ const ProgressTracker = () => {
           <div className="flex gap-8">
             <div className="flex flex-col flex-grow">
               <div className="h-[116px] flex flex-col">
-                <div className="flex-grow flex flex-col justify-end relative">
-                  {/* Lock icon and tick mark container - absolute positioned at 60% */}
-                  <div className="absolute left-[60%] bottom-[28px] -translate-x-1/2 flex flex-col items-center">
-                    {isAssessmentUnlocked ? (
-                      <div className="text-green-600">
-                        <Unlock className="w-8 h-8" />
+                <div className="flex-grow flex flex-col justify-end">
+                  {/* Progress bar section */}
+                  <div className="relative">
+                    {/* Label and tick mark container */}
+                    <div className="flex items-end mb-2">
+                      <span className="text-sm font-bold">Continuous assessment</span>
+                      
+                      {/* Lock icon and tick mark - absolute positioned at 60% */}
+                      <div className="absolute left-[60%] -translate-x-1/2 bottom-0 flex flex-col items-center">
+                        {isAssessmentUnlocked ? (
+                          <div className="text-green-600">
+                            <Unlock className="w-8 h-8" />
+                          </div>
+                        ) : (
+                          <div className="text-gray-400">
+                            <Lock className="w-8 h-8" />
+                          </div>
+                        )}
+                        <div className="h-4 w-0.5 bg-gray-300" />
                       </div>
-                    ) : (
-                      <div className="text-gray-400">
-                        <Lock className="w-8 h-8" />
-                      </div>
-                    )}
-                    <div className="h-4 w-0.5 bg-gray-300" />
-                  </div>
+                    </div>
 
-                  {/* Label and progress bar container */}
-                  <div className="mt-auto">
-                    <span className="text-sm font-bold block mb-2">Continuous assessment</span>
+                    {/* Progress bar */}
                     <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
                       <div 
                         className={`h-full transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
