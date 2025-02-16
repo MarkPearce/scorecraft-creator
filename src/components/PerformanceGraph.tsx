@@ -1,5 +1,5 @@
 import ScoreIndicator from "./ScoreIndicator";
-import { Angry, Frown, Meh, Smile, Laugh, ArrowUp, ArrowDown } from "lucide-react";
+import { Angry, Frown, Meh, Smile, Laugh, MoveVertical } from "lucide-react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -126,14 +126,11 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
                   }}
                 >
                   <div className="flex items-center">
-                    <div className="flex flex-col mr-2 text-gray-400">
-                      <ArrowUp className="h-3 w-3" />
-                      <ArrowDown className="h-3 w-3" />
-                    </div>
                     <ScoreIndicator 
                       label="Target Score"
                       value={targetScore}
                       isTarget
+                      showMoveIcon
                     />
                   </div>
                 </div>

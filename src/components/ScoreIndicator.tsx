@@ -1,11 +1,14 @@
 
+import { MoveVertical } from "lucide-react";
+
 interface ScoreIndicatorProps {
   label: string;
   value: number;
   isTarget?: boolean;
+  showMoveIcon?: boolean;
 }
 
-const ScoreIndicator = ({ label, value, isTarget = false }: ScoreIndicatorProps) => {
+const ScoreIndicator = ({ label, value, isTarget = false, showMoveIcon = false }: ScoreIndicatorProps) => {
   const baseColor = isTarget ? "bg-gray-500" : "bg-gray-800";
   const borderColor = isTarget ? "border-gray-500" : "border-gray-800";
   const textColor = isTarget ? "text-gray-500" : "text-gray-900";
@@ -15,6 +18,9 @@ const ScoreIndicator = ({ label, value, isTarget = false }: ScoreIndicatorProps)
       <div className="flex items-center gap-2 w-[140px] justify-end">
         <span className={`text-sm font-medium ${textColor}`}>{label}</span>
       </div>
+      {showMoveIcon && (
+        <MoveVertical className={`h-3 w-3 mx-2 ${textColor}`} />
+      )}
       <div className={`border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm bg-white`}>
         <span className={isTarget ? "opacity-70" : ""}>{value}</span>
       </div>
@@ -28,3 +34,4 @@ const ScoreIndicator = ({ label, value, isTarget = false }: ScoreIndicatorProps)
 };
 
 export default ScoreIndicator;
+
