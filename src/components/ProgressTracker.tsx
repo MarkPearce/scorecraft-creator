@@ -88,7 +88,7 @@ const ProgressTracker = () => {
                             />
                           </div>
                           
-                          <div className="absolute left-[60%] -translate-x-1/2 -top-10 flex flex-col items-center">
+                          <div className="absolute left-[60%] -translate-x-1/2 -top-[52px] flex flex-col items-center">
                             {isAssessmentUnlocked ? (
                               <div className="text-green-600 [&_svg]:size-8">
                                 <Unlock />
@@ -98,7 +98,7 @@ const ProgressTracker = () => {
                                 <Lock />
                               </div>
                             )}
-                            <div className="h-6 w-0.5 bg-gray-300 mt-1" />
+                            <div className="h-4 w-0.5 bg-gray-300 mt-1" />
                           </div>
                         </div>
                       </div>
