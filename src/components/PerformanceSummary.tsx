@@ -116,11 +116,11 @@ const PerformanceSummary = () => {
         ) : (
           <div>
             <table className="w-full">
-              <thead>
+              <thead className="border-b border-gray-200">
                 <tr className="grid grid-cols-12 gap-4">
                   <th className="col-span-9 text-left text-sm font-medium text-gray-700 pb-3">Subject</th>
                   <th className="col-span-2 text-center text-sm font-medium text-gray-700 pb-3">Performance</th>
-                  <th className="col-span-1 text-right text-sm font-medium text-gray-700 pb-3">Action</th>
+                  <th className="col-span-1 pb-3"></th>
                 </tr>
               </thead>
               <tbody>
