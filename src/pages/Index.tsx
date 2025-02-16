@@ -2,31 +2,27 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import AmbossLogo from "@/components/AmbossLogo";
-import { PageHeader } from "@/components/PageHeader";
 import ProgressTracker from "@/components/ProgressTracker";
 
 const Index = () => {
   const navigate = useNavigate();
   return (
-    <>
-      <PageHeader />
-      <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
-              <AmbossLogo />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-8">
-              Continuous Assessment User Test
-            </h1>
+    <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-6">
+            <AmbossLogo />
           </div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">
+            Continuous Assessment User Test
+          </h1>
+        </div>
 
-          <div className="space-y-8">
-            <ProgressTracker />
-          </div>
+        <div className="space-y-8">
+          <ProgressTracker />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
