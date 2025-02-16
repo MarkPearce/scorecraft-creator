@@ -69,7 +69,8 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     if (!onTargetScoreChange) return;
-    e.preventDefault();
+    
+    // Don't prevent default here to allow touch events to work naturally
     setIsDragging(true);
     
     const clientY = 'touches' in e 
@@ -176,7 +177,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
               <div className="absolute h-full w-0" style={{ left: 0 }}>
                 <div 
-                  className="absolute group"
+                  className="absolute"
                   style={{ 
                     top: calculatePosition(targetScore),
                     right: '-60px'

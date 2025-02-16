@@ -23,9 +23,9 @@ const ScoreIndicator = ({
   return (
     <div className={`
       flex items-center gap-2
-      ${isTarget ? 'select-none touch-none' : ''} 
-      ${!isMobile && isTarget ? 'cursor-ns-resize' : ''}
-      ${isTarget ? 'active:bg-gray-50/50 rounded-lg transition-colors' : ''}
+      ${isTarget ? 'select-none' : ''} 
+      ${!isMobile && isTarget ? 'cursor-grab active:cursor-grabbing' : ''}
+      ${isTarget ? 'active:bg-gray-50/50 rounded-lg' : ''}
       ${isMobile && isTarget ? 'p-2 -m-2' : ''}
     `}>
       <div className="flex items-center gap-2 w-[140px] justify-end">
@@ -36,7 +36,7 @@ const ScoreIndicator = ({
       )}
       <div className={`
         border-[0.5px] ${borderColor} px-2 py-0.5 rounded ml-2 shadow-sm bg-white
-        ${isTarget ? 'active:scale-105 transition-transform' : ''}
+        ${isTarget ? 'active:scale-105' : ''}
       `}>
         <span className={isTarget ? "opacity-70" : ""}>{value}</span>
       </div>
@@ -49,4 +49,3 @@ const ScoreIndicator = ({
 };
 
 export default ScoreIndicator;
-
