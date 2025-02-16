@@ -7,6 +7,7 @@ import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 import { TextProjectionCard } from "@/components/TextProjectionCard";
+import { PageHeader } from "@/components/PageHeader";
 import PerformanceScoreCard from "@/components/PerformanceScoreCard";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -16,52 +17,55 @@ const Index = () => {
   const currentPercentile = 30;
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <div className="flex items-center justify-between">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/')}
-            className="flex items-center hover:bg-gray-200"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to dashboard
-          </Button>
+    <>
+      <PageHeader />
+      <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="flex items-center justify-between">
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate('/')}
+              className="flex items-center hover:bg-gray-200"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to dashboard
+            </Button>
 
-          <RadioGroup defaultValue="step2" className="flex gap-4">
-            <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
-              <RadioGroupItem value="step1" id="step1" />
-              <Label htmlFor="step1" className="text-sm font-medium cursor-pointer">USMLE Step 1</Label>
-            </div>
-            <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
-              <RadioGroupItem value="step2" id="step2" />
-              <Label htmlFor="step2" className="text-sm font-medium cursor-pointer">USMLE Step 2</Label>
-            </div>
-          </RadioGroup>
-        </div>
+            <RadioGroup defaultValue="step2" className="flex gap-4">
+              <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
+                <RadioGroupItem value="step1" id="step1" />
+                <Label htmlFor="step1" className="text-sm font-medium cursor-pointer">USMLE Step 1</Label>
+              </div>
+              <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
+                <RadioGroupItem value="step2" id="step2" />
+                <Label htmlFor="step2" className="text-sm font-medium cursor-pointer">USMLE Step 2</Label>
+              </div>
+            </RadioGroup>
+          </div>
 
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Continuous score estimate</h1>
-          <p className="mt-2 text-gray-600">
-            Here is your assessment based on Qbank performance. Check out your study recommendations below to optimize your study schedule.
-          </p>
-        </div>
-        
-        <div className="space-y-6">
-          <TextProjectionCard percentile={currentPercentile} />
-          <PeerGroup />
-          <PerformanceScoreCard 
-            initialScore={245}
-            initialTargetScore={260}
-            showControls={false}
-            title="Current performance"
-          />
-          <PerformanceTrackingContainer />
-          <PerformanceSummary />
-          <TopicsList />
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Continuous score assessment</h1>
+            <p className="mt-2 text-gray-600">
+              Here is your assessment based on Qbank performance. Check out your study recommendations below to optimize your study schedule.
+            </p>
+          </div>
+          
+          <div className="space-y-6">
+            <TextProjectionCard percentile={currentPercentile} />
+            <PeerGroup />
+            <PerformanceScoreCard 
+              initialScore={245}
+              initialTargetScore={260}
+              showControls={false}
+              title="Current performance"
+            />
+            <PerformanceTrackingContainer />
+            <PerformanceSummary />
+            <TopicsList />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
