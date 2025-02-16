@@ -83,9 +83,7 @@ const ProgressTracker = () => {
 
                   {/* Progress bar at the bottom */}
                   <div className="absolute bottom-0 w-full">
-                    <div className="relative h-4 w-full bg-gray-100 rounded-full">
-                      {/* Strike line */}
-                      <div className="absolute top-0 left-[60%] w-0.5 h-full bg-gray-300 z-10" />
+                    <div className="relative h-4 w-full bg-gray-100 rounded-full border border-gray-300">
                       <div 
                         className={`absolute left-0 top-0 h-4 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
                         style={{ width: `${questionsAnswered}%` }}
