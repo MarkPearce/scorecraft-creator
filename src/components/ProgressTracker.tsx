@@ -65,7 +65,7 @@ const ProgressTracker = () => {
           <div className="flex gap-8">
             <div className="flex flex-col flex-grow">
               <div className="h-[116px] flex flex-col">
-                <div className="flex-grow flex flex-col justify-end">
+                <div className="flex-grow flex flex-col justify-end mt-4">
                   <div className="relative">
                     <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
                       <div 
@@ -78,7 +78,7 @@ const ProgressTracker = () => {
                       />
                     </div>
 
-                    <div className="absolute left-[60%] -translate-x-1/2 -top-10 flex flex-col items-center">
+                    <div className="absolute left-[60%] -translate-x-1/2 -top-8 flex flex-col items-center">
                       {isAssessmentUnlocked ? (
                         <div className="text-green-600 [&_svg]:size-8">
                           <Unlock />
@@ -88,7 +88,7 @@ const ProgressTracker = () => {
                           <Lock />
                         </div>
                       )}
-                      <div className="h-8 w-0.5 bg-gray-300 -mb-0.5" />
+                      <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
                     </div>
 
                     <p className="text-sm text-gray-600 mt-4">
