@@ -33,13 +33,13 @@ const Index = () => {
             </Button>
 
             <RadioGroup defaultValue="step1" className="flex gap-4">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 hover:bg-gray-100 rounded-lg px-3 py-2 transition-colors cursor-pointer">
                 <RadioGroupItem value="step1" id="step1" />
-                <Label htmlFor="step1" className="text-sm font-medium">USMLE Step 1</Label>
+                <Label htmlFor="step1" className="text-sm font-medium cursor-pointer">USMLE Step 1</Label>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 hover:bg-gray-100 rounded-lg px-3 py-2 transition-colors cursor-pointer">
                 <RadioGroupItem value="step2" id="step2" />
-                <Label htmlFor="step2" className="text-sm font-medium">USMLE Step 2</Label>
+                <Label htmlFor="step2" className="text-sm font-medium cursor-pointer">USMLE Step 2</Label>
               </div>
             </RadioGroup>
           </div>
