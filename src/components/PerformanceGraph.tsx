@@ -1,6 +1,5 @@
-
 import ScoreIndicator from "./ScoreIndicator";
-import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
+import { Angry, Frown, Meh, Smile, Laugh, ArrowUp, ArrowDown } from "lucide-react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -119,18 +118,24 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
               <div className="absolute h-full w-0" style={{ left: 0 }}>
                 {/* Target indicator */}
                 <div 
-                  className="absolute transition-all duration-300"
+                  className="absolute transition-all duration-300 group"
                   style={{ 
                     top: calculatePosition(targetScore),
                     transform: 'translateY(-50%)',
                     right: '-60px'
                   }}
                 >
-                  <ScoreIndicator 
-                    label="Target Score"
-                    value={targetScore}
-                    isTarget
-                  />
+                  <div className="flex items-center">
+                    <ScoreIndicator 
+                      label="Target Score"
+                      value={targetScore}
+                      isTarget
+                    />
+                    <div className="flex flex-col ml-2 text-gray-400">
+                      <ArrowUp className="h-3 w-3" />
+                      <ArrowDown className="h-3 w-3" />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Score indicator */}
@@ -170,4 +175,3 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
 };
 
 export default PerformanceGraph;
-
