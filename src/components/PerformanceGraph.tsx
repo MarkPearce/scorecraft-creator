@@ -1,6 +1,6 @@
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -30,11 +30,58 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
     return Math.round(Math.max(range.min, Math.min(range.max, value)));
   };
 
-  // Calculate segment size
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging || !onTargetScoreChange) return;
+      e.preventDefault();
+      const newValue = calculateValueFromPosition(e.clientY);
+      onTargetScoreChange(newValue);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging || !onTargetScoreChange) return;
+      e.preventDefault();
+      const newValue = calculateValueFromPosition(e.touches[0].clientY);
+      onTargetScoreChange(newValue);
+    };
+
+    const handleDragEnd = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('touchmove', handleTouchMove);
+      window.addEventListener('mouseup', handleDragEnd);
+      window.addEventListener('touchend', handleDragEnd);
+      window.addEventListener('mouseleave', handleDragEnd);
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('mouseup', handleDragEnd);
+      window.removeEventListener('touchend', handleDragEnd);
+      window.removeEventListener('mouseleave', handleDragEnd);
+    };
+  }, [isDragging, onTargetScoreChange]);
+
+  const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    if (!onTargetScoreChange) return;
+    e.preventDefault();
+    setIsDragging(true);
+    
+    const clientY = 'touches' in e 
+      ? e.touches[0].clientY 
+      : e.clientY;
+    
+    const newValue = calculateValueFromPosition(clientY);
+    onTargetScoreChange(newValue);
+  };
+
   const totalRange = range.max - range.min;
   const segmentSize = totalRange / 5;
   
-  // Calculate segment boundaries from bottom to top
   const segments = [
     { score: range.min, color: "bg-[#019444]", label: `${Math.round(range.min)}` },  // Dark green starts (top)
     { score: range.min + segmentSize, color: "bg-[#8DC641]", label: `${Math.round(range.min + segmentSize)}` },  // Light green starts
@@ -43,32 +90,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
     { score: range.min + (segmentSize * 4), color: "bg-[#ED1B24]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Red starts (bottom)
     { score: range.max, label: `${Math.round(range.max)}` }  // Top value
   ];
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!onTargetScoreChange) return;
-    e.preventDefault();
-    setIsDragging(true);
-    const newValue = calculateValueFromPosition(e.clientY);
-    onTargetScoreChange(newValue);
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || !onTargetScoreChange) return;
-    e.preventDefault();
-    const newValue = calculateValueFromPosition(e.clientY);
-    onTargetScoreChange(newValue);
-  };
-
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!isDragging || !onTargetScoreChange) return;
-    e.preventDefault();
-    const newValue = calculateValueFromPosition(e.touches[0].clientY);
-    onTargetScoreChange(newValue);
-  };
-
-  const handleDragEnd = () => {
-    setIsDragging(false);
-  };
 
   const getScoreSegment = (score: number) => {
     if (score >= range.max - segmentSize) return 5; // Excellent
@@ -166,13 +187,8 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                     top: calculatePosition(targetScore),
                     right: '-60px'
                   }}
-                  onMouseDown={handleMouseDown}
-                  onMouseMove={isDragging ? handleMouseMove : undefined}
-                  onMouseUp={handleDragEnd}
-                  onMouseLeave={handleDragEnd}
-                  onTouchStart={handleMouseDown}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleDragEnd}
+                  onMouseDown={handleDragStart}
+                  onTouchStart={handleDragStart}
                 >
                   <div className="flex items-center">
                     <ScoreIndicator 
