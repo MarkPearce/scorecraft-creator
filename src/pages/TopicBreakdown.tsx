@@ -51,28 +51,30 @@ const TopicBreakdown = () => {
 
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="p-6">
-              <div className="grid grid-cols-2">
-                <div className="pr-4">
-                  <div className="text-sm text-[#403E43] mb-2">Your Score</div>
-                  <div className="text-4xl font-bold text-gray-600">238</div>
-                </div>
-                <div className="pl-4">
-                  <div className="text-sm text-[#403E43] mb-2">Target Score</div>
-                  <div className="text-4xl font-bold text-gray-600">240</div>
+          <Card className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="col-span-2">
+                <div className="grid grid-cols-2">
+                  <div className="pr-4">
+                    <div className="text-sm text-[#403E43] mb-2">Your Score</div>
+                    <div className="text-4xl font-bold text-gray-600">238</div>
+                  </div>
+                  <div className="pl-4">
+                    <div className="text-sm text-[#403E43] mb-2">Target Score</div>
+                    <div className="text-4xl font-bold text-gray-600">240</div>
+                  </div>
                 </div>
               </div>
-            </Card>
-            <Card className="p-6">
-              <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
-              <div className="text-4xl font-bold text-gray-600">{totalQuestionsAnswered}</div>
-            </Card>
-            <Card className="p-6">
-              <div className="text-sm text-[#403E43] mb-2">Exam Date</div>
-              <div className="text-4xl font-bold text-gray-600">Oct 15, 2025</div>
-            </Card>
-          </div>
+              <div>
+                <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
+                <div className="text-4xl font-bold text-gray-600">{totalQuestionsAnswered}</div>
+              </div>
+              <div>
+                <div className="text-sm text-[#403E43] mb-2">Exam Date</div>
+                <div className="text-4xl font-bold text-gray-600">Oct 15, 2025</div>
+              </div>
+            </div>
+          </Card>
         </div>
 
         <PerformanceOverview 
