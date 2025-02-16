@@ -64,7 +64,7 @@ const ProgressTracker = () => {
               <div className="h-[116px] flex flex-col">
                 <div className="flex-grow flex flex-col justify-end relative">
                   {/* Lock icon and tick mark container - absolute positioned at 60% */}
-                  <div className="absolute left-[60%] top-0 -translate-x-1/2 flex flex-col items-center">
+                  <div className="absolute left-[60%] bottom-[28px] -translate-x-1/2 flex flex-col items-center">
                     {isAssessmentUnlocked ? (
                       <div className="text-green-600">
                         <Unlock className="w-8 h-8" />
@@ -74,7 +74,7 @@ const ProgressTracker = () => {
                         <Lock className="w-8 h-8" />
                       </div>
                     )}
-                    <div className="h-4 w-0.5 bg-gray-300 mt-2" />
+                    <div className="h-4 w-0.5 bg-gray-300" />
                   </div>
 
                   {/* Label and progress bar container */}
