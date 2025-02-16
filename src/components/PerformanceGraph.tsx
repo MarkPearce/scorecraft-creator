@@ -31,8 +31,8 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
   ];
 
   return (
-    <div className="flex items-center">
-      {/* New wrapper div that shrinks to fit content */}
+    <div className="flex items-center justify-start">
+      {/* Content-fit wrapper */}
       <div className="w-fit relative">
         <div className="relative h-[300px]">
           <div className="w-[60px] h-full relative">
