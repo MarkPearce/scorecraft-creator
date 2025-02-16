@@ -70,14 +70,13 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
             </div>
 
             {/* 3. Score indicators section */}
-            <div className="relative h-full -ml-[60px]">
+            <div className="relative h-full" style={{ marginLeft: '-60px' }}>
               {/* Target indicator */}
               <div 
                 className="absolute transition-all duration-300"
                 style={{ 
                   top: calculatePosition(targetScore),
-                  transform: 'translateY(-50%)',
-                  left: '60px'
+                  transform: 'translateY(-50%)'
                 }}
               >
                 <ScoreIndicator 
@@ -92,8 +91,7 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
                 className="absolute transition-all duration-300"
                 style={{ 
                   top: calculatePosition(score),
-                  transform: 'translateY(-50%)',
-                  left: '60px'
+                  transform: 'translateY(-50%)'
                 }}
               >
                 <ScoreIndicator 
