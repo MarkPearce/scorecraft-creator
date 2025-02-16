@@ -116,7 +116,7 @@ const ProgressTracker = () => {
             <Button 
               disabled={!isAssessmentUnlocked}
               onClick={() => navigate('/report')}
-              className="text-base"
+              className="text-base text-white"
             >
               Start prototype
             </Button>
