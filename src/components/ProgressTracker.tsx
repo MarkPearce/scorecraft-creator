@@ -70,10 +70,7 @@ const ProgressTracker = () => {
             <div className="flex flex-col flex-grow">
               <div className="flex flex-col">
                 <div className="flex-grow flex flex-col justify-end">
-                  <div className="relative">
-                    <p className="text-sm text-gray-600 mb-4">
-                      Unlock continuous self assessment by completing more than 60 questions. This gives us enough data to provide analysis and recommendations. The more questions you answer, the more accurate the assessment is.
-                    </p>
+                  <div className="relative mb-4">
                     <div className="flex items-end mb-2">
                       <div className="w-full">
                         <div className="relative">
@@ -103,6 +100,9 @@ const ProgressTracker = () => {
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    Unlock continuous self assessment by completing more than 60 questions. This gives us enough data to provide analysis and recommendations. The more questions you answer, the more accurate the assessment is.
                   </div>
                 </div>
               </div>
