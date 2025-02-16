@@ -1,4 +1,3 @@
-
 import { Settings } from "lucide-react";
 import { useState } from "react";
 import PrototypeControls from "./PrototypeControls";
@@ -105,7 +104,7 @@ const PerformanceScoreCard = ({
   return (
     <Card className={`animate-fadeIn ${className}`}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
-        <CardTitle className="text-2xl font-bold text-gray-900 font-playfair">{title}</CardTitle>
+        <CardTitle>{title}</CardTitle>
         {showControls && (
           <Dialog>
             <DialogTrigger asChild>
@@ -116,7 +115,7 @@ const PerformanceScoreCard = ({
             </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
-                <DialogTitle className="font-playfair">Prototype Controls</DialogTitle>
+                <DialogTitle>Prototype Controls</DialogTitle>
               </DialogHeader>
               <div className="py-4">
                 <PrototypeControls 
@@ -148,4 +147,3 @@ const PerformanceScoreCard = ({
 };
 
 export default PerformanceScoreCard;
-
