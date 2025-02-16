@@ -66,11 +66,11 @@ const ProgressTracker = () => {
                   {/* Progress bar section */}
                   <div className="relative">
                     {/* Label and tick mark container */}
-                    <div className="flex items-end">
-                      <span className="text-sm font-bold mb-2">Continuous assessment</span>
+                    <div className="flex items-end mb-2">
+                      <span className="text-sm font-bold">Continuous assessment</span>
                       
                       {/* Lock icon and tick mark - absolute positioned at 60% */}
-                      <div className="absolute left-[60%] -translate-x-1/2 bottom-[-4px] flex flex-col items-center">
+                      <div className="absolute left-[60%] -translate-x-1/2 bottom-0 flex flex-col items-center">
                         {isAssessmentUnlocked ? (
                           <div className="text-green-600">
                             <Unlock className="w-8 h-8" />
