@@ -32,65 +32,68 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
 
   return (
     <div className="flex items-center">
-      <div className="relative h-[300px]">
-        <div className="w-[60px] h-full relative">
-          {/* Color segments */}
-          {segments.slice(0, -1).map((segment, index) => (
-            <div 
-              key={segment.score}
-              className={`absolute w-full ${segment.color}`}
-              style={{
-                height: '20%',
-                top: `${index * 20}%`,
-              }}
-            />
-          ))}
-          
-          {/* Score labels aligned with color transitions */}
-          <div className="absolute -right-8 h-full w-8">
-            {segments.map((segment, index) => (
-              <div
-                key={`label-${segment.score}`}
-                className="absolute text-sm text-gray-600"
+      {/* New wrapper div that shrinks to fit content */}
+      <div className="w-fit relative">
+        <div className="relative h-[300px]">
+          <div className="w-[60px] h-full relative">
+            {/* Color segments */}
+            {segments.slice(0, -1).map((segment, index) => (
+              <div 
+                key={segment.score}
+                className={`absolute w-full ${segment.color}`}
                 style={{
-                  top: calculatePosition(segment.score),
-                  transform: 'translateY(-50%)',
-                  width: '100%',
-                  textAlign: 'left'
+                  height: '20%',
+                  top: `${index * 20}%`,
                 }}
-              >
-                {segment.label}
-              </div>
+              />
             ))}
-          </div>
+            
+            {/* Score labels aligned with color transitions */}
+            <div className="absolute -right-8 h-full w-8">
+              {segments.map((segment, index) => (
+                <div
+                  key={`label-${segment.score}`}
+                  className="absolute text-sm text-gray-600"
+                  style={{
+                    top: calculatePosition(segment.score),
+                    transform: 'translateY(-50%)',
+                    width: '100%',
+                    textAlign: 'left'
+                  }}
+                >
+                  {segment.label}
+                </div>
+              ))}
+            </div>
 
-          {/* Target indicator */}
-          <div 
-            className="absolute right-0 transition-all duration-300"
-            style={{ 
-              top: calculatePosition(targetScore),
-              transform: 'translateY(-50%)'
-            }}
-          >
-            <ScoreIndicator 
-              label="Target Score"
-              value={targetScore}
-              isTarget
-            />
-          </div>
+            {/* Target indicator */}
+            <div 
+              className="absolute right-0 transition-all duration-300"
+              style={{ 
+                top: calculatePosition(targetScore),
+                transform: 'translateY(-50%)'
+              }}
+            >
+              <ScoreIndicator 
+                label="Target Score"
+                value={targetScore}
+                isTarget
+              />
+            </div>
 
-          {/* Score indicator */}
-          <div 
-            className="absolute right-0 transition-all duration-300"
-            style={{ 
-              top: calculatePosition(score),
-              transform: 'translateY(-50%)'
-            }}
-          >
-            <ScoreIndicator 
-              label="Estimated Score"
-              value={score}
-            />
+            {/* Score indicator */}
+            <div 
+              className="absolute right-0 transition-all duration-300"
+              style={{ 
+                top: calculatePosition(score),
+                transform: 'translateY(-50%)'
+              }}
+            >
+              <ScoreIndicator 
+                label="Estimated Score"
+                value={score}
+              />
+            </div>
           </div>
         </div>
       </div>
