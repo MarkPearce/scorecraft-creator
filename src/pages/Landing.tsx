@@ -15,7 +15,7 @@ const Landing = () => {
         </div>
 
         <div className="max-w-sm mx-auto">
-          <Button variant="default" onClick={() => navigate("/report")} className=" px-0 py-px">
+          <Button variant="default" onClick={() => navigate("/report")} className="py-px px-5">
             Start prototype
           </Button>
         </div>
