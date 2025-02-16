@@ -1,11 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import AmbossLogo from "@/components/AmbossLogo";
-
 const Landing = () => {
   const navigate = useNavigate();
-
   return <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center">
@@ -18,16 +15,11 @@ const Landing = () => {
         </div>
 
         <div className="max-w-sm mx-auto">
-          <Button 
-            variant="default"
-            onClick={() => navigate("/report")}
-            className="w-full"
-          >
+          <Button variant="default" onClick={() => navigate("/report")} className=" px-0 py-px">
             Start prototype
           </Button>
         </div>
       </div>
     </div>;
 };
-
 export default Landing;
