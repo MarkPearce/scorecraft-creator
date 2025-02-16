@@ -194,7 +194,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
             {/* Score indicators */}
             <div className="relative h-full -ml-[60px] w-[200px]">
-              {/* Estimated Score */}
+              {/* Predicted Score */}
               <div 
                 className="absolute -translate-y-1/2"
                 style={{ 
@@ -204,7 +204,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                 }}
               >
                 <ScoreIndicator 
-                  label="Estimated Score"
+                  label="Predicted Score"
                   value={score}
                 />
               </div>
