@@ -95,7 +95,7 @@ const ProgressTracker = () => {
                                 <Lock />
                               </div>
                             )}
-                            <div className="h-4 w-0.5 bg-gray-300 mt-1" />
+                            <div className="h-6 w-0.5 bg-gray-300" />
                           </div>
                         </div>
                       </div>
