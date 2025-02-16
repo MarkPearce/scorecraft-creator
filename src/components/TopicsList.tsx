@@ -48,7 +48,7 @@ const TopicsList = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recommendations</CardTitle>
+        <CardTitle>Study recommendations</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">

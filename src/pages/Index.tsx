@@ -27,14 +27,14 @@ const Index = () => {
               className="mb-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
+              Back to dashboard
             </Button>
           </div>
 
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Continuous Score Estimate</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Continuous score estimate</h1>
             <p className="mt-2 text-gray-600">
-              Here is your assessment based on Qbank Performance. Check out your study recommendations below to optimize your study schedule.
+              Here is your assessment based on Qbank performance. Check out your study recommendations below to optimize your study schedule.
             </p>
           </div>
           
@@ -45,7 +45,7 @@ const Index = () => {
               initialScore={245}
               initialTargetScore={260}
               showControls={false}
-              title="Current Performance"
+              title="Current performance"
             />
             <PerformanceTrackingContainer />
             <PerformanceSummary />

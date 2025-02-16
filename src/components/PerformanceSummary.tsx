@@ -80,13 +80,12 @@ const PerformanceSummary = () => {
     </div>
   );
 
-  // Sort items for list view: lower -> same -> higher
   const sortedItems = [...lowerPerformance, ...samePerformance, ...higherPerformance];
 
   return (
     <Card className="animate-fadeIn">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle>Your Relative Strengths and Weaknesses</CardTitle>
+        <CardTitle>Your relative strengths and weaknesses</CardTitle>
         <Button
           variant="outline"
           size="sm"
