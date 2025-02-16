@@ -117,21 +117,21 @@ const PerformanceSummary = () => {
           <div>
             <table className="w-full">
               <thead>
-                <tr>
-                  <th className="text-left text-sm font-medium text-gray-700 pb-3">Subject</th>
-                  <th className="text-center text-sm font-medium text-gray-700 pb-3">Performance</th>
-                  <th className="text-right text-sm font-medium text-gray-700 pb-3">Action</th>
+                <tr className="grid grid-cols-12 gap-4">
+                  <th className="col-span-7 text-left text-sm font-medium text-gray-700 pb-3">Subject</th>
+                  <th className="col-span-3 text-center text-sm font-medium text-gray-700 pb-3">Performance</th>
+                  <th className="col-span-2 text-right text-sm font-medium text-gray-700 pb-3">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {sortedItems.map((item, index) => (
                   <tr 
                     key={index}
-                    className="group hover:bg-gray-50 transition-colors cursor-pointer"
+                    className="group hover:bg-gray-50 transition-colors cursor-pointer grid grid-cols-12 gap-4"
                     onClick={() => handleStartSession(item.subject)}
                   >
-                    <td className="py-2 font-medium text-gray-900">{item.subject}</td>
-                    <td className="py-2">
+                    <td className="col-span-7 py-2 font-medium text-gray-900">{item.subject}</td>
+                    <td className="col-span-3 py-2">
                       <div className="flex justify-center">
                         <span
                           className={`px-3 py-1 rounded-full text-sm ${
@@ -146,7 +146,7 @@ const PerformanceSummary = () => {
                         </span>
                       </div>
                     </td>
-                    <td className="py-2">
+                    <td className="col-span-2 py-2">
                       <div className="flex justify-end">
                         <Button
                           variant="outline"
