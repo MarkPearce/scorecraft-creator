@@ -31,9 +31,9 @@ const PerformanceGraph = ({ score, targetScore, range }: PerformanceGraphProps) 
   ];
 
   return (
-    <div className="flex items-start justify-start w-full h-full">
+    <div className="flex items-center justify-start">
       {/* Graph wrapper - contains all graph elements */}
-      <div className="w-fit relative p-2 border-r border-gray-200">
+      <div className="w-fit relative p-2">
         <div className="relative h-[300px] flex">
           {/* Graph container with three distinct sections */}
           <div className="flex relative">
