@@ -147,11 +147,11 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   const getScoreStatus = (currentScore: number, target: number) => {
     if (currentScore > target) {
-      return { message: "Exceeding target score", className: "text-[#019444]" };
+      return "Exceeding target score";
     } else if (currentScore === target) {
-      return { message: "Met target score", className: "text-[#8DC641]" };
+      return "Met target score";
     } else {
-      return { message: "Below target score", className: "text-[#ED1B24]" };
+      return "Below target score";
     }
   };
 
@@ -245,8 +245,8 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             {getFaceIcon(score)}
             <div>
               <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
-              <div className={`text-sm font-medium mt-1 ${scoreStatus.className}`}>
-                {scoreStatus.message}
+              <div className="text-sm font-medium mt-1">
+                {scoreStatus}
               </div>
             </div>
           </div>
