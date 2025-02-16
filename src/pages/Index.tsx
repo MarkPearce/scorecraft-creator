@@ -19,9 +19,6 @@ const Index = () => {
             <h1 className="text-4xl font-bold text-gray-900 mb-8">
               Continuous Assessment User Test
             </h1>
-            <Button variant="default" onClick={() => navigate("/report")} className="py-px px-5">
-              Start prototype
-            </Button>
           </div>
 
           <div className="space-y-8">
@@ -34,4 +31,3 @@ const Index = () => {
 };
 
 export default Index;
-
