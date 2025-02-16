@@ -1,4 +1,3 @@
-
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -87,11 +86,11 @@ const ProgressTracker = () => {
                           
                           <div className="absolute left-[60%] -translate-x-1/2 -top-[52px] flex flex-col items-center">
                             {isAssessmentUnlocked ? (
-                              <div className="text-green-600 [&_svg]:size-8">
+                              <div className="text-green-600 [&_svg]:size-8 mt-[1px]">
                                 <Unlock />
                               </div>
                             ) : (
-                              <div className="text-gray-400 [&_svg]:size-8">
+                              <div className="text-gray-400 [&_svg]:size-8 mt-[1px]">
                                 <Lock />
                               </div>
                             )}
