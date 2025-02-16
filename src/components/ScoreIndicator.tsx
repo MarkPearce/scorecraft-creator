@@ -46,14 +46,12 @@ const ScoreIndicator = ({
         </div>
       </div>
 
-      {/* Arrow icon (if present) */}
-      {showMoveIcon && (
-        <MoveVertical className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} ${textColor} ml-2`} />
-      )}
-
-      {/* Label */}
-      <div className="flex items-center ml-2">
-        <span className={`text-sm font-medium ${textColor}`}>{label}</span>
+      {/* Icon and Label container with gray background */}
+      <div className="flex items-center ml-2 bg-gray-50 px-2 py-1 rounded">
+        {showMoveIcon && (
+          <MoveVertical className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} ${textColor}`} />
+        )}
+        <span className={`text-sm font-medium ${textColor} ${showMoveIcon ? 'ml-2' : ''}`}>{label}</span>
       </div>
     </div>
   );
