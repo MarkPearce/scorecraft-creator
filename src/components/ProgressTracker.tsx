@@ -59,32 +59,36 @@ const ProgressTracker = () => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-6">
-          <div className="relative w-full">
-            <div className="h-4 w-full bg-gray-100 rounded-full">
-              <div 
-                className={`absolute left-0 top-0 h-4 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
-                style={{ width: `${questionsAnswered}%` }}
-              />
+          <div className="flex gap-8 items-center">
+            <div className="relative flex-grow">
+              <div className="h-4 w-full bg-gray-100 rounded-full">
+                <div 
+                  className={`absolute left-0 top-0 h-4 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
+                  style={{ width: `${questionsAnswered}%` }}
+                />
+                {/* Vertical line at 50% */}
+                <div className="absolute left-[50%] -top-4 h-12 w-0.5 bg-gray-300" />
+              </div>
+
+              <div className="absolute -bottom-12 left-[50%] -translate-x-1/2 flex items-center gap-2">
+                {isAssessmentUnlocked ? (
+                  <div className="flex items-center gap-2 text-green-600">
+                    <Unlock className="w-12 h-12" />
+                    <span className="text-sm whitespace-nowrap">Continuous assessment</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Lock className="w-12 h-12" />
+                    <span className="text-sm whitespace-nowrap">Continuous assessment</span>
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="absolute -bottom-8 left-[50%] flex items-center gap-2">
-              {isAssessmentUnlocked ? (
-                <div className="flex items-center gap-2 text-green-600">
-                  <Unlock className="w-4 h-4" />
-                  <span className="text-sm whitespace-nowrap">Continuous assessment</span>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 text-gray-400">
-                  <Lock className="w-4 h-4" />
-                  <span className="text-sm whitespace-nowrap">Continuous assessment</span>
-                </div>
-              )}
+            <div className="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg">
+              <div className="text-5xl font-bold text-gray-900">{questionsAnswered}</div>
+              <div className="text-sm text-gray-500 mt-2">Questions completed</div>
             </div>
-          </div>
-
-          <div className="flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg mt-8">
-            <div className="text-5xl font-bold text-gray-900">{questionsAnswered}</div>
-            <div className="text-sm text-gray-500 mt-2">Questions completed</div>
           </div>
 
           <div className="mt-6">
