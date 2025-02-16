@@ -3,8 +3,6 @@ import { Menu, Search, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Avatar, AvatarFallback } from "./ui/avatar";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { Label } from "./ui/label";
 import AmbossLogo from "./AmbossLogo";
 
 export function PageHeader() {
@@ -45,17 +43,6 @@ export function PageHeader() {
         </div>
 
         <div className="flex items-center gap-4">
-          <RadioGroup defaultValue="step1" className="flex gap-4">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="step1" id="step1" />
-              <Label htmlFor="step1" className="text-sm font-medium">USMLE Step 1</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="step2" id="step2" />
-              <Label htmlFor="step2" className="text-sm font-medium">USMLE Step 2</Label>
-            </div>
-          </RadioGroup>
-
           <Button 
             variant="ghost" 
             size="icon" 
