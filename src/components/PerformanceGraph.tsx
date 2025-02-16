@@ -26,7 +26,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
   const segments = [
     { score: range.min, color: "bg-[#019444]", label: `${Math.round(range.min)}` },  // Dark green starts (top)
     { score: range.min + segmentSize, color: "bg-[#8DC641]", label: `${Math.round(range.min + segmentSize)}` },  // Light green starts
-    { score: range.min + (segmentSize * 2), color: "bg-yellow-500", label: `${Math.round(range.min + (segmentSize * 2))}` },  // Yellow starts
+    { score: range.min + (segmentSize * 2), color: "bg-[#FFC107]", label: `${Math.round(range.min + (segmentSize * 2))}` },  // Bright yellow starts
     { score: range.min + (segmentSize * 3), color: "bg-[#F46523]", label: `${Math.round(range.min + (segmentSize * 3))}` },  // Orange starts
     { score: range.min + (segmentSize * 4), color: "bg-[#ED1B24]", label: `${Math.round(range.min + (segmentSize * 4))}` },  // Red starts (bottom)
     { score: range.max, label: `${Math.round(range.max)}` }  // Top value
