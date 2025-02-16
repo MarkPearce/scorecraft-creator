@@ -4,7 +4,7 @@ import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Dropl
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import SubjectProgress from "@/components/SubjectProgress";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { GastroIcon } from "@/components/icons/GastroIcon";
 import { LungsIcon } from "@/components/icons/LungsIcon";
 import { ReproductiveIcon } from "@/components/icons/ReproductiveIcon";
@@ -49,9 +49,11 @@ const TopicBreakdown = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
-          <Card className="p-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Overall Performance</CardTitle>
+          </CardHeader>
+          <CardContent>
             <div className="flex justify-between gap-8">
               <div>
                 <div className="text-sm text-[#403E43] mb-2">Your Score</div>
@@ -70,8 +72,8 @@ const TopicBreakdown = () => {
                 <div className="text-4xl font-bold text-gray-600">Oct 15, 2025</div>
               </div>
             </div>
-          </Card>
-        </div>
+          </CardContent>
+        </Card>
 
         <PerformanceOverview 
           score={33}
