@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 
@@ -81,7 +80,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       <div className="flex items-center justify-center">
         {/* Graph wrapper - contains all graph elements */}
         <div className="w-fit relative p-6 pl-52 rounded-lg">
-          <div className="relative h-[300px] flex">
+          <div className="relative h-[300px] flex graph-container">
             {/* Graph container with three distinct sections */}
             <div className="flex relative">
               {/* 1. Colored bar section */}
@@ -123,7 +122,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                   className="absolute transition-all duration-300 group"
                   style={{ 
                     top: calculatePosition(targetScore),
-                    transform: 'translateY(-50%)',
                     right: '-60px'
                   }}
                 >
@@ -145,7 +143,6 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                   className="absolute transition-all duration-300"
                   style={{ 
                     top: calculatePosition(score),
-                    transform: 'translateY(-50%)',
                     right: '-60px'
                   }}
                 >
@@ -177,4 +174,3 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 };
 
 export default PerformanceGraph;
-

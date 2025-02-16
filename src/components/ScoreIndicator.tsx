@@ -53,10 +53,14 @@ const ScoreIndicator = ({
     if (!isDragging || startY === null || startValue === null || !onValueChange) return;
     e.preventDefault();
 
+    // Get the direct parent height (the graph container)
+    const graphContainer = containerRef.current?.closest('.graph-container');
+    if (!graphContainer) return;
+
+    const rect = graphContainer.getBoundingClientRect();
     const deltaY = startY - e.clientY;
-    const parentHeight = containerRef.current?.parentElement?.getBoundingClientRect().height || 300;
     const valueRange = max - min;
-    const pixelsPerUnit = parentHeight / valueRange;
+    const pixelsPerUnit = rect.height / valueRange;
     
     const valueDelta = Math.round(deltaY / pixelsPerUnit);
     const newValue = Math.max(min, Math.min(max, startValue + valueDelta));
@@ -68,10 +72,14 @@ const ScoreIndicator = ({
     if (!isDragging || startY === null || startValue === null || !onValueChange) return;
     e.preventDefault();
 
+    // Get the direct parent height (the graph container)
+    const graphContainer = containerRef.current?.closest('.graph-container');
+    if (!graphContainer) return;
+
+    const rect = graphContainer.getBoundingClientRect();
     const deltaY = startY - e.touches[0].clientY;
-    const parentHeight = containerRef.current?.parentElement?.getBoundingClientRect().height || 300;
     const valueRange = max - min;
-    const pixelsPerUnit = parentHeight / valueRange;
+    const pixelsPerUnit = rect.height / valueRange;
     
     const valueDelta = Math.round(deltaY / pixelsPerUnit);
     const newValue = Math.max(min, Math.min(max, startValue + valueDelta));
@@ -110,7 +118,6 @@ const ScoreIndicator = ({
         ${!isMobile && isDragging ? 'cursor-grabbing' : ''}
         ${isTarget ? 'active:bg-gray-50/50 rounded-lg transition-colors' : ''}
         ${isMobile && isTarget ? 'p-2 -m-2' : ''}
-        relative
       `}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
