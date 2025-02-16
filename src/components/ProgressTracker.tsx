@@ -18,11 +18,11 @@ const ProgressTracker = () => {
   const [questionsAnswered, setQuestionsAnswered] = useState(30);
   const { toast } = useToast();
   
-  const isAssessmentUnlocked = questionsAnswered >= 50;
+  const isAssessmentUnlocked = questionsAnswered >= 60;
 
   const getBarColor = (progress: number) => {
     if (progress >= 75) return 'bg-green-600';
-    if (progress >= 50) return 'bg-blue-600';
+    if (progress >= 60) return 'bg-blue-600';
     return 'bg-gray-500';
   };
 
@@ -66,20 +66,20 @@ const ProgressTracker = () => {
                   className={`absolute left-0 top-0 h-4 transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
                   style={{ width: `${questionsAnswered}%` }}
                 />
-                {/* Vertical line at 50% */}
-                <div className="absolute left-[50%] -top-4 h-12 w-0.5 bg-gray-300" />
+                {/* Vertical line at 60% */}
+                <div className="absolute left-[60%] top-4 h-8 w-0.5 bg-gray-300" />
               </div>
 
-              <div className="absolute -bottom-12 left-[50%] -translate-x-1/2 flex items-center gap-2">
+              <div className="absolute -bottom-16 left-[60%] -translate-x-1/2 flex items-center gap-2">
                 {isAssessmentUnlocked ? (
-                  <div className="flex items-center gap-2 text-green-600">
+                  <div className="flex flex-col items-center text-green-600">
                     <Unlock className="w-12 h-12" />
-                    <span className="text-sm whitespace-nowrap">Continuous assessment</span>
+                    <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 text-gray-400">
+                  <div className="flex flex-col items-center text-gray-400">
                     <Lock className="w-12 h-12" />
-                    <span className="text-sm whitespace-nowrap">Continuous assessment</span>
+                    <span className="text-sm whitespace-nowrap mt-2">Continuous assessment</span>
                   </div>
                 )}
               </div>
