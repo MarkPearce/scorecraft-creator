@@ -25,7 +25,7 @@ const ScoreIndicator = ({
       flex items-center
       ${isTarget ? 'select-none' : ''} 
       ${!isMobile && isTarget ? 'cursor-grab active:cursor-grabbing' : ''}
-      ${isTarget ? 'active:bg-gray-50/50 rounded-l-lg' : ''}
+      ${isTarget ? 'active:bg-gray-50/50' : ''}
       ${isMobile && isTarget ? 'p-2 -m-2' : ''}
     `}>
       {/* Line and Value box container */}
