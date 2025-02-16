@@ -1,3 +1,4 @@
+
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -37,23 +38,25 @@ const ProgressTracker = () => {
   };
 
   return (
-    <Card className="animate-fadeIn">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-xl font-semibold text-gray-900">Questions in last 30 days</CardTitle>
-        <div className="flex items-center gap-2">
-          <Button 
-            variant="outline" 
-            onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}
-          >
-            -10
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}
-          >
-            +10
-          </Button>
-        </div>
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <span>Questions in last 30 days</span>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}
+            >
+              -10
+            </Button>
+            <Button 
+              variant="outline" 
+              onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}
+            >
+              +10
+            </Button>
+          </div>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex gap-6 items-center">
