@@ -148,10 +148,10 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
 
   return (
     <div 
-      className="flex flex-wrap items-start gap-6"
+      className="flex flex-wrap items-start justify-center gap-6"
       onTouchMove={(e) => isDragging && e.preventDefault()}
     >
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center w-[350px]">
         <div className="relative">
           <div 
             className="relative h-[300px] flex bg-[#D3E4FD] p-1 rounded-lg"
@@ -233,7 +233,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
       </div>
 
       {/* Right column with emoji and score */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center w-[350px]">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg`}>
           <div className="flex items-center justify-center gap-6">
             {getFaceIcon(score)}
