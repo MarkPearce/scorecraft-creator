@@ -192,7 +192,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
             </div>
 
             {/* Score indicators */}
-            <div className="relative h-full ml-4 flex-grow">
+            <div className="relative h-full -ml-[60px] flex-grow">
               <div 
                 className="absolute"
                 style={{ 
