@@ -67,25 +67,6 @@ const ProgressTracker = () => {
               <div className="h-[116px] flex flex-col">
                 <div className="flex-grow flex flex-col justify-end">
                   <div className="relative">
-                    <div className="flex items-end mb-2">
-                      <span className={`text-sm font-bold ${isAssessmentUnlocked ? 'text-green-600' : 'text-gray-900'}`}>
-                        {isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}
-                      </span>
-                      
-                      <div className="absolute left-[60%] -translate-x-1/2 top-0 flex flex-col items-center">
-                        {isAssessmentUnlocked ? (
-                          <div className="text-green-600 [&_svg]:size-8">
-                            <Unlock />
-                          </div>
-                        ) : (
-                          <div className="text-gray-400 [&_svg]:size-8">
-                            <Lock />
-                          </div>
-                        )}
-                        <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
-                      </div>
-                    </div>
-
                     <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
                       <div 
                         className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
@@ -95,6 +76,19 @@ const ProgressTracker = () => {
                           borderBottomRightRadius: 0
                         }}
                       />
+                    </div>
+
+                    <div className="absolute left-[60%] -translate-x-1/2 -top-8 flex flex-col items-center">
+                      {isAssessmentUnlocked ? (
+                        <div className="text-green-600 [&_svg]:size-8">
+                          <Unlock />
+                        </div>
+                      ) : (
+                        <div className="text-gray-400 [&_svg]:size-8">
+                          <Lock />
+                        </div>
+                      )}
+                      <div className="h-6 w-0.5 bg-gray-300 -mt-1" />
                     </div>
 
                     <p className="text-sm text-gray-600 mt-4">
