@@ -15,7 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [questionsAnswered, setQuestionsAnswered] = useState(35);
+  const [questionsAnswered, setQuestionsAnswered] = useState(45);
   const { toast } = useToast();
   
   const isAssessmentUnlocked = questionsAnswered >= 60;
@@ -87,8 +87,12 @@ const ProgressTracker = () => {
                     {/* Progress bar */}
                     <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
                       <div 
-                        className={`h-full transition-all duration-500 rounded-full ${getBarColor(questionsAnswered)}`}
-                        style={{ width: `${questionsAnswered}%` }}
+                        className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
+                        style={{ 
+                          width: `${questionsAnswered}%`,
+                          borderTopRightRadius: 0,
+                          borderBottomRightRadius: 0
+                        }}
                       />
                     </div>
                   </div>
