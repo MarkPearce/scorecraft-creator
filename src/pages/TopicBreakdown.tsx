@@ -53,7 +53,7 @@ const TopicBreakdown = () => {
           <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="p-6">
-              <div className="grid grid-cols-2 divide-x-2 divide-gray-600">
+              <div className="grid grid-cols-2">
                 <div className="pr-4">
                   <div className="text-sm text-[#403E43] mb-2">Your Score</div>
                   <div className="text-4xl font-bold text-gray-600">238</div>
