@@ -21,8 +21,7 @@ const ProgressTracker = () => {
   const isAssessmentUnlocked = questionsAnswered >= 60;
 
   const getBarColor = (progress: number) => {
-    if (progress >= 75) return 'bg-green-600';
-    if (progress >= 60) return 'bg-blue-600';
+    if (progress >= 60) return 'bg-green-600';
     return 'bg-gray-500';
   };
 
@@ -67,7 +66,9 @@ const ProgressTracker = () => {
                   <div className="relative">
                     {/* Label and tick mark container */}
                     <div className="flex items-end mb-2">
-                      <span className="text-sm font-bold">Continuous assessment</span>
+                      <span className={`text-sm font-bold ${isAssessmentUnlocked ? 'text-green-600' : 'text-gray-900'}`}>
+                        {isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}
+                      </span>
                       
                       {/* Lock icon and tick mark - absolute positioned at 60% */}
                       <div className="absolute left-[60%] -translate-x-1/2 bottom-0 flex flex-col items-center">
