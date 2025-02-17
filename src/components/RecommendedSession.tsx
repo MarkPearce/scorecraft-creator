@@ -23,7 +23,8 @@ const RecommendedSession = () => {
         </div>
         <div className="flex items-center justify-center p-6">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336.6 147" className="w-full h-full">
-            <rect width="336.6" height="147" fill="none"/>
+            <rect width="336.6" height="147" fill="#f5f7f9"/>
+            <rect width="336.6" height="147" stroke="#e0e6eb" fill="none"/>
           </svg>
         </div>
       </div>
