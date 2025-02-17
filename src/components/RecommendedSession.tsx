@@ -8,14 +8,14 @@ const RecommendedSession = () => {
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
           <CardHeader>
-            <CardTitle>Recommended session</CardTitle>
+            <CardTitle className="font-lato">Recommended session</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <p className="text-gray-600">
+            <p className="text-gray-600 font-lato">
               Do this question session to improve your performance with personalized high-yield questions and update your performance prediction.
             </p>
             <div>
-              <Button variant="default">
+              <Button variant="default" className="font-lato">
                 Start session
               </Button>
             </div>
