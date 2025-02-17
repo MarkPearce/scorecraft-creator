@@ -1,15 +1,8 @@
-
 import { BarChart, LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from './ui/dialog';
+import QuestionSessionDialog from './QuestionSessionDialog';
 
 interface PerformanceItem {
   subject: string;
@@ -173,27 +166,13 @@ const PerformanceSummary = () => {
         )}
       </CardContent>
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Start Question Session</DialogTitle>
-          </DialogHeader>
-          <p className="text-gray-600">
-            Are you ready to start a question session for {selectedSubject}?
-          </p>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button onClick={() => {
-              console.log(`Starting session for ${selectedSubject}`);
-              setDialogOpen(false);
-            }}>
-              Start
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <QuestionSessionDialog 
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        title="Start Question Session"
+        description={`Are you ready to start a question session for ${selectedSubject}?`}
+        buttonText="Start Session"
+      />
     </Card>
   );
 };
