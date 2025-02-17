@@ -49,9 +49,9 @@ const OverallPerformance = ({
             <span>Question count</span>
             <span>{questionsAnswered}/{totalQuestions}</span>
           </div>
-          <Progress value={progressPercentage} className="h-2" />
-          <div className="flex justify-between items-center mt-2">
-            <span className="text-sm text-gray-600">Complete the recommended question set to reach your goal</span>
+          <Progress value={progressPercentage} className="h-4" />
+          <div className="flex justify-between items-center mt-6">
+            <span className="text-base text-gray-600">Complete the recommended question set to reach your goal</span>
             <Button variant="outline">Continue questions</Button>
           </div>
         </div>
