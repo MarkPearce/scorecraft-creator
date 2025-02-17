@@ -1,8 +1,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { useState } from "react";
+import QuestionSessionDialog from "./QuestionSessionDialog";
 
 const RecommendedSession = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -40,17 +40,10 @@ const RecommendedSession = () => {
         </div>
       </Card>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogTitle className="text-lg font-semibold">Question Session</DialogTitle>
-          <DialogDescription className="py-4 text-base">
-            Ready to continue with your practice questions?
-          </DialogDescription>
-          <DialogClose asChild>
-            <Button variant="default" className="w-full font-lato text-base">Start Session</Button>
-          </DialogClose>
-        </DialogContent>
-      </Dialog>
+      <QuestionSessionDialog 
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+      />
     </>
   );
 };

@@ -2,8 +2,8 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { useState } from "react";
+import QuestionSessionDialog from "./QuestionSessionDialog";
 
 interface OverallPerformanceProps {
   yourScore: number;
@@ -64,17 +64,10 @@ const OverallPerformance = ({
         </CardContent>
       </Card>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogTitle className="text-lg font-semibold">Question Session</DialogTitle>
-          <DialogDescription className="py-4 text-base">
-            Ready to continue with your practice questions?
-          </DialogDescription>
-          <DialogClose asChild>
-            <Button variant="default" className="w-full font-lato text-base">Start Session</Button>
-          </DialogClose>
-        </DialogContent>
-      </Dialog>
+      <QuestionSessionDialog 
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+      />
     </>
   );
 };
