@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PeerGroup from "@/components/PeerGroup";
-import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 import { TextProjectionCard } from "@/components/TextProjectionCard";
@@ -68,7 +67,6 @@ const Report = () => {
             />
             <PerformanceTrackingContainer />
             <PerformanceSummary />
-            <TopicsList />
           </div>
         </div>
       </div>
