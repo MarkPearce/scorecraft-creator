@@ -1,3 +1,4 @@
+
 import { Settings } from "lucide-react";
 import { useState } from "react";
 import PrototypeControls from "./PrototypeControls";
@@ -133,7 +134,7 @@ const PerformanceScoreCard = ({
       </CardHeader>
 
       <CardContent>
-        <div className="flex justify-center">
+        <div className="w-full max-w-[1000px] mx-auto">
           <PerformanceGraph 
             score={score}
             targetScore={targetScore}

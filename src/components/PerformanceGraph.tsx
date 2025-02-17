@@ -158,11 +158,8 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
   const scoreStatus = getScoreStatus(score, targetScore);
 
   return (
-    <div 
-      className="flex flex-wrap items-start justify-center gap-6"
-      onTouchMove={(e) => isDragging && e.preventDefault()}
-    >
-      <div className="flex items-center justify-center w-[350px]">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+      <div className="flex items-center justify-center">
         <div className="relative">
           <div 
             className="relative h-[300px] flex p-1 rounded-lg"
@@ -238,7 +235,7 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
         </div>
       </div>
 
-      <div className="flex items-center justify-center w-[350px]">
+      <div className="flex items-center justify-center">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
           <h3 className="text-gray-900 font-semibold text-lg mb-4">Predicted Score</h3>
           <div className="grid grid-cols-2 gap-4">
