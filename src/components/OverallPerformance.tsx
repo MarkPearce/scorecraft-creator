@@ -1,6 +1,7 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 
 interface OverallPerformanceProps {
   yourScore: number;
@@ -49,6 +50,10 @@ const OverallPerformance = ({
             <span>{questionsAnswered}/{totalQuestions}</span>
           </div>
           <Progress value={progressPercentage} className="h-2" />
+          <div className="flex justify-between items-center mt-2">
+            <span className="text-sm text-gray-600">Complete the recommended question set to reach your goal</span>
+            <Button variant="outline">Continue questions</Button>
+          </div>
         </div>
       </CardContent>
     </Card>
