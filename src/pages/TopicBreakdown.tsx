@@ -3,7 +3,7 @@ import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Dropl
 import { useNavigate } from "react-router-dom";
 import PerformanceOverview from "@/components/PerformanceOverview";
 import SubjectProgress from "@/components/SubjectProgress";
-import { Card } from "@/components/ui/card";
+import OverallPerformance from "@/components/OverallPerformance";
 import { GastroIcon } from "@/components/icons/GastroIcon";
 import { LungsIcon } from "@/components/icons/LungsIcon";
 import { ReproductiveIcon } from "@/components/icons/ReproductiveIcon";
@@ -48,23 +48,12 @@ const TopicBreakdown = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-gray-900">Overall Performance</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="p-6 bg-blue-50">
-              <div className="text-sm text-[#403E43] mb-2">Your Score</div>
-              <div className="text-4xl font-bold text-blue-600">238</div>
-            </Card>
-            <Card className="p-6 bg-green-50">
-              <div className="text-sm text-[#403E43] mb-2">Questions Answered</div>
-              <div className="text-4xl font-bold text-green-600">{totalQuestionsAnswered}</div>
-            </Card>
-            <Card className="p-6 bg-purple-50">
-              <div className="text-sm text-[#403E43] mb-2">Target Score</div>
-              <div className="text-4xl font-bold text-purple-600">240</div>
-            </Card>
-          </div>
-        </div>
+        <OverallPerformance
+          yourScore={238}
+          targetScore={240}
+          questionsAnswered={totalQuestionsAnswered}
+          examDate="Oct 15, 2025"
+        />
 
         <PerformanceOverview 
           score={33}

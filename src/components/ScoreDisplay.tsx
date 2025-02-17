@@ -32,7 +32,7 @@ export const ScoreDisplay = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   const getProgressColor = () => {
-    return isComplete ? "bg-[#66BB6A]" : "bg-[#8A898C]";
+    return isComplete ? "bg-green-600" : "bg-gray-500";
   };
 
   const handleQuestionClick = (e: React.MouseEvent) => {
@@ -56,7 +56,7 @@ export const ScoreDisplay = ({
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
-            <span className="text-sm text-[#8A898C] whitespace-nowrap flex-shrink-0">
+            <span className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">
               {questionsCompleted}/{totalQuestions}
             </span>
           </div>
@@ -72,9 +72,9 @@ export const ScoreDisplay = ({
           <div className="w-8 flex items-center justify-center flex-shrink-0" onClick={(e) => e.stopPropagation()}>
             {meetsTarget && isComplete && (
               <Star 
-                className="w-8 h-8 text-[#F97316]" 
-                fill="#FACC15" 
-                stroke="#F97316"
+                className="w-8 h-8 text-yellow-600"
+                fill="#f6bc56"
+                stroke="#df9411"
                 strokeWidth={1.5}
               />
             )}
@@ -84,7 +84,7 @@ export const ScoreDisplay = ({
                 size="icon"
                 className={`h-8 w-8 transition-colors group p-0
                   ${isComplete && !meetsTarget 
-                    ? "bg-[#66BB6A] hover:bg-[#86CB8A] border-[#66BB6A]" 
+                    ? "bg-green-600 hover:bg-green-700 border-green-600" 
                     : "border-gray-400 hover:bg-gray-100"}`}
                 onClick={handleQuestionClick}
               >

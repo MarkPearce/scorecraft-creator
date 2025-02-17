@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Book } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface Topic {
   id: number;
@@ -45,70 +46,72 @@ const TopicsList = () => {
   const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm animate-fadeIn">
-      <h2 className="text-xl font-semibold mb-4">Recommendations</h2>
-      <div className="space-y-3">
-        {topics.map((topic) => (
-          <div
-            key={topic.id}
-            onClick={() => setExpandedTopic(expandedTopic === topic.id ? null : topic.id)}
-            className="border rounded-lg p-4 hover:border-blue-200 transition-all duration-200 cursor-pointer"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Book className="w-5 h-5 text-gray-500" />
-                <span className="font-medium">{topic.title}</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="relative w-12 h-12">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xs font-medium text-gray-700">{topic.score}%</span>
+    <Card>
+      <CardHeader>
+        <CardTitle>Study recommendations</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          {topics.map((topic) => (
+            <div
+              key={topic.id}
+              onClick={() => setExpandedTopic(expandedTopic === topic.id ? null : topic.id)}
+              className="border rounded-lg p-4 hover:border-blue-200 transition-all duration-200 cursor-pointer"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <Book className="w-5 h-5 text-gray-500" />
+                  <span className="font-medium text-gray-900">{topic.title}</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="relative w-12 h-12">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-xs font-medium text-gray-700">{topic.score}%</span>
+                    </div>
+                    <svg className="w-12 h-12">
+                      <path
+                        d={calculateArc(topic.score).green}
+                        className="stroke-green-600"
+                        strokeWidth="6"
+                        fill="transparent"
+                        strokeLinecap="butt"
+                      />
+                      <path
+                        d={calculateArc(topic.score).red}
+                        className="stroke-red-600"
+                        strokeWidth="6"
+                        fill="transparent"
+                        strokeLinecap="butt"
+                      />
+                    </svg>
                   </div>
-                  <svg className="w-12 h-12">
-                    <path
-                      d={calculateArc(topic.score).green}
-                      className="text-green-400"
-                      strokeWidth="6"
-                      stroke="currentColor"
-                      fill="transparent"
-                      strokeLinecap="butt"
-                    />
-                    <path
-                      d={calculateArc(topic.score).red}
-                      className="text-red-700"
-                      strokeWidth="6"
-                      stroke="currentColor"
-                      fill="transparent"
-                      strokeLinecap="butt"
-                    />
-                  </svg>
+                  {expandedTopic === topic.id ? (
+                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <ChevronRight className="w-5 h-5 text-gray-500" />
+                  )}
                 </div>
-                {expandedTopic === topic.id ? (
-                  <ChevronDown className="w-5 h-5 text-gray-500" />
-                ) : (
-                  <ChevronRight className="w-5 h-5 text-gray-500" />
-                )}
               </div>
+              {expandedTopic === topic.id && (
+                <div className="mt-4 pl-8 animate-fadeIn">
+                  <p className="text-gray-600 mb-3">
+                    Your qbank performance for {topic.title} places you in the {Math.floor(topic.score / 2)}th percentile, among your peer group. Additional Practice is recommended.
+                  </p>
+                  <div className="mt-2 flex space-x-2">
+                    <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
+                      Read Article
+                    </button>
+                    <button className="px-3 py-1 text-sm bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors">
+                      Practice Questions
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
-            {expandedTopic === topic.id && (
-              <div className="mt-4 pl-8 animate-fadeIn">
-                <p className="text-gray-600 mb-3">
-                  Your qbank performance for {topic.title} places you in the {Math.floor(topic.score / 2)}th percentile, among your peer group. Additional Practice is recommended.
-                </p>
-                <div className="mt-2 flex space-x-2">
-                  <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
-                    Read Article
-                  </button>
-                  <button className="px-3 py-1 text-sm bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors">
-                    Practice Questions
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
