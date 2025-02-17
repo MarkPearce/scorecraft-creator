@@ -6,9 +6,9 @@ interface PercentileDisplayProps {
 }
 
 const getPercentileBackground = (percentile: number) => {
-  if (percentile < 40) return "bg-amber-50";
-  if (percentile < 70) return "bg-amber-100";
-  return "bg-amber-200";
+  if (percentile < 40) return "bg-yellow-500/15";
+  if (percentile < 70) return "bg-yellow-500/15";
+  return "bg-yellow-500/15";
 };
 
 const ordinalSuffix = "th";
@@ -28,3 +28,4 @@ export const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {
     </div>
   );
 };
+
