@@ -109,7 +109,7 @@ const ProgressTracker = () => {
               </div>
             </div>
 
-            <div className="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg h-[116px]">
+            <div className={`flex-shrink-0 flex flex-col items-center justify-center p-6 rounded-lg h-[116px] ${isAssessmentUnlocked ? 'bg-green-50' : 'bg-gray-50'}`}>
               <div className="text-5xl font-bold text-gray-900">{questionsAnswered}</div>
               <div className="text-sm text-gray-500 mt-2">Questions completed</div>
             </div>
