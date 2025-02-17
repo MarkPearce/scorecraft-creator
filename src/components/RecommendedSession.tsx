@@ -42,12 +42,12 @@ const RecommendedSession = () => {
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
-          <DialogTitle>Question Session</DialogTitle>
-          <DialogDescription className="py-4">
+          <DialogTitle className="text-lg font-semibold">Question Session</DialogTitle>
+          <DialogDescription className="py-4 text-base">
             Ready to continue with your practice questions?
           </DialogDescription>
           <DialogClose asChild>
-            <Button variant="default" className="w-full font-lato">Start Session</Button>
+            <Button variant="default" className="w-full font-lato text-base">Start Session</Button>
           </DialogClose>
         </DialogContent>
       </Dialog>
