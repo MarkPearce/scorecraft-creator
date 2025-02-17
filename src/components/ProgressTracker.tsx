@@ -75,7 +75,7 @@ const ProgressTracker = () => {
                     <div className="flex items-end mb-2">
                       <div className="w-full">
                         <div className="relative">
-                          <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
+                          <div className={`h-4 w-full rounded-full border border-gray-300 overflow-hidden ${isAssessmentUnlocked ? 'bg-green-50' : 'bg-gray-100'}`}>
                             <div 
                               className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
                               style={{ 
