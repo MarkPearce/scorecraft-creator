@@ -3,9 +3,16 @@ import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(45);
@@ -14,10 +21,12 @@ const ProgressTracker = () => {
   } = useToast();
   const navigate = useNavigate();
   const isAssessmentUnlocked = questionsAnswered >= 60;
+
   const getBarColor = (progress: number) => {
     if (progress >= 60) return 'bg-green-600';
     return 'bg-gray-500';
   };
+
   const handleBoostAssessment = () => {
     setQuestionsAnswered(prev => Math.min(prev + 20, 100));
     setIsDialogOpen(false);
@@ -27,7 +36,9 @@ const ProgressTracker = () => {
       duration: 3000
     });
   };
-  return <Card>
+
+  return (
+    <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           <span>
@@ -88,7 +99,11 @@ const ProgressTracker = () => {
             <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>
               Boost assessment
             </Button>
-            <Button disabled={!isAssessmentUnlocked} onClick={() => navigate('/report')} className="text-base font-medium">
+            <Button 
+              disabled={!isAssessmentUnlocked}
+              onClick={() => navigate('/report')}
+              className="text-base font-medium"
+            >
               Start prototype
             </Button>
           </div>
@@ -106,13 +121,15 @@ const ProgressTracker = () => {
               <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button onClick={handleBoostAssessment}>
+              <Button onClick={handleBoostAssessment} className="font-medium">
                 Start assessment
               </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };
+
 export default ProgressTracker;
