@@ -13,7 +13,7 @@ export function PageHeader() {
           <Button variant="ghost" size="icon" className="shrink-0 [&_svg]:size-6">
             <Menu />
           </Button>
-          <div className="h-7">
+          <div className="h-9">
             <AmbossLogo />
           </div>
           <div 
