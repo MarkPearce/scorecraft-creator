@@ -31,7 +31,7 @@ const QuestionSessionDialog = ({
         <DialogDescription className="py-4 text-base">
           {description}
         </DialogDescription>
-        <DialogFooter className="flex gap-3 sm:gap-0">
+        <DialogFooter className="flex gap-6 sm:gap-4">
           <DialogClose asChild>
             <Button variant="outline" className="font-lato text-base">
               Cancel
