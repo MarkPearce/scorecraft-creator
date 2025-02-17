@@ -63,7 +63,7 @@ const Report = () => {
               questionsAnswered={422}
               examDate="Oct 15, 2025"
             />
-            <TextProjectionCard percentile={currentPercentile} />
+            <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
             <PeerGroup />
             <PerformanceScoreCard 
               examStep={currentStep}
