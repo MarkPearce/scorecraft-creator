@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  DialogFooter,
 } from "@/components/ui/dialog";
 
 interface QuestionSessionDialogProps {
@@ -30,11 +31,18 @@ const QuestionSessionDialog = ({
         <DialogDescription className="py-4 text-base">
           {description}
         </DialogDescription>
-        <DialogClose asChild>
-          <Button variant="default" className="w-full font-lato text-base">
-            {buttonText}
-          </Button>
-        </DialogClose>
+        <DialogFooter className="flex gap-3 sm:gap-0">
+          <DialogClose asChild>
+            <Button variant="outline" className="font-lato text-base">
+              Cancel
+            </Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button variant="default" className="font-lato text-base">
+              {buttonText}
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
