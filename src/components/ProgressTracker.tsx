@@ -1,3 +1,4 @@
+
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -69,7 +70,7 @@ const ProgressTracker = () => {
             <div className="flex flex-col flex-grow">
               <div className="flex flex-col">
                 <div className="flex-grow flex flex-col justify-end">
-                  <div className="relative mb-4">
+                  <div className="relative mb-4 mt-8">
                     <div className="flex items-end mb-2">
                       <div className="w-full">
                         <div className="relative">
