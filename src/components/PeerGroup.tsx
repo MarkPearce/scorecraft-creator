@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -22,7 +23,7 @@ const generateData = () => {
 const data = generateData();
 
 // Mock student score - this would typically come from props or an API
-const studentScore = 238;
+const studentScore = 245;
 
 const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
@@ -77,12 +78,12 @@ const PeerGroup = () => {
             <Tooltip formatter={(value: number) => [`${value} students`, 'Frequency']} labelFormatter={(label: number) => `Score: ${label}`} />
             <Area type="natural" dataKey="count" stroke="#0aa6b8" fill="url(#colorCount)" strokeWidth={2} />
             <ReferenceLine x={studentScore} stroke="#374151" strokeWidth={2} label={{
-              value: `Estimated Score ${studentScore}`,
+              value: `Predicted Score ${studentScore}`,
               position: 'top',
               fill: '#374151',
               fontSize: 14,
               fontWeight: 600,
-              dy: -5
+              dy: -15
             }} />
           </AreaChart>
         </ResponsiveContainer>
