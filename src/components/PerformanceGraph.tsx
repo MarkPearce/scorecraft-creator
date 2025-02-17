@@ -256,7 +256,7 @@ const PerformanceGraph = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center pt-4">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
           <h3 className="text-gray-900 font-semibold text-lg mb-4">Predicted Score</h3>
           <div className="grid grid-cols-2 gap-0">
