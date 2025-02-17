@@ -17,7 +17,7 @@ export function PageHeader() {
             <AmbossLogo />
           </div>
           <div 
-            className="w-[98px] h-[26px] border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] text-xs font-bold tracking-[1px] flex items-center justify-center gap-1 uppercase antialiased leading-4"
+            className="h-9 px-4 border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] text-xs font-bold tracking-[1px] flex items-center justify-center gap-1 uppercase antialiased leading-4"
             style={{
               textRendering: 'optimizeLegibility',
               WebkitFontSmoothing: 'antialiased',
