@@ -99,9 +99,7 @@ const ProgressTracker = () => {
             <DialogHeader>
               <DialogTitle>Unlock assessment</DialogTitle>
             </DialogHeader>
-            <p className="py-4 text-gray-600">
-              You'll be presented with 20 new questions to boost your progress. Ready to begin?
-            </p>
+            <p className="py-4 text-gray-600">Answer more questions to unlock your assessment. Do 20 questions to boost your progress. Ready to begin?</p>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancel
