@@ -21,7 +21,7 @@ export const TextProjectionCard = ({ percentile, examStep = 'step2' }: TextProje
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          <div className="space-y-4 text-left text-gray-600 font-lato">
+          <div className="space-y-4 text-left text-gray-600 font-lato text-base">
             <p>
               You are currently at the {percentile}<sup>th</sup> percentile compared to other learners.
             </p>
