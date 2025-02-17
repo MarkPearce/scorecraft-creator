@@ -11,10 +11,12 @@ import PerformanceScoreCard from "@/components/PerformanceScoreCard";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
+import { useState } from "react";
 
 const Report = () => {
   const navigate = useNavigate();
   const currentPercentile = 30;
+  const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
 
   return (
     <>
@@ -31,7 +33,11 @@ const Report = () => {
               Back to dashboard
             </Button>
 
-            <RadioGroup defaultValue="step2" className="flex gap-4">
+            <RadioGroup 
+              value={currentStep}
+              onValueChange={(value: 'step1' | 'step2') => setCurrentStep(value)}
+              className="flex gap-4"
+            >
               <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
                 <RadioGroupItem value="step1" id="step1" />
                 <Label htmlFor="step1" className="text-sm font-medium cursor-pointer">USMLE Step 1</Label>
@@ -60,8 +66,10 @@ const Report = () => {
             <TextProjectionCard percentile={currentPercentile} />
             <PeerGroup />
             <PerformanceScoreCard 
+              examStep={currentStep}
               initialScore={245}
-              initialTargetScore={260}
+              initialTargetScore={currentStep === 'step1' ? undefined : 260}
+              passingStandard={currentStep === 'step1' ? 252 : undefined}
               showControls={false}
               title="Current performance"
             />

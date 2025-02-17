@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -10,9 +11,18 @@ interface PerformanceGraphProps {
     max: number;
   };
   onTargetScoreChange?: (value: number) => void;
+  examStep?: 'step1' | 'step2';
+  passingStandard?: number;
 }
 
-const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: PerformanceGraphProps) => {
+const PerformanceGraph = ({ 
+  score, 
+  targetScore, 
+  range, 
+  onTargetScoreChange,
+  examStep = 'step2',
+  passingStandard
+}: PerformanceGraphProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const initialTouchY = useRef<number | null>(null);
@@ -145,17 +155,24 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
     }
   };
 
-  const getScoreStatus = (currentScore: number, target: number) => {
-    if (currentScore > target) {
+  const getScoreStatus = (currentScore: number) => {
+    if (examStep === 'step1') {
+      if (currentScore >= (passingStandard || 252)) {
+        return "Your predicted score meets the passing standard";
+      }
+      return "Your predicted score is below the passing standard";
+    }
+    
+    if (currentScore > targetScore) {
       return "Your predicted score exceeds your target score";
-    } else if (currentScore === target) {
+    } else if (currentScore === targetScore) {
       return "Your predicted score meets your target score";
     } else {
       return "Your predicted score is lower than your target score";
     }
   };
 
-  const scoreStatus = getScoreStatus(score, targetScore);
+  const scoreStatus = getScoreStatus(score);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
@@ -213,23 +230,41 @@ const PerformanceGraph = ({ score, targetScore, range, onTargetScoreChange }: Pe
                 />
               </div>
 
-              <div 
-                className="absolute -translate-y-1/2"
-                style={{ 
-                  top: calculatePosition(targetScore),
-                  left: '0',
-                  zIndex: 20
-                }}
-                onMouseDown={handleDragStart}
-                onTouchStart={handleDragStart}
-              >
-                <ScoreIndicator 
-                  label="Target Score"
-                  value={targetScore}
-                  isTarget
-                  showMoveIcon
-                />
-              </div>
+              {examStep === 'step1' && passingStandard && (
+                <div 
+                  className="absolute -translate-y-1/2"
+                  style={{ 
+                    top: calculatePosition(passingStandard),
+                    left: '0',
+                    zIndex: 20
+                  }}
+                >
+                  <ScoreIndicator 
+                    label="Passing Standard"
+                    value={passingStandard}
+                  />
+                </div>
+              )}
+
+              {examStep === 'step2' && (
+                <div 
+                  className="absolute -translate-y-1/2"
+                  style={{ 
+                    top: calculatePosition(targetScore),
+                    left: '0',
+                    zIndex: 20
+                  }}
+                  onMouseDown={handleDragStart}
+                  onTouchStart={handleDragStart}
+                >
+                  <ScoreIndicator 
+                    label="Target Score"
+                    value={targetScore}
+                    isTarget
+                    showMoveIcon
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
