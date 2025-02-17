@@ -8,12 +8,14 @@ import AmbossLogo from "./AmbossLogo";
 export function PageHeader() {
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-50">
-      <div className="h-full px-4 flex items-center justify-between gap-4 max-w-[1920px] mx-auto">
+      <div className="h-full px-6 flex items-center justify-between gap-4 max-w-[1920px] mx-auto">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" className="shrink-0 [&_svg]:size-6">
             <Menu />
           </Button>
-          <AmbossLogo />
+          <div className="h-7">
+            <AmbossLogo />
+          </div>
           <div 
             className="w-[98px] h-[26px] border-none bg-blue-50 rounded-2xl font-lato text-[rgb(6,124,137)] text-xs font-bold tracking-[1px] flex items-center justify-center gap-1 uppercase antialiased leading-4"
             style={{
