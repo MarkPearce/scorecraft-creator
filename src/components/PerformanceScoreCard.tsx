@@ -1,3 +1,4 @@
+
 import { Settings } from "lucide-react";
 import { useState } from "react";
 import PrototypeControls from "./PrototypeControls";
@@ -20,6 +21,8 @@ interface PerformanceScoreCardProps {
   showControls?: boolean;
   className?: string;
   title?: string;
+  examStep?: 'step1' | 'step2';
+  passingStandard?: number;
 }
 
 const PerformanceScoreCard = ({
@@ -28,7 +31,9 @@ const PerformanceScoreCard = ({
   initialRange = { min: 180, max: 300 },
   showControls = true,
   className = "",
-  title = "Performance Score"
+  title = "Performance Score",
+  examStep = 'step2',
+  passingStandard
 }: PerformanceScoreCardProps) => {
   const [score, setScore] = useState(initialScore);
   const [range, setRange] = useState(initialRange);
@@ -38,11 +43,11 @@ const PerformanceScoreCard = ({
     const totalRange = range.max - range.min;
     const segmentSize = totalRange / 5;
     
-    if (score >= range.max - segmentSize) return 5; // Excellent
-    if (score >= range.max - (segmentSize * 2)) return 4; // Strong
-    if (score >= range.max - (segmentSize * 3)) return 3; // Developing
-    if (score >= range.max - (segmentSize * 4)) return 2; // Needs Work
-    return 1; // Critical
+    if (score >= range.max - segmentSize) return 5;
+    if (score >= range.max - (segmentSize * 2)) return 4;
+    if (score >= range.max - (segmentSize * 3)) return 3;
+    if (score >= range.max - (segmentSize * 4)) return 2;
+    return 1;
   };
 
   const getScoreColor = (score: number) => {
@@ -133,12 +138,14 @@ const PerformanceScoreCard = ({
       </CardHeader>
 
       <CardContent>
-        <div className="flex justify-center">
+        <div className="w-full max-w-[1000px] mx-auto">
           <PerformanceGraph 
             score={score}
             targetScore={targetScore}
             range={range}
-            onTargetScoreChange={setTargetScore}
+            onTargetScoreChange={examStep === 'step1' ? undefined : setTargetScore}
+            examStep={examStep}
+            passingStandard={passingStandard}
           />
         </div>
       </CardContent>

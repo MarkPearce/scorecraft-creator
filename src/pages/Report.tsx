@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PeerGroup from "@/components/PeerGroup";
-import TopicsList from "@/components/TopicsList";
 import PerformanceSummary from "@/components/PerformanceSummary";
 import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 import { TextProjectionCard } from "@/components/TextProjectionCard";
@@ -12,10 +11,13 @@ import PerformanceScoreCard from "@/components/PerformanceScoreCard";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
+import RecommendedSession from "@/components/RecommendedSession";
+import { useState } from "react";
 
 const Report = () => {
   const navigate = useNavigate();
   const currentPercentile = 30;
+  const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
 
   return (
     <>
@@ -32,7 +34,11 @@ const Report = () => {
               Back to dashboard
             </Button>
 
-            <RadioGroup defaultValue="step2" className="flex gap-4">
+            <RadioGroup 
+              value={currentStep}
+              onValueChange={(value: 'step1' | 'step2') => setCurrentStep(value)}
+              className="flex gap-4"
+            >
               <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
                 <RadioGroupItem value="step1" id="step1" />
                 <Label htmlFor="step1" className="text-sm font-medium cursor-pointer">USMLE Step 1</Label>
@@ -47,7 +53,7 @@ const Report = () => {
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Continuous score assessment</h1>
             <p className="mt-2 text-gray-600">
-              Here is your assessment based on Qbank performance. Check out your study recommendations below to optimize your study schedule.
+              Here is your assessment based on Qbank performance.
             </p>
           </div>
           
@@ -58,17 +64,19 @@ const Report = () => {
               questionsAnswered={422}
               examDate="Oct 15, 2025"
             />
-            <TextProjectionCard percentile={currentPercentile} />
+            <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
             <PeerGroup />
             <PerformanceScoreCard 
+              examStep={currentStep}
               initialScore={245}
-              initialTargetScore={260}
+              initialTargetScore={currentStep === 'step1' ? undefined : 260}
+              passingStandard={currentStep === 'step1' ? 252 : undefined}
               showControls={false}
               title="Current performance"
             />
             <PerformanceTrackingContainer />
             <PerformanceSummary />
-            <TopicsList />
+            <RecommendedSession />
           </div>
         </div>
       </div>

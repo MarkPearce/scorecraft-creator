@@ -1,3 +1,4 @@
+
 import { BarChart, LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
@@ -91,18 +92,21 @@ const PerformanceSummary = () => {
 
   return (
     <Card className="animate-fadeIn">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle>Your relative strengths and weaknesses</CardTitle>
-        <Button
-          variant="outline"
-          className="h-8 w-8 p-0 [&_svg]:size-5"
-          onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
-        >
-          {viewMode === 'grouped' ? 
-            <LayoutList /> : 
-            <Columns />
-          }
-        </Button>
+      <CardHeader className="flex flex-col space-y-2">
+        <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
+          Your relative strengths and weaknesses
+          <Button
+            variant="outline"
+            className="h-8 w-8 p-0 [&_svg]:size-5"
+            onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
+          >
+            {viewMode === 'grouped' ? 
+              <LayoutList /> : 
+              <Columns />
+            }
+          </Button>
+        </CardTitle>
+        <p className="text-base text-gray-600">Below is a breakdown of your strengths and weakness, compared to other students studying for this exam.</p>
       </CardHeader>
       <CardContent className="mt-4">
         {viewMode === 'grouped' ? (

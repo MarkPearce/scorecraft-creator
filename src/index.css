@@ -34,60 +34,28 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -95,8 +63,65 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground font-lato;
+    @apply bg-background text-foreground;
   }
+}
+
+/* SVG styles for illustration */
+.cls-1 {
+  fill: none;
+}
+
+.cls-2, .cls-3, .cls-4 {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.cls-5, .cls-3, .cls-6, .cls-4, .cls-8 {
+  stroke-width: 1.5px;
+}
+
+.cls-5, .cls-3, .cls-6, .cls-8 {
+  stroke: #afcbe2;
+}
+
+.cls-5, .cls-6, .cls-8 {
+  fill: #fff;
+}
+
+.cls-5, .cls-4 {
+  stroke-linejoin: round;
+}
+
+.cls-10, .cls-12 {
+  fill: #a0703f;
+}
+
+.cls-13 {
+  fill: #d8d0e7;
+}
+
+.cls-14 {
+  fill: #fae1b3;
+}
+
+.cls-15 {
+  isolation: isolate;
+}
+
+.cls-16 {
+  mix-blend-mode: multiply;
+}
+
+.cls-18 {
+  fill: #042e33;
+}
+
+.cls-19 {
+  fill: #f29a9a;
+}
+
+.cls-2, .cls-4 {
+  stroke: #a0703f;
 }

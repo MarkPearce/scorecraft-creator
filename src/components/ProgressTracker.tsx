@@ -3,16 +3,9 @@ import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
-
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(45);
@@ -21,12 +14,10 @@ const ProgressTracker = () => {
   } = useToast();
   const navigate = useNavigate();
   const isAssessmentUnlocked = questionsAnswered >= 60;
-
   const getBarColor = (progress: number) => {
     if (progress >= 60) return 'bg-green-600';
     return 'bg-gray-500';
   };
-
   const handleBoostAssessment = () => {
     setQuestionsAnswered(prev => Math.min(prev + 20, 100));
     setIsDialogOpen(false);
@@ -36,9 +27,7 @@ const ProgressTracker = () => {
       duration: 3000
     });
   };
-
-  return (
-    <Card>
+  return <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           <span>
@@ -64,7 +53,7 @@ const ProgressTracker = () => {
                     <div className="flex items-end mb-2">
                       <div className="w-full">
                         <div className="relative">
-                          <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
+                          <div className={`h-4 w-full rounded-full border border-gray-300 overflow-hidden ${isAssessmentUnlocked ? 'bg-green-50' : 'bg-gray-100'}`}>
                             <div className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`} style={{
                             width: `${questionsAnswered}%`,
                             borderTopRightRadius: 0,
@@ -84,27 +73,23 @@ const ProgressTracker = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-sm text-gray-600">Unlock continuous assessment by completing more than 60 questions.  The more questions you answer, the more accurate the assessment is.</div>
+                  <div className="text-base text-gray-600">
+                    Unlock continuous assessment by completing more than 60 questions. The more questions you answer, the more accurate the assessment is.
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg h-[116px]">
+            <div className={`flex-shrink-0 flex flex-col items-center justify-center p-6 rounded-lg h-[116px] ${isAssessmentUnlocked ? 'bg-green-50' : 'bg-gray-50'}`}>
               <div className="text-5xl font-bold text-gray-900">{questionsAnswered}</div>
               <div className="text-sm text-gray-500 mt-2">Questions completed</div>
             </div>
           </div>
 
           <div className="mt-4 flex gap-4">
-            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>
-              Boost assessment
-            </Button>
-            <Button 
-              disabled={!isAssessmentUnlocked}
-              onClick={() => navigate('/report')}
-              className="text-base font-medium"
-            >
-              Start prototype
+            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>Unlock assessment</Button>
+            <Button disabled={!isAssessmentUnlocked} onClick={() => navigate('/report')} className="text-base font-medium">
+              View assessment
             </Button>
           </div>
         </div>
@@ -112,24 +97,18 @@ const ProgressTracker = () => {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Start assessment boost</DialogTitle>
+              <DialogTitle>Unlock assessment</DialogTitle>
             </DialogHeader>
-            <p className="py-4 text-gray-600">
-              You'll be presented with 20 new questions to boost your progress. Ready to begin?
-            </p>
+            <p className="py-4 text-gray-600">Answer more questions to unlock your assessment. Do 20 questions to boost your progress. Ready to begin?</p>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button onClick={handleBoostAssessment} className="font-medium">
-                Start assessment
-              </Button>
+              <Button onClick={handleBoostAssessment} className="font-medium">Answer questions</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
       </CardContent>
-    </Card>
-  );
+    </Card>;
 };
-
 export default ProgressTracker;
