@@ -84,7 +84,7 @@ const ProgressTracker = () => {
                             />
                           </div>
                           
-                          <div className="absolute left-[60%] -translate-x-1/2 -top-[52px] flex flex-col items-center">
+                          <div className="absolute left-[60%] -translate-x-1/2 -top-[44px] flex flex-col items-center">
                             {isAssessmentUnlocked ? (
                               <div className="text-green-600 [&_svg]:size-8 mt-[1px]">
                                 <Unlock />
