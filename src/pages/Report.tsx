@@ -11,6 +11,7 @@ import PerformanceScoreCard from "@/components/PerformanceScoreCard";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
+import RecommendedSession from "@/components/RecommendedSession";
 import { useState } from "react";
 
 const Report = () => {
@@ -75,6 +76,7 @@ const Report = () => {
             />
             <PerformanceTrackingContainer />
             <PerformanceSummary />
+            <RecommendedSession />
           </div>
         </div>
       </div>
