@@ -1,3 +1,4 @@
+
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -42,13 +43,23 @@ const ProgressTracker = () => {
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           <span>
-            {isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}
+            {isAssessmentUnlocked 
+              ? "Continuous assessment unlocked!" 
+              : "Unlock continuous assessment"}
           </span>
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="h-8 w-8 p-0" onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}>
+            <Button 
+              variant="outline" 
+              className="h-8 w-8 p-0"
+              onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}
+            >
               -10
             </Button>
-            <Button variant="outline" className="h-8 w-8 p-0" onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}>
+            <Button 
+              variant="outline"
+              className="h-8 w-8 p-0"
+              onClick={() => setQuestionsAnswered(prev => Math.min(prev + 10, 100))}
+            >
               +10
             </Button>
           </div>
@@ -65,26 +76,35 @@ const ProgressTracker = () => {
                       <div className="w-full">
                         <div className="relative">
                           <div className="h-4 w-full bg-gray-100 rounded-full border border-gray-300 overflow-hidden">
-                            <div className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`} style={{
-                            width: `${questionsAnswered}%`,
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0
-                          }} />
+                            <div 
+                              className={`h-full transition-all duration-500 ${getBarColor(questionsAnswered)}`}
+                              style={{ 
+                                width: `${questionsAnswered}%`,
+                                borderTopRightRadius: 0,
+                                borderBottomRightRadius: 0
+                              }}
+                            />
                           </div>
                           
                           <div className="absolute left-[60%] -translate-x-1/2 -top-[44px] flex flex-col items-center">
-                            {isAssessmentUnlocked ? <div className="text-green-600 [&_svg]:size-8 mt-[1px]">
+                            {isAssessmentUnlocked ? (
+                              <div className="text-green-600 [&_svg]:size-8 mt-[1px]">
                                 <Unlock />
-                              </div> : <div className="text-gray-400 [&_svg]:size-8 mt-[1px]">
+                              </div>
+                            ) : (
+                              <div className="text-gray-400 [&_svg]:size-8 mt-[1px]">
                                 <Lock />
-                              </div>}
+                              </div>
+                            )}
                             <div className="h-6 w-0.5 bg-gray-300 -mt-[1px]" />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="text-sm text-gray-600">Unlock continuous assessment by completing more than 60 questions.  The more questions you answer, the more accurate the assessment is.</div>
+                  <div className="text-sm text-gray-600">
+                    Unlock continuous assessment by completing more than 60 questions. The more questions you answer, the more accurate the assessment is.
+                  </div>
                 </div>
               </div>
             </div>
@@ -104,7 +124,7 @@ const ProgressTracker = () => {
               onClick={() => navigate('/report')}
               className="text-base font-medium"
             >
-              Start prototype
+              View assessment
             </Button>
           </div>
         </div>
