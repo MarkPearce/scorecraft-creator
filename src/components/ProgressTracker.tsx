@@ -97,7 +97,7 @@ const ProgressTracker = () => {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Answer more questions to unlock your assessment</DialogTitle>
+              <DialogTitle>Unlock assessment</DialogTitle>
             </DialogHeader>
             <p className="py-4 text-gray-600">
               You'll be presented with 20 new questions to boost your progress. Ready to begin?
