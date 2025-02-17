@@ -87,9 +87,7 @@ const ProgressTracker = () => {
           </div>
 
           <div className="mt-4 flex gap-4">
-            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>
-              Boost assessment
-            </Button>
+            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>Unlock assessment</Button>
             <Button disabled={!isAssessmentUnlocked} onClick={() => navigate('/report')} className="text-base font-medium">
               View assessment
             </Button>
