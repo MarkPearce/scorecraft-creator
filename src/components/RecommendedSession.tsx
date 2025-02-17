@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -22,7 +21,7 @@ const RecommendedSession = () => {
           </CardContent>
         </div>
         <div className="flex items-center justify-center p-6">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 307.67 147" className="w-full h-full">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 307.67 147" className="w-full h-full">
             <defs>
               <clipPath id="clippath">
                 <rect className="cls-1" width="307.67" height="147"/>
