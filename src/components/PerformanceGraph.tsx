@@ -204,7 +204,7 @@ const PerformanceGraph = ({
   const scoreStatus = getScoreStatus(score);
 
   return <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-      <div className="performance-graph-container flex items-center justify-center pt-8">
+      <div className="performance-graph-container flex items-center justify-center pt-6">
         <div className="relative">
           <div className="relative h-[300px] flex p-1 rounded-lg" ref={containerRef}>
             <div className="relative h-full w-[50px] flex-shrink-0">
