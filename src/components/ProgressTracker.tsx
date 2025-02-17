@@ -104,9 +104,7 @@ const ProgressTracker = () => {
               <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button onClick={handleBoostAssessment} className="font-medium">
-                Start assessment
-              </Button>
+              <Button onClick={handleBoostAssessment} className="font-medium">Answer questions</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
