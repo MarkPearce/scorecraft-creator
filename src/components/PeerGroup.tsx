@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -70,7 +71,7 @@ const PeerGroup = () => {
   const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
   const yAxisTicks = displayMode === "normal" 
-    ? [0, 0.002, 0.004, 0.006, 0.008] 
+    ? [0, 0.002, 0.004, 0.006, 0.008, 0.01, 0.012, 0.014, 0.016, 0.018] 
     : [0, 20, 40, 60, 80, 100];
 
   return (
@@ -108,7 +109,12 @@ const PeerGroup = () => {
                   <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
+              <CartesianGrid 
+                horizontal={true} 
+                vertical={false} 
+                strokeDasharray="3 3"
+                opacity={0.5} 
+              />
               <XAxis 
                 dataKey="score" 
                 type="number" 
@@ -143,6 +149,7 @@ const PeerGroup = () => {
                   dx: -10
                 }}
                 tickFormatter={(value) => displayMode === "normal" ? `${(value * 100).toFixed(1)}` : value}
+                tickCount={10}
               />
               <Tooltip 
                 formatter={(value: number, name: string) => {
@@ -153,7 +160,7 @@ const PeerGroup = () => {
                 labelFormatter={(score: number) => `Score: ${score}`}
               />
               <Area
-                type="basis" // Changed from "monotone" to "basis" for smoother curve
+                type="basis"
                 dataKey={displayMode === "normal" ? "density" : "percentile"}
                 stroke="#0aa6b8"
                 fill="url(#colorData)"
