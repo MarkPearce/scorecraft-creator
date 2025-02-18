@@ -2,27 +2,11 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-const data = [{
-  date: 'Wk 7',
-  score: 204,
-  color: '#ea384c'
-}, {
-  date: 'Wk 8',
-  score: 244,
-  color: '#F97316'
-}, {
-  date: 'Wk 9',
-  score: 238,
-  color: '#F97316'
-}, {
-  date: 'Wk 10',
-  score: 248,
-  color: '#F97316'
-}, {
-  date: 'Wk 11',
-  score: 262,
-  color: '#22c55e'
-}];
+interface DataPoint {
+  date: string;
+  score: number;
+  color: string;
+}
 
 const CustomDot = (props: any) => {
   const { cx, cy, payload } = props;
@@ -51,6 +35,28 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       return '#ea384c';
     }
   };
+
+  const data: DataPoint[] = [{
+    date: 'Wk 7',
+    score: 204,
+    color: getStrokeColor(204)
+  }, {
+    date: 'Wk 8',
+    score: 244,
+    color: getStrokeColor(244)
+  }, {
+    date: 'Wk 9',
+    score: 238,
+    color: getStrokeColor(238)
+  }, {
+    date: 'Wk 10',
+    score: 248,
+    color: getStrokeColor(248)
+  }, {
+    date: 'Wk 11',
+    score: 262,
+    color: getStrokeColor(262)
+  }];
 
   return (
     <Card className="animate-fadeIn">
@@ -167,11 +173,11 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               <Line 
                 type="monotone"
                 dataKey="score" 
+                stroke="#8884d8"
                 strokeWidth={3} 
                 dot={<CustomDot />} 
                 activeDot={<CustomActiveDot />}
                 connectNulls
-                stroke={(data) => getStrokeColor(data.score)}
               />
             </LineChart>
           </ResponsiveContainer>
