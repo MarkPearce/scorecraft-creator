@@ -12,7 +12,7 @@ const ordinalSuffix = "th";
 export const PercentileDisplay = ({
   percentile
 }: PercentileDisplayProps) => {
-  return <div className={`rounded-2xl px-6 py-3 inline-flex items-baseline ${getPercentileBackground(percentile)}`}>
+  return <div className={`rounded-2xl px-4 py-1 inline-flex items-baseline ${getPercentileBackground(percentile)}`}>
       <div className="relative text-2xl font-bold text-gray-600 mr-6">
         {percentile}<span style={{
         top: '0.25rem'
