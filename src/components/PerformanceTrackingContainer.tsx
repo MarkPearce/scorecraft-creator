@@ -60,7 +60,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
 
   // Calculate percentage positions for gradient stops based on score ranges
   const getPercentage = (score: number) => {
-    return ((score - 180) / (300 - 180) * 100).toFixed(1) + '%';
+    // Invert the percentage calculation since SVG gradients go from top to bottom
+    return ((300 - score) / (300 - 180) * 100).toFixed(1) + '%';
   };
 
   return (
