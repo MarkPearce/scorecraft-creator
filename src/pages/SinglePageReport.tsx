@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -76,7 +75,7 @@ const SinglePageReport = () => {
               title="Current performance"
             />
             
-            <PerformanceTrackingContainer />
+            <PerformanceTrackingContainer examStep={currentStep} />
             
             <PeerGroup />
             
@@ -93,4 +92,3 @@ const SinglePageReport = () => {
 };
 
 export default SinglePageReport;
-
