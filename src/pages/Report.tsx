@@ -100,7 +100,9 @@ const Report = () => {
               className="w-full" 
               opts={{
                 dragFree: false,
-                draggable: false
+                draggable: false,
+                touchDragging: false,
+                mouseDragging: false
               }}
             >
               <CarouselContent>
