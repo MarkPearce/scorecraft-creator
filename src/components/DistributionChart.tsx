@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -110,19 +111,37 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         
         <Customized component={({ width, height, xAxis, yAxis }) => {
-          if (!width || !height) return null;
+          console.log('Customized component props:', {
+            hasWidth: !!width,
+            hasHeight: !!height,
+            xAxisDetails: {
+              hasScale: !!xAxis?.scale,
+              scaleType: xAxis?.scale?.name,
+              domain: xAxis?.domain,
+              bandwidth: xAxis?.bandwidth?.(),
+              range: xAxis?.range?.(),
+              ticks: xAxis?.ticks?.()
+            },
+            yAxisDetails: {
+              hasScale: !!yAxis?.scale,
+              scaleType: yAxis?.scale?.name,
+              domain: yAxis?.domain,
+              bandwidth: yAxis?.bandwidth?.(),
+              range: yAxis?.range?.(),
+              ticks: yAxis?.ticks?.()
+            }
+          });
 
-          const x = xAxis?.scale ? xAxis.scale(MEAN_SCORE) : width * (MEAN_SCORE / 300);
-          
-          const chartHeight = height - 40;
+          const x = xAxis?.scale ? xAxis.scale(MEAN_SCORE) : (width || 0) * (MEAN_SCORE / 300);
+          const lineHeight = (height || 0) * 0.75;
 
           console.log('Mean Line Coordinates:', {
             meanScore: MEAN_SCORE,
             x,
             width,
             height,
-            chartHeight,
-            topMargin: 40
+            lineHeight,
+            scale: xAxis?.scale?.name
           });
 
           return (
@@ -130,8 +149,8 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
               <line 
                 x1={x} 
                 x2={x} 
-                y1={chartHeight} 
-                y2={40} 
+                y1={lineHeight} // Start from the bottom
+                y2={40} // End at the top margin
                 stroke="#374151" 
                 strokeWidth={1.5}
                 strokeDasharray="3 3"
@@ -174,3 +193,4 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 };
 
 export default DistributionChart;
+
