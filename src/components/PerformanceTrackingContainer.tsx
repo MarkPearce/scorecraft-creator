@@ -37,32 +37,26 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
   };
 
   const data: DataPoint[] = [{
-    date: 'Wk 7',
+    date: 'Feb 12',
     score: 204,
     color: getStrokeColor(204)
   }, {
-    date: 'Wk 8',
+    date: 'Feb 19',
     score: 244,
     color: getStrokeColor(244)
   }, {
-    date: 'Wk 9',
+    date: 'Feb 26',
     score: 238,
     color: getStrokeColor(238)
   }, {
-    date: 'Wk 10',
+    date: 'Mar 4',
     score: 248,
     color: getStrokeColor(248)
   }, {
-    date: 'Wk 11',
+    date: 'Mar 11',
     score: 262,
     color: getStrokeColor(262)
   }];
-
-  // Calculate percentage positions for gradient stops based on score ranges
-  const getPercentage = (score: number) => {
-    // Invert the percentage calculation since SVG gradients go from top to bottom
-    return ((300 - score) / (300 - 180) * 100).toFixed(1) + '%';
-  };
 
   return (
     <Card className="animate-fadeIn">
@@ -92,7 +86,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 tick={{ fontSize: 12 }} 
                 tickLine={false}
                 label={{
-                  value: 'Week (2025)',
+                  value: '2025',
                   position: 'bottom',
                   offset: 10,
                   style: {
