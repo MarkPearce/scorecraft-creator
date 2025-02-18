@@ -105,6 +105,8 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           x={MEAN_SCORE}
           stroke="#374151"
           strokeWidth={2}
+          isFront={true}
+          height={10}
           label={{
             value: `Mean: ${MEAN_SCORE}`,
             position: 'insideBottom',
