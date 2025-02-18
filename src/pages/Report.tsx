@@ -28,7 +28,10 @@ const Report = () => {
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    dragFree: false,
+    drag: false
+  });
 
   // Set up scroll snap event listener
   useState(() => {
@@ -114,9 +117,6 @@ const Report = () => {
             <Carousel 
               ref={emblaRef}
               className="w-full" 
-              opts={{
-                dragFree: false
-              }}
             >
               <CarouselContent>
                 <CarouselItem>
