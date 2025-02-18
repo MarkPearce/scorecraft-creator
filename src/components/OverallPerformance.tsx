@@ -61,7 +61,17 @@ const OverallPerformance = ({
               <div className="text-4xl font-bold text-gray-600 font-lato">{yourScore}</div>
             </div>
             <div className="min-w-[200px]">
-              <div className="text-sm text-[#403E43] mb-2 font-lato">Target Score</div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="text-sm text-[#403E43] font-lato">Target Score</div>
+                {!isEditing && (
+                  <button 
+                    onClick={() => setIsEditing(true)}
+                    className="text-gray-400 hover:text-gray-600"
+                  >
+                    <Pencil className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
               <div className="flex items-center gap-2">
                 {isEditing ? (
                   <div className="flex items-end gap-3">
@@ -84,15 +94,7 @@ const OverallPerformance = ({
                     </button>
                   </div>
                 ) : (
-                  <div className="flex items-end gap-3">
-                    <div className="w-[120px] text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
-                    <button 
-                      onClick={() => setIsEditing(true)}
-                      className="text-gray-400 hover:text-gray-600 pb-1"
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </button>
-                  </div>
+                  <div className="w-[120px] text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
                 )}
               </div>
             </div>
