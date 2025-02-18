@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -55,27 +54,53 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
   };
 
   // Memoize the data array to prevent unnecessary recalculations
-  const data: DataPoint[] = useMemo(() => [{
-    date: 'Feb 12',
-    score: 204,
-    color: getStrokeColor(204)
-  }, {
-    date: 'Feb 19',
-    score: 244,
-    color: getStrokeColor(244)
-  }, {
-    date: 'Feb 26',
-    score: 238,
-    color: getStrokeColor(238)
-  }, {
-    date: 'Mar 4',
-    score: 248,
-    color: getStrokeColor(248)
-  }, {
-    date: 'Mar 11',
-    score: 262,
-    color: getStrokeColor(262)
-  }], [examStep]); // Add examStep as dependency
+  const data: DataPoint[] = useMemo(() => {
+    if (examStep === 'step1') {
+      return [{
+        date: 'Feb 12',
+        score: 188,
+        color: getStrokeColor(188)
+      }, {
+        date: 'Feb 19',
+        score: 194,
+        color: getStrokeColor(194)
+      }, {
+        date: 'Feb 26',
+        score: 212,
+        color: getStrokeColor(212)
+      }, {
+        date: 'Mar 4',
+        score: 228,
+        color: getStrokeColor(228)
+      }, {
+        date: 'Mar 11',
+        score: 235,
+        color: getStrokeColor(235)
+      }];
+    } else {
+      return [{
+        date: 'Feb 12',
+        score: 204,
+        color: getStrokeColor(204)
+      }, {
+        date: 'Feb 19',
+        score: 244,
+        color: getStrokeColor(244)
+      }, {
+        date: 'Feb 26',
+        score: 238,
+        color: getStrokeColor(238)
+      }, {
+        date: 'Mar 4',
+        score: 248,
+        color: getStrokeColor(248)
+      }, {
+        date: 'Mar 11',
+        score: 262,
+        color: getStrokeColor(262)
+      }];
+    }
+  }, [examStep]); // Add examStep as dependency
 
   // Memoize reference line values to ensure they update with examStep
   const referenceLines = useMemo(() => ({
