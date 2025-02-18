@@ -20,11 +20,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 const Report = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+
+  // Set up scroll snap event listener
+  useState(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setCanScrollPrev(emblaApi.canScrollPrev());
+        setCanScrollNext(emblaApi.canScrollNext());
+      });
+    }
+  });
 
   const handlePrevClick = () => {
     const prevButton = document.querySelector('.embla__prev') as HTMLButtonElement;
@@ -82,6 +96,7 @@ const Report = () => {
                   size="icon"
                   className="h-8 w-8 rounded-full"
                   onClick={handlePrevClick}
+                  disabled={!canScrollPrev}
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
@@ -90,12 +105,14 @@ const Report = () => {
                   size="icon"
                   className="h-8 w-8 rounded-full"
                   onClick={handleNextClick}
+                  disabled={!canScrollNext}
                 >
                   <ArrowLeft className="h-4 w-4 rotate-180" />
                 </Button>
               </div>
             </div>
             <Carousel 
+              ref={emblaRef}
               className="w-full" 
               opts={{
                 dragFree: false
