@@ -19,8 +19,13 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     : percentileTicks;
 
   // Find the closest point to mean score to set the reference line end point
-  const meanPoint = data.find(point => Math.abs(point.score - MEAN_SCORE) < 0.5);
-  const meanY = meanPoint ? (displayMode === "normal" ? meanPoint.density : meanPoint.percentile) : 0;
+  const meanPoint = data.reduce((closest, current) => {
+    const currentDiff = Math.abs(current.score - MEAN_SCORE);
+    const closestDiff = Math.abs(closest.score - MEAN_SCORE);
+    return currentDiff < closestDiff ? current : closest;
+  }, data[0]);
+
+  const meanY = displayMode === "normal" ? meanPoint.density : meanPoint.percentile;
 
   return (
     <ResponsiveContainer width="100%" height={400}>
