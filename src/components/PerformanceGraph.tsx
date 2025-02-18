@@ -138,7 +138,7 @@ const PerformanceGraph = ({
       }, {
         score: 249,
         color: "bg-[#8DC641]",
-        label: "249"
+        label: "National mean: 249"
       }, {
         score: 265,
         color: "bg-[#019444]",
