@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -109,7 +110,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                       value: 'Passing Standard (196)', 
                       position: 'insideBottomRight',
                       fill: '#64748b',
-                      fontSize: 12
+                      fontSize: 12,
+                      dy: 12
                     }} 
                   />
                   <ReferenceLine 
@@ -120,7 +122,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                       value: 'National mean before 2022 (231)', 
                       position: 'insideBottomRight',
                       fill: '#64748b',
-                      fontSize: 12
+                      fontSize: 12,
+                      dy: 12
                     }} 
                   />
                 </>
