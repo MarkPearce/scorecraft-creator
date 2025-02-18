@@ -22,17 +22,13 @@ import {
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
 
-const emblaOptions = {
-  dragFree: false
-};
-
 const Report = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions);
+  const [emblaRef, emblaApi] = useEmblaCarousel();
 
   // Set up scroll snap event listener
   useState(() => {
@@ -118,6 +114,9 @@ const Report = () => {
             <Carousel 
               ref={emblaRef}
               className="w-full" 
+              opts={{
+                dragFree: false
+              }}
             >
               <CarouselContent>
                 <CarouselItem>
