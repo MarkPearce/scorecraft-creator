@@ -27,6 +27,16 @@ const Report = () => {
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
 
+  const handlePrevClick = () => {
+    const prevButton = document.querySelector('.embla__prev') as HTMLButtonElement;
+    prevButton?.click();
+  };
+
+  const handleNextClick = () => {
+    const nextButton = document.querySelector('.embla__next') as HTMLButtonElement;
+    nextButton?.click();
+  };
+
   return (
     <>
       <PageHeader />
@@ -72,7 +82,7 @@ const Report = () => {
                   variant="outline"
                   size="icon"
                   className="h-8 w-8 rounded-full"
-                  onClick={() => document.querySelector('.embla__prev')?.click()}
+                  onClick={handlePrevClick}
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
@@ -80,7 +90,7 @@ const Report = () => {
                   variant="outline"
                   size="icon"
                   className="h-8 w-8 rounded-full"
-                  onClick={() => document.querySelector('.embla__next')?.click()}
+                  onClick={handleNextClick}
                 >
                   <ArrowLeft className="h-4 w-4 rotate-180" />
                 </Button>
