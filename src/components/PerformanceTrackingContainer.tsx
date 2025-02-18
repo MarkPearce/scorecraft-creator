@@ -1,6 +1,7 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { useMemo } from 'react';
 
 interface DataPoint {
   date: string;
@@ -36,8 +37,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     }
   };
 
-  // Recalculate colors for data points when examStep changes
-  const data: DataPoint[] = [{
+  // Memoize the data array to prevent unnecessary recalculations
+  const data: DataPoint[] = useMemo(() => [{
     date: 'Feb 12',
     score: 204,
     color: getStrokeColor(204)
@@ -57,7 +58,19 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     date: 'Mar 11',
     score: 262,
     color: getStrokeColor(262)
-  }];
+  }], [examStep]); // Add examStep as dependency
+
+  // Memoize reference line values to ensure they update with examStep
+  const referenceLines = useMemo(() => ({
+    passing: {
+      value: examStep === 'step1' ? 196 : 214,
+      label: examStep === 'step1' ? 'Passing Standard (196)' : 'Passing standard (214)'
+    },
+    mean: {
+      value: examStep === 'step1' ? 231 : 249,
+      label: examStep === 'step1' ? 'National mean before 2022 (231)' : 'National mean (249)'
+    }
+  }), [examStep]);
 
   return (
     <Card className="animate-fadeIn">
@@ -121,10 +134,11 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
               <ReferenceLine 
-                y={examStep === 'step1' ? 196 : 214} 
+                key={`passing-${referenceLines.passing.value}`}
+                y={referenceLines.passing.value} 
                 stroke="#ea384c" 
                 label={{ 
-                  value: examStep === 'step1' ? 'Passing Standard (196)' : 'Passing standard (214)', 
+                  value: referenceLines.passing.label, 
                   position: 'insideBottomRight',
                   fill: '#64748b',
                   fontSize: 12,
@@ -132,10 +146,11 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }} 
               />
               <ReferenceLine 
-                y={examStep === 'step1' ? 231 : 249} 
+                key={`mean-${referenceLines.mean.value}`}
+                y={referenceLines.mean.value} 
                 stroke="#22c55e" 
                 label={{ 
-                  value: examStep === 'step1' ? 'National mean before 2022 (231)' : 'National mean (249)', 
+                  value: referenceLines.mean.label, 
                   position: 'insideBottomRight',
                   fill: '#64748b',
                   fontSize: 12,
