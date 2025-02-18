@@ -34,7 +34,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           top: 40,
           right: 30,
           left: 40,
-          bottom: 20
+          bottom: 40
         }}
       >
         <defs>
@@ -56,7 +56,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           label={{
             value: '3 digit score',
             position: 'bottom',
-            offset: 20
+            offset: 15
           }}
           ticks={xAxisTicks}
           interval={0}
