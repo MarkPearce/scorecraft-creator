@@ -179,7 +179,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               <Line 
                 type="monotone"
                 dataKey="score" 
-                stroke="#64748b"
+                stroke="#5a7183"
                 strokeWidth={3} 
                 dot={<CustomDot />} 
                 activeDot={<CustomActiveDot />}
