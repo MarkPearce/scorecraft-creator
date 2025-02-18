@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +30,7 @@ const Report = () => {
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     dragFree: false,
-    draggable: false
+    dragEnabled: false
   });
 
   // Set up scroll snap event listener
