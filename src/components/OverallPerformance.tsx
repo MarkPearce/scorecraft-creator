@@ -4,8 +4,11 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import QuestionSessionDialog from "./QuestionSessionDialog";
-import { Pencil, X, Check } from "lucide-react";
+import { Pencil, X, Check, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { format } from "date-fns";
 
 interface OverallPerformanceProps {
   yourScore: number;
@@ -18,12 +21,14 @@ const OverallPerformance = ({
   yourScore,
   targetScore: initialTargetScore,
   questionsAnswered,
-  examDate
+  examDate: initialExamDate
 }: OverallPerformanceProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [targetScore, setTargetScore] = useState(initialTargetScore);
   const [tempScore, setTempScore] = useState(initialTargetScore.toString());
+  const [examDate, setExamDate] = useState(initialExamDate);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   
   const totalQuestions = 720;
   const progressPercentage = questionsAnswered / totalQuestions * 100;
@@ -46,6 +51,13 @@ const OverallPerformance = ({
       handleSave();
     } else if (e.key === 'Escape') {
       handleCancel();
+    }
+  };
+
+  const handleDateSelect = (date: Date | undefined) => {
+    if (date) {
+      setExamDate(format(date, 'MMM d, yyyy'));
+      setIsDatePickerOpen(false);
     }
   };
 
@@ -103,7 +115,25 @@ const OverallPerformance = ({
               <div className="text-4xl font-bold text-gray-600 font-lato">{questionsAnswered}</div>
             </div>
             <div>
-              <div className="text-sm text-[#403E43] mb-2 font-lato">Exam Date</div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="text-sm text-[#403E43] font-lato">Exam Date</div>
+                <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
+                  <PopoverTrigger asChild>
+                    <button 
+                      className="text-gray-400 hover:text-gray-600"
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <CalendarComponent
+                      mode="single"
+                      onSelect={handleDateSelect}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
               <div className="text-4xl font-bold text-gray-600 font-lato">{examDate}</div>
             </div>
           </div>
