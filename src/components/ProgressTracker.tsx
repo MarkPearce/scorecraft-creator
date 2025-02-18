@@ -30,7 +30,7 @@ const ProgressTracker = () => {
   return <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <span>
+          <span className="for the card title when the question count is less than 60 make the text \"Unlock performance assessment\" and \"Performance assessment unlocked\" when it is equal to or greater than 60">
             {isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}
           </span>
           <div className="flex items-center gap-3">
