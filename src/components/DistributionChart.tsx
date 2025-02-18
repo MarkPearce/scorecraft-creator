@@ -18,16 +18,6 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     ? normalDistributionTicks
     : percentileTicks;
 
-  // Find the exact data point for the mean score
-  const meanPoint = data.find(point => Math.round(point.score) === MEAN_SCORE) || data.reduce((closest, current) => {
-    const currentDiff = Math.abs(current.score - MEAN_SCORE);
-    const closestDiff = Math.abs(closest.score - MEAN_SCORE);
-    return currentDiff < closestDiff ? current : closest;
-  }, data[0]);
-
-  // Get the y-value for the mean point based on display mode
-  const yValue = displayMode === "normal" ? meanPoint.density : meanPoint.percentile;
-
   return (
     <ResponsiveContainer width="100%" height={400}>
       <AreaChart 
@@ -110,18 +100,14 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           isAnimationActive={true}
           animationEasing="ease-in-out"
         />
+        {/* Small horizontal line at mean */}
         <ReferenceLine
           x={MEAN_SCORE}
           stroke="#374151"
-          strokeDasharray="3 3"
-          ifOverflow="extendDomain"
-          segment={[
-            { x: MEAN_SCORE, y: 0 },
-            { x: MEAN_SCORE, y: yValue }
-          ]}
+          strokeWidth={2}
           label={{
             value: `Mean: ${MEAN_SCORE}`,
-            position: 'insideBottomRight',
+            position: 'insideBottom',
             fill: '#374151',
             fontSize: 14
           }}
