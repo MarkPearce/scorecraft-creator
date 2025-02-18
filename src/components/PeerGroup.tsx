@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -68,7 +67,6 @@ const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
   const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
-  const yAxisTicks = [0, 0.002, 0.004, 0.006, 0.008];
 
   // Find the score at the calculated percentile
   const percentileScore = data.find(point => Math.round(point.percentileValue * 100) === studentPercentile)?.score || studentScore;
@@ -97,7 +95,7 @@ const PeerGroup = () => {
           
           <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={data} margin={{
-              top: 20,
+              top: 40,
               right: 30,
               left: 40,
               bottom: 0
@@ -127,7 +125,7 @@ const PeerGroup = () => {
               />
               <YAxis 
                 dataKey={displayMode === "normal" ? "density" : "percentileValue"}
-                domain={displayMode === "normal" ? [0, 'auto'] : [0, 1]}
+                domain={displayMode === "normal" ? [0, 0.018] : [0, 1]}
                 label={{
                   value: displayMode === "normal" ? 'Probability Density' : 'Percentile',
                   angle: -90,
