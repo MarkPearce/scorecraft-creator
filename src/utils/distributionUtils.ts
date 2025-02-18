@@ -1,7 +1,7 @@
 
 // Normal distribution parameters
 export const MEAN_SCORE = 249; // μ (mu)
-export const STD_DEV = 50;    // σ (sigma)
+export const STD_DEV = 30;    // σ (sigma)
 
 // Error function approximation
 export const erf = (x: number): number => {
@@ -35,7 +35,7 @@ export const generateDistributionData = () => {
     
     points.push({
       score: Math.round(score * 100) / 100,
-      density, // Remove the multiplication by 2000
+      density,
       percentile: percentile * 100
     });
   }
@@ -49,3 +49,4 @@ export const findPercentile = (score: number) => {
   const percentile = Math.round((1 + erf(zScore / Math.sqrt(2))) / 2 * 100);
   return percentile;
 };
+
