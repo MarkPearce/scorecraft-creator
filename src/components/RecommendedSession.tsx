@@ -9,7 +9,7 @@ const RecommendedSession = () => {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
             <CardHeader>
-              <CardTitle className="font-lato">Recommended session</CardTitle>
+              <CardTitle className="font-lato">Your stacked rank Qbank session</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
               <p className="text-gray-600 font-lato">Do this session of personalized high-yield questions to update your performance assessment.
