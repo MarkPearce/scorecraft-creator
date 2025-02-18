@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -151,7 +152,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 </>
               )}
               <defs>
-                <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                <linearGradient id="lineGradient" x1="0" y1="1" x2="0" y2="0">
                   <stop offset="0%" stopColor="#ea384c" />
                   <stop offset="24.99%" stopColor="#ea384c" />
                   <stop offset="25%" stopColor="#F97316" />
