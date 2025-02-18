@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -71,7 +70,7 @@ const PeerGroup = () => {
   const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
   const yAxisTicks = displayMode === "normal" 
-    ? [0, 0.002, 0.004, 0.006, 0.008, 0.01, 0.012, 0.014, 0.016, 0.018] 
+    ? [0, 0.2, 0.4, 0.6, 0.8] 
     : [0, 20, 40, 60, 80, 100];
 
   return (
@@ -133,7 +132,7 @@ const PeerGroup = () => {
               />
               <YAxis 
                 dataKey={displayMode === "normal" ? "density" : "percentile"}
-                domain={displayMode === "normal" ? [0, 0.018] : [0, 100]}
+                domain={displayMode === "normal" ? [0, 0.8] : [0, 100]}
                 label={{
                   value: displayMode === "normal" ? 'Distribution (%)' : 'Percentile (%)',
                   angle: -90,
@@ -149,7 +148,6 @@ const PeerGroup = () => {
                   dx: -10
                 }}
                 tickFormatter={(value) => displayMode === "normal" ? `${(value * 100).toFixed(1)}` : value}
-                tickCount={10}
               />
               <Tooltip 
                 formatter={(value: number, name: string) => {
