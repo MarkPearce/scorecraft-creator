@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +27,9 @@ const Report = () => {
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    startIndex: 0
+  });
 
   useEffect(() => {
     if (emblaApi) {
@@ -38,7 +39,9 @@ const Report = () => {
       };
 
       emblaApi.on('select', onSelect);
-      onSelect(); // Initial check
+      
+      setCanScrollPrev(emblaApi.canScrollPrev());
+      setCanScrollNext(emblaApi.canScrollNext());
       
       return () => {
         emblaApi.off('select', onSelect);
