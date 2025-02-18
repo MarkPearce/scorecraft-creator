@@ -1,5 +1,5 @@
 
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE, normalDistribution, STD_DEV } from '@/utils/distributionUtils';
 
 interface DistributionChartProps {
@@ -96,29 +96,67 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           fill="url(#colorData)"
           strokeWidth={2}
         />
-        <ReferenceLine
-          x={MEAN_SCORE}
-          stroke="#374151"
-          strokeDasharray="3 3"
-          strokeWidth={2}
-          label={{
-            value: `Mean: ${MEAN_SCORE}`,
-            position: 'top',
-            fill: '#374151',
-            fontSize: 14
-          }}
-        />
-        <ReferenceLine
-          x={studentScore}
-          stroke="#0aa6b8"
-          strokeDasharray="3 3"
-          label={{
-            value: `${studentPercentile}th Percentile: ${studentScore}`,
-            position: 'top',
-            fill: '#0aa6b8',
-            fontSize: 14
-          }}
-        />
+        
+        <Customized component={({ chartHeight, xScale, yScale }) => {
+          const dataPoint = data.find(point => Math.abs(point.score - MEAN_SCORE) < 1);
+          if (!dataPoint) return null;
+          
+          const x = xScale(MEAN_SCORE);
+          const y = yScale(displayMode === "normal" ? dataPoint.density : dataPoint.percentile);
+          
+          return (
+            <g>
+              <line 
+                x1={x} 
+                x2={x} 
+                y1={y} 
+                y2={chartHeight - 40} 
+                stroke="#374151" 
+                strokeWidth={2}
+                strokeDasharray="3 3"
+              />
+              <text
+                x={x + 5}
+                y={20}
+                fill="#374151"
+                fontSize={14}
+              >
+                Mean: {MEAN_SCORE}
+              </text>
+            </g>
+          );
+        }} />
+        
+        <Customized component={({ chartHeight, xScale, yScale }) => {
+          const dataPoint = data.find(point => Math.abs(point.score - studentScore) < 1);
+          if (!dataPoint) return null;
+          
+          const x = xScale(studentScore);
+          const y = yScale(displayMode === "normal" ? dataPoint.density : dataPoint.percentile);
+          
+          return (
+            <g>
+              <line 
+                x1={x} 
+                x2={x} 
+                y1={y} 
+                y2={chartHeight - 40} 
+                stroke="#0aa6b8" 
+                strokeWidth={2}
+                strokeDasharray="3 3"
+              />
+              <text
+                x={x + 5}
+                y={40}
+                fill="#0aa6b8"
+                fontSize={14}
+              >
+                {studentPercentile}th Percentile: {studentScore}
+              </text>
+            </g>
+          );
+        }} />
+        
         {displayMode === "percentile" && (
           <ReferenceLine
             y={studentPercentile}
