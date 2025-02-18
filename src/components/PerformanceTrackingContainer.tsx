@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -10,12 +9,12 @@ interface DataPoint {
 
 const CustomDot = (props: any) => {
   const { cx, cy, payload } = props;
-  return <circle cx={cx} cy={cy} r={4} fill={payload.color} />;
+  return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
 };
 
 const CustomActiveDot = (props: any) => {
   const { cx, cy, payload } = props;
-  return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
+  return <circle cx={cx} cy={cy} r={8} fill={payload.color} />;
 };
 
 interface PerformanceTrackingContainerProps {
@@ -189,4 +188,3 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
 };
 
 export default PerformanceTrackingContainer;
-
