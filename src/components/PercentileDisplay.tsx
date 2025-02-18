@@ -12,7 +12,7 @@ export const PercentileDisplay = ({
   percentile
 }: PercentileDisplayProps) => {
   return <div className={`rounded-2xl p-3 inline-flex items-baseline ${getPercentileBackground(percentile)}`}>
-      <div className="relative text-2xl font-bold text-yellow-600 mr-6">
+      <div className="relative text-2xl font-bold grey-600 mr-6">
         {percentile}<span style={{
         top: '0.25rem'
       }} className="absolute text-lg\n">{ordinalSuffix}</span>
