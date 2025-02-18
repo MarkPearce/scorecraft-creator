@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -103,29 +102,25 @@ const PerformanceGraph = ({
 
   const getSegments = () => {
     if (examStep === 'step1') {
-      // Calculate the midpoint between national mean and max for even green split
-      const nationalMean = 231;
-      const midpoint = Math.round((range.max + nationalMean) / 2);
-      
       return [{
         score: range.min,
         color: "bg-[#ED1B24]",
-        label: ""
+        label: `${Math.round(range.min)}`
       }, {
         score: 196,
         color: "bg-[#FFC107]",
-        label: ""
+        label: "196"
       }, {
-        score: nationalMean,
+        score: 231,
         color: "bg-[#8DC641]",
-        label: "Mean prior to 2022 • 231"
+        label: "231"
       }, {
-        score: midpoint,
+        score: 248,
         color: "bg-[#019444]",
-        label: `${midpoint}`
+        label: "248"
       }, {
         score: range.max,
-        label: ""
+        label: `${Math.round(range.max)}`
       }];
     } else {
       return [{
