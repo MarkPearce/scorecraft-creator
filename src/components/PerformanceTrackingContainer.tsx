@@ -107,9 +107,10 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                   strokeDasharray="3 3" 
                   label={{ 
                     value: 'Passing Standard (196)', 
-                    position: 'right',
+                    position: 'center',
                     fill: '#64748b',
-                    fontSize: 12
+                    fontSize: 12,
+                    dy: 20
                   }} 
                 />
               )}
