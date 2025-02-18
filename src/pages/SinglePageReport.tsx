@@ -51,7 +51,7 @@ const SinglePageReport = () => {
           </div>
 
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 font-lato">Continuous score assessment</h1>
+            <h1 className="text-3xl font-[900] text-gray-900 font-lato">Continuous score assessment</h1>
             <p className="mt-2 text-gray-600 font-lato">
               Here is your assessment based on Qbank performance.
             </p>
@@ -93,3 +93,4 @@ const SinglePageReport = () => {
 };
 
 export default SinglePageReport;
+
