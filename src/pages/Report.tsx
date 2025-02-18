@@ -96,7 +96,13 @@ const Report = () => {
                 </Button>
               </div>
             </div>
-            <Carousel className="w-full">
+            <Carousel 
+              className="w-full" 
+              opts={{
+                dragFree: false,
+                draggable: false
+              }}
+            >
               <CarouselContent>
                 <CarouselItem>
                   <OverallPerformance 
