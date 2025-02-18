@@ -127,36 +127,6 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           );
         }} />
         
-        <Customized component={({ chartHeight, xScale, yScale }) => {
-          const dataPoint = data.find(point => Math.abs(point.score - studentScore) < 1);
-          if (!dataPoint) return null;
-          
-          const x = xScale(studentScore);
-          const y = yScale(displayMode === "normal" ? dataPoint.density : dataPoint.percentile);
-          
-          return (
-            <g>
-              <line 
-                x1={x} 
-                x2={x} 
-                y1={y} 
-                y2={chartHeight - 40} 
-                stroke="#0aa6b8" 
-                strokeWidth={2}
-                strokeDasharray="3 3"
-              />
-              <text
-                x={x + 5}
-                y={40}
-                fill="#0aa6b8"
-                fontSize={14}
-              >
-                {studentPercentile}th Percentile: {studentScore}
-              </text>
-            </g>
-          );
-        }} />
-        
         {displayMode === "percentile" && (
           <ReferenceLine
             y={studentPercentile}
