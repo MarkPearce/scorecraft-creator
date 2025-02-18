@@ -92,6 +92,9 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           stroke="#0aa6b8"
           fill="url(#colorData)"
           strokeWidth={2}
+          animationDuration={500}
+          animationBegin={0}
+          isAnimationActive={true}
         />
         <ReferenceLine
           x={MEAN_SCORE}
