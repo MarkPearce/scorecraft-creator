@@ -40,8 +40,8 @@ const Report = () => {
 
       emblaApi.on('select', onSelect);
       
-      setCanScrollPrev(emblaApi.canScrollPrev());
-      setCanScrollNext(emblaApi.canScrollNext());
+      setCanScrollPrev(false);
+      setCanScrollNext(true);
       
       return () => {
         emblaApi.off('select', onSelect);
