@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -133,8 +132,8 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           });
 
           const x = xAxis?.scale ? xAxis.scale(MEAN_SCORE) : (width || 0) * (MEAN_SCORE / 300);
-          const lineStartY = height - 40; // Bottom of chart (above x-axis)
-          const lineEndY = lineStartY - 260; // Keep same length, just shift starting point
+          const lineStartY = height; // Start from the very bottom
+          const lineEndY = lineStartY - 260; // Keep same length
 
           console.log('Mean Line Coordinates:', {
             meanScore: MEAN_SCORE,
