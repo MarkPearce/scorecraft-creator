@@ -67,8 +67,24 @@ const Report = () => {
           
           <div className="relative">
             <div className="flex justify-end gap-2 mb-4">
-              <CarouselPrevious className="relative translate-y-0 left-0" />
-              <CarouselNext className="relative translate-y-0 right-0" />
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={() => document.querySelector('.embla__prev')?.click()}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <Button 
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={() => document.querySelector('.embla__next')?.click()}
+                >
+                  <ArrowLeft className="h-4 w-4 rotate-180" />
+                </Button>
+              </div>
             </div>
             <Carousel className="w-full">
               <CarouselContent>
@@ -114,6 +130,10 @@ const Report = () => {
                   <RecommendedSession />
                 </CarouselItem>
               </CarouselContent>
+              <div className="hidden">
+                <CarouselPrevious className="embla__prev" />
+                <CarouselNext className="embla__next" />
+              </div>
             </Carousel>
           </div>
         </div>
