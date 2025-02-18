@@ -10,25 +10,28 @@ interface DistributionChartProps {
 }
 
 // Calculate the exact y-coordinate for the mean point
-const getMeanHeight = (displayMode: "normal" | "percentile") => {
+const getMeanHeight = (displayMode: "normal" | "percentile", chartHeight: number) => {
   if (displayMode === "normal") {
-    return normalDistribution(MEAN_SCORE, MEAN_SCORE, STD_DEV);
+    // Scale the height to match the chart's scale
+    const density = normalDistribution(MEAN_SCORE, MEAN_SCORE, STD_DEV);
+    return (density / 0.01) * chartHeight; // 0.01 is our domain max
   }
   return 50; // 50th percentile
 };
 
 const CustomMeanLine = ({ displayMode }: { displayMode: "normal" | "percentile" }) => {
-  const yHeight = getMeanHeight(displayMode);
+  const chartHeight = displayMode === "normal" ? 400 : 100; // Match the domain heights
+  const yHeight = getMeanHeight(displayMode, chartHeight);
   
   return (
     <g>
       <line
         x1={MEAN_SCORE}
         x2={MEAN_SCORE}
-        y1={0}
-        y2={yHeight}
+        y1={chartHeight}
+        y2={chartHeight - yHeight}
         stroke="#374151"
-        strokeWidth={1}
+        strokeWidth={2}
         strokeDasharray="3 3"
       />
       <text
