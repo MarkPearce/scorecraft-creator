@@ -161,11 +161,12 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
                 strokeDasharray="3 3"
               />
               <text
-                x={x}
-                y={30}
+                x={x + 10}
+                y={lineStartY - 10}
                 fill="#374151"
                 fontSize={14}
-                textAnchor="middle"
+                textAnchor="start"
+                dominantBaseline="bottom"
               >
                 Mean: {MEAN_SCORE}
               </text>
