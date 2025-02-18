@@ -9,43 +9,6 @@ interface DistributionChartProps {
   studentPercentile: number;
 }
 
-// Calculate the exact y-coordinate for the mean point
-const getMeanHeight = (displayMode: "normal" | "percentile", chartHeight: number) => {
-  if (displayMode === "normal") {
-    // Scale the height to match the chart's scale
-    const density = normalDistribution(MEAN_SCORE, MEAN_SCORE, STD_DEV);
-    return (density / 0.01) * chartHeight; // 0.01 is our domain max
-  }
-  return 50; // 50th percentile
-};
-
-const CustomMeanLine = ({ displayMode }: { displayMode: "normal" | "percentile" }) => {
-  const chartHeight = displayMode === "normal" ? 400 : 100; // Match the domain heights
-  const yHeight = getMeanHeight(displayMode, chartHeight);
-  
-  return (
-    <g>
-      <line
-        x1={MEAN_SCORE}
-        x2={MEAN_SCORE}
-        y1={chartHeight}
-        y2={chartHeight - yHeight}
-        stroke="#374151"
-        strokeWidth={2}
-        strokeDasharray="3 3"
-      />
-      <text
-        x={MEAN_SCORE + 5}
-        y={20}
-        fill="#374151"
-        fontSize={14}
-      >
-        Mean: {MEAN_SCORE}
-      </text>
-    </g>
-  );
-};
-
 const DistributionChart = ({ data, displayMode, studentScore, studentPercentile }: DistributionChartProps) => {
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
   const normalDistributionTicks = Array.from({ length: 5 }, (_, i) => i * 0.002);
@@ -133,7 +96,18 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           fill="url(#colorData)"
           strokeWidth={2}
         />
-        <CustomMeanLine displayMode={displayMode} />
+        <ReferenceLine
+          x={MEAN_SCORE}
+          stroke="#374151"
+          strokeDasharray="3 3"
+          strokeWidth={2}
+          label={{
+            value: `Mean: ${MEAN_SCORE}`,
+            position: 'top',
+            fill: '#374151',
+            fontSize: 14
+          }}
+        />
         <ReferenceLine
           x={studentScore}
           stroke="#0aa6b8"
