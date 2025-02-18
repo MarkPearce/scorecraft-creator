@@ -80,13 +80,6 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 bottom: 40
               }}
             >
-              <defs>
-                <linearGradient id="colorGradient" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#ea384c" />
-                  <stop offset="50%" stopColor="#F97316" />
-                  <stop offset="100%" stopColor="#22c55e" />
-                </linearGradient>
-              </defs>
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis 
                 dataKey="date" 
@@ -180,7 +173,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               <Line 
                 type="monotone"
                 dataKey="score" 
-                stroke="url(#colorGradient)"
+                stroke={(data) => getStrokeColor(data.score)}
                 strokeWidth={3} 
                 dot={<CustomDot />} 
                 activeDot={<CustomActiveDot />}
