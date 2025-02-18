@@ -66,55 +66,57 @@ const Report = () => {
             </p>
           </div>
           
-          <Carousel className="w-full">
-            <CarouselContent>
-              <CarouselItem>
-                <OverallPerformance 
-                  yourScore={245}
-                  targetScore={sharedTargetScore}
-                  onTargetScoreChange={setSharedTargetScore}
-                  questionsAnswered={422}
-                  examDate="Oct 15, 2025"
-                />
-              </CarouselItem>
-              
-              <CarouselItem>
-                <RecommendedSession />
-              </CarouselItem>
-              
-              <CarouselItem>
-                <PerformanceScoreCard 
-                  examStep={currentStep}
-                  initialScore={245}
-                  targetScore={sharedTargetScore}
-                  onTargetScoreChange={setSharedTargetScore}
-                  passingStandard={currentStep === 'step1' ? 252 : undefined}
-                  showControls={false}
-                  title="Current performance"
-                />
-              </CarouselItem>
-              
-              <CarouselItem>
-                <PerformanceTrackingContainer />
-              </CarouselItem>
-              
-              <CarouselItem>
-                <PeerGroup />
-              </CarouselItem>
-              
-              <CarouselItem>
-                <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
-              </CarouselItem>
+          <div className="relative">
+            <Carousel className="w-full">
+              <CarouselContent>
+                <CarouselItem>
+                  <OverallPerformance 
+                    yourScore={245}
+                    targetScore={sharedTargetScore}
+                    onTargetScoreChange={setSharedTargetScore}
+                    questionsAnswered={422}
+                    examDate="Oct 15, 2025"
+                  />
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <RecommendedSession />
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <PerformanceScoreCard 
+                    examStep={currentStep}
+                    initialScore={245}
+                    targetScore={sharedTargetScore}
+                    onTargetScoreChange={setSharedTargetScore}
+                    passingStandard={currentStep === 'step1' ? 252 : undefined}
+                    showControls={false}
+                    title="Current performance"
+                  />
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <PerformanceTrackingContainer />
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <PeerGroup />
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
+                </CarouselItem>
 
-              <CarouselItem>
-                <div className="px-4">
-                  <TopicBreakdown />
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-2 top-1/2" />
-            <CarouselNext className="absolute right-2 top-1/2" />
-          </Carousel>
+                <CarouselItem>
+                  <div className="px-4">
+                    <TopicBreakdown />
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-2 top-1/2" />
+              <CarouselNext className="absolute right-2 top-1/2" />
+            </Carousel>
+          </div>
         </div>
       </div>
     </>
