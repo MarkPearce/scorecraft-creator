@@ -110,15 +110,15 @@ const PerformanceGraph = ({
       }, {
         score: 196,
         color: "bg-[#FFC107]",
-        label: ""  // Removed 196 label
+        label: ""
       }, {
         score: 231,
         color: "bg-[#8DC641]",
-        label: "231"
+        label: "Passing standard before 2022: 231"
       }, {
         score: 248,
         color: "bg-[#019444]",
-        label: ""  // Removed 248 label
+        label: ""
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
@@ -227,7 +227,7 @@ const PerformanceGraph = ({
         <div className="relative">
           <div className="relative h-[300px] flex p-1 rounded-lg" ref={containerRef}>
             <div className="relative h-full w-[50px] flex-shrink-0">
-              {segments.map(segment => <div key={`label-${segment.score}`} className="absolute text-sm text-gray-600" style={{
+              {segments.map(segment => <div key={`label-${segment.score}`} className="absolute text-sm text-gray-600 whitespace-nowrap" style={{
               top: calculatePosition(segment.score),
               transform: 'translateY(-50%)',
               right: '8px',
