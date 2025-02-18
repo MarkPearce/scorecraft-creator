@@ -1,11 +1,12 @@
+
 import { getPercentileColor } from "@/utils/colors";
 interface PercentileDisplayProps {
   percentile: number;
 }
 const getPercentileBackground = (percentile: number) => {
-  if (percentile < 40) return "bg-yellow-500/15";
-  if (percentile < 70) return "bg-yellow-500/15";
-  return "bg-yellow-500/15";
+  if (percentile < 40) return "bg-white border border-gray-600/20";
+  if (percentile < 70) return "bg-white border border-gray-600/20";
+  return "bg-white border border-gray-600/20";
 };
 const ordinalSuffix = "th";
 export const PercentileDisplay = ({
