@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
 import RecommendedSession from "@/components/RecommendedSession";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -30,35 +30,24 @@ const Report = () => {
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [emblaRef, emblaApi] = useEmblaCarousel();
 
-  useEffect(() => {
+  // Set up scroll snap event listener
+  useState(() => {
     if (emblaApi) {
-      const onSelect = () => {
+      emblaApi.on('select', () => {
         setCanScrollPrev(emblaApi.canScrollPrev());
         setCanScrollNext(emblaApi.canScrollNext());
-      };
-
-      emblaApi.on('select', onSelect);
-      // Initial check
-      onSelect();
-
-      return () => {
-        emblaApi.off('select', onSelect);
-      };
+      });
     }
-  }, [emblaApi]);
+  });
 
   const handlePrevClick = () => {
     const prevButton = document.querySelector('.embla__prev') as HTMLButtonElement;
-    if (prevButton && canScrollPrev) {
-      prevButton.click();
-    }
+    prevButton?.click();
   };
 
   const handleNextClick = () => {
     const nextButton = document.querySelector('.embla__next') as HTMLButtonElement;
-    if (nextButton && canScrollNext) {
-      nextButton.click();
-    }
+    nextButton?.click();
   };
 
   return (
@@ -124,7 +113,10 @@ const Report = () => {
             </div>
             <Carousel 
               ref={emblaRef}
-              className="w-full"
+              className="w-full" 
+              opts={{
+                dragFree: false
+              }}
             >
               <CarouselContent>
                 <CarouselItem>
