@@ -114,18 +114,18 @@ const PerformanceGraph = ({
       }, {
         score: 196,
         color: "bg-[#FFC107]",
-        label: "196"
+        label: ""  // Removed 196 label
       }, {
         score: nationalMean,
         color: "bg-[#8DC641]",
-        label: `${nationalMean}`
+        label: "231"
       }, {
         score: midpoint,
         color: "bg-[#019444]",
         label: `${midpoint}`
       }, {
         score: range.max,
-        label: `${Math.round(range.max)}`
+        label: ""  // Removed max score label
       }];
     } else {
       return [{
