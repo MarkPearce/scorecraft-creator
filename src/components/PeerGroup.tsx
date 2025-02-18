@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -32,7 +31,7 @@ const normalDistribution = (x: number, mean: number, stdDev: number): number => 
 // Generate data points for visualization
 const generateDistributionData = () => {
   const points = [];
-  const numPoints = 400; // Match Python's resolution
+  const numPoints = 1000; // Increased from 400 to 1000 for smoother curve
   
   // Generate points across the score range (0-300)
   for (let score = 0; score <= 300; score += (300 / numPoints)) {
@@ -43,7 +42,7 @@ const generateDistributionData = () => {
     const percentile = (1 + erf(zScore / Math.sqrt(2))) / 2;
     
     points.push({
-      score: Math.round(score),
+      score: Math.round(score * 100) / 100, // Keep 2 decimal places for smoother curve
       density: density * 2000, // Scale for better visualization
       percentile: percentile * 100 // Convert to percentage
     });
@@ -153,7 +152,7 @@ const PeerGroup = () => {
                 labelFormatter={(score: number) => `Score: ${score}`}
               />
               <Area
-                type="monotone"
+                type="basis" // Changed from "monotone" to "basis" for smoother curve
                 dataKey={displayMode === "normal" ? "density" : "percentile"}
                 stroke="#0aa6b8"
                 fill="url(#colorData)"
