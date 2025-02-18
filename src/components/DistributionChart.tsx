@@ -18,9 +18,9 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     ? normalDistributionTicks
     : percentileTicks;
 
-  // Find the y-value at mean score to set the reference line end point
-  const meanPoint = data.find(point => point.score === MEAN_SCORE);
-  const meanY = displayMode === "normal" ? meanPoint?.density : meanPoint?.percentile;
+  // Find the closest point to mean score to set the reference line end point
+  const meanPoint = data.find(point => Math.abs(point.score - MEAN_SCORE) < 0.5);
+  const meanY = meanPoint ? (displayMode === "normal" ? meanPoint.density : meanPoint.percentile) : 0;
 
   return (
     <ResponsiveContainer width="100%" height={400}>
