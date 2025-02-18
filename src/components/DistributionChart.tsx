@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -66,6 +65,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
             dy: 10
           }}
           scale="linear"
+          allowDataOverflow
         />
         <YAxis 
           dataKey={displayMode === "normal" ? "density" : "percentile"}
@@ -91,6 +91,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
             return value;
           }}
           scale="linear"
+          allowDataOverflow
         />
         <Tooltip 
           formatter={(value: number, name: string) => {
@@ -116,27 +117,30 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
               hasScale: !!xAxis?.scale,
               scaleType: xAxis?.scale?.name,
               domain: xAxis?.domain,
+              bandwidth: xAxis?.bandwidth?.(),
+              range: xAxis?.range?.(),
+              ticks: xAxis?.ticks?.()
             },
             yAxisDetails: {
               hasScale: !!yAxis?.scale,
               scaleType: yAxis?.scale?.name,
               domain: yAxis?.domain,
+              bandwidth: yAxis?.bandwidth?.(),
+              range: yAxis?.range?.(),
+              ticks: yAxis?.ticks?.()
             }
           });
 
-          if (!xAxis?.scale || !yAxis?.scale || !width || !height) {
-            return null;
-          }
-
-          const x = xAxis.scale(MEAN_SCORE);
-          const lineHeight = height * 0.75;
+          const x = xAxis?.scale ? xAxis.scale(MEAN_SCORE) : (width || 0) * (MEAN_SCORE / 300);
+          const lineHeight = (height || 0) * 0.75;
 
           console.log('Mean Line Coordinates:', {
             meanScore: MEAN_SCORE,
             x,
+            width,
             height,
             lineHeight,
-            scale: xAxis.scale.name
+            scale: xAxis?.scale?.name
           });
 
           return (
@@ -188,4 +192,3 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 };
 
 export default DistributionChart;
-
