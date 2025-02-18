@@ -10,7 +10,6 @@ const MEAN_SCORE = 249; // μ (mu)
 const STD_DEV = 50;    // σ (sigma)
 
 // Error function approximation
-// Using Abramowitz and Stegun approximation (maximum error: 1.5×10−7)
 const erf = (x: number): number => {
   const t = 1.0 / (1.0 + 0.3275911 * Math.abs(x));
   const p = 0.254829592;
@@ -23,34 +22,28 @@ const erf = (x: number): number => {
   return x >= 0 ? calculation : -calculation;
 };
 
-// Calculate normal distribution probability density
-const normalDistribution = (x: number, mu: number, sigma: number): number => {
-  return (1 / (sigma * Math.sqrt(2 * Math.PI))) * 
-         Math.exp(-Math.pow(x - mu, 2) / (2 * Math.pow(sigma, 2)));
-};
-
 // Generate data points for visualization
-const generateNormalDistributionData = () => {
+const generateDistributionData = () => {
   const points = [];
-  const numPoints = 300; // More points for smoother curve
+  const numPoints = 400; // Match Python's resolution
   
   // Generate points across the score range (0-300)
   for (let score = 0; score <= 300; score += (300 / numPoints)) {
-    const density = normalDistribution(score, MEAN_SCORE, STD_DEV);
-    const percentile = (score - MEAN_SCORE) / STD_DEV; // Z-score
-    const normalizedPercentile = (1 + erf(percentile / Math.sqrt(2))) / 2; // Convert Z-score to percentile
+    // Calculate Z-score
+    const zScore = (score - MEAN_SCORE) / STD_DEV;
+    // Convert Z-score to percentile (CDF)
+    const percentile = (1 + erf(zScore / Math.sqrt(2))) / 2;
     
     points.push({
       score: Math.round(score),
-      density: density * 2000, // Scale for better visualization
-      percentileValue: normalizedPercentile
+      percentile: percentile * 100 // Convert to percentage
     });
   }
   
   return points;
 };
 
-const data = generateNormalDistributionData();
+const data = generateDistributionData();
 
 // Student score
 const studentScore = 245;
@@ -66,12 +59,9 @@ const studentPercentile = findPercentile(studentScore);
 
 const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
-  const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
+  const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("percentile");
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
-  const yAxisTicks = [0, 0.002, 0.004, 0.006, 0.008];
-
-  // Find the score at the calculated percentile
-  const percentileScore = data.find(point => Math.round(point.percentileValue * 100) === studentPercentile)?.score || studentScore;
+  const yAxisTicks = [0, 20, 40, 60, 80, 100];
 
   return (
     <Card className="animate-fadeIn">
@@ -97,13 +87,13 @@ const PeerGroup = () => {
           
           <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={data} margin={{
-              top: 20,
+              top: 40,
               right: 30,
               left: 40,
               bottom: 0
             }}>
               <defs>
-                <linearGradient id="colorDensity" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="colorPercentile" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
                 </linearGradient>
@@ -126,10 +116,10 @@ const PeerGroup = () => {
                 }}
               />
               <YAxis 
-                dataKey={displayMode === "normal" ? "density" : "percentileValue"}
-                domain={displayMode === "normal" ? [0, 'auto'] : [0, 1]}
+                dataKey="percentile"
+                domain={[0, 100]}
                 label={{
-                  value: displayMode === "normal" ? 'Probability Density' : 'Percentile',
+                  value: 'Percentile (%)',
                   angle: -90,
                   position: 'insideLeft',
                   offset: 0,
@@ -137,6 +127,7 @@ const PeerGroup = () => {
                     textAnchor: 'middle'
                   }
                 }}
+                ticks={yAxisTicks}
                 tick={{
                   fontSize: 11,
                   dx: -10
@@ -144,18 +135,16 @@ const PeerGroup = () => {
               />
               <Tooltip 
                 formatter={(value: number, name: string) => {
-                  if (name === 'density') return [`${(value / 2000).toFixed(4)}`, 'Density'];
-                  if (name === 'percentileValue') return [`${(value * 100).toFixed(1)}%`, 'Percentile'];
-                  if (name === 'score') return [`${Math.round(value)}`, 'Score'];
+                  if (name === 'percentile') return [`${value.toFixed(1)}%`, 'Percentile'];
                   return [value, name];
                 }}
                 labelFormatter={(score: number) => `Score: ${score}`}
               />
               <Area
                 type="monotone"
-                dataKey={displayMode === "normal" ? "density" : "percentileValue"}
+                dataKey="percentile"
                 stroke="#0aa6b8"
-                fill="url(#colorDensity)"
+                fill="url(#colorPercentile)"
                 strokeWidth={2}
               />
               <ReferenceLine
@@ -170,15 +159,20 @@ const PeerGroup = () => {
                 }}
               />
               <ReferenceLine
-                x={percentileScore}
+                x={studentScore}
                 stroke="#0aa6b8"
                 strokeDasharray="3 3"
                 label={{
-                  value: `${studentPercentile}th Percentile: ${Math.round(percentileScore)}`,
+                  value: `${studentPercentile}th Percentile: ${studentScore}`,
                   position: 'top',
                   fill: '#0aa6b8',
                   fontSize: 14
                 }}
+              />
+              <ReferenceLine
+                y={studentPercentile}
+                stroke="#0aa6b8"
+                strokeDasharray="3 3"
               />
             </AreaChart>
           </ResponsiveContainer>
