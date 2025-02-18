@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -114,7 +113,7 @@ const PerformanceGraph = ({
       }, {
         score: 231,
         color: "bg-[#8DC641]",
-        label: "Passing standard before 2022: 231"
+        label: "Passing standard\nbefore 2022: 231"
       }, {
         score: 248,
         color: "bg-[#019444]",
@@ -227,12 +226,11 @@ const PerformanceGraph = ({
         <div className="relative">
           <div className="relative h-[300px] flex p-1 rounded-lg" ref={containerRef}>
             <div className="relative h-full w-[50px] flex-shrink-0">
-              {segments.map(segment => <div key={`label-${segment.score}`} className="absolute text-sm text-gray-600 whitespace-nowrap" style={{
+              {segments.map(segment => <div key={`label-${segment.score}`} className="absolute text-sm text-gray-600 text-right whitespace-pre-line" style={{
               top: calculatePosition(segment.score),
               transform: 'translateY(-50%)',
               right: '8px',
-              width: '100%',
-              textAlign: 'right'
+              width: '100%'
             }}>
                   {segment.label}
                 </div>)}
