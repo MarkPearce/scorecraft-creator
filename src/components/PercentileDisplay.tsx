@@ -15,7 +15,7 @@ export const PercentileDisplay = ({
       <div className="relative text-2xl font-bold text-yellow-600 mr-6">
         {percentile}<span style={{
         top: '0.25rem'
-      }} className="absolute text-md">{ordinalSuffix}</span>
+      }} className="absolute text-lg\n">{ordinalSuffix}</span>
       </div>
       <span className="font-semibold text-gray-600">Percentile</span>
     </div>;
