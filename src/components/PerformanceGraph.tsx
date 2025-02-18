@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -230,7 +231,8 @@ const PerformanceGraph = ({
               top: calculatePosition(segment.score),
               transform: 'translateY(-50%)',
               right: '8px',
-              width: '100%'
+              minWidth: '200px',
+              direction: 'rtl'
             }}>
                   {segment.label}
                 </div>)}
