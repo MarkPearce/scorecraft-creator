@@ -116,7 +116,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                   />
                   <ReferenceLine 
                     y={231} 
-                    stroke="#86efac" 
+                    stroke="#22c55e" 
                     strokeDasharray="3 3" 
                     label={{ 
                       value: 'National mean before 2022 (231)', 
