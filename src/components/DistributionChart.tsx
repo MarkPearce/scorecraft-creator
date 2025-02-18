@@ -136,7 +136,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           const lineStartY = height - 70; // Start 70px from the bottom
           
           // Calculate line length based on the normal distribution mode
-          const lineLength = displayMode === "normal" ? 232 : 232;
+          const lineLength = displayMode === "normal" ? 232 : 152;
           const lineEndY = lineStartY - lineLength;
 
           console.log('Mean Line Coordinates:', {
