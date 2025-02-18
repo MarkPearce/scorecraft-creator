@@ -106,7 +106,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                   stroke="#ea384c" 
                   strokeDasharray="3 3" 
                   label={{ 
-                    value: 'Passing Standard (196)', 
+                    value: 'National mean\nbefore 2022: 231', 
                     position: 'center',
                     fill: '#64748b',
                     fontSize: 12,
