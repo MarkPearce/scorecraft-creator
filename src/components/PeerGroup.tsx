@@ -127,7 +127,7 @@ const PeerGroup = () => {
               />
               <YAxis 
                 dataKey={displayMode === "normal" ? "density" : "percentileValue"}
-                domain={displayMode === "normal" ? [0, 0.018] : [0, 1]}
+                domain={displayMode === "normal" ? [0, 'auto'] : [0, 1]}
                 label={{
                   value: displayMode === "normal" ? 'Probability Density' : 'Percentile',
                   angle: -90,
