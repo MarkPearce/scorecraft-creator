@@ -110,22 +110,22 @@ const PerformanceGraph = ({
       return [{
         score: range.min,
         color: "bg-[#ED1B24]",
-        label: `${Math.round(range.min)}`
+        label: ""
       }, {
         score: 196,
         color: "bg-[#FFC107]",
-        label: ""  // Removed 196 label
+        label: ""
       }, {
         score: nationalMean,
         color: "bg-[#8DC641]",
-        label: "231"
+        label: "Mean prior to 2022 • 231"
       }, {
         score: midpoint,
         color: "bg-[#019444]",
         label: `${midpoint}`
       }, {
         score: range.max,
-        label: ""  // Removed max score label
+        label: ""
       }];
     } else {
       return [{
