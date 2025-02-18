@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -126,10 +125,10 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                     stroke="#ea384c" 
                     label={{ 
                       value: 'Passing Standard (196)', 
-                      position: 'insideTopRight',
+                      position: 'insideBottomRight',
                       fill: '#64748b',
                       fontSize: 12,
-                      dy: -5
+                      dy: 18
                     }} 
                   />
                   <ReferenceLine 
@@ -140,7 +139,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                       position: 'insideBottomRight',
                       fill: '#64748b',
                       fontSize: 12,
-                      dy: 15
+                      dy: 18
                     }} 
                   />
                 </>
@@ -151,10 +150,10 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                     stroke="#ea384c" 
                     label={{ 
                       value: 'Passing standard (214)', 
-                      position: 'insideTopRight',
+                      position: 'insideBottomRight',
                       fill: '#64748b',
                       fontSize: 12,
-                      dy: -5
+                      dy: 18
                     }} 
                   />
                   <ReferenceLine 
@@ -165,7 +164,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                       position: 'insideBottomRight',
                       fill: '#64748b',
                       fontSize: 12,
-                      dy: 15
+                      dy: 18
                     }} 
                   />
                 </>
