@@ -156,7 +156,7 @@ const PeerGroup = () => {
                 strokeDasharray="3 3"
                 label={{
                   value: `Mean: ${MEAN_SCORE}`,
-                  position: 'top',
+                  position: 'insideBottomLeft',
                   fill: '#374151',
                   fontSize: 14
                 }}
