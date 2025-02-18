@@ -20,15 +20,12 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <AreaChart 
-        data={data} 
-        margin={{
-          top: 40,
-          right: 30,
-          left: 40,
-          bottom: 0
-        }}
-      >
+      <AreaChart data={data} margin={{
+        top: 40,
+        right: 30,
+        left: 40,
+        bottom: 0
+      }}>
         <defs>
           <linearGradient id="colorData" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.3} />
@@ -90,15 +87,11 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           labelFormatter={(score: number) => `Score: ${score}`}
         />
         <Area
-          type="monotone"
+          type="basis"
           dataKey={displayMode === "normal" ? "density" : "percentile"}
           stroke="#0aa6b8"
           fill="url(#colorData)"
           strokeWidth={2}
-          animationDuration={1500}
-          animationBegin={0}
-          isAnimationActive={true}
-          animationEasing="ease-in-out"
         />
         <ReferenceLine
           x={MEAN_SCORE}
@@ -106,7 +99,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           strokeDasharray="3 3"
           label={{
             value: `Mean: ${MEAN_SCORE}`,
-            position: 'insideBottom',
+            position: 'insideBottomRight',
             fill: '#374151',
             fontSize: 14
           }}
