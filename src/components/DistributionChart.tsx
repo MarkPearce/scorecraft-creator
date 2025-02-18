@@ -133,7 +133,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           });
 
           const x = xAxis?.scale ? xAxis.scale(MEAN_SCORE) : (width || 0) * (MEAN_SCORE / 300);
-          const lineStartY = height - 72; // Start 72px from the bottom
+          const lineStartY = height - 70; // Start 70px from the bottom
           
           // Calculate line length based on the normal distribution mode
           const lineLength = displayMode === "normal" ? 300 : 260;
