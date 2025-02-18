@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -58,8 +59,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     if (examStep === 'step1') {
       return [{
         date: 'Feb 12',
-        score: 188,
-        color: getStrokeColor(188)
+        score: 190,
+        color: getStrokeColor(190)
       }, {
         date: 'Feb 19',
         score: 194,
