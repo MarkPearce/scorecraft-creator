@@ -16,7 +16,6 @@ import { useState } from "react";
 
 const SinglePageReport = () => {
   const navigate = useNavigate();
-  const currentPercentile = 30;
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
 
@@ -59,7 +58,6 @@ const SinglePageReport = () => {
           </div>
 
           <div className="space-y-8">
-            {/* Components in the same order as carousel */}
             <OverallPerformance 
               yourScore={245}
               targetScore={sharedTargetScore}
@@ -82,10 +80,7 @@ const SinglePageReport = () => {
             
             <PeerGroup />
             
-            <TextProjectionCard 
-              percentile={currentPercentile} 
-              examStep={currentStep} 
-            />
+            <TextProjectionCard />
 
             <PerformanceSummary />
 

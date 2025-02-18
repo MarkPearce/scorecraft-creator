@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +23,6 @@ import {
 
 const Report = () => {
   const navigate = useNavigate();
-  const currentPercentile = 30;
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
 
@@ -133,7 +133,7 @@ const Report = () => {
                 </CarouselItem>
                 
                 <CarouselItem>
-                  <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
+                  <TextProjectionCard />
                 </CarouselItem>
 
                 <CarouselItem>
