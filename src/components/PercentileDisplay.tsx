@@ -15,7 +15,7 @@ const ordinalSuffix = "th";
 
 export const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {
   return (
-    <div className={`rounded-2xl p-3 inline-flex items-baseline justify-center ${getPercentileBackground(percentile)}`}>
+    <div className={`rounded-2xl p-3 px-5 inline-flex items-baseline justify-center ${getPercentileBackground(percentile)}`}>
       <div className="text-3xl font-bold text-yellow-600">
         {percentile}<span className="text-lg align-super">{ordinalSuffix}</span>
       </div>
