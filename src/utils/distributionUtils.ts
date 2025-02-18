@@ -35,7 +35,7 @@ export const generateDistributionData = () => {
     
     points.push({
       score: Math.round(score * 100) / 100,
-      density: density * 2000,
+      density, // Remove the multiplication by 2000
       percentile: percentile * 100
     });
   }

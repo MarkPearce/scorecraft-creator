@@ -56,7 +56,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         <YAxis 
           dataKey={displayMode === "normal" ? "density" : "percentile"}
-          domain={displayMode === "normal" ? [0, 0.008] : [0, 100]}
+          domain={displayMode === "normal" ? [0, 0.01] : [0, 100]}
           label={{
             value: displayMode === "normal" ? 'Distribution (%)' : 'Percentile (%)',
             angle: -90,
