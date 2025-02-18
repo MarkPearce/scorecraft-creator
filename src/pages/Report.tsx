@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -28,18 +29,23 @@ const Report = () => {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    startIndex: 0
+    startIndex: 0,
+    align: 'start'
   });
 
   useEffect(() => {
     if (emblaApi) {
       const onSelect = () => {
-        setCanScrollPrev(emblaApi.canScrollPrev());
-        setCanScrollNext(emblaApi.canScrollNext());
+        const prev = emblaApi.canScrollPrev();
+        const next = emblaApi.canScrollNext();
+        console.log('Can scroll prev:', prev, 'Can scroll next:', next);
+        setCanScrollPrev(prev);
+        setCanScrollNext(next);
       };
 
       emblaApi.on('select', onSelect);
       
+      // Initial state
       setCanScrollPrev(false);
       setCanScrollNext(true);
       
@@ -49,12 +55,22 @@ const Report = () => {
     }
   }, [emblaApi]);
 
-  const handlePrevClick = () => {
-    emblaApi?.scrollPrev();
+  const handlePrevClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (emblaApi && emblaApi.canScrollPrev()) {
+      console.log('Scrolling prev');
+      emblaApi.scrollPrev();
+    }
   };
 
-  const handleNextClick = () => {
-    emblaApi?.scrollNext();
+  const handleNextClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (emblaApi && emblaApi.canScrollNext()) {
+      console.log('Scrolling next');
+      emblaApi.scrollNext();
+    }
   };
 
   return (
