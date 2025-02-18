@@ -1,10 +1,8 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PercentileDisplay } from "@/components/PercentileDisplay";
 
 // Normal distribution parameters
 const MEAN_SCORE = 249; // μ (mu)
@@ -84,10 +82,6 @@ const PeerGroup = () => {
           <p className="text-gray-600 mb-4 text-base font-lato">
             You are currently at the <span className="text-gray-600">65<sup className="text-xs">th</sup></span> percentile compared to other learners.
           </p>
-
-          <div className="absolute right-8 top-8 z-50">
-            <PercentileDisplay percentile={65} />
-          </div>
           
           <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={data} margin={{
