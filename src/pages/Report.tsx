@@ -23,7 +23,7 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 
 const emblaOptions = {
-  draggable: false
+  dragFree: false
 };
 
 const Report = () => {
