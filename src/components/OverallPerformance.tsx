@@ -64,7 +64,7 @@ const OverallPerformance = ({
               <div className="text-sm text-[#403E43] mb-2 font-lato">Target Score</div>
               <div className="flex items-center gap-2">
                 {isEditing ? (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-end gap-3">
                     <Input
                       type="number"
                       value={tempScore}
@@ -73,19 +73,19 @@ const OverallPerformance = ({
                       className="w-24 text-4xl font-bold text-gray-600 font-lato h-12"
                       autoFocus
                     />
-                    <button onClick={handleSave} className="text-green-600 hover:text-green-700">
+                    <button onClick={handleSave} className="text-green-600 hover:text-green-700 pb-1">
                       <Check className="h-5 w-5" />
                     </button>
-                    <button onClick={handleCancel} className="text-red-600 hover:text-red-700">
+                    <button onClick={handleCancel} className="text-red-600 hover:text-red-700 pb-1">
                       <X className="h-5 w-5" />
                     </button>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-end gap-3">
                     <div className="text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
                     <button 
                       onClick={() => setIsEditing(true)}
-                      className="text-gray-400 hover:text-gray-600"
+                      className="text-gray-400 hover:text-gray-600 pb-1"
                     >
                       <Pencil className="h-4 w-4" />
                     </button>
