@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -97,30 +98,35 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         
         <Customized component={({ width, height, xAxis, yAxis }) => {
-          if (!xAxis?.scale || !yAxis?.scale) {
-            console.log('Missing scale functions:', { xAxis, yAxis });
+          if (!xAxis?.scale || !yAxis?.scale || !data.length) {
+            console.log('Missing required data:', { 
+              hasXAxisScale: !!xAxis?.scale, 
+              hasYAxisScale: !!yAxis?.scale,
+              dataLength: data.length 
+            });
             return null;
           }
 
-          const meanPoint = data.reduce((closest, point) => 
-            Math.abs(point.score - MEAN_SCORE) < Math.abs(closest.score - MEAN_SCORE) 
-              ? point 
-              : closest
+          // Find the data point closest to MEAN_SCORE
+          const meanPoint = data.find(point => 
+            Math.abs(point.score - MEAN_SCORE) < 5
           );
+
+          if (!meanPoint) {
+            console.log('Could not find mean point near:', MEAN_SCORE);
+            return null;
+          }
 
           const x = xAxis.scale(MEAN_SCORE);
           const y = yAxis.scale(displayMode === "normal" ? meanPoint.density : meanPoint.percentile);
           const chartBottom = height - 40;
 
-          console.log('Coordinate Debug:', {
+          console.log('Drawing mean line with:', {
             meanPoint,
             x,
             y,
             chartBottom,
-            width,
-            height,
-            displayMode,
-            value: displayMode === "normal" ? meanPoint.density : meanPoint.percentile
+            meanScore: MEAN_SCORE
           });
 
           return (
@@ -170,3 +176,4 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 };
 
 export default DistributionChart;
+
