@@ -152,31 +152,30 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 </>
               )}
               <defs>
-                <rect id="gradientBox" x="0" y="0" width="100%" height="100%" fill="url(#lineGradient)" />
                 {examStep === 'step1' ? (
-                  <linearGradient id="lineGradient" x1="0" y1="1" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop offset={180 / 300} stopColor="#ea384c" />
-                    <stop offset={196 / 300} stopColor="#ea384c" />
-                    <stop offset={196 / 300} stopColor="#F97316" />
-                    <stop offset={231 / 300} stopColor="#F97316" />
-                    <stop offset={231 / 300} stopColor="#22c55e" />
-                    <stop offset="1" stopColor="#22c55e" />
+                  <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stopColor="#22c55e" />
+                    <stop offset={(300 - 231) / 120} stopColor="#22c55e" />
+                    <stop offset={(300 - 231) / 120} stopColor="#F97316" />
+                    <stop offset={(300 - 196) / 120} stopColor="#F97316" />
+                    <stop offset={(300 - 196) / 120} stopColor="#ea384c" />
+                    <stop offset="1" stopColor="#ea384c" />
                   </linearGradient>
                 ) : (
-                  <linearGradient id="lineGradient" x1="0" y1="1" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop offset={180 / 300} stopColor="#ea384c" />
-                    <stop offset={214 / 300} stopColor="#ea384c" />
-                    <stop offset={214 / 300} stopColor="#F97316" />
-                    <stop offset={249 / 300} stopColor="#F97316" />
-                    <stop offset={249 / 300} stopColor="#22c55e" />
-                    <stop offset={265 / 300} stopColor="#22c55e" />
-                    <stop offset={265 / 300} stopColor="#019444" />
-                    <stop offset="1" stopColor="#019444" />
+                  <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stopColor="#019444" />
+                    <stop offset={(300 - 265) / 120} stopColor="#019444" />
+                    <stop offset={(300 - 265) / 120} stopColor="#22c55e" />
+                    <stop offset={(300 - 249) / 120} stopColor="#22c55e" />
+                    <stop offset={(300 - 249) / 120} stopColor="#F97316" />
+                    <stop offset={(300 - 214) / 120} stopColor="#F97316" />
+                    <stop offset={(300 - 214) / 120} stopColor="#ea384c" />
+                    <stop offset="1" stopColor="#ea384c" />
                   </linearGradient>
                 )}
               </defs>
               <Line 
-                type="linear" 
+                type="monotone"
                 dataKey="score" 
                 stroke="url(#lineGradient)" 
                 strokeWidth={3} 
