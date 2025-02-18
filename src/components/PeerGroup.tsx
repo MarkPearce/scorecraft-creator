@@ -27,7 +27,8 @@ const generateNormalDistributionData = () => {
     points.push({
       percentile: percentile,
       score: Math.min(300, Math.max(0, Math.round(score))), // Clamp between 0-300
-      density: normalValue * 400 // Scale the density for visualization
+      density: normalValue * 400, // Scale the density for visualization
+      percentileValue: percentile / 100 // Linear percentile value
     });
   }
   
@@ -42,13 +43,25 @@ const studentPercentile = 65;
 
 const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
+  const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
   const xAxisTicks = [0, 20, 40, 60, 80, 100];
   const yAxisTicks = [0, 50, 100, 150, 200, 250, 300];
 
   return (
     <Card className="animate-fadeIn">
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Peer group comparison</CardTitle>
+        <div className="w-[180px]">
+          <Select value={displayMode} onValueChange={(value: "normal" | "percentile") => setDisplayMode(value)}>
+            <SelectTrigger className="h-8">
+              <SelectValue placeholder="Select display mode" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="normal">Normal Distribution</SelectItem>
+              <SelectItem value="percentile">Percentile</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="relative">
@@ -111,6 +124,7 @@ const PeerGroup = () => {
               <Tooltip 
                 formatter={(value: number, name: string) => {
                   if (name === 'density') return [`${Math.round(value * 100) / 100}`, 'Density'];
+                  if (name === 'percentileValue') return [`${Math.round(value * 100)}%`, 'Percentile'];
                   if (name === 'score') return [`${Math.round(value)}`, 'Score'];
                   return [value, name];
                 }}
@@ -118,7 +132,7 @@ const PeerGroup = () => {
               />
               <Area
                 type="monotone"
-                dataKey="density"
+                dataKey={displayMode === "normal" ? "density" : "percentileValue"}
                 stroke="#0aa6b8"
                 fill="url(#colorDensity)"
                 strokeWidth={2}
