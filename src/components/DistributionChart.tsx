@@ -18,6 +18,10 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     ? normalDistributionTicks
     : percentileTicks;
 
+  // Find the y-value at mean score to set the reference line end point
+  const meanPoint = data.find(point => point.score === MEAN_SCORE);
+  const meanY = displayMode === "normal" ? meanPoint?.density : meanPoint?.percentile;
+
   return (
     <ResponsiveContainer width="100%" height={400}>
       <AreaChart 
@@ -104,6 +108,10 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           x={MEAN_SCORE}
           stroke="#374151"
           strokeDasharray="3 3"
+          segment={[
+            { x: MEAN_SCORE, y: 0 },
+            { x: MEAN_SCORE, y: meanY }
+          ]}
           label={{
             value: `Mean: ${MEAN_SCORE}`,
             position: 'insideBottomRight',
