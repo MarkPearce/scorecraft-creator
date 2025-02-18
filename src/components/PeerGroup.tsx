@@ -55,12 +55,13 @@ const PeerGroup = () => {
           
           <div className="relative" style={{ height: '400px' }}>
             <div 
-              className="absolute" 
+              className="absolute left-1/2 -translate-x-1/2" 
               style={{
                 left: calculateHorizontalPosition(),
                 top: '-12px',
                 transform: 'translateX(-50%)',
-                zIndex: 100
+                zIndex: 100,
+                width: 'fit-content'
               }}
             >
               <PercentileDisplay percentile={65} />

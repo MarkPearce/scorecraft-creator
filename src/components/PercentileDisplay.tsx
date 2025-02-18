@@ -15,11 +15,11 @@ const ordinalSuffix = "th";
 
 export const PercentileDisplay = ({ percentile }: PercentileDisplayProps) => {
   return (
-    <div className={`rounded-2xl p-3 inline-flex items-baseline ${getPercentileBackground(percentile)}`}>
-      <div className="relative text-3xl font-bold text-yellow-600 mr-6">
-        {percentile}<span className="absolute text-lg" style={{ top: '0.25rem' }}>{ordinalSuffix}</span>
+    <div className={`rounded-2xl p-3 inline-flex items-baseline justify-center ${getPercentileBackground(percentile)}`}>
+      <div className="text-3xl font-bold text-yellow-600">
+        {percentile}<span className="text-lg align-super">{ordinalSuffix}</span>
       </div>
-      <span className="font-semibold text-gray-600">Percentile</span>
+      <span className="font-semibold text-gray-600 ml-2">Percentile</span>
     </div>
   );
 };
