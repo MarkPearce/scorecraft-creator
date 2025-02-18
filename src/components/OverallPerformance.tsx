@@ -1,29 +1,24 @@
-
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import QuestionSessionDialog from "./QuestionSessionDialog";
-
 interface OverallPerformanceProps {
   yourScore: number;
   targetScore: number;
   questionsAnswered: number;
   examDate: string;
 }
-
 const OverallPerformance = ({
   yourScore,
   targetScore,
   questionsAnswered,
-  examDate,
+  examDate
 }: OverallPerformanceProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const totalQuestions = 720;
-  const progressPercentage = (questionsAnswered / totalQuestions) * 100;
-
-  return (
-    <>
+  const progressPercentage = questionsAnswered / totalQuestions * 100;
+  return <>
       <Card>
         <CardHeader>
           <CardTitle className="font-lato">Overall Performance</CardTitle>
@@ -31,7 +26,7 @@ const OverallPerformance = ({
         <CardContent>
           <div className="flex justify-between gap-8">
             <div>
-              <div className="text-sm text-[#403E43] mb-2 font-lato">Predicted Score</div>
+              <div className="text-sm text-[#403E43] mb-2 font-lato">Assessment</div>
               <div className="text-4xl font-bold text-gray-600 font-lato">{yourScore}</div>
             </div>
             <div>
@@ -64,12 +59,7 @@ const OverallPerformance = ({
         </CardContent>
       </Card>
 
-      <QuestionSessionDialog 
-        open={isDialogOpen}
-        onOpenChange={setIsDialogOpen}
-      />
-    </>
-  );
+      <QuestionSessionDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
+    </>;
 };
-
 export default OverallPerformance;
