@@ -1,23 +1,54 @@
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import QuestionSessionDialog from "./QuestionSessionDialog";
+import { Pencil, X, Check } from "lucide-react";
+import { Input } from "@/components/ui/input";
+
 interface OverallPerformanceProps {
   yourScore: number;
   targetScore: number;
   questionsAnswered: number;
   examDate: string;
 }
+
 const OverallPerformance = ({
   yourScore,
-  targetScore,
+  targetScore: initialTargetScore,
   questionsAnswered,
   examDate
 }: OverallPerformanceProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [targetScore, setTargetScore] = useState(initialTargetScore);
+  const [tempScore, setTempScore] = useState(initialTargetScore.toString());
+  
   const totalQuestions = 720;
   const progressPercentage = questionsAnswered / totalQuestions * 100;
+
+  const handleSave = () => {
+    const newScore = parseInt(tempScore, 10);
+    if (!isNaN(newScore) && newScore > 0) {
+      setTargetScore(newScore);
+    }
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setTempScore(targetScore.toString());
+    setIsEditing(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSave();
+    } else if (e.key === 'Escape') {
+      handleCancel();
+    }
+  };
+
   return <>
       <Card>
         <CardHeader>
@@ -31,7 +62,36 @@ const OverallPerformance = ({
             </div>
             <div>
               <div className="text-sm text-[#403E43] mb-2 font-lato">Target Score</div>
-              <div className="text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
+              <div className="flex items-center gap-2">
+                {isEditing ? (
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={tempScore}
+                      onChange={(e) => setTempScore(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      className="w-24 text-4xl font-bold text-gray-600 font-lato h-12"
+                      autoFocus
+                    />
+                    <button onClick={handleSave} className="text-green-600 hover:text-green-700">
+                      <Check className="h-5 w-5" />
+                    </button>
+                    <button onClick={handleCancel} className="text-red-600 hover:text-red-700">
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <div className="text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
+                    <button 
+                      onClick={() => setIsEditing(true)}
+                      className="text-gray-400 hover:text-gray-600"
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
             <div>
               <div className="text-sm text-[#403E43] mb-2 font-lato">Questions Answered</div>
@@ -62,4 +122,5 @@ const OverallPerformance = ({
       <QuestionSessionDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
     </>;
 };
+
 export default OverallPerformance;
