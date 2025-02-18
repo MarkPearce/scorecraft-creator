@@ -1,4 +1,3 @@
-
 import { Progress } from "@/components/ui/progress";
 import { Lock, Unlock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,20 +6,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
-
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(45);
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const navigate = useNavigate();
-  
   const isAssessmentUnlocked = questionsAnswered >= 60;
-  
   const getBarColor = (progress: number) => {
     if (progress >= 60) return 'bg-green-600';
     return 'bg-gray-500';
   };
-  
   const handleBoostAssessment = () => {
     setQuestionsAnswered(prev => Math.min(prev + 20, 100));
     setIsDialogOpen(false);
@@ -30,7 +27,6 @@ const ProgressTracker = () => {
       duration: 3000
     });
   };
-  
   return <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -91,7 +87,7 @@ const ProgressTracker = () => {
           </div>
 
           <div className="mt-4 flex gap-4">
-            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>Unlock assessment</Button>
+            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>Start session</Button>
             <Button disabled={!isAssessmentUnlocked} onClick={() => navigate('/report')} className="text-base font-medium">
               View assessment
             </Button>
@@ -115,5 +111,4 @@ const ProgressTracker = () => {
       </CardContent>
     </Card>;
 };
-
 export default ProgressTracker;
