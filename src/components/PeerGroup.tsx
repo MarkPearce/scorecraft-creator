@@ -44,7 +44,12 @@ const PeerGroup = () => {
             You are currently at the 65<sup>th</sup> percentile compared to other learners.
           </p>
 
-          <div className="absolute right-8 top-8 z-50">
+          <div className="absolute" style={{
+            right: '50%',
+            top: '8px',
+            transform: 'translateX(50%)',
+            zIndex: 50
+          }}>
             <PercentileDisplay percentile={65} />
           </div>
           
