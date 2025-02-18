@@ -33,6 +33,15 @@ const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
   const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + i * 20);
 
+  // Calculate the horizontal position based on the student score
+  const calculateHorizontalPosition = () => {
+    const minScore = 180;
+    const maxScore = 300;
+    const totalWidth = maxScore - minScore;
+    const scorePosition = ((studentScore - minScore) / totalWidth) * 100;
+    return `${scorePosition}%`;
+  };
+
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
@@ -43,68 +52,110 @@ const PeerGroup = () => {
           <p className="text-gray-600 mb-4 text-base font-lato">
             You are currently at the 65<sup>th</sup> percentile compared to other learners.
           </p>
-
-          <div className="absolute" style={{
-            right: '50%',
-            top: '8px',
-            transform: 'translateX(50%)',
-            zIndex: 50
-          }}>
-            <PercentileDisplay percentile={65} />
-          </div>
           
-          <ResponsiveContainer width="100%" height={400}>
-            <AreaChart data={data} margin={{
-              top: 20,
-              right: 30,
-              left: 40,
-              bottom: 0
-            }}>
-              <defs>
-                <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.2} />
-                  <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
-              <XAxis dataKey="score" type="number" allowDecimals={false} domain={['dataMin', 'dataMax']} label={{
-                value: 'Score',
-                position: 'bottom',
-                offset: 20
-              }} ticks={xAxisTicks} interval={0} tick={{
-                fontSize: 11,
-                dy: 10
-              }} padding={{
-                left: 20,
-                right: 20
-              }} orientation="bottom" />
-              <YAxis domain={[0, 40]} allowDecimals={false} width={60} orientation="left" type="number" padding={{
-                top: 20,
-                bottom: 0
-              }} label={{
-                value: 'Peer Group',
-                angle: -90,
-                position: 'insideLeft',
-                offset: 0,
-                style: {
-                  textAnchor: 'middle'
-                }
-              }} tick={{
-                fontSize: 11,
-                dx: -10
-              }} />
-              <Tooltip formatter={(value: number) => [`${value} students`, 'Frequency']} labelFormatter={(label: number) => `Score: ${label}`} />
-              <Area type="natural" dataKey="count" stroke="#0aa6b8" fill="url(#colorCount)" strokeWidth={2} />
-              <ReferenceLine x={studentScore} stroke="#374151" strokeWidth={2} label={{
-                value: `Predicted Score ${studentScore}`,
-                position: 'top',
-                fill: '#374151',
-                fontSize: 14,
-                fontWeight: 600,
-                dy: -15
-              }} />
-            </AreaChart>
-          </ResponsiveContainer>
+          <div className="relative" style={{ height: '400px' }}>
+            <div 
+              className="absolute" 
+              style={{
+                left: calculateHorizontalPosition(),
+                top: '-12px',
+                transform: 'translateX(-50%)',
+                zIndex: 100
+              }}
+            >
+              <PercentileDisplay percentile={65} />
+            </div>
+            
+            <ResponsiveContainer width="100%" height={400}>
+              <AreaChart 
+                data={data} 
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 40,
+                  bottom: 0
+                }}
+              >
+                <defs>
+                  <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.2} />
+                    <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
+                <XAxis 
+                  dataKey="score" 
+                  type="number" 
+                  allowDecimals={false} 
+                  domain={['dataMin', 'dataMax']} 
+                  label={{
+                    value: 'Score',
+                    position: 'bottom',
+                    offset: 20
+                  }} 
+                  ticks={xAxisTicks} 
+                  interval={0} 
+                  tick={{
+                    fontSize: 11,
+                    dy: 10
+                  }} 
+                  padding={{
+                    left: 20,
+                    right: 20
+                  }} 
+                  orientation="bottom" 
+                />
+                <YAxis 
+                  domain={[0, 40]} 
+                  allowDecimals={false} 
+                  width={60} 
+                  orientation="left" 
+                  type="number" 
+                  padding={{
+                    top: 20,
+                    bottom: 0
+                  }} 
+                  label={{
+                    value: 'Peer Group',
+                    angle: -90,
+                    position: 'insideLeft',
+                    offset: 0,
+                    style: {
+                      textAnchor: 'middle'
+                    }
+                  }} 
+                  tick={{
+                    fontSize: 11,
+                    dx: -10
+                  }} 
+                />
+                <Tooltip 
+                  formatter={(value: number) => [`${value} students`, 'Frequency']} 
+                  labelFormatter={(label: number) => `Score: ${label}`} 
+                />
+                <Area 
+                  type="natural" 
+                  dataKey="count" 
+                  stroke="#0aa6b8" 
+                  fill="url(#colorCount)" 
+                  strokeWidth={2} 
+                />
+                <ReferenceLine 
+                  x={studentScore} 
+                  stroke="#374151" 
+                  strokeWidth={2} 
+                  label={{
+                    value: `Predicted Score ${studentScore}`,
+                    position: 'top',
+                    fill: '#374151',
+                    fontSize: 14,
+                    fontWeight: 600,
+                    dy: -15
+                  }} 
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
 
           <div className="mt-3 w-[200px] space-y-2">
             <Label htmlFor="peer-group">Peer Group</Label>
