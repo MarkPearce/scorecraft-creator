@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -97,14 +96,33 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           strokeWidth={2}
         />
         
-        <Customized component={({ xAxis, yAxis }) => {
-          const meanPoint = data.find(point => Math.abs(point.score - MEAN_SCORE) < 1);
-          if (!meanPoint || !xAxis || !yAxis) return null;
+        <Customized component={({ width, height, xAxis, yAxis }) => {
+          if (!xAxis?.scale || !yAxis?.scale) {
+            console.log('Missing scale functions:', { xAxis, yAxis });
+            return null;
+          }
+
+          const meanPoint = data.reduce((closest, point) => 
+            Math.abs(point.score - MEAN_SCORE) < Math.abs(closest.score - MEAN_SCORE) 
+              ? point 
+              : closest
+          );
 
           const x = xAxis.scale(MEAN_SCORE);
           const y = yAxis.scale(displayMode === "normal" ? meanPoint.density : meanPoint.percentile);
-          const chartBottom = yAxis.scale(yAxis.domain()[0]);
-          
+          const chartBottom = height - 40;
+
+          console.log('Coordinate Debug:', {
+            meanPoint,
+            x,
+            y,
+            chartBottom,
+            width,
+            height,
+            displayMode,
+            value: displayMode === "normal" ? meanPoint.density : meanPoint.percentile
+          });
+
           return (
             <g>
               <line 
@@ -152,4 +170,3 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 };
 
 export default DistributionChart;
-
