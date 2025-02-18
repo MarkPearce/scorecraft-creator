@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 interface TextProjectionCardProps {
   percentile: number;
@@ -17,7 +18,6 @@ export const TextProjectionCard = ({
       <CardContent>
         <div className="space-y-4 text-left text-gray-600 font-lato text-base">
           
-
           <p>
             On this percentile rank, learners usually end up scoring <span className="font-bold">230-250 on a 3-digit-scale</span>. Keep it up!
           </p>
