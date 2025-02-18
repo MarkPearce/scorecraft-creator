@@ -97,23 +97,27 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           strokeWidth={2}
         />
         
-        <Customized component={({ points, chartHeight }) => {
-          const point = points?.find(p => Math.abs(p.payload.score - MEAN_SCORE) < 1);
-          if (!point) return null;
+        <Customized component={({ xAxis, yAxis }) => {
+          const meanPoint = data.find(point => Math.abs(point.score - MEAN_SCORE) < 1);
+          if (!meanPoint || !xAxis || !yAxis) return null;
+
+          const x = xAxis.scale(MEAN_SCORE);
+          const y = yAxis.scale(displayMode === "normal" ? meanPoint.density : meanPoint.percentile);
+          const chartBottom = yAxis.scale(yAxis.domain()[0]);
           
           return (
             <g>
               <line 
-                x1={point.x} 
-                x2={point.x} 
-                y1={point.y} 
-                y2={chartHeight - 40} 
+                x1={x} 
+                x2={x} 
+                y1={y} 
+                y2={chartBottom}
                 stroke="#374151" 
                 strokeWidth={2}
                 strokeDasharray="3 3"
               />
               <text
-                x={point.x + 5}
+                x={x + 5}
                 y={20}
                 fill="#374151"
                 fontSize={14}
