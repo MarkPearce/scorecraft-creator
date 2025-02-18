@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -234,7 +233,7 @@ const PerformanceGraph = ({
               left: '0',
               zIndex: 10
             }}>
-                <ScoreIndicator label="Predicted Score" value={score} />
+                <ScoreIndicator label="Assessment" value={score} />
               </div>
 
               {examStep === 'step1' && passingStandard && <div className="absolute -translate-y-1/2" style={{
@@ -259,7 +258,7 @@ const PerformanceGraph = ({
 
       <div className="score-status-container flex items-center justify-center">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
-          <h3 className="text-gray-900 font-semibold text-lg mb-4">Predicted Score</h3>
+          <h3 className="text-gray-900 font-semibold text-lg mb-4">Assessment</h3>
           <div className="grid grid-cols-2 gap-0">
             <div className="flex items-center gap-4">
               {getFaceIcon(score)}
@@ -277,4 +276,3 @@ const PerformanceGraph = ({
 };
 
 export default PerformanceGraph;
-
