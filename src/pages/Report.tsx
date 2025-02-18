@@ -79,10 +79,6 @@ const Report = () => {
                 </CarouselItem>
                 
                 <CarouselItem>
-                  <RecommendedSession />
-                </CarouselItem>
-                
-                <CarouselItem>
                   <PerformanceScoreCard 
                     examStep={currentStep}
                     initialScore={245}
@@ -108,6 +104,10 @@ const Report = () => {
 
                 <CarouselItem>
                   <PerformanceSummary />
+                </CarouselItem>
+
+                <CarouselItem>
+                  <RecommendedSession />
                 </CarouselItem>
               </CarouselContent>
               <CarouselPrevious className="absolute left-2 top-1/2" />
