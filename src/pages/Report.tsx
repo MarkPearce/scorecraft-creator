@@ -67,8 +67,6 @@ const Report = () => {
               examDate="Oct 15, 2025"
             />
             <RecommendedSession />
-            <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
-            <PeerGroup />
             <PerformanceScoreCard 
               examStep={currentStep}
               initialScore={245}
@@ -79,6 +77,8 @@ const Report = () => {
               title="Current performance"
             />
             <PerformanceTrackingContainer />
+            <PeerGroup />
+            <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
             <PerformanceSummary />
           </div>
         </div>
