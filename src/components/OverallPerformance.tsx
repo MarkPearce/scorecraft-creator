@@ -36,10 +36,14 @@ const OverallPerformance = ({
 
   const handleSave = () => {
     const newScore = parseInt(tempScore, 10);
-    if (!isNaN(newScore) && newScore > 0) {
+    if (!isNaN(newScore) && newScore >= 0 && newScore <= 300) {
       onTargetScoreChange(newScore);
+      setIsEditing(false);
+    } else {
+      // Reset to previous valid value if input is invalid
+      setTempScore(targetScore.toString());
+      setIsEditing(false);
     }
-    setIsEditing(false);
   };
 
   const handleCancel = () => {
@@ -52,6 +56,22 @@ const OverallPerformance = ({
       handleSave();
     } else if (e.key === 'Escape') {
       handleCancel();
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const numValue = parseInt(value, 10);
+    
+    // Allow empty string for typing purposes
+    if (value === '') {
+      setTempScore(value);
+      return;
+    }
+    
+    // Only update if it's a number and within range
+    if (!isNaN(numValue) && numValue >= 0 && numValue <= 300) {
+      setTempScore(value);
     }
   };
 
@@ -92,10 +112,12 @@ const OverallPerformance = ({
                       <Input
                         type="number"
                         value={tempScore}
-                        onChange={(e) => setTempScore(e.target.value)}
+                        onChange={handleInputChange}
                         onKeyDown={handleKeyDown}
                         className="text-4xl font-bold text-gray-600 font-lato h-12 px-0"
                         autoFocus
+                        min={0}
+                        max={300}
                         style={{ fontSize: '36px' }}
                       />
                     </div>
