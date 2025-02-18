@@ -40,7 +40,7 @@ const PeerGroup = () => {
       </CardHeader>
       <CardContent>
         <div className="relative">
-          <div className="absolute right-[30px] top-0 z-20">
+          <div className="absolute right-3 top-3 z-20">
             <PercentileDisplay percentile={65} />
           </div>
           
