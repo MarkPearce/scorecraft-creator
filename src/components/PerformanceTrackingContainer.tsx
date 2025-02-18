@@ -1,7 +1,7 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 
 interface DataPoint {
   date: string;
@@ -9,15 +9,21 @@ interface DataPoint {
   color: string;
 }
 
-const CustomDot = (props: any) => {
-  const { cx, cy, payload } = props;
-  return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
-};
+interface DotProps {
+  cx: number;
+  cy: number;
+  payload: DataPoint;
+}
 
-const CustomActiveDot = (props: any) => {
-  const { cx, cy, payload } = props;
+const CustomDot = memo(({ cx, cy, payload }: DotProps) => {
+  return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
+});
+CustomDot.displayName = 'CustomDot';
+
+const CustomActiveDot = memo(({ cx, cy, payload }: DotProps) => {
   return <circle cx={cx} cy={cy} r={8} fill={payload.color} />;
-};
+});
+CustomActiveDot.displayName = 'CustomActiveDot';
 
 interface PerformanceTrackingContainerProps {
   examStep?: 'step1' | 'step2';
@@ -166,6 +172,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 activeDot={<CustomActiveDot />}
                 connectNulls
                 fill="none"
+                isAnimationActive={false}
               />
             </LineChart>
           </ResponsiveContainer>
