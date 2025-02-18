@@ -11,19 +11,28 @@ const generateNormalDistributionData = () => {
   const points = [];
   const mean = 240; // Center of our distribution
   const stdDev = 20; // Standard deviation
-  const numPoints = 50; // Number of points to generate
-  const range = 4; // Range in standard deviations
-
+  const numPoints = 100; // Increased number of points for smoother curve
+  
+  // Generate points for x from -3 to 3 standard deviations
   for (let i = 0; i < numPoints; i++) {
-    const x = (i / (numPoints - 1)) * range * 2 * stdDev + (mean - range * stdDev);
-    const normalValue = Math.exp(-Math.pow((x - mean) / stdDev, 2) / 2) / (stdDev * Math.sqrt(2 * Math.PI));
-    const scaledCount = normalValue * 1000; // Scale the height of the curve
+    // Convert to range [-3, 3] for standard normal distribution
+    const z = -3 + (i / (numPoints - 1)) * 6;
+    
+    // Standard normal distribution formula
+    const y = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-(z * z) / 2);
+    
+    // Transform z-score back to score scale
+    const score = mean + (z * stdDev);
+    
+    // Scale the height of the curve for better visualization
+    const scaledCount = y * 2000;
     
     points.push({
-      score: Math.round(x),
+      score: Math.round(score),
       count: scaledCount
     });
   }
+  
   return points;
 };
 
