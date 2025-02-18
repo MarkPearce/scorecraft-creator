@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -25,14 +24,16 @@ interface DotProps {
 const CustomDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload } = props;
   if (!payload) return null;
-  return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
+  // Adjust cy to move dot up by 2 pixels
+  return <circle cx={cx} cy={cy - 2} r={6} fill={payload.color} />;
 });
 CustomDot.displayName = 'CustomDot';
 
 const CustomActiveDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload } = props;
   if (!payload) return null;
-  return <circle cx={cx} cy={cy} r={8} fill={payload.color} />;
+  // Adjust cy to move active dot up by 2 pixels
+  return <circle cx={cx} cy={cy - 2} r={8} fill={payload.color} />;
 });
 CustomActiveDot.displayName = 'CustomActiveDot';
 
