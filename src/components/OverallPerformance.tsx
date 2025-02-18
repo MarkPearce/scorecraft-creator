@@ -70,8 +70,9 @@ const OverallPerformance = ({
                       value={tempScore}
                       onChange={(e) => setTempScore(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      className="w-24 text-4xl font-bold text-gray-600 font-lato h-12"
+                      className="w-24 text-4xl font-bold text-gray-600 font-lato h-12 px-0"
                       autoFocus
+                      style={{ fontSize: '36px' }}
                     />
                     <button onClick={handleSave} className="text-green-600 hover:text-green-700 pb-1">
                       <Check className="h-5 w-5" />
