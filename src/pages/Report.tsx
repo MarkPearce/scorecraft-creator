@@ -99,51 +99,64 @@ const Report = () => {
             <Carousel 
               className="w-full" 
               opts={{
-                dragFree: false,
-                draggable: false
+                dragFree: false
               }}
             >
-              <CarouselContent>
-                <CarouselItem>
-                  <OverallPerformance 
-                    yourScore={245}
-                    targetScore={sharedTargetScore}
-                    onTargetScoreChange={setSharedTargetScore}
-                    questionsAnswered={422}
-                    examDate="Oct 15, 2025"
-                  />
+              <CarouselContent className="h-[520px]">
+                <CarouselItem className="basis-full h-full">
+                  <div className="h-full flex items-center">
+                    <OverallPerformance 
+                      yourScore={245}
+                      targetScore={sharedTargetScore}
+                      onTargetScoreChange={setSharedTargetScore}
+                      questionsAnswered={422}
+                      examDate="Oct 15, 2025"
+                    />
+                  </div>
                 </CarouselItem>
                 
-                <CarouselItem>
-                  <PerformanceScoreCard 
-                    examStep={currentStep}
-                    initialScore={245}
-                    targetScore={sharedTargetScore}
-                    onTargetScoreChange={setSharedTargetScore}
-                    passingStandard={currentStep === 'step1' ? 252 : undefined}
-                    showControls={false}
-                    title="Current performance"
-                  />
+                <CarouselItem className="basis-full h-full">
+                  <div className="h-full flex items-center">
+                    <PerformanceScoreCard 
+                      examStep={currentStep}
+                      initialScore={245}
+                      targetScore={sharedTargetScore}
+                      onTargetScoreChange={setSharedTargetScore}
+                      passingStandard={currentStep === 'step1' ? 252 : undefined}
+                      showControls={false}
+                      title="Current performance"
+                    />
+                  </div>
                 </CarouselItem>
                 
-                <CarouselItem>
-                  <PerformanceTrackingContainer />
+                <CarouselItem className="basis-full h-full">
+                  <div className="h-full flex items-center">
+                    <PerformanceTrackingContainer />
+                  </div>
                 </CarouselItem>
                 
-                <CarouselItem>
-                  <PeerGroup />
+                <CarouselItem className="basis-full h-full">
+                  <div className="h-full flex items-center">
+                    <PeerGroup />
+                  </div>
                 </CarouselItem>
                 
-                <CarouselItem>
-                  <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
+                <CarouselItem className="basis-full h-full">
+                  <div className="h-full flex items-center">
+                    <TextProjectionCard percentile={currentPercentile} examStep={currentStep} />
+                  </div>
                 </CarouselItem>
 
-                <CarouselItem>
-                  <PerformanceSummary />
+                <CarouselItem className="basis-full h-full">
+                  <div className="h-full flex items-center">
+                    <PerformanceSummary />
+                  </div>
                 </CarouselItem>
 
-                <CarouselItem>
-                  <RecommendedSession />
+                <CarouselItem className="basis-full h-full">
+                  <div className="h-full flex items-center">
+                    <RecommendedSession />
+                  </div>
                 </CarouselItem>
               </CarouselContent>
               <div className="hidden">
