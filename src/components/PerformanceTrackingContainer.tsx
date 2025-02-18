@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -35,6 +36,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     }
   };
 
+  // Recalculate colors for data points when examStep changes
   const data: DataPoint[] = [{
     date: 'Feb 12',
     score: 204,
@@ -118,57 +120,28 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
-              {examStep === 'step1' ? (
-                <>
-                  <ReferenceLine 
-                    y={196} 
-                    stroke="#ea384c" 
-                    label={{ 
-                      value: 'Passing Standard (196)', 
-                      position: 'insideBottomRight',
-                      fill: '#64748b',
-                      fontSize: 12,
-                      dy: 18
-                    }} 
-                  />
-                  <ReferenceLine 
-                    y={231} 
-                    stroke="#22c55e" 
-                    label={{ 
-                      value: 'National mean before 2022 (231)', 
-                      position: 'insideBottomRight',
-                      fill: '#64748b',
-                      fontSize: 12,
-                      dy: 18
-                    }} 
-                  />
-                </>
-              ) : (
-                <>
-                  <ReferenceLine 
-                    y={214} 
-                    stroke="#ea384c" 
-                    label={{ 
-                      value: 'Passing standard (214)', 
-                      position: 'insideBottomRight',
-                      fill: '#64748b',
-                      fontSize: 12,
-                      dy: 18
-                    }} 
-                  />
-                  <ReferenceLine 
-                    y={249} 
-                    stroke="#22c55e" 
-                    label={{ 
-                      value: 'National mean (249)', 
-                      position: 'insideBottomRight',
-                      fill: '#64748b',
-                      fontSize: 12,
-                      dy: 18
-                    }} 
-                  />
-                </>
-              )}
+              <ReferenceLine 
+                y={examStep === 'step1' ? 196 : 214} 
+                stroke="#ea384c" 
+                label={{ 
+                  value: examStep === 'step1' ? 'Passing Standard (196)' : 'Passing standard (214)', 
+                  position: 'insideBottomRight',
+                  fill: '#64748b',
+                  fontSize: 12,
+                  dy: 18
+                }} 
+              />
+              <ReferenceLine 
+                y={examStep === 'step1' ? 231 : 249} 
+                stroke="#22c55e" 
+                label={{ 
+                  value: examStep === 'step1' ? 'National mean before 2022 (231)' : 'National mean (249)', 
+                  position: 'insideBottomRight',
+                  fill: '#64748b',
+                  fontSize: 12,
+                  dy: 18
+                }} 
+              />
               <Line 
                 type="monotone"
                 dataKey="score" 
