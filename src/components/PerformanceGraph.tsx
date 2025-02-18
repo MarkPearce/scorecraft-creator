@@ -264,17 +264,12 @@ const PerformanceGraph = ({
       <div className="score-status-container flex items-center justify-center">
         <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
           <h3 className="text-gray-900 font-semibold text-lg mb-4">Assessment</h3>
-          <div className="grid grid-cols-2 gap-0">
+          <div className="flex justify-center">
             <div className="flex items-center gap-4">
               {getFaceIcon(score)}
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center">
                 <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
                 <div className={`text-sm ${getScoreColor(score)}`}>{getScoreRange(score)}</div>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <div className="text-base font-medium">
-                {scoreStatus}
               </div>
             </div>
           </div>
