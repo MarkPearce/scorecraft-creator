@@ -9,27 +9,25 @@ import { PercentileDisplay } from "@/components/PercentileDisplay";
 // Generate data points for a standard normal distribution
 const generateNormalDistributionData = () => {
   const points = [];
-  const mean = 240; // Center of our distribution
-  const stdDev = 20; // Standard deviation
-  const numPoints = 100; // Number of points
+  const mean = 50; // Center at 50th percentile
+  const numPoints = 100;
   
   for (let i = 0; i < numPoints; i++) {
-    // Convert to percentile (0-100)
     const percentile = i;
     
-    // Convert percentile to z-score
-    const z = (percentile - 50) / (50 / 3); // Map percentiles to z-scores (-3 to 3)
+    // Convert percentile to z-score for the standard normal distribution formula
+    const z = (percentile - mean) / (50 / 3); // Map to z-scores
     
-    // Calculate score from z-score
-    const score = mean + (z * stdDev);
+    // Standard normal distribution formula: f(x) = (1/√(2π)) * e^(-x²/2)
+    const normalValue = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-(z * z) / 2);
     
-    // Standard normal distribution formula
-    const y = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-(z * z) / 2);
+    // Convert z-score to score (0-360 scale)
+    const score = 180 + (z * 60); // Center at 180 with std dev of 60
     
     points.push({
       percentile: percentile,
       score: Math.min(360, Math.max(0, Math.round(score))), // Clamp between 0-360
-      density: y * 2000
+      density: normalValue * 400 // Scale the density for visualization
     });
   }
   
@@ -70,7 +68,7 @@ const PeerGroup = () => {
               bottom: 0
             }}>
               <defs>
-                <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="colorDensity" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
                 </linearGradient>
@@ -112,6 +110,7 @@ const PeerGroup = () => {
               />
               <Tooltip 
                 formatter={(value: number, name: string) => {
+                  if (name === 'density') return [`${Math.round(value * 100) / 100}`, 'Density'];
                   if (name === 'score') return [`${Math.round(value)}`, 'Score'];
                   return [value, name];
                 }}
@@ -119,19 +118,18 @@ const PeerGroup = () => {
               />
               <Area
                 type="monotone"
-                dataKey="score"
+                dataKey="density"
                 stroke="#0aa6b8"
-                fill="url(#colorCount)"
+                fill="url(#colorDensity)"
                 strokeWidth={2}
               />
               <ReferenceLine
-                y={studentScore}
                 x={studentPercentile}
                 stroke="#374151"
                 strokeWidth={2}
                 label={{
                   value: `Your Score: ${studentScore}`,
-                  position: 'right',
+                  position: 'top',
                   fill: '#374151',
                   fontSize: 14,
                   fontWeight: 600
