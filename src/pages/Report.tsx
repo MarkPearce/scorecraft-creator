@@ -32,22 +32,32 @@ const Report = () => {
 
   useEffect(() => {
     if (emblaApi) {
-      emblaApi.on('select', () => {
+      const onSelect = () => {
         setCanScrollPrev(emblaApi.canScrollPrev());
         setCanScrollNext(emblaApi.canScrollNext());
-      });
+      };
+
+      emblaApi.on('select', onSelect);
+      // Initial check
+      onSelect();
+
+      return () => {
+        emblaApi.off('select', onSelect);
+      };
     }
   }, [emblaApi]);
 
   const handlePrevClick = () => {
-    if (emblaApi && emblaApi.canScrollPrev()) {
-      emblaApi.scrollPrev();
+    const prevButton = document.querySelector('.embla__prev') as HTMLButtonElement;
+    if (prevButton && canScrollPrev) {
+      prevButton.click();
     }
   };
 
   const handleNextClick = () => {
-    if (emblaApi && emblaApi.canScrollNext()) {
-      emblaApi.scrollNext();
+    const nextButton = document.querySelector('.embla__next') as HTMLButtonElement;
+    if (nextButton && canScrollNext) {
+      nextButton.click();
     }
   };
 
