@@ -41,7 +41,7 @@ const PeerGroup = () => {
       <CardContent>
         <div className="relative">
           <p className="text-gray-600 mb-4 text-base font-lato">
-            You are currently at the 65<sup>th</sup> percentile compared to other learners.
+            You are currently at the <span className="text-yellow-600">65<sup className="text-sm">th</sup></span> percentile compared to other learners.
           </p>
 
           <div className="absolute right-8 top-8 z-50">
