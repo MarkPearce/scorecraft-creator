@@ -56,7 +56,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               data={data} 
               margin={{
                 top: 20,
-                right: 30,
+                right: 150,
                 left: 50,
                 bottom: 40
               }}
