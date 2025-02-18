@@ -204,6 +204,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 dot={<CustomDot />} 
                 activeDot={<CustomActiveDot />}
                 connectNulls
+                fill="none"
               />
             </LineChart>
           </ResponsiveContainer>
@@ -214,3 +215,4 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
 };
 
 export default PerformanceTrackingContainer;
+
