@@ -59,20 +59,20 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     if (examStep === 'step1') {
       return [{
         date: 'Feb 12',
-        score: 180,
-        color: getStrokeColor(180)
+        score: 190,
+        color: getStrokeColor(190)
       }, {
         date: 'Feb 19',
-        score: 192,
-        color: getStrokeColor(192)
+        score: 203,
+        color: getStrokeColor(203)
       }, {
         date: 'Feb 26',
-        score: 215,
-        color: getStrokeColor(215)
+        score: 221,
+        color: getStrokeColor(221)
       }, {
         date: 'Mar 4',
-        score: 238,
-        color: getStrokeColor(238)
+        score: 242,
+        color: getStrokeColor(242)
       }, {
         date: 'Mar 11',
         score: 256,
