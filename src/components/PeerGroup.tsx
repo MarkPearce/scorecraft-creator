@@ -21,12 +21,12 @@ const generateNormalDistributionData = () => {
     // Standard normal distribution formula: f(x) = (1/√(2π)) * e^(-x²/2)
     const normalValue = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-(z * z) / 2);
     
-    // Convert z-score to score (0-360 scale)
-    const score = 180 + (z * 60); // Center at 180 with std dev of 60
+    // Convert z-score to score (0-300 scale)
+    const score = 150 + (z * 50); // Center at 150 with std dev of 50
     
     points.push({
       percentile: percentile,
-      score: Math.min(360, Math.max(0, Math.round(score))), // Clamp between 0-360
+      score: Math.min(300, Math.max(0, Math.round(score))), // Clamp between 0-300
       density: normalValue * 400 // Scale the density for visualization
     });
   }
@@ -43,7 +43,7 @@ const studentPercentile = 65;
 const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
   const xAxisTicks = [0, 20, 40, 60, 80, 100];
-  const yAxisTicks = [0, 60, 120, 180, 240, 300, 360];
+  const yAxisTicks = [0, 50, 100, 150, 200, 250, 300];
 
   return (
     <Card className="animate-fadeIn">
@@ -92,7 +92,7 @@ const PeerGroup = () => {
               />
               <YAxis 
                 dataKey="score"
-                domain={[0, 360]}
+                domain={[0, 300]}
                 ticks={yAxisTicks}
                 label={{
                   value: 'Score',
