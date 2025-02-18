@@ -118,7 +118,7 @@ const PerformanceGraph = ({
       }, {
         score: nationalMean,
         color: "bg-[#8DC641]",
-        label: "Mean prior to 2022 • 231"
+        label: "Mean prior to 2022 (231)"
       }, {
         score: midpoint,
         color: "bg-[#019444]",
