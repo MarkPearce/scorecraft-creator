@@ -12,9 +12,7 @@ const RecommendedSession = () => {
               <CardTitle className="font-lato">Your stacked rank Qbank session</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
-              <p className="text-gray-600 font-lato">Do this session of personalized high-yield questions to update your performance assessment.
-
-AMBOSS AI and analytics provide a stack-ranked set of questions which will provide you with the highest yield results.</p>
+              <p className="text-gray-600 font-lato">AMBOSS uses AI to create a stack-ranked Question session that covers the most high-yield questions based on your past performance.</p>
               <div>
                 <Button variant="default" className="font-lato" onClick={() => setIsDialogOpen(true)}>
                   Start session
