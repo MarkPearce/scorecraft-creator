@@ -40,6 +40,10 @@ const PeerGroup = () => {
       </CardHeader>
       <CardContent>
         <div className="relative">
+          <p className="text-gray-600 mb-4 text-base font-lato">
+            You are currently at the 65<sup>th</sup> percentile compared to other learners.
+          </p>
+
           <div className="absolute right-8 top-8 z-50">
             <PercentileDisplay percentile={65} />
           </div>
