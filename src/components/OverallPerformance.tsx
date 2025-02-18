@@ -62,7 +62,7 @@ const OverallPerformance = ({
             </div>
             <div className="min-w-[200px]">
               <div className="text-sm text-[#403E43] mb-2 font-lato">Target Score</div>
-              <div className="flex items-end gap-2 h-[48px]">
+              <div className="flex items-center gap-2">
                 {isEditing ? (
                   <div className="flex items-end gap-3">
                     <div className="w-[120px]">
@@ -76,19 +76,19 @@ const OverallPerformance = ({
                         style={{ fontSize: '36px' }}
                       />
                     </div>
-                    <button onClick={handleSave} className="text-green-600 hover:text-green-700">
+                    <button onClick={handleSave} className="text-green-600 hover:text-green-700 pb-1">
                       <Check className="h-5 w-5" />
                     </button>
-                    <button onClick={handleCancel} className="text-red-600 hover:text-red-700">
+                    <button onClick={handleCancel} className="text-red-600 hover:text-red-700 pb-1">
                       <X className="h-5 w-5" />
                     </button>
                   </div>
                 ) : (
                   <div className="flex items-end gap-3">
-                    <div className="w-[120px] text-4xl font-bold text-gray-600 font-lato h-12 flex items-end">{targetScore}</div>
+                    <div className="w-[120px] text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
                     <button 
                       onClick={() => setIsEditing(true)}
-                      className="text-gray-400 hover:text-gray-600"
+                      className="text-gray-400 hover:text-gray-600 pb-1"
                     >
                       <Pencil className="h-4 w-4" />
                     </button>
