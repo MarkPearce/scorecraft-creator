@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -99,10 +98,7 @@ const Report = () => {
             <Carousel 
               className="w-full" 
               opts={{
-                dragFree: false,
-                draggable: false,
-                touchDragging: false,
-                mouseDragging: false
+                dragFree: false
               }}
             >
               <CarouselContent>
