@@ -22,6 +22,13 @@ const erf = (x: number): number => {
   return x >= 0 ? calculation : -calculation;
 };
 
+// Normal distribution function
+const normalDistribution = (x: number, mean: number, stdDev: number): number => {
+  const coefficient = 1 / (stdDev * Math.sqrt(2 * Math.PI));
+  const exponent = -Math.pow(x - mean, 2) / (2 * Math.pow(stdDev, 2));
+  return coefficient * Math.exp(exponent);
+};
+
 // Generate data points for visualization
 const generateDistributionData = () => {
   const points = [];
@@ -29,13 +36,15 @@ const generateDistributionData = () => {
   
   // Generate points across the score range (0-300)
   for (let score = 0; score <= 300; score += (300 / numPoints)) {
-    // Calculate Z-score
+    const density = normalDistribution(score, MEAN_SCORE, STD_DEV);
+    // Calculate Z-score for percentile
     const zScore = (score - MEAN_SCORE) / STD_DEV;
     // Convert Z-score to percentile (CDF)
     const percentile = (1 + erf(zScore / Math.sqrt(2))) / 2;
     
     points.push({
       score: Math.round(score),
+      density: density * 2000, // Scale for better visualization
       percentile: percentile * 100 // Convert to percentage
     });
   }
@@ -59,9 +68,11 @@ const studentPercentile = findPercentile(studentScore);
 
 const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
-  const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("percentile");
+  const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
-  const yAxisTicks = [0, 20, 40, 60, 80, 100];
+  const yAxisTicks = displayMode === "normal" 
+    ? [0, 0.002, 0.004, 0.006, 0.008] 
+    : [0, 20, 40, 60, 80, 100];
 
   return (
     <Card className="animate-fadeIn">
@@ -93,7 +104,7 @@ const PeerGroup = () => {
               bottom: 0
             }}>
               <defs>
-                <linearGradient id="colorPercentile" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="colorData" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
                 </linearGradient>
@@ -116,10 +127,10 @@ const PeerGroup = () => {
                 }}
               />
               <YAxis 
-                dataKey="percentile"
-                domain={[0, 100]}
+                dataKey={displayMode === "normal" ? "density" : "percentile"}
+                domain={displayMode === "normal" ? [0, 0.018] : [0, 100]}
                 label={{
-                  value: 'Percentile (%)',
+                  value: displayMode === "normal" ? 'Probability Density' : 'Percentile (%)',
                   angle: -90,
                   position: 'insideLeft',
                   offset: 0,
@@ -135,6 +146,7 @@ const PeerGroup = () => {
               />
               <Tooltip 
                 formatter={(value: number, name: string) => {
+                  if (name === 'density') return [`${(value / 2000).toFixed(4)}`, 'Density'];
                   if (name === 'percentile') return [`${value.toFixed(1)}%`, 'Percentile'];
                   return [value, name];
                 }}
@@ -142,9 +154,9 @@ const PeerGroup = () => {
               />
               <Area
                 type="monotone"
-                dataKey="percentile"
+                dataKey={displayMode === "normal" ? "density" : "percentile"}
                 stroke="#0aa6b8"
-                fill="url(#colorPercentile)"
+                fill="url(#colorData)"
                 strokeWidth={2}
               />
               <ReferenceLine
@@ -169,11 +181,13 @@ const PeerGroup = () => {
                   fontSize: 14
                 }}
               />
-              <ReferenceLine
-                y={studentPercentile}
-                stroke="#0aa6b8"
-                strokeDasharray="3 3"
-              />
+              {displayMode === "percentile" && (
+                <ReferenceLine
+                  y={studentPercentile}
+                  stroke="#0aa6b8"
+                  strokeDasharray="3 3"
+                />
+              )}
             </AreaChart>
           </ResponsiveContainer>
 
