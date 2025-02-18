@@ -9,18 +9,29 @@ interface DataPoint {
   color: string;
 }
 
+// Extended props interface to include all required Recharts properties
 interface DotProps {
-  cx: number;
-  cy: number;
-  payload: DataPoint;
+  cx?: number;
+  cy?: number;
+  r?: number;
+  payload?: DataPoint;
+  value?: number;
+  index?: number;
+  stroke?: string;
+  strokeWidth?: number;
+  fill?: string;
 }
 
-const CustomDot = memo(({ cx, cy, payload }: DotProps) => {
+const CustomDot = memo((props: DotProps) => {
+  const { cx = 0, cy = 0, payload } = props;
+  if (!payload) return null;
   return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
 });
 CustomDot.displayName = 'CustomDot';
 
-const CustomActiveDot = memo(({ cx, cy, payload }: DotProps) => {
+const CustomActiveDot = memo((props: DotProps) => {
+  const { cx = 0, cy = 0, payload } = props;
+  if (!payload) return null;
   return <circle cx={cx} cy={cy} r={8} fill={payload.color} />;
 });
 CustomActiveDot.displayName = 'CustomActiveDot';
