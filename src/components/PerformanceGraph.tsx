@@ -112,6 +112,10 @@ const PerformanceGraph = ({
         color: "bg-[#FFC107]",
         label: ""
       }, {
+        score: 214,
+        color: "bg-[#8DC641]",
+        label: ""
+      }, {
         score: 231,
         color: "bg-[#8DC641]",
         label: "Passing standard\nbefore 2022: 231"
