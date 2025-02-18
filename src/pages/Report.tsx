@@ -125,7 +125,7 @@ const Report = () => {
                 </CarouselItem>
                 
                 <CarouselItem>
-                  <PerformanceTrackingContainer />
+                  <PerformanceTrackingContainer examStep={currentStep} />
                 </CarouselItem>
                 
                 <CarouselItem>
