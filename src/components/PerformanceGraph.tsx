@@ -134,7 +134,7 @@ const PerformanceGraph = ({
       }, {
         score: 214,
         color: "bg-[#FFC107]",
-        label: "214"
+        label: "Passing standard: 214"
       }, {
         score: 249,
         color: "bg-[#8DC641]",
