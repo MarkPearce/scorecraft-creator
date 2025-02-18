@@ -73,9 +73,7 @@ const ProgressTracker = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-base text-gray-600">
-                    Unlock continuous assessment by completing more than 60 questions. The more questions you answer, the more accurate the assessment is.
-                  </div>
+                  <div className="text-base text-gray-600">Unlock your performance assessment by completing more than 60 questions. The more questions you answer, the more accurate the assessment is.</div>
                 </div>
               </div>
             </div>
