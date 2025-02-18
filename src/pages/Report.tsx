@@ -18,6 +18,7 @@ const Report = () => {
   const navigate = useNavigate();
   const currentPercentile = 30;
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
+  const [sharedTargetScore, setSharedTargetScore] = useState(260);
 
   return (
     <>
@@ -60,7 +61,8 @@ const Report = () => {
           <div className="space-y-6">
             <OverallPerformance 
               yourScore={245}
-              targetScore={260}
+              targetScore={sharedTargetScore}
+              onTargetScoreChange={setSharedTargetScore}
               questionsAnswered={422}
               examDate="Oct 15, 2025"
             />
@@ -70,7 +72,8 @@ const Report = () => {
             <PerformanceScoreCard 
               examStep={currentStep}
               initialScore={245}
-              initialTargetScore={currentStep === 'step1' ? undefined : 260}
+              targetScore={sharedTargetScore}
+              onTargetScoreChange={setSharedTargetScore}
               passingStandard={currentStep === 'step1' ? 252 : undefined}
               showControls={false}
               title="Current performance"

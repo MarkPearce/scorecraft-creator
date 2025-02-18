@@ -16,7 +16,8 @@ import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 
 interface PerformanceScoreCardProps {
   initialScore?: number;
-  initialTargetScore?: number;
+  targetScore?: number;
+  onTargetScoreChange?: (score: number) => void;
   initialRange?: { min: number; max: number };
   showControls?: boolean;
   className?: string;
@@ -27,7 +28,8 @@ interface PerformanceScoreCardProps {
 
 const PerformanceScoreCard = ({
   initialScore = 240,
-  initialTargetScore = 260,
+  targetScore = 260,
+  onTargetScoreChange,
   initialRange = { min: 180, max: 300 },
   showControls = true,
   className = "",
@@ -37,7 +39,6 @@ const PerformanceScoreCard = ({
 }: PerformanceScoreCardProps) => {
   const [score, setScore] = useState(initialScore);
   const [range, setRange] = useState(initialRange);
-  const [targetScore, setTargetScore] = useState(initialTargetScore);
 
   const getScoreSegment = (score: number) => {
     const totalRange = range.max - range.min;
@@ -128,7 +129,7 @@ const PerformanceScoreCard = ({
                   targetScore={targetScore}
                   score={score}
                   onRangeChange={handleRangeChange}
-                  onTargetScoreChange={(value) => setTargetScore(value[0])}
+                  onTargetScoreChange={(value) => onTargetScoreChange?.(value[0])}
                   onScoreChange={(value) => setScore(value[0])}
                 />
               </div>
@@ -143,7 +144,7 @@ const PerformanceScoreCard = ({
             score={score}
             targetScore={targetScore}
             range={range}
-            onTargetScoreChange={examStep === 'step1' ? undefined : setTargetScore}
+            onTargetScoreChange={onTargetScoreChange}
             examStep={examStep}
             passingStandard={passingStandard}
           />

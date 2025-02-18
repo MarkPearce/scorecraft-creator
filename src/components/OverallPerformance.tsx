@@ -13,20 +13,21 @@ import { format } from "date-fns";
 interface OverallPerformanceProps {
   yourScore: number;
   targetScore: number;
+  onTargetScoreChange: (score: number) => void;
   questionsAnswered: number;
   examDate: string;
 }
 
 const OverallPerformance = ({
   yourScore,
-  targetScore: initialTargetScore,
+  targetScore,
+  onTargetScoreChange,
   questionsAnswered,
   examDate: initialExamDate
 }: OverallPerformanceProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [targetScore, setTargetScore] = useState(initialTargetScore);
-  const [tempScore, setTempScore] = useState(initialTargetScore.toString());
+  const [tempScore, setTempScore] = useState(targetScore.toString());
   const [examDate, setExamDate] = useState(initialExamDate);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   
@@ -36,7 +37,7 @@ const OverallPerformance = ({
   const handleSave = () => {
     const newScore = parseInt(tempScore, 10);
     if (!isNaN(newScore) && newScore > 0) {
-      setTargetScore(newScore);
+      onTargetScoreChange(newScore);
     }
     setIsEditing(false);
   };
