@@ -17,7 +17,7 @@ const data = [{
 }, {
   date: 'Wk 10',
   score: 248,
-  color: '#22c55e'
+  color: '#F97316'
 }, {
   date: 'Wk 11',
   score: 262,
