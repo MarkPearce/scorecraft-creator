@@ -40,13 +40,13 @@ const PeerGroup = () => {
       </CardHeader>
       <CardContent>
         <div className="relative">
-          <div className="absolute right-3 top-3 z-20">
+          <div className="absolute right-8 top-8 z-20">
             <PercentileDisplay percentile={65} />
           </div>
           
           <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={data} margin={{
-              top: 60,
+              top: 20,
               right: 30,
               left: 40,
               bottom: 0
