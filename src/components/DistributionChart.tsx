@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -148,8 +149,8 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
               <line 
                 x1={x} 
                 x2={x} 
-                y1={40} 
-                y2={lineHeight}
+                y1={lineHeight} // Start from the bottom
+                y2={40} // End at the top margin
                 stroke="#374151" 
                 strokeWidth={1.5}
                 strokeDasharray="3 3"
@@ -192,3 +193,4 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 };
 
 export default DistributionChart;
+
