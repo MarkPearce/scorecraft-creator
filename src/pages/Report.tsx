@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
 import RecommendedSession from "@/components/RecommendedSession";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -26,52 +26,7 @@ const Report = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    startIndex: 0,
-    align: 'start'
-  });
-
-  useEffect(() => {
-    if (emblaApi) {
-      const onSelect = () => {
-        const prev = emblaApi.canScrollPrev();
-        const next = emblaApi.canScrollNext();
-        console.log('Can scroll prev:', prev, 'Can scroll next:', next);
-        setCanScrollPrev(prev);
-        setCanScrollNext(next);
-      };
-
-      emblaApi.on('select', onSelect);
-      
-      // Initial state
-      setCanScrollPrev(false);
-      setCanScrollNext(true);
-      
-      return () => {
-        emblaApi.off('select', onSelect);
-      };
-    }
-  }, [emblaApi]);
-
-  const handlePrevClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (emblaApi && emblaApi.canScrollPrev()) {
-      console.log('Scrolling prev');
-      emblaApi.scrollPrev();
-    }
-  };
-
-  const handleNextClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (emblaApi && emblaApi.canScrollNext()) {
-      console.log('Scrolling next');
-      emblaApi.scrollNext();
-    }
-  };
+  const [emblaRef] = useEmblaCarousel();
 
   return (
     <>
@@ -112,28 +67,6 @@ const Report = () => {
           </div>
           
           <div className="relative">
-            <div className="flex justify-end gap-2 mb-4">
-              <div className="flex gap-2">
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={handlePrevClick}
-                  disabled={!canScrollPrev}
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={handleNextClick}
-                  disabled={!canScrollNext}
-                >
-                  <ArrowLeft className="h-4 w-4 rotate-180" />
-                </Button>
-              </div>
-            </div>
             <Carousel 
               ref={emblaRef}
               className="w-full"
@@ -181,6 +114,8 @@ const Report = () => {
                   <RecommendedSession />
                 </CarouselItem>
               </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
             </Carousel>
           </div>
         </div>
