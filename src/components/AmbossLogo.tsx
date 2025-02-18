@@ -1,13 +1,18 @@
 
+import { useNavigate } from "react-router-dom";
+
 const AmbossLogo = () => {
+  const navigate = useNavigate();
+
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
       fill="none" 
       viewBox="0 0 126 20" 
       role="img" 
-      className="h-6"
+      className="h-6 cursor-pointer"
       data-testid="amboss-logo"
+      onClick={() => navigate('/single-page-report')}
     >
       <path 
         fill="#24A3AA" 
