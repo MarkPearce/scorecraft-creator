@@ -11,25 +11,25 @@ const generateNormalDistributionData = () => {
   const points = [];
   const mean = 240; // Center of our distribution
   const stdDev = 20; // Standard deviation
-  const numPoints = 100; // Increased number of points for smoother curve
+  const numPoints = 100; // Number of points
   
-  // Generate points for x from -3 to 3 standard deviations
   for (let i = 0; i < numPoints; i++) {
-    // Convert to range [-3, 3] for standard normal distribution
-    const z = -3 + (i / (numPoints - 1)) * 6;
+    // Convert to percentile (0-100)
+    const percentile = i;
+    
+    // Convert percentile to z-score
+    const z = (percentile - 50) / (50 / 3); // Map percentiles to z-scores (-3 to 3)
+    
+    // Calculate score from z-score
+    const score = mean + (z * stdDev);
     
     // Standard normal distribution formula
     const y = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-(z * z) / 2);
     
-    // Transform z-score back to score scale
-    const score = mean + (z * stdDev);
-    
-    // Scale the height of the curve for better visualization
-    const scaledCount = y * 2000;
-    
     points.push({
-      score: Math.round(score),
-      count: scaledCount
+      percentile: percentile,
+      score: Math.min(360, Math.max(0, Math.round(score))), // Clamp between 0-360
+      density: y * 2000
     });
   }
   
@@ -38,12 +38,14 @@ const generateNormalDistributionData = () => {
 
 const data = generateNormalDistributionData();
 
-// Mock student score - this would typically come from props or an API
+// Mock student score and percentile
 const studentScore = 245;
+const studentPercentile = 65;
 
 const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
-  const xAxisTicks = Array.from({ length: 7 }, (_, i) => 180 + i * 20);
+  const xAxisTicks = [0, 20, 40, 60, 80, 100];
+  const yAxisTicks = [0, 60, 120, 180, 240, 300, 360];
 
   return (
     <Card className="animate-fadeIn">
@@ -75,11 +77,11 @@ const PeerGroup = () => {
               </defs>
               <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
               <XAxis 
-                dataKey="score" 
+                dataKey="percentile" 
                 type="number" 
-                domain={['dataMin', 'dataMax']} 
+                domain={[0, 100]}
                 label={{
-                  value: 'Score',
+                  value: 'Percentile',
                   position: 'bottom',
                   offset: 20
                 }}
@@ -89,15 +91,13 @@ const PeerGroup = () => {
                   fontSize: 11,
                   dy: 10
                 }}
-                padding={{
-                  left: 20,
-                  right: 20
-                }}
               />
               <YAxis 
-                domain={[0, 'dataMax']}
+                dataKey="score"
+                domain={[0, 360]}
+                ticks={yAxisTicks}
                 label={{
-                  value: 'Frequency',
+                  value: 'Score',
                   angle: -90,
                   position: 'insideLeft',
                   offset: 0,
@@ -111,27 +111,30 @@ const PeerGroup = () => {
                 }}
               />
               <Tooltip 
-                formatter={(value: number) => [`${Math.round(value)} students`, 'Frequency']}
-                labelFormatter={(label: number) => `Score: ${label}`}
+                formatter={(value: number, name: string) => {
+                  if (name === 'score') return [`${Math.round(value)}`, 'Score'];
+                  return [value, name];
+                }}
+                labelFormatter={(label: number) => `${label}th Percentile`}
               />
               <Area
                 type="monotone"
-                dataKey="count"
+                dataKey="score"
                 stroke="#0aa6b8"
                 fill="url(#colorCount)"
                 strokeWidth={2}
               />
               <ReferenceLine
-                x={studentScore}
+                y={studentScore}
+                x={studentPercentile}
                 stroke="#374151"
                 strokeWidth={2}
                 label={{
-                  value: `Predicted Score ${studentScore}`,
-                  position: 'top',
+                  value: `Your Score: ${studentScore}`,
+                  position: 'right',
                   fill: '#374151',
                   fontSize: 14,
-                  fontWeight: 600,
-                  dy: -15
+                  fontWeight: 600
                 }}
               />
             </AreaChart>
