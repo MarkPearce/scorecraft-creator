@@ -132,7 +132,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           });
 
           const x = xAxis?.scale ? xAxis.scale(MEAN_SCORE) : (width || 0) * (MEAN_SCORE / 300);
-          const lineStartY = height; // Start from the very bottom
+          const lineStartY = height - 32; // Start from just above the x-axis
           const lineEndY = lineStartY - 260; // Keep same length
 
           console.log('Mean Line Coordinates:', {
