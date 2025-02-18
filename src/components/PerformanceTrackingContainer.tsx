@@ -1,6 +1,5 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-
 const data = [{
   date: 'Wk 7',
   score: 204,
@@ -22,7 +21,6 @@ const data = [{
   score: 262,
   color: '#22c55e'
 }];
-
 const CustomDot = (props: any) => {
   const {
     cx,
@@ -31,7 +29,6 @@ const CustomDot = (props: any) => {
   } = props;
   return <circle cx={cx} cy={cy} r={4} fill={payload.color} />;
 };
-
 const CustomActiveDot = (props: any) => {
   const {
     cx,
@@ -40,16 +37,14 @@ const CustomActiveDot = (props: any) => {
   } = props;
   return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
 };
-
 const PerformanceTrackingContainer = () => {
-  return (
-    <Card className="animate-fadeIn">
+  return <Card className="animate-fadeIn">
       <CardHeader>
-        <CardTitle className="font-lato">Performance tracking</CardTitle>
+        <CardTitle className="font-lato">Performance over time</CardTitle>
         <CardDescription>
           <div className="text-sm text-gray-600 space-y-1 font-lato">
-            <p>422 Questions taken in to account</p>
-            <p>Last updated 1 week ago</p>
+            
+            
           </div>
         </CardDescription>
       </CardHeader>
@@ -106,8 +101,6 @@ const PerformanceTrackingContainer = () => {
           </ResponsiveContainer>
         </div>
       </CardContent>
-    </Card>
-  );
+    </Card>;
 };
-
 export default PerformanceTrackingContainer;
