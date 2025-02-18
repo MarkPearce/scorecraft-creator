@@ -60,20 +60,22 @@ const OverallPerformance = ({
               <div className="text-sm text-[#403E43] mb-2 font-lato">Assessment</div>
               <div className="text-4xl font-bold text-gray-600 font-lato">{yourScore}</div>
             </div>
-            <div>
+            <div className="min-w-[200px]">
               <div className="text-sm text-[#403E43] mb-2 font-lato">Target Score</div>
               <div className="flex items-center gap-2">
                 {isEditing ? (
                   <div className="flex items-end gap-3">
-                    <Input
-                      type="number"
-                      value={tempScore}
-                      onChange={(e) => setTempScore(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      className="w-24 text-4xl font-bold text-gray-600 font-lato h-12 px-0"
-                      autoFocus
-                      style={{ fontSize: '36px' }}
-                    />
+                    <div className="w-[120px]">
+                      <Input
+                        type="number"
+                        value={tempScore}
+                        onChange={(e) => setTempScore(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        className="text-4xl font-bold text-gray-600 font-lato h-12 px-0"
+                        autoFocus
+                        style={{ fontSize: '36px' }}
+                      />
+                    </div>
                     <button onClick={handleSave} className="text-green-600 hover:text-green-700 pb-1">
                       <Check className="h-5 w-5" />
                     </button>
@@ -83,7 +85,7 @@ const OverallPerformance = ({
                   </div>
                 ) : (
                   <div className="flex items-end gap-3">
-                    <div className="text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
+                    <div className="w-[120px] text-4xl font-bold text-gray-600 font-lato">{targetScore}</div>
                     <button 
                       onClick={() => setIsEditing(true)}
                       className="text-gray-400 hover:text-gray-600 pb-1"
