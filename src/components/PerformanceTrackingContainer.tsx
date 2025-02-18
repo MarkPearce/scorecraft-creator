@@ -170,24 +170,15 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                   />
                 </>
               )}
-              {/* Split the line into segments based on score ranges */}
-              {data.map((point, index) => {
-                if (index === data.length - 1) return null;
-                const nextPoint = data[index + 1];
-                return (
-                  <Line
-                    key={index}
-                    type="monotone"
-                    data={[point, nextPoint]}
-                    dataKey="score"
-                    stroke={point.color}
-                    strokeWidth={3}
-                    dot={<CustomDot />}
-                    activeDot={<CustomActiveDot />}
-                    connectNulls
-                  />
-                );
-              })}
+              <Line 
+                type="monotone"
+                dataKey="score" 
+                stroke={(data) => getStrokeColor(data.score)}
+                strokeWidth={3} 
+                dot={<CustomDot />} 
+                activeDot={<CustomActiveDot />}
+                connectNulls
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
