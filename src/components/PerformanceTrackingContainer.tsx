@@ -39,6 +39,19 @@ interface PerformanceTrackingContainerProps {
 }
 
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
+  const getStrokeColor = (score: number) => {
+    if (examStep === 'step1') {
+      if (score >= 231) return '#22c55e';
+      if (score >= 196) return '#F97316';
+      return '#ea384c';
+    } else {
+      if (score >= 265) return '#019444';
+      if (score >= 249) return '#22c55e';
+      if (score >= 214) return '#F97316';
+      return '#ea384c';
+    }
+  };
+
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
@@ -151,36 +164,15 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                   />
                 </>
               )}
-              <defs>
-                {examStep === 'step1' ? (
-                  <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#22c55e" />
-                    <stop offset={(300 - 231) / 120} stopColor="#22c55e" />
-                    <stop offset={(300 - 231) / 120} stopColor="#F97316" />
-                    <stop offset={(300 - 196) / 120} stopColor="#F97316" />
-                    <stop offset={(300 - 196) / 120} stopColor="#ea384c" />
-                    <stop offset="1" stopColor="#ea384c" />
-                  </linearGradient>
-                ) : (
-                  <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#019444" />
-                    <stop offset={(300 - 265) / 120} stopColor="#019444" />
-                    <stop offset={(300 - 265) / 120} stopColor="#22c55e" />
-                    <stop offset={(300 - 249) / 120} stopColor="#22c55e" />
-                    <stop offset={(300 - 249) / 120} stopColor="#F97316" />
-                    <stop offset={(300 - 214) / 120} stopColor="#F97316" />
-                    <stop offset={(300 - 214) / 120} stopColor="#ea384c" />
-                    <stop offset="1" stopColor="#ea384c" />
-                  </linearGradient>
-                )}
-              </defs>
               <Line 
                 type="monotone"
                 dataKey="score" 
-                stroke="url(#lineGradient)" 
+                stroke="#000"
                 strokeWidth={3} 
                 dot={<CustomDot />} 
-                activeDot={<CustomActiveDot />} 
+                activeDot={<CustomActiveDot />}
+                connectNulls
+                strokeColor={(data) => getStrokeColor(data.value)}
               />
             </LineChart>
           </ResponsiveContainer>
