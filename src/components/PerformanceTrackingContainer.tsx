@@ -169,7 +169,9 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                     <stop offset={214 / 300} stopColor="#F97316" />
                     <stop offset={249 / 300} stopColor="#F97316" />
                     <stop offset={249 / 300} stopColor="#22c55e" />
-                    <stop offset="1" stopColor="#22c55e" />
+                    <stop offset={265 / 300} stopColor="#22c55e" />
+                    <stop offset={265 / 300} stopColor="#019444" />
+                    <stop offset="1" stopColor="#019444" />
                   </linearGradient>
                 )}
               </defs>
