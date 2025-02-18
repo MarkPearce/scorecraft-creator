@@ -100,7 +100,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
-              {examStep === 'step1' && (
+              {examStep === 'step1' ? (
                 <>
                   <ReferenceLine 
                     y={196} 
@@ -120,6 +120,33 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                     strokeDasharray="3 3" 
                     label={{ 
                       value: 'National mean before 2022 (231)', 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                </>
+              ) : (
+                <>
+                  <ReferenceLine 
+                    y={214} 
+                    stroke="#ea384c" 
+                    strokeDasharray="3 3" 
+                    label={{ 
+                      value: 'Passing standard (214)', 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                  <ReferenceLine 
+                    y={249} 
+                    stroke="#22c55e" 
+                    strokeDasharray="3 3" 
+                    label={{ 
+                      value: 'National mean (249)', 
                       position: 'insideBottomRight',
                       fill: '#64748b',
                       fontSize: 12,
