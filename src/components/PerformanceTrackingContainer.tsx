@@ -103,7 +103,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               {examStep === 'step1' && (
                 <ReferenceLine 
                   y={196} 
-                  stroke="#64748b" 
+                  stroke="#ea384c" 
                   strokeDasharray="3 3" 
                   label={{ 
                     value: 'Passing Standard (196)', 
