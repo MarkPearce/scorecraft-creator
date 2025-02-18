@@ -52,9 +52,17 @@ const generateNormalDistributionData = () => {
 
 const data = generateNormalDistributionData();
 
-// Mock student score and percentile
+// Student score
 const studentScore = 245;
-const studentPercentile = 65;
+
+// Calculate the percentile for the student score
+const findPercentile = (score: number) => {
+  const zScore = (score - MEAN_SCORE) / STD_DEV;
+  const percentile = Math.round((1 + erf(zScore / Math.sqrt(2))) / 2 * 100);
+  return percentile;
+};
+
+const studentPercentile = findPercentile(studentScore);
 
 const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
@@ -62,7 +70,7 @@ const PeerGroup = () => {
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
   const yAxisTicks = [0, 0.002, 0.004, 0.006, 0.008];
 
-  // Find the score at 65th percentile
+  // Find the score at the calculated percentile
   const percentileScore = data.find(point => Math.round(point.percentileValue * 100) === studentPercentile)?.score || studentScore;
 
   return (
@@ -84,7 +92,7 @@ const PeerGroup = () => {
       <CardContent>
         <div className="relative">
           <p className="text-gray-600 mb-4 text-base font-lato">
-            You are currently at the <span className="text-gray-600">65<sup className="text-xs">th</sup></span> percentile compared to other learners.
+            You are currently at the <span className="text-gray-600">{studentPercentile}<sup className="text-xs">th</sup></span> percentile compared to other learners.
           </p>
           
           <ResponsiveContainer width="100%" height={400}>
@@ -166,7 +174,7 @@ const PeerGroup = () => {
                 stroke="#0aa6b8"
                 strokeDasharray="3 3"
                 label={{
-                  value: `65th Percentile: ${Math.round(percentileScore)}`,
+                  value: `${studentPercentile}th Percentile: ${Math.round(percentileScore)}`,
                   position: 'top',
                   fill: '#0aa6b8',
                   fontSize: 14
