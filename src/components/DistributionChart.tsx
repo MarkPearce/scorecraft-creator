@@ -87,12 +87,12 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           labelFormatter={(score: number) => `Score: ${score}`}
         />
         <Area
-          type="basis"
+          type="monotone"
           dataKey={displayMode === "normal" ? "density" : "percentile"}
           stroke="#0aa6b8"
           fill="url(#colorData)"
           strokeWidth={2}
-          animationDuration={500}
+          animationDuration={1500}
           animationBegin={0}
           isAnimationActive={true}
         />
