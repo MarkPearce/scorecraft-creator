@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -109,7 +110,7 @@ const PerformanceGraph = ({
       }, {
         score: 196,
         color: "bg-[#FFC107]",
-        label: "196"
+        label: ""  // Removed 196 label
       }, {
         score: 231,
         color: "bg-[#8DC641]",
@@ -117,7 +118,7 @@ const PerformanceGraph = ({
       }, {
         score: 248,
         color: "bg-[#019444]",
-        label: "248"
+        label: ""  // Removed 248 label
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
