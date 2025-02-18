@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -9,6 +8,20 @@ import { PercentileDisplay } from "@/components/PercentileDisplay";
 // Normal distribution parameters
 const MEAN_SCORE = 249; // μ (mu)
 const STD_DEV = 50;    // σ (sigma)
+
+// Error function approximation
+// Using Abramowitz and Stegun approximation (maximum error: 1.5×10−7)
+const erf = (x: number): number => {
+  const t = 1.0 / (1.0 + 0.3275911 * Math.abs(x));
+  const p = 0.254829592;
+  const b = -0.284496736;
+  const h = 1.421413741;
+  const q = -1.453152027;
+  const d = 1.061405429;
+  
+  const calculation = 1.0 - (p * t + b * t ** 2 + h * t ** 3 + q * t ** 4 + d * t ** 5) * Math.exp(-x * x);
+  return x >= 0 ? calculation : -calculation;
+};
 
 // Calculate normal distribution probability density
 const normalDistribution = (x: number, mu: number, sigma: number): number => {
@@ -25,7 +38,7 @@ const generateNormalDistributionData = () => {
   for (let score = 0; score <= 300; score += (300 / numPoints)) {
     const density = normalDistribution(score, MEAN_SCORE, STD_DEV);
     const percentile = (score - MEAN_SCORE) / STD_DEV; // Z-score
-    const normalizedPercentile = (1 + Math.erf(percentile / Math.sqrt(2))) / 2; // Convert Z-score to percentile
+    const normalizedPercentile = (1 + erf(percentile / Math.sqrt(2))) / 2; // Convert Z-score to percentile
     
     points.push({
       score: Math.round(score),
