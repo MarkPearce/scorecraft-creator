@@ -20,7 +20,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import TopicBreakdown from "./TopicBreakdown";
 
 const Report = () => {
   const navigate = useNavigate();
@@ -108,9 +107,7 @@ const Report = () => {
                 </CarouselItem>
 
                 <CarouselItem>
-                  <div className="px-4">
-                    <TopicBreakdown />
-                  </div>
+                  <PerformanceSummary />
                 </CarouselItem>
               </CarouselContent>
               <CarouselPrevious className="absolute left-2 top-1/2" />
