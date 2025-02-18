@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -60,6 +61,9 @@ const PeerGroup = () => {
   const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
   const yAxisTicks = [0, 0.002, 0.004, 0.006, 0.008];
+
+  // Find the score at 65th percentile
+  const percentileScore = data.find(point => Math.round(point.percentileValue * 100) === studentPercentile)?.score || studentScore;
 
   return (
     <Card className="animate-fadeIn">
@@ -154,6 +158,17 @@ const PeerGroup = () => {
                   value: `Mean: ${MEAN_SCORE}`,
                   position: 'top',
                   fill: '#374151',
+                  fontSize: 14
+                }}
+              />
+              <ReferenceLine
+                x={percentileScore}
+                stroke="#0aa6b8"
+                strokeDasharray="3 3"
+                label={{
+                  value: `65th Percentile: ${Math.round(percentileScore)}`,
+                  position: 'top',
+                  fill: '#0aa6b8',
                   fontSize: 14
                 }}
               />
