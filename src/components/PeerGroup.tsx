@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -69,9 +70,14 @@ const PeerGroup = () => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState("all");
   const [displayMode, setDisplayMode] = useState<"normal" | "percentile">("normal");
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
+  
+  // Create evenly spaced ticks for normal distribution (0, 0.2, 0.4, 0.6, 0.8)
+  const normalDistributionTicks = Array.from({ length: 5 }, (_, i) => i * 0.2);
+  const percentileTicks = [0, 20, 40, 60, 80, 100];
+  
   const yAxisTicks = displayMode === "normal" 
-    ? [0, 0.2, 0.4, 0.6, 0.8] 
-    : [0, 20, 40, 60, 80, 100];
+    ? normalDistributionTicks
+    : percentileTicks;
 
   return (
     <Card className="animate-fadeIn">
@@ -147,11 +153,16 @@ const PeerGroup = () => {
                   fontSize: 11,
                   dx: -10
                 }}
-                tickFormatter={(value) => displayMode === "normal" ? `${(value * 100).toFixed(1)}` : value}
+                tickFormatter={(value) => {
+                  if (displayMode === "normal") {
+                    return `${(value * 100).toFixed(0)}%`;
+                  }
+                  return value;
+                }}
               />
               <Tooltip 
                 formatter={(value: number, name: string) => {
-                  if (name === 'density') return [`${(value / 20).toFixed(1)}%`, 'Distribution'];
+                  if (name === 'density') return [`${(value * 100).toFixed(1)}%`, 'Distribution'];
                   if (name === 'percentile') return [`${value.toFixed(1)}%`, 'Percentile'];
                   return [value, name];
                 }}
