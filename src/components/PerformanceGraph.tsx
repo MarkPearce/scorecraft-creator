@@ -184,6 +184,11 @@ const PerformanceGraph = ({
     }
   };
 
+  const getScoreRange = (score: number) => {
+    const floor = Math.floor(score / 10) * 10;
+    return `${floor}-${floor + 9}`;
+  };
+
   const getScoreStatus = (currentScore: number) => {
     if (examStep === 'step1') {
       if (currentScore >= (passingStandard || 252)) {
@@ -262,7 +267,10 @@ const PerformanceGraph = ({
           <div className="grid grid-cols-2 gap-0">
             <div className="flex items-center gap-4">
               {getFaceIcon(score)}
-              <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
+              <div className="flex flex-col">
+                <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
+                <div className={`text-sm ${getScoreColor(score)}`}>{getScoreRange(score)}</div>
+              </div>
             </div>
             <div className="flex items-center">
               <div className="text-base font-medium">
