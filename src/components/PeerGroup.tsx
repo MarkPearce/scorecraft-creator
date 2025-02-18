@@ -129,7 +129,7 @@ const PeerGroup = () => {
                 dataKey={displayMode === "normal" ? "density" : "percentile"}
                 domain={displayMode === "normal" ? [0, 0.018] : [0, 100]}
                 label={{
-                  value: displayMode === "normal" ? 'Probability Density' : 'Percentile (%)',
+                  value: displayMode === "normal" ? 'Distribution (%)' : 'Percentile (%)',
                   angle: -90,
                   position: 'insideLeft',
                   offset: 0,
@@ -142,10 +142,11 @@ const PeerGroup = () => {
                   fontSize: 11,
                   dx: -10
                 }}
+                tickFormatter={(value) => displayMode === "normal" ? `${(value * 100).toFixed(1)}` : value}
               />
               <Tooltip 
                 formatter={(value: number, name: string) => {
-                  if (name === 'density') return [`${(value / 2000).toFixed(4)}`, 'Density'];
+                  if (name === 'density') return [`${(value / 20).toFixed(1)}%`, 'Distribution'];
                   if (name === 'percentile') return [`${value.toFixed(1)}%`, 'Percentile'];
                   return [value, name];
                 }}
