@@ -18,14 +18,15 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     ? normalDistributionTicks
     : percentileTicks;
 
-  // Find the closest point to mean score to set the reference line end point
-  const meanPoint = data.reduce((closest, current) => {
+  // Find the exact data point for the mean score
+  const meanPoint = data.find(point => Math.round(point.score) === MEAN_SCORE) || data.reduce((closest, current) => {
     const currentDiff = Math.abs(current.score - MEAN_SCORE);
     const closestDiff = Math.abs(closest.score - MEAN_SCORE);
     return currentDiff < closestDiff ? current : closest;
   }, data[0]);
 
-  const meanY = displayMode === "normal" ? meanPoint.density : meanPoint.percentile;
+  // Get the y-value for the mean point based on display mode
+  const yValue = displayMode === "normal" ? meanPoint.density : meanPoint.percentile;
 
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -113,9 +114,10 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           x={MEAN_SCORE}
           stroke="#374151"
           strokeDasharray="3 3"
+          ifOverflow="extendDomain"
           segment={[
             { x: MEAN_SCORE, y: 0 },
-            { x: MEAN_SCORE, y: meanY }
+            { x: MEAN_SCORE, y: yValue }
           ]}
           label={{
             value: `Mean: ${MEAN_SCORE}`,
