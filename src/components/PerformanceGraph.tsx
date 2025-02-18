@@ -100,52 +100,69 @@ const PerformanceGraph = ({
     setIsDragging(true);
   };
 
-  const totalRange = range.max - range.min;
-  const segmentSize = totalRange / 5;
-  const segments = [{
-    score: range.min,
-    color: "bg-[#019444]",
-    label: `${Math.round(range.min)}`
-  }, {
-    score: range.min + segmentSize,
-    color: "bg-[#8DC641]",
-    label: `${Math.round(range.min + segmentSize)}`
-  }, {
-    score: range.min + segmentSize * 2,
-    color: "bg-[#FFC107]",
-    label: `${Math.round(range.min + segmentSize * 2)}`
-  }, {
-    score: range.min + segmentSize * 3,
-    color: "bg-[#F46523]",
-    label: `${Math.round(range.min + segmentSize * 3)}`
-  }, {
-    score: range.min + segmentSize * 4,
-    color: "bg-[#ED1B24]",
-    label: `${Math.round(range.min + segmentSize * 4)}`
-  }, {
-    score: range.max,
-    label: `${Math.round(range.max)}`
-  }];
+  const getSegments = () => {
+    if (examStep === 'step1') {
+      return [{
+        score: range.min,
+        color: "bg-[#ED1B24]",
+        label: `${Math.round(range.min)}`
+      }, {
+        score: 196,
+        color: "bg-[#FFC107]",
+        label: "196"
+      }, {
+        score: 231,
+        color: "bg-[#8DC641]",
+        label: "231"
+      }, {
+        score: 248,
+        color: "bg-[#019444]",
+        label: "248"
+      }, {
+        score: range.max,
+        label: `${Math.round(range.max)}`
+      }];
+    } else {
+      return [{
+        score: range.min,
+        color: "bg-[#ED1B24]",
+        label: `${Math.round(range.min)}`
+      }, {
+        score: 214,
+        color: "bg-[#FFC107]",
+        label: "214"
+      }, {
+        score: 249,
+        color: "bg-[#8DC641]",
+        label: "249"
+      }, {
+        score: 265,
+        color: "bg-[#019444]",
+        label: "265"
+      }, {
+        score: range.max,
+        label: `${Math.round(range.max)}`
+      }];
+    }
+  };
 
   const getScoreSegment = (score: number) => {
-    if (score >= range.max - segmentSize) return 5;
-    if (score >= range.max - segmentSize * 2) return 4;
-    if (score >= range.max - segmentSize * 3) return 3;
-    if (score >= range.max - segmentSize * 4) return 2;
+    const segments = getSegments();
+    if (score >= segments[3].score) return 4;
+    if (score >= segments[2].score) return 3;
+    if (score >= segments[1].score) return 2;
     return 1;
   };
 
   const getScoreColor = (score: number) => {
     const segment = getScoreSegment(score);
     switch (segment) {
-      case 5:
-        return "text-[#019444]";
       case 4:
-        return "text-[#8DC641]";
+        return "text-[#019444]";
       case 3:
-        return "text-yellow-500";
+        return "text-[#8DC641]";
       case 2:
-        return "text-[#F46523]";
+        return "text-yellow-500";
       default:
         return "text-[#ED1B24]";
     }
@@ -154,14 +171,12 @@ const PerformanceGraph = ({
   const getBackgroundColor = (score: number) => {
     const segment = getScoreSegment(score);
     switch (segment) {
-      case 5:
-        return "bg-[#019444]/15";
       case 4:
-        return "bg-[#8DC641]/15";
+        return "bg-[#019444]/15";
       case 3:
-        return "bg-yellow-500/15";
+        return "bg-[#8DC641]/15";
       case 2:
-        return "bg-[#F46523]/15";
+        return "bg-yellow-500/15";
       default:
         return "bg-[#ED1B24]/15";
     }
@@ -171,14 +186,12 @@ const PerformanceGraph = ({
     const segment = getScoreSegment(score);
     const colorClass = getScoreColor(score);
     switch (segment) {
-      case 5:
-        return <Laugh className={`w-16 h-16 ${colorClass}`} />;
       case 4:
-        return <Smile className={`w-16 h-16 ${colorClass}`} />;
+        return <Laugh className={`w-16 h-16 ${colorClass}`} />;
       case 3:
-        return <Meh className={`w-16 h-16 ${colorClass}`} />;
+        return <Smile className={`w-16 h-16 ${colorClass}`} />;
       case 2:
-        return <Frown className={`w-16 h-16 ${colorClass}`} />;
+        return <Meh className={`w-16 h-16 ${colorClass}`} />;
       default:
         return <Angry className={`w-16 h-16 ${colorClass}`} />;
     }
@@ -191,7 +204,7 @@ const PerformanceGraph = ({
 
   const getScoreStatus = (currentScore: number) => {
     if (examStep === 'step1') {
-      if (currentScore >= (passingStandard || 252)) {
+      if (currentScore >= (passingStandard || 196)) {
         return "Your predicted score meets the passing standard";
       }
       return "Your predicted score is below the passing standard";
@@ -206,6 +219,7 @@ const PerformanceGraph = ({
   };
 
   const scoreStatus = getScoreStatus(score);
+  const segments = getSegments();
 
   return <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
       <div className="performance-graph-container flex items-center justify-center pt-6 md:col-span-8">
@@ -226,8 +240,8 @@ const PerformanceGraph = ({
             <div className="relative ml-2 w-[60px] flex-shrink-0">
               <div className="h-full relative">
                 {segments.slice(0, -1).map((segment, index) => <div key={segment.score} className={`absolute w-full ${segment.color}`} style={{
-                height: '20%',
-                top: `${index * 20}%`
+                height: `${(segments[index + 1].score - segment.score) / (range.max - range.min) * 100}%`,
+                top: calculatePosition(segments[index + 1].score)
               }} />)}
               </div>
             </div>
