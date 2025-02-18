@@ -11,7 +11,7 @@ interface DistributionChartProps {
 
 const DistributionChart = ({ data, displayMode, studentScore, studentPercentile }: DistributionChartProps) => {
   const xAxisTicks = [0, 50, 100, 150, 200, 250, 300];
-  const normalDistributionTicks = Array.from({ length: 5 }, (_, i) => i * 0.2);
+  const normalDistributionTicks = Array.from({ length: 5 }, (_, i) => i * 0.002);
   const percentileTicks = [0, 20, 40, 60, 80, 100];
   
   const yAxisTicks = displayMode === "normal" 
@@ -56,7 +56,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         <YAxis 
           dataKey={displayMode === "normal" ? "density" : "percentile"}
-          domain={displayMode === "normal" ? [0, 0.8] : [0, 100]}
+          domain={displayMode === "normal" ? [0, 0.008] : [0, 100]}
           label={{
             value: displayMode === "normal" ? 'Distribution (%)' : 'Percentile (%)',
             angle: -90,
@@ -73,7 +73,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           }}
           tickFormatter={(value) => {
             if (displayMode === "normal") {
-              return `${(value * 100).toFixed(0)}%`;
+              return `${(value * 100).toFixed(1)}%`;
             }
             return value;
           }}
