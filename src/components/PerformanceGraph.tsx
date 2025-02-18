@@ -103,6 +103,9 @@ const PerformanceGraph = ({
 
   const getSegments = () => {
     if (examStep === 'step1') {
+      // Calculate midpoint between 196 (end of yellow) and 265 (top of green)
+      const midpoint = Math.round(196 + (265 - 196) / 2); // This should be around 231
+      
       return [{
         score: range.min,
         color: "bg-[#ED1B24]",
@@ -112,11 +115,11 @@ const PerformanceGraph = ({
         color: "bg-[#FFC107]",
         label: ""
       }, {
-        score: 231,
+        score: midpoint,
         color: "bg-[#8DC641]",
         label: "Passing standard\nbefore 2022: 231"
       }, {
-        score: 248,
+        score: 265,
         color: "bg-[#019444]",
         label: ""
       }, {
