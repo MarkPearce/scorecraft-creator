@@ -112,7 +112,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                       fill: '#64748b',
                       fontSize: 12,
                       dy: 12,
-                      dx: -20,
+                      dx: 0,
                       textAnchor: 'end'
                     }} 
                   />
@@ -126,7 +126,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                       fill: '#64748b',
                       fontSize: 12,
                       dy: 12,
-                      dx: -20,
+                      dx: 0,
                       textAnchor: 'end'
                     }} 
                   />
