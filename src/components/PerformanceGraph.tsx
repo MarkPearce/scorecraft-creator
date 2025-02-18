@@ -1,3 +1,4 @@
+
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
@@ -261,10 +262,10 @@ const PerformanceGraph = ({
         </div>
       </div>
 
-      <div className="score-status-container flex items-center justify-center">
-        <div className={`${getBackgroundColor(score)} p-6 rounded-lg w-full`}>
+      <div className="score-status-container flex items-start justify-start">
+        <div className={`${getBackgroundColor(score)} p-6 rounded-lg inline-block`}>
           <h3 className="text-gray-900 font-semibold text-lg mb-4">Assessment</h3>
-          <div className="flex justify-center">
+          <div className="flex">
             <div className="flex items-center gap-4">
               {getFaceIcon(score)}
               <div className="flex flex-col items-center">
