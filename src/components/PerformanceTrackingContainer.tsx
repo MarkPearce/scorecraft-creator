@@ -101,18 +101,32 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
               {examStep === 'step1' && (
-                <ReferenceLine 
-                  y={196} 
-                  stroke="#ea384c" 
-                  strokeDasharray="3 3" 
-                  label={{ 
-                    value: 'Passing Standard (196)', 
-                    position: 'center',
-                    fill: '#64748b',
-                    fontSize: 12,
-                    dy: 12
-                  }} 
-                />
+                <>
+                  <ReferenceLine 
+                    y={196} 
+                    stroke="#ea384c" 
+                    strokeDasharray="3 3" 
+                    label={{ 
+                      value: 'Passing Standard (196)', 
+                      position: 'center',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 12
+                    }} 
+                  />
+                  <ReferenceLine 
+                    y={231} 
+                    stroke="#86efac" 
+                    strokeDasharray="3 3" 
+                    label={{ 
+                      value: 'National mean before 2022 (231)', 
+                      position: 'center',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: -12
+                    }} 
+                  />
+                </>
               )}
               <defs>
                 <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
