@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -13,40 +12,23 @@ import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
 import RecommendedSession from "@/components/RecommendedSession";
 import { useState } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 const Report = () => {
   const navigate = useNavigate();
   const currentPercentile = 30;
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
-
-  return (
-    <>
+  return <>
       <PageHeader />
       <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="flex items-center justify-between">
-            <Button 
-              variant="ghost" 
-              onClick={() => navigate('/')}
-              className="flex items-center hover:bg-gray-200 font-lato"
-            >
+            <Button variant="ghost" onClick={() => navigate('/')} className="flex items-center hover:bg-gray-200 font-lato">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to dashboard
             </Button>
 
-            <RadioGroup 
-              value={currentStep}
-              onValueChange={(value: 'step1' | 'step2') => setCurrentStep(value)}
-              className="flex gap-4"
-            >
+            <RadioGroup value={currentStep} onValueChange={(value: 'step1' | 'step2') => setCurrentStep(value)} className="flex gap-4">
               <div className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors cursor-pointer">
                 <RadioGroupItem value="step1" id="step1" />
                 <Label htmlFor="step1" className="text-sm font-medium cursor-pointer font-lato">USMLE Step 1</Label>
@@ -60,34 +42,18 @@ const Report = () => {
 
           <div>
             <h1 className="text-3xl font-bold text-gray-900 font-lato">Continuous score assessment</h1>
-            <p className="mt-2 text-gray-600 font-lato">
-              Here is your assessment based on Qbank performance.
-            </p>
+            
           </div>
           
           <div className="relative">
             <Carousel className="w-full">
               <CarouselContent>
                 <CarouselItem>
-                  <OverallPerformance 
-                    yourScore={245}
-                    targetScore={sharedTargetScore}
-                    onTargetScoreChange={setSharedTargetScore}
-                    questionsAnswered={422}
-                    examDate="Oct 15, 2025"
-                  />
+                  <OverallPerformance yourScore={245} targetScore={sharedTargetScore} onTargetScoreChange={setSharedTargetScore} questionsAnswered={422} examDate="Oct 15, 2025" />
                 </CarouselItem>
                 
                 <CarouselItem>
-                  <PerformanceScoreCard 
-                    examStep={currentStep}
-                    initialScore={245}
-                    targetScore={sharedTargetScore}
-                    onTargetScoreChange={setSharedTargetScore}
-                    passingStandard={currentStep === 'step1' ? 252 : undefined}
-                    showControls={false}
-                    title="Current performance"
-                  />
+                  <PerformanceScoreCard examStep={currentStep} initialScore={245} targetScore={sharedTargetScore} onTargetScoreChange={setSharedTargetScore} passingStandard={currentStep === 'step1' ? 252 : undefined} showControls={false} title="Current performance" />
                 </CarouselItem>
                 
                 <CarouselItem>
@@ -116,8 +82,6 @@ const Report = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Report;
