@@ -6,25 +6,28 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PercentileDisplay } from "@/components/PercentileDisplay";
 
-// Generate data points for a bezier curve
-const generateData = () => {
+// Generate data points for a standard normal distribution
+const generateNormalDistributionData = () => {
   const points = [];
+  const mean = 240; // Center of our distribution
+  const stdDev = 20; // Standard deviation
+  const numPoints = 50; // Number of points to generate
+  const range = 4; // Range in standard deviations
 
-  // Generate points every 20 units
-  for (let score = 180; score <= 300; score += 20) {
-    let count;
-    if (score === 180) count = 10;
-    else if (score === 240) count = 34;
-    else if (score === 300) count = 1;
-    else count = Math.max(1, Math.floor(34 * Math.exp(-Math.pow((score - 240) / 40, 2))));
+  for (let i = 0; i < numPoints; i++) {
+    const x = (i / (numPoints - 1)) * range * 2 * stdDev + (mean - range * stdDev);
+    const normalValue = Math.exp(-Math.pow((x - mean) / stdDev, 2) / 2) / (stdDev * Math.sqrt(2 * Math.PI));
+    const scaledCount = normalValue * 1000; // Scale the height of the curve
+    
     points.push({
-      score,
-      count
+      score: Math.round(x),
+      count: scaledCount
     });
   }
   return points;
 };
-const data = generateData();
+
+const data = generateNormalDistributionData();
 
 // Mock student score - this would typically come from props or an API
 const studentScore = 245;
@@ -57,47 +60,71 @@ const PeerGroup = () => {
             }}>
               <defs>
                 <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.2} />
+                  <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#0aa6b8" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
-              <XAxis dataKey="score" type="number" allowDecimals={false} domain={['dataMin', 'dataMax']} label={{
-                value: 'Score',
-                position: 'bottom',
-                offset: 20
-              }} ticks={xAxisTicks} interval={0} tick={{
-                fontSize: 11,
-                dy: 10
-              }} padding={{
-                left: 20,
-                right: 20
-              }} orientation="bottom" />
-              <YAxis domain={[0, 40]} allowDecimals={false} width={60} orientation="left" type="number" padding={{
-                top: 20,
-                bottom: 0
-              }} label={{
-                value: 'Peer Group',
-                angle: -90,
-                position: 'insideLeft',
-                offset: 0,
-                style: {
-                  textAnchor: 'middle'
-                }
-              }} tick={{
-                fontSize: 11,
-                dx: -10
-              }} />
-              <Tooltip formatter={(value: number) => [`${value} students`, 'Frequency']} labelFormatter={(label: number) => `Score: ${label}`} />
-              <Area type="natural" dataKey="count" stroke="#0aa6b8" fill="url(#colorCount)" strokeWidth={2} />
-              <ReferenceLine x={studentScore} stroke="#374151" strokeWidth={2} label={{
-                value: `Predicted Score ${studentScore}`,
-                position: 'top',
-                fill: '#374151',
-                fontSize: 14,
-                fontWeight: 600,
-                dy: -15
-              }} />
+              <XAxis 
+                dataKey="score" 
+                type="number" 
+                domain={['dataMin', 'dataMax']} 
+                label={{
+                  value: 'Score',
+                  position: 'bottom',
+                  offset: 20
+                }}
+                ticks={xAxisTicks}
+                interval={0}
+                tick={{
+                  fontSize: 11,
+                  dy: 10
+                }}
+                padding={{
+                  left: 20,
+                  right: 20
+                }}
+              />
+              <YAxis 
+                domain={[0, 'dataMax']}
+                label={{
+                  value: 'Frequency',
+                  angle: -90,
+                  position: 'insideLeft',
+                  offset: 0,
+                  style: {
+                    textAnchor: 'middle'
+                  }
+                }}
+                tick={{
+                  fontSize: 11,
+                  dx: -10
+                }}
+              />
+              <Tooltip 
+                formatter={(value: number) => [`${Math.round(value)} students`, 'Frequency']}
+                labelFormatter={(label: number) => `Score: ${label}`}
+              />
+              <Area
+                type="monotone"
+                dataKey="count"
+                stroke="#0aa6b8"
+                fill="url(#colorCount)"
+                strokeWidth={2}
+              />
+              <ReferenceLine
+                x={studentScore}
+                stroke="#374151"
+                strokeWidth={2}
+                label={{
+                  value: `Predicted Score ${studentScore}`,
+                  position: 'top',
+                  fill: '#374151',
+                  fontSize: 14,
+                  fontWeight: 600,
+                  dy: -15
+                }}
+              />
             </AreaChart>
           </ResponsiveContainer>
 
