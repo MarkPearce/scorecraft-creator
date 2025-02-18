@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -22,7 +23,8 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     dataLength: data.length,
     firstPoint: data[0],
     lastPoint: data[data.length - 1],
-    meanScore: MEAN_SCORE
+    meanScore: MEAN_SCORE,
+    domain: [0, 300]
   });
 
   return (
@@ -63,6 +65,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
             fontSize: 11,
             dy: 10
           }}
+          scale="linear"
         />
         <YAxis 
           dataKey={displayMode === "normal" ? "density" : "percentile"}
@@ -87,6 +90,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
             }
             return value;
           }}
+          scale="linear"
         />
         <Tooltip 
           formatter={(value: number, name: string) => {
@@ -105,20 +109,34 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         
         <Customized component={({ width, height, xAxis, yAxis }) => {
-          if (!xAxis?.scale || !yAxis?.scale) {
-            console.log('Missing scale functions:', { xAxis, yAxis });
+          console.log('Customized component props:', {
+            hasWidth: !!width,
+            hasHeight: !!height,
+            xAxisDetails: {
+              hasScale: !!xAxis?.scale,
+              scaleType: xAxis?.scale?.name,
+              domain: xAxis?.domain,
+            },
+            yAxisDetails: {
+              hasScale: !!yAxis?.scale,
+              scaleType: yAxis?.scale?.name,
+              domain: yAxis?.domain,
+            }
+          });
+
+          if (!xAxis?.scale || !yAxis?.scale || !width || !height) {
             return null;
           }
 
           const x = xAxis.scale(MEAN_SCORE);
-          
           const lineHeight = height * 0.75;
-          
+
           console.log('Mean Line Coordinates:', {
+            meanScore: MEAN_SCORE,
             x,
             height,
             lineHeight,
-            scale: xAxis.scale.toString()
+            scale: xAxis.scale.name
           });
 
           return (
@@ -170,3 +188,4 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 };
 
 export default DistributionChart;
+
