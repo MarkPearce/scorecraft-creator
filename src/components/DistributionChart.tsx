@@ -1,4 +1,3 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
@@ -133,10 +132,9 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           });
 
           const x = xAxis?.scale ? xAxis.scale(MEAN_SCORE) : (width || 0) * (MEAN_SCORE / 300);
-          const lineStartY = height - 32; // Start from just above the x-axis
+          const lineStartY = height - 64; // Start 64px from the bottom
           
           // Calculate line length based on the normal distribution mode
-          // The line should be shorter for percentile mode and longer for normal mode
           const lineLength = displayMode === "normal" ? 300 : 260;
           const lineEndY = lineStartY - lineLength;
 
