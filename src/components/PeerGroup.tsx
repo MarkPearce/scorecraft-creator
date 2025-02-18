@@ -1,3 +1,4 @@
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -150,18 +151,6 @@ const PeerGroup = () => {
                 stroke="#0aa6b8"
                 fill="url(#colorDensity)"
                 strokeWidth={2}
-              />
-              <ReferenceLine
-                x={studentScore}
-                stroke="#374151"
-                strokeWidth={2}
-                label={{
-                  value: `Your Score: ${studentScore}`,
-                  position: 'top',
-                  fill: '#374151',
-                  fontSize: 14,
-                  fontWeight: 600
-                }}
               />
               <ReferenceLine
                 x={MEAN_SCORE}
