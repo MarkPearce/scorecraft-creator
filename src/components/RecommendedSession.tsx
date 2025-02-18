@@ -12,7 +12,9 @@ const RecommendedSession = () => {
               <CardTitle className="font-lato">Recommended session</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
-              <p className="text-gray-600 font-lato">Do this session of personalized high-yield questions to update your performance assessment.</p>
+              <p className="text-gray-600 font-lato">Do this session of personalized high-yield questions to update your performance assessment.
+
+AMBOSS AI and analytics provide a stack-ranked set of questions which will provide you with the highest yield results.</p>
               <div>
                 <Button variant="default" className="font-lato" onClick={() => setIsDialogOpen(true)}>
                   Start session
