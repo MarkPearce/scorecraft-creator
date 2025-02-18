@@ -1,6 +1,6 @@
 
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Customized } from 'recharts';
-import { MEAN_SCORE, normalDistribution, STD_DEV } from '@/utils/distributionUtils';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { MEAN_SCORE } from '@/utils/distributionUtils';
 
 interface DistributionChartProps {
   data: any[];
@@ -20,15 +20,12 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <AreaChart 
-        data={data} 
-        margin={{
-          top: 40,
-          right: 30,
-          left: 40,
-          bottom: 0
-        }}
-      >
+      <AreaChart data={data} margin={{
+        top: 40,
+        right: 30,
+        left: 40,
+        bottom: 0
+      }}>
         <defs>
           <linearGradient id="colorData" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#0aa6b8" stopOpacity={0.3} />
@@ -96,37 +93,28 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           fill="url(#colorData)"
           strokeWidth={2}
         />
-        
-        <Customized component={({ chartHeight, xScale, yScale }) => {
-          const dataPoint = data.find(point => Math.abs(point.score - MEAN_SCORE) < 1);
-          if (!dataPoint) return null;
-          
-          const x = xScale(MEAN_SCORE);
-          const y = yScale(displayMode === "normal" ? dataPoint.density : dataPoint.percentile);
-          
-          return (
-            <g>
-              <line 
-                x1={x} 
-                x2={x} 
-                y1={y} 
-                y2={chartHeight - 40} 
-                stroke="#374151" 
-                strokeWidth={2}
-                strokeDasharray="3 3"
-              />
-              <text
-                x={x + 5}
-                y={20}
-                fill="#374151"
-                fontSize={14}
-              >
-                Mean: {MEAN_SCORE}
-              </text>
-            </g>
-          );
-        }} />
-        
+        <ReferenceLine
+          x={MEAN_SCORE}
+          stroke="#374151"
+          strokeDasharray="3 3"
+          label={{
+            value: `Mean: ${MEAN_SCORE}`,
+            position: 'insideBottomRight',
+            fill: '#374151',
+            fontSize: 14
+          }}
+        />
+        <ReferenceLine
+          x={studentScore}
+          stroke="#0aa6b8"
+          strokeDasharray="3 3"
+          label={{
+            value: `${studentPercentile}th Percentile: ${studentScore}`,
+            position: 'top',
+            fill: '#0aa6b8',
+            fontSize: 14
+          }}
+        />
         {displayMode === "percentile" && (
           <ReferenceLine
             y={studentPercentile}
@@ -140,4 +128,3 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 };
 
 export default DistributionChart;
-
