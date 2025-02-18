@@ -167,12 +167,11 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               <Line 
                 type="monotone"
                 dataKey="score" 
-                stroke="#000"
                 strokeWidth={3} 
                 dot={<CustomDot />} 
                 activeDot={<CustomActiveDot />}
                 connectNulls
-                strokeColor={(data) => getStrokeColor(data.value)}
+                stroke={(data) => getStrokeColor(data.score)}
               />
             </LineChart>
           </ResponsiveContainer>
