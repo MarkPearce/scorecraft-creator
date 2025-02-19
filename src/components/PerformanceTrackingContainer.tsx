@@ -21,6 +21,13 @@ interface DotProps {
   fill?: string;
 }
 
+const getDotColor = (score: number): string => {
+  if (score >= 265) return '#019444'; // dark green
+  if (score >= 249) return '#22c55e'; // light green
+  if (score >= 214) return '#F97316'; // yellow
+  return '#ea384c'; // red
+};
+
 const generateIntermediatePoints = (start: DataPoint, end: DataPoint, count: number): DataPoint[] => {
   const points: DataPoint[] = [];
   const dateStart = new Date(start.date);
@@ -44,7 +51,7 @@ const CustomDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload } = props;
   if (!payload) return null;
   const radius = payload.isMainPoint ? 6 : 3;
-  const color = payload.isMainPoint ? '#5a7183' : '#94a3b8';
+  const color = getDotColor(payload.score);
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
 CustomDot.displayName = 'CustomDot';
@@ -53,7 +60,7 @@ const CustomActiveDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload } = props;
   if (!payload) return null;
   const radius = payload.isMainPoint ? 8 : 4;
-  const color = payload.isMainPoint ? '#5a7183' : '#94a3b8';
+  const color = getDotColor(payload.score);
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
 CustomActiveDot.displayName = 'CustomActiveDot';
