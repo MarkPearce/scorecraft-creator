@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -59,6 +58,9 @@ const SinglePageReport = () => {
 
           <div className="space-y-8">
             <OverallPerformance 
+              yourScore={245}
+              targetScore={sharedTargetScore}
+              onTargetScoreChange={setSharedTargetScore}
               questionsAnswered={422}
               examDate="Oct 15, 2025"
             />

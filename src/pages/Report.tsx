@@ -68,46 +68,88 @@ const Report = () => {
           </div>
 
           <div>
-            <h1 className="text-3xl font-[900] text-gray-900 font-lato">Continuous score assessment</h1>
+            <h1 className="text-3xl font-bold text-gray-900 font-lato">Continuous score assessment</h1>
             <p className="mt-2 text-gray-600 font-lato">
               Here is your assessment based on Qbank performance.
             </p>
           </div>
-
-          <Carousel className="relative mx-auto">
-            <CarouselContent>
-              <CarouselItem>
-                <div className="space-y-8">
+          
+          <div className="relative">
+            <div className="flex justify-end gap-2 mb-4">
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={handlePrevClick}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <Button 
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={handleNextClick}
+                >
+                  <ArrowLeft className="h-4 w-4 rotate-180" />
+                </Button>
+              </div>
+            </div>
+            <Carousel 
+              className="w-full" 
+              opts={{
+                dragFree: false
+              }}
+            >
+              <CarouselContent>
+                <CarouselItem>
                   <OverallPerformance 
+                    yourScore={245}
+                    targetScore={sharedTargetScore}
+                    onTargetScoreChange={setSharedTargetScore}
                     questionsAnswered={422}
                     examDate="Oct 15, 2025"
                   />
-                  
+                </CarouselItem>
+                
+                <CarouselItem>
                   <PerformanceScoreCard 
                     examStep={currentStep}
                     initialScore={245}
                     targetScore={sharedTargetScore}
                     onTargetScoreChange={setSharedTargetScore}
-                    passingStandard={currentStep === 'step1' ? 196 : undefined}
+                    passingStandard={currentStep === 'step1' ? 252 : undefined}
                     showControls={false}
                     title="Current performance"
                   />
-                  
+                </CarouselItem>
+                
+                <CarouselItem>
                   <PerformanceTrackingContainer examStep={currentStep} />
-                  
+                </CarouselItem>
+                
+                <CarouselItem>
                   <PeerGroup />
-                  
+                </CarouselItem>
+                
+                <CarouselItem>
                   <TextProjectionCard />
-                  
+                </CarouselItem>
+
+                <CarouselItem>
                   <PerformanceSummary />
-                  
+                </CarouselItem>
+
+                <CarouselItem>
                   <RecommendedSession />
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+                </CarouselItem>
+              </CarouselContent>
+              <div className="hidden">
+                <CarouselPrevious className="embla__prev" />
+                <CarouselNext className="embla__next" />
+              </div>
+            </Carousel>
+          </div>
         </div>
       </div>
     </>

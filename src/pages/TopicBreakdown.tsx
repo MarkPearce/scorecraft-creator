@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, FlaskConical, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -51,6 +52,9 @@ const TopicBreakdown = () => {
         </div>
 
         <OverallPerformance
+          yourScore={238}
+          targetScore={targetScore}
+          onTargetScoreChange={setTargetScore}
           questionsAnswered={totalQuestionsAnswered}
           examDate="Oct 15, 2025"
         />
