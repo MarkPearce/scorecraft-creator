@@ -31,7 +31,7 @@ const ProgressTracker = () => {
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           <span>
-            {isAssessmentUnlocked ? "Continuous assessment unlocked!" : "Unlock continuous assessment"}
+            {isAssessmentUnlocked ? "Performance assessment unlocked!" : "Unlock performance assessment"}
           </span>
           <div className="flex items-center gap-3">
             <Button variant="outline" className="h-8 w-8 p-0" onClick={() => setQuestionsAnswered(prev => Math.max(prev - 10, 0))}>
@@ -73,9 +73,7 @@ const ProgressTracker = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-base text-gray-600">
-                    Unlock continuous assessment by completing more than 60 questions. The more questions you answer, the more accurate the assessment is.
-                  </div>
+                  <div className="text-base text-gray-600">Unlock your performance assessment by completing more than 60 questions. The more questions you answer, the more accurate the assessment is.</div>
                 </div>
               </div>
             </div>
@@ -87,7 +85,7 @@ const ProgressTracker = () => {
           </div>
 
           <div className="mt-4 flex gap-4">
-            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>Unlock assessment</Button>
+            <Button variant="outline" className="text-base" onClick={() => setIsDialogOpen(true)}>Start session</Button>
             <Button disabled={!isAssessmentUnlocked} onClick={() => navigate('/report')} className="text-base font-medium">
               View assessment
             </Button>

@@ -31,13 +31,13 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = "CardHeader"
 
 const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3
+  <h2
     ref={ref}
     className={cn(
-      "font-lato text-base font-black text-[#1a1c1c]",
+      "font-lato text-2xl font-[700] leading-none tracking-tight",
       className
     )}
     {...props}
@@ -78,3 +78,4 @@ const CardFooter = React.forwardRef<
 CardFooter.displayName = "CardFooter"
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+

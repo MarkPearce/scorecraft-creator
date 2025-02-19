@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Report from "./pages/Report";
 import NotFound from "./pages/NotFound";
 import TopicBreakdown from "./pages/TopicBreakdown";
+import SinglePageReport from "./pages/SinglePageReport";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/report" element={<Report />} />
           <Route path="/topic-breakdown" element={<TopicBreakdown />} />
+          <Route path="/single-page-report" element={<SinglePageReport />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
@@ -29,4 +31,3 @@ const App = () => (
 );
 
 export default App;
-

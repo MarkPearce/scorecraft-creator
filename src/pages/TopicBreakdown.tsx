@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, FlaskConical, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +8,11 @@ import OverallPerformance from "@/components/OverallPerformance";
 import { GastroIcon } from "@/components/icons/GastroIcon";
 import { LungsIcon } from "@/components/icons/LungsIcon";
 import { ReproductiveIcon } from "@/components/icons/ReproductiveIcon";
+import { useState } from "react";
 
 const TopicBreakdown = () => {
   const navigate = useNavigate();
+  const [targetScore, setTargetScore] = useState(240);
 
   // Calculate total questions answered from all systems
   const systemsData = [
@@ -50,7 +53,8 @@ const TopicBreakdown = () => {
 
         <OverallPerformance
           yourScore={238}
-          targetScore={240}
+          targetScore={targetScore}
+          onTargetScoreChange={setTargetScore}
           questionsAnswered={totalQuestionsAnswered}
           examDate="Oct 15, 2025"
         />
