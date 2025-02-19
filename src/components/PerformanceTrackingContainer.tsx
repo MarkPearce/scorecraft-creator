@@ -62,11 +62,11 @@ interface PerformanceTrackingContainerProps {
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
-      { date: 'Feb 12', score: 190, isMainPoint: true },
-      { date: 'Feb 19', score: 203, isMainPoint: true },
-      { date: 'Feb 26', score: 221, isMainPoint: true },
-      { date: 'Mar 4', score: 242, isMainPoint: true },
-      { date: 'Mar 11', score: 256, isMainPoint: true }
+      { date: 'Feb 12', score: 198, isMainPoint: true },
+      { date: 'Feb 19', score: 205, isMainPoint: true },
+      { date: 'Feb 26', score: 212, isMainPoint: true },
+      { date: 'Mar 4', score: 219, isMainPoint: true },
+      { date: 'Mar 11', score: 227, isMainPoint: true }
     ] : [
       { date: 'Feb 12', score: 204, isMainPoint: true },
       { date: 'Feb 19', score: 244, isMainPoint: true },
@@ -75,7 +75,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       { date: 'Mar 11', score: 262, isMainPoint: true }
     ];
 
-    return mainPoints;  // Return only the main points without generating intermediates
+    return mainPoints;
   }, [examStep]);
 
   const referenceLines = useMemo(() => ({
