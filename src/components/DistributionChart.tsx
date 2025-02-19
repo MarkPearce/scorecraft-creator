@@ -47,7 +47,8 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     tickLine: { stroke: '#e5e7eb' },
     allowDecimals: false,
     scale: "linear" as ScaleType,
-    allowDataOverflow: false
+    allowDataOverflow: false,
+    padding: { left: 0, right: 0 }
   };
 
   return (
@@ -56,8 +57,8 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         data={data} 
         margin={{
           top: 60,
-          right: 30,
-          left: 20,
+          right: 0,
+          left: 0,
           bottom: 20
         }}
       >
