@@ -24,7 +24,7 @@ interface DotProps {
 const getDotColor = (score: number): string => {
   if (score >= 265) return '#019444'; // dark green
   if (score >= 249) return '#22c55e'; // light green
-  if (score >= 214) return '#F97316'; // yellow
+  if (score >= 214) return '#fbbf24'; // proper yellow instead of orange
   return '#ea384c'; // red
 };
 
