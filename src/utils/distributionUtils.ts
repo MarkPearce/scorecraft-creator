@@ -1,7 +1,7 @@
 
 // Normal distribution parameters
-export const MEAN_SCORE = 249; // μ (mu)
-export const STD_DEV = 50;    // σ (sigma)
+export const MEAN_SCORE = 50; // μ (mu)
+export const STD_DEV = 10;    // σ (sigma)
 
 // Error function approximation
 export const erf = (x: number): number => {
@@ -26,16 +26,16 @@ export const normalDistribution = (x: number, mean: number, stdDev: number): num
 // Generate data points for visualization
 export const generateDistributionData = () => {
   const points = [];
-  const numPoints = 1000;
+  const numPoints = 400; // Match the Python linspace points
   
-  for (let score = 0; score <= 300; score += (300 / numPoints)) {
+  for (let score = 0; score <= 100; score += (100 / numPoints)) {
     const density = normalDistribution(score, MEAN_SCORE, STD_DEV);
     const zScore = (score - MEAN_SCORE) / STD_DEV;
     const percentile = (1 + erf(zScore / Math.sqrt(2))) / 2;
     
     points.push({
       score: Math.round(score * 100) / 100,
-      density, // Remove the multiplication by 2000
+      density,
       percentile: percentile * 100
     });
   }
