@@ -182,14 +182,6 @@ const PerformanceGraph = ({
                 <ScoreIndicator label="Assessment" value={score} />
               </div>
 
-              {examStep === 'step1' && passingStandard && <div className="absolute -translate-y-1/2" style={{
-              top: calculatePosition(passingStandard),
-              left: '0',
-              zIndex: 20
-            }}>
-                  <ScoreIndicator label="Passing Standard" value={passingStandard} />
-                </div>}
-
               {examStep === 'step2' && <div className="absolute -translate-y-1/2" style={{
               top: calculatePosition(targetScore),
               left: '0',
