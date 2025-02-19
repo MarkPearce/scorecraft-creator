@@ -78,20 +78,25 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     return mainPoints;
   }, [examStep]);
 
-  const referenceLines = useMemo(() => ({
-    passing: {
-      value: examStep === 'step1' ? 196 : 214,
-      label: examStep === 'step1' ? 'Passing Standard (196)' : 'Passing standard (214)'
-    },
-    mean: {
-      value: examStep === 'step1' ? 231 : 249,
-      label: examStep === 'step1' ? 'National mean before 2022 (231)' : 'National mean (249)'
-    },
-    target: {
-      value: 260,
-      label: 'Target score (260)'
+  const referenceLines = useMemo(() => {
+    if (examStep === 'step1') {
+      return {};
     }
-  }), [examStep]);
+    return {
+      passing: {
+        value: 214,
+        label: 'Passing standard (214)'
+      },
+      mean: {
+        value: 249,
+        label: 'National mean (249)'
+      },
+      target: {
+        value: 260,
+        label: 'Target score (260)'
+      }
+    };
+  }, [examStep]);
 
   return (
     <Card className="animate-fadeIn">
@@ -154,42 +159,43 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
-              <ReferenceLine 
-                key={`passing-${referenceLines.passing.value}`}
-                y={referenceLines.passing.value} 
-                stroke="#ea384c" 
-                label={{ 
-                  value: referenceLines.passing.label, 
-                  position: 'insideBottomRight',
-                  fill: '#64748b',
-                  fontSize: 12,
-                  dy: 18
-                }} 
-              />
-              <ReferenceLine 
-                key={`mean-${referenceLines.mean.value}`}
-                y={referenceLines.mean.value} 
-                stroke="#22c55e" 
-                label={{ 
-                  value: referenceLines.mean.label, 
-                  position: 'insideBottomRight',
-                  fill: '#64748b',
-                  fontSize: 12,
-                  dy: 18
-                }} 
-              />
-              <ReferenceLine 
-                key={`target-${referenceLines.target.value}`}
-                y={referenceLines.target.value} 
-                stroke="#295dae" 
-                label={{ 
-                  value: referenceLines.target.label, 
-                  position: 'insideBottomRight',
-                  fill: '#64748b',
-                  fontSize: 12,
-                  dy: 18
-                }} 
-              />
+              {examStep === 'step2' && (
+                <>
+                  <ReferenceLine 
+                    y={referenceLines.passing?.value} 
+                    stroke="#ea384c" 
+                    label={{ 
+                      value: referenceLines.passing?.label, 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                  <ReferenceLine 
+                    y={referenceLines.mean?.value} 
+                    stroke="#22c55e" 
+                    label={{ 
+                      value: referenceLines.mean?.label, 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                  <ReferenceLine 
+                    y={referenceLines.target?.value} 
+                    stroke="#295dae" 
+                    label={{ 
+                      value: referenceLines.target?.label, 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                </>
+              )}
               <Line 
                 type="monotone"
                 dataKey="score" 
