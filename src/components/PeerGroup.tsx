@@ -26,21 +26,6 @@ const PeerGroup = () => {
             studentScore={studentScore}
             studentPercentile={studentPercentile}
           />
-
-          <div className="mt-3 w-[200px] space-y-2">
-            <Label htmlFor="peer-group">Peer Group</Label>
-            <Select value="all" onValueChange={() => {}}>
-              <SelectTrigger id="peer-group" className="w-full">
-                <SelectValue placeholder="Select peer group" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Students</SelectItem>
-                <SelectItem value="same-state">Same State</SelectItem>
-                <SelectItem value="same-year">Same Year</SelectItem>
-                <SelectItem value="same-school">Same School</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
         </div>
       </CardContent>
     </Card>
