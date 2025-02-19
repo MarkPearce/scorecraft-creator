@@ -62,13 +62,13 @@ const PerformanceGraph = ({
         color: "bg-[#FFC107]",
         label: "Passing standard: 214"
       }, {
-        score: 249,
+        score: 235,
         color: "bg-[#8DC641]",
-        label: "National mean: 249"
+        label: "235"
       }, {
-        score: 265,
+        score: 267,
         color: "bg-[#019444]",
-        label: "265"
+        label: "267"
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
