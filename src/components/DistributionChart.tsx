@@ -54,7 +54,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         <YAxis 
           hide={true}
-          domain={[0, 'auto']}
+          domain={displayMode === "normal" ? [0, 0.045] : [0, 100]}
         />
         <Area
           type="basis"
