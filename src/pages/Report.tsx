@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -115,7 +114,7 @@ const Report = () => {
                 </CarouselItem>
 
                 <CarouselItem>
-                  <PerformanceSummary />
+                  <PerformanceSummary examStep={currentStep} />
                 </CarouselItem>
 
                 <CarouselItem>
