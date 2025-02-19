@@ -1,3 +1,4 @@
+
 interface PerformanceItem {
   subject: string;
   performance: 'lower' | 'same' | 'higher';
@@ -68,8 +69,8 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
         }`}
       >
         <div className="flex justify-between items-center">
-          <span>{item.subject}</span>
-          <span className="ml-2">{item.percentageCorrect}%</span>
+          <span className="truncate block" title={item.subject}>{item.subject}</span>
+          <span className="ml-2 flex-shrink-0">{item.percentageCorrect}%</span>
         </div>
       </div>
     );
