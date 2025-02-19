@@ -1,6 +1,6 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CustomDot, CustomActiveDot } from './performance-tracking/CustomDots';
 import { usePerformanceData } from './performance-tracking/usePerformanceData';
 import { PerformanceTrackingContainerProps } from './performance-tracking/types';
@@ -12,11 +12,6 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     <Card className="animate-fadeIn">
       <CardHeader>
         <CardTitle className="font-lato">Performance over time</CardTitle>
-        <CardDescription>
-          <div className="text-sm text-gray-600 space-y-1 font-lato">
-            
-          </div>
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[400px] w-full">
