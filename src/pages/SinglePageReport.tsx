@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -13,14 +12,11 @@ import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
 import RecommendedSession from "@/components/RecommendedSession";
 import { useState } from "react";
-
 const SinglePageReport = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
-
-  return (
-    <>
+  return <>
       <PageHeader />
       <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto space-y-8">
@@ -58,14 +54,12 @@ const SinglePageReport = () => {
             
             <TextProjectionCard />
 
-            <PerformanceSummary examStep={currentStep} />
+            <PerformanceSummary />
 
             <RecommendedSession />
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default SinglePageReport;
