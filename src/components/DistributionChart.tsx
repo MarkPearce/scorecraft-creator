@@ -64,6 +64,12 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         <YAxis 
           hide={true}
           domain={[0, 'auto']}
+          padding={{ top: 10, bottom: 0 }}
+          allowDataOverflow={false}
+          scale="auto"
+          type="number"
+          width={60}
+          orientation="left"
         />
         <Area
           type="basis"
