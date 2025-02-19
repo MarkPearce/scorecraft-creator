@@ -69,9 +69,9 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       { date: 'Mar 11', score: 227, isMainPoint: true }
     ] : [
       { date: 'Feb 12', score: 198, isMainPoint: true },
-      { date: 'Feb 19', score: 205, isMainPoint: true },
-      { date: 'Feb 26', score: 212, isMainPoint: true },
-      { date: 'Mar 4', score: 219, isMainPoint: true },
+      { date: 'Feb 19', score: 210, isMainPoint: true },
+      { date: 'Feb 26', score: 203, isMainPoint: true },
+      { date: 'Mar 4', score: 221, isMainPoint: true },
       { date: 'Mar 11', score: 227, isMainPoint: true }
     ];
 
