@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -21,11 +20,19 @@ interface DotProps {
   fill?: string;
 }
 
-const getDotColor = (score: number): string => {
-  if (score >= 265) return '#019444'; // dark green
-  if (score >= 249) return '#22c55e'; // light green
-  if (score >= 214) return '#fbbf24'; // yellow - keeping #fbbf24 as #FFC205 isn't in our color system
-  return '#ea384c'; // red
+const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
+  if (examStep === 'step2') {
+    if (score >= 265) return '#019444'; // dark green
+    if (score >= 249) return '#22c55e'; // light green
+    if (score >= 214) return '#fbbf24'; // yellow - keeping #fbbf24 as #FFC205 isn't in our color system
+    return '#ea384c'; // red
+  } else {
+    // Step 1 logic
+    if (score >= 265) return '#019444'; // dark green
+    if (score >= 231) return '#22c55e'; // light green - at or above national mean
+    if (score >= 196) return '#fbbf24'; // yellow - at or above passing standard
+    return '#ea384c'; // red - below passing standard
+  }
 };
 
 const generateIntermediatePoints = (start: DataPoint, end: DataPoint, count: number): DataPoint[] => {
@@ -48,19 +55,19 @@ const generateIntermediatePoints = (start: DataPoint, end: DataPoint, count: num
 };
 
 const CustomDot = memo((props: DotProps) => {
-  const { cx = 0, cy = 0, payload } = props;
+  const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
   if (!payload) return null;
   const radius = payload.isMainPoint ? 6 : 3;
-  const color = getDotColor(payload.score);
+  const color = getDotColor(payload.score, examStep);
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
 CustomDot.displayName = 'CustomDot';
 
 const CustomActiveDot = memo((props: DotProps) => {
-  const { cx = 0, cy = 0, payload } = props;
+  const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
   if (!payload) return null;
   const radius = payload.isMainPoint ? 8 : 4;
-  const color = getDotColor(payload.score);
+  const color = getDotColor(payload.score, examStep);
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
 CustomActiveDot.displayName = 'CustomActiveDot';
@@ -201,8 +208,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 dataKey="score" 
                 stroke="#5a7183"
                 strokeWidth={3} 
-                dot={<CustomDot />} 
-                activeDot={<CustomActiveDot />}
+                dot={<CustomDot examStep={examStep} />} 
+                activeDot={<CustomActiveDot examStep={examStep} />}
                 connectNulls
                 fill="none"
                 isAnimationActive={false}
