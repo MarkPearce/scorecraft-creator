@@ -7,9 +7,9 @@ interface DataPoint {
   date: string;
   score: number;
   color: string;
+  isMainPoint?: boolean;
 }
 
-// Extended props interface to include all required Recharts properties
 interface DotProps {
   cx?: number;
   cy?: number;
@@ -25,20 +25,56 @@ interface DotProps {
 const CustomDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload } = props;
   if (!payload) return null;
-  return <circle cx={cx} cy={cy} r={6} fill={payload.color} />;
+  return (
+    <circle 
+      cx={cx} 
+      cy={cy} 
+      r={payload.isMainPoint ? 6 : 3} 
+      fill={payload.color} 
+    />
+  );
 });
 CustomDot.displayName = 'CustomDot';
 
 const CustomActiveDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload } = props;
   if (!payload) return null;
-  return <circle cx={cx} cy={cy} r={8} fill={payload.color} />;
+  return (
+    <circle 
+      cx={cx} 
+      cy={cy} 
+      r={payload.isMainPoint ? 8 : 4} 
+      fill={payload.color} 
+    />
+  );
 });
 CustomActiveDot.displayName = 'CustomActiveDot';
 
 interface PerformanceTrackingContainerProps {
   examStep?: 'step1' | 'step2';
 }
+
+const generateIntermediatePoints = (start: DataPoint, end: DataPoint): DataPoint[] => {
+  const points: DataPoint[] = [];
+  const numPoints = Math.floor(Math.random() * 3) + 2; // Generate 2-4 points
+  
+  for (let i = 0; i < numPoints; i++) {
+    // Generate a score that's between start and end scores, with some random variation
+    const progress = Math.random();
+    const baseScore = start.score + (end.score - start.score) * progress;
+    const variation = Math.random() * 6 - 3; // Add random variation of ±3 points
+    const score = Math.round(baseScore + variation);
+    
+    points.push({
+      date: '',
+      score,
+      color: getStrokeColor(score),
+      isMainPoint: false
+    });
+  }
+  
+  return points.sort((a, b) => a.score - b.score);
+};
 
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
   const getStrokeColor = (score: number) => {
@@ -54,56 +90,32 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     }
   };
 
-  // Memoize the data array to prevent unnecessary recalculations
   const data: DataPoint[] = useMemo(() => {
-    if (examStep === 'step1') {
-      return [{
-        date: 'Feb 12',
-        score: 190,
-        color: getStrokeColor(190)
-      }, {
-        date: 'Feb 19',
-        score: 203,
-        color: getStrokeColor(203)
-      }, {
-        date: 'Feb 26',
-        score: 221,
-        color: getStrokeColor(221)
-      }, {
-        date: 'Mar 4',
-        score: 242,
-        color: getStrokeColor(242)
-      }, {
-        date: 'Mar 11',
-        score: 256,
-        color: getStrokeColor(256)
-      }];
-    } else {
-      return [{
-        date: 'Feb 12',
-        score: 204,
-        color: getStrokeColor(204)
-      }, {
-        date: 'Feb 19',
-        score: 244,
-        color: getStrokeColor(244)
-      }, {
-        date: 'Feb 26',
-        score: 238,
-        color: getStrokeColor(238)
-      }, {
-        date: 'Mar 4',
-        score: 248,
-        color: getStrokeColor(248)
-      }, {
-        date: 'Mar 11',
-        score: 262,
-        color: getStrokeColor(262)
-      }];
-    }
-  }, [examStep]); // Add examStep as dependency
+    const mainPoints = examStep === 'step1' ? [
+      { date: 'Feb 12', score: 190, color: getStrokeColor(190), isMainPoint: true },
+      { date: 'Feb 19', score: 203, color: getStrokeColor(203), isMainPoint: true },
+      { date: 'Feb 26', score: 221, color: getStrokeColor(221), isMainPoint: true },
+      { date: 'Mar 4', score: 242, color: getStrokeColor(242), isMainPoint: true },
+      { date: 'Mar 11', score: 256, color: getStrokeColor(256), isMainPoint: true }
+    ] : [
+      { date: 'Feb 12', score: 204, color: getStrokeColor(204), isMainPoint: true },
+      { date: 'Feb 19', score: 244, color: getStrokeColor(244), isMainPoint: true },
+      { date: 'Feb 26', score: 238, color: getStrokeColor(238), isMainPoint: true },
+      { date: 'Mar 4', score: 248, color: getStrokeColor(248), isMainPoint: true },
+      { date: 'Mar 11', score: 262, color: getStrokeColor(262), isMainPoint: true }
+    ];
 
-  // Memoize reference line values to ensure they update with examStep
+    const allPoints: DataPoint[] = [];
+    for (let i = 0; i < mainPoints.length - 1; i++) {
+      allPoints.push(mainPoints[i]);
+      const intermediatePoints = generateIntermediatePoints(mainPoints[i], mainPoints[i + 1]);
+      allPoints.push(...intermediatePoints);
+    }
+    allPoints.push(mainPoints[mainPoints.length - 1]);
+
+    return allPoints;
+  }, [examStep]);
+
   const referenceLines = useMemo(() => ({
     passing: {
       value: examStep === 'step1' ? 196 : 214,
