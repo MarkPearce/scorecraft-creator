@@ -123,7 +123,8 @@ const DistributionChart = ({
             value: `${currentPeerGroupPercentile}th Percentile`,
             position: 'top',
             fill: '#5a7183',
-            fontSize: 14
+            fontSize: 14,
+            fontWeight: 700
           }}
         />
         
