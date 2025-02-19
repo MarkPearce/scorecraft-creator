@@ -59,7 +59,8 @@ const generateIntermediatePoints = (start: DataPoint, end: DataPoint, count: num
 const CustomDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
   if (!payload) return null;
-  const radius = payload.isMainPoint ? 6 : 3;
+  const radius = payload.isMainPoint ? 6 : 0; // Set radius to 0 for non-main points to hide them
+  if (!payload.isMainPoint) return null; // Skip rendering non-main points
   const color = getDotColor(payload.score, examStep);
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
