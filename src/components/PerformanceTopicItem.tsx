@@ -1,5 +1,5 @@
 
-interface PerformanceItem {
+export interface PerformanceItem {
   subject: string;
   performance: 'lower' | 'same' | 'higher';
   percentageCorrect: number;
