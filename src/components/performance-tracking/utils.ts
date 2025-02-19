@@ -18,8 +18,8 @@ export const generateIntermediatePoints = (start: DataPoint, end: DataPoint, exa
   const points: DataPoint[] = [];
   const numPoints = Math.floor(Math.random() * 3) + 2; // Generate 2-4 points
   
-  for (let i = 0; i < numPoints; i++) {
-    const progress = Math.random();
+  for (let i = 1; i <= numPoints; i++) {
+    const progress = i / (numPoints + 1); // This ensures even spacing
     const baseScore = start.score + (end.score - start.score) * progress;
     const variation = Math.random() * 6 - 3; // Add random variation of ±3 points
     const score = Math.round(baseScore + variation);
@@ -32,5 +32,5 @@ export const generateIntermediatePoints = (start: DataPoint, end: DataPoint, exa
     });
   }
   
-  return points.sort((a, b) => a.score - b.score);
+  return points;
 };
