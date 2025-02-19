@@ -57,10 +57,8 @@ const TopicBreakdown = () => {
 
         <PerformanceOverview 
           score={33}
-          targetScore={57}
           questionsTagged={19}
           totalQuestions={2261}
-          targetQuestions={2035}
         />
 
         <div className="space-y-4">
