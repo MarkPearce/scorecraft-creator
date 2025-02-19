@@ -3,23 +3,28 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import PerformanceTopicItem, { performanceData } from './PerformanceTopicItem';
+import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
 
 type ViewMode = 'grouped' | 'list';
 
-const PerformanceSummary = () => {
+interface PerformanceSummaryProps {
+  examStep: 'step1' | 'step2';
+}
+
+const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
   
-  const lowerPerformance = performanceData.filter(item => item.performance === 'lower');
-  const samePerformance = performanceData.filter(item => item.performance === 'same');
-  const higherPerformance = performanceData.filter(item => item.performance === 'higher');
+  const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
+  const lowerPerformance = currentData.filter(item => item.performance === 'lower');
+  const samePerformance = currentData.filter(item => item.performance === 'same');
+  const higherPerformance = currentData.filter(item => item.performance === 'higher');
 
   const Column = ({
     title,
     items
   }: {
     title: string;
-    items: typeof performanceData;
+    items: typeof currentData;
   }) => (
     <div className="flex-1">
       <h3 className="text-sm font-medium text-gray-700 mb-3">{title}</h3>
