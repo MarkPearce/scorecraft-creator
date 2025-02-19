@@ -1,17 +1,112 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CustomDot, CustomActiveDot } from './performance-tracking/CustomDots';
-import { usePerformanceData } from './performance-tracking/usePerformanceData';
-import { PerformanceTrackingContainerProps } from './performance-tracking/types';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { useMemo, memo } from 'react';
+
+interface DataPoint {
+  date: string;
+  score: number;
+  isMainPoint?: boolean;
+}
+
+interface DotProps {
+  cx?: number;
+  cy?: number;
+  r?: number;
+  payload?: DataPoint;
+  value?: number;
+  index?: number;
+  stroke?: string;
+  strokeWidth?: number;
+  fill?: string;
+  examStep?: 'step1' | 'step2';
+}
+
+const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
+  if (examStep === 'step2') {
+    if (score >= 265) return '#019444'; // dark green
+    if (score >= 249) return '#22c55e'; // light green
+    if (score >= 214) return '#fbbf24'; // yellow - keeping #fbbf24 as #FFC205 isn't in our color system
+    return '#ea384c'; // red
+  } else {
+    // Step 1 logic
+    if (score >= 265) return '#019444'; // dark green
+    if (score >= 231) return '#22c55e'; // light green - at or above national mean
+    if (score >= 196) return '#fbbf24'; // yellow - at or above passing standard
+    return '#ea384c'; // red - below passing standard
+  }
+};
+
+const CustomDot = memo((props: DotProps) => {
+  const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
+  if (!payload) return null;
+  const radius = 6;  // All dots now have the same size since we only have main points
+  const color = getDotColor(payload.score, examStep);
+  return <circle cx={cx} cy={cy} r={radius} fill={color} />;
+});
+CustomDot.displayName = 'CustomDot';
+
+const CustomActiveDot = memo((props: DotProps) => {
+  const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
+  if (!payload) return null;
+  const radius = 8;  // All active dots now have the same size
+  const color = getDotColor(payload.score, examStep);
+  return <circle cx={cx} cy={cy} r={radius} fill={color} />;
+});
+CustomActiveDot.displayName = 'CustomActiveDot';
+
+interface PerformanceTrackingContainerProps {
+  examStep?: 'step1' | 'step2';
+}
 
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
-  const { data, referenceLines } = usePerformanceData(examStep);
+  const data: DataPoint[] = useMemo(() => {
+    const mainPoints = examStep === 'step1' ? [
+      { date: 'Feb 12', score: 203, isMainPoint: true },
+      { date: 'Feb 19', score: 218, isMainPoint: true },
+      { date: 'Feb 26', score: 215, isMainPoint: true },
+      { date: 'Mar 4', score: 235, isMainPoint: true },
+      { date: 'Mar 11', score: 244, isMainPoint: true }
+    ] : [
+      { date: 'Feb 12', score: 198, isMainPoint: true },
+      { date: 'Feb 19', score: 210, isMainPoint: true },
+      { date: 'Feb 26', score: 203, isMainPoint: true },
+      { date: 'Mar 4', score: 221, isMainPoint: true },
+      { date: 'Mar 11', score: 227, isMainPoint: true }
+    ];
+
+    return mainPoints;
+  }, [examStep]);
+
+  const referenceLines = useMemo(() => {
+    if (examStep === 'step1') {
+      return {};
+    }
+    return {
+      passing: {
+        value: 214,
+        label: 'Passing standard (214)'
+      },
+      mean: {
+        value: 249,
+        label: 'National mean (249)'
+      },
+      target: {
+        value: 260,
+        label: 'Target score (260)'
+      }
+    };
+  }, [examStep]);
 
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
         <CardTitle className="font-lato">Performance over time</CardTitle>
+        <CardDescription>
+          <div className="text-sm text-gray-600 space-y-1 font-lato">
+            
+          </div>
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[400px] w-full">

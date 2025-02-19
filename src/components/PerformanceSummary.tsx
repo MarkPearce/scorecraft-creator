@@ -42,7 +42,7 @@ const PerformanceSummary = () => {
     <Card className="animate-fadeIn">
       <CardHeader className="flex flex-col space-y-2">
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
-          Performance by subject
+          Strengths and weaknesses
           <Button 
             variant="outline" 
             className="h-8 w-8 p-0 [&_svg]:size-5" 
