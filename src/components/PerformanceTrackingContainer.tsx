@@ -86,17 +86,17 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
 
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
-      { date: 'Feb 12', score: 190, color: getStrokeColor(190), isMainPoint: true },
-      { date: 'Feb 19', score: 203, color: getStrokeColor(203), isMainPoint: true },
-      { date: 'Feb 26', score: 221, color: getStrokeColor(221), isMainPoint: true },
-      { date: 'Mar 4', score: 242, color: getStrokeColor(242), isMainPoint: true },
-      { date: 'Mar 11', score: 256, color: getStrokeColor(256), isMainPoint: true }
+      { date: 'Feb 5', score: 190, color: getStrokeColor(190), isMainPoint: true },
+      { date: 'Feb 12', score: 203, color: getStrokeColor(203), isMainPoint: true },
+      { date: 'Feb 19', score: 221, color: getStrokeColor(221), isMainPoint: true },
+      { date: 'Feb 26', score: 242, color: getStrokeColor(242), isMainPoint: true },
+      { date: 'Mar 4', score: 256, color: getStrokeColor(256), isMainPoint: true }
     ] : [
-      { date: 'Feb 12', score: 204, color: getStrokeColor(204), isMainPoint: true },
-      { date: 'Feb 19', score: 244, color: getStrokeColor(244), isMainPoint: true },
-      { date: 'Feb 26', score: 238, color: getStrokeColor(238), isMainPoint: true },
-      { date: 'Mar 4', score: 248, color: getStrokeColor(248), isMainPoint: true },
-      { date: 'Mar 11', score: 262, color: getStrokeColor(262), isMainPoint: true }
+      { date: 'Feb 5', score: 204, color: getStrokeColor(204), isMainPoint: true },
+      { date: 'Feb 12', score: 244, color: getStrokeColor(244), isMainPoint: true },
+      { date: 'Feb 19', score: 238, color: getStrokeColor(238), isMainPoint: true },
+      { date: 'Feb 26', score: 248, color: getStrokeColor(248), isMainPoint: true },
+      { date: 'Mar 4', score: 262, color: getStrokeColor(262), isMainPoint: true }
     ];
 
     const allPoints: DataPoint[] = [];
