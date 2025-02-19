@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -38,18 +39,17 @@ const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
 
 const generateIntermediatePoints = (start: DataPoint, end: DataPoint): DataPoint[] => {
   const points: DataPoint[] = [];
-  const dateStart = new Date(start.date);
-  const dateEnd = new Date(end.date);
   
+  // Generate random number of points between 1 and 5
   const count = Math.floor(Math.random() * 5) + 1;
   
-  const positions = Array.from({ length: count }, () => Math.random()).sort();
-  
-  const dayDiff = dateEnd.getTime() - dateStart.getTime();
   const scoreDiff = end.score - start.score;
 
+  // Generate random positions between 0 and 1, sort them for progressive points
+  const positions = Array.from({ length: count }, () => Math.random())
+    .sort((a, b) => a - b);
+
   positions.forEach(position => {
-    const date = new Date(dateStart.getTime() + (dayDiff * position));
     const score = Math.round(start.score + (scoreDiff * position) + (Math.random() * 6 - 3));
     points.push({
       date: '',  // Empty date string for intermediate points
