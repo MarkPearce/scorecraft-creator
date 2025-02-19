@@ -1,5 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 import DistributionChart from './DistributionChart';
 import { generateDistributionData, findPercentile } from '@/utils/distributionUtils';
 
@@ -26,6 +28,21 @@ const PeerGroup = () => {
             studentScore={studentScore}
             studentPercentile={studentPercentile}
           />
+
+          <div className="mt-3 w-[200px] space-y-2">
+            <Label htmlFor="peer-group">Peer Group</Label>
+            <Select value="all" onValueChange={() => {}}>
+              <SelectTrigger id="peer-group" className="w-full">
+                <SelectValue placeholder="Select peer group" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Students</SelectItem>
+                <SelectItem value="same-state">Same State</SelectItem>
+                <SelectItem value="same-year">Same Year</SelectItem>
+                <SelectItem value="same-school">Same School</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </CardContent>
     </Card>
