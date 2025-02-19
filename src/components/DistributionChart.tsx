@@ -19,10 +19,16 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     lastPoint: data[data.length - 1],
     meanScore: MEAN_SCORE,
     domain: [0, 100],
-    samplePoints: data.slice(0, 5),  // Log first 5 points
+    samplePoints: data.slice(0, 5),
     maxDensity: Math.max(...data.map(d => d.density)),
     maxPercentile: Math.max(...data.map(d => d.percentile))
   });
+
+  const referenceLineProps = {
+    isFront: true,
+    ifOverflow: "extendDomain" as const,
+    alwaysShow: true
+  };
 
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -69,6 +75,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         
         <ReferenceLine
+          {...referenceLineProps}
           x={studentScore}
           stroke="#0aa6b8"
           strokeDasharray="3 3"
@@ -82,6 +89,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         
         {displayMode === "percentile" && (
           <ReferenceLine
+            {...referenceLineProps}
             y={studentPercentile}
             stroke="#0aa6b8"
             strokeDasharray="3 3"
