@@ -37,34 +37,10 @@ const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
   }
 };
 
-const generateIntermediatePoints = (start: DataPoint, end: DataPoint): DataPoint[] => {
-  const points: DataPoint[] = [];
-  
-  // Generate random number of points between 1 and 5
-  const count = Math.floor(Math.random() * 5) + 1;
-  
-  const scoreDiff = end.score - start.score;
-
-  // Generate random positions between 0 and 1, sort them for progressive points
-  const positions = Array.from({ length: count }, () => Math.random())
-    .sort((a, b) => a - b);
-
-  positions.forEach(position => {
-    const score = Math.round(start.score + (scoreDiff * position) + (Math.random() * 6 - 3));
-    points.push({
-      date: '',  // Empty date string for intermediate points
-      score,
-      isMainPoint: false
-    });
-  });
-
-  return points;
-};
-
 const CustomDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
   if (!payload) return null;
-  const radius = payload.isMainPoint ? 6 : 3;
+  const radius = 6;  // All dots now have the same size since we only have main points
   const color = getDotColor(payload.score, examStep);
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
@@ -73,7 +49,7 @@ CustomDot.displayName = 'CustomDot';
 const CustomActiveDot = memo((props: DotProps) => {
   const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
   if (!payload) return null;
-  const radius = payload.isMainPoint ? 8 : 4;
+  const radius = 8;  // All active dots now have the same size
   const color = getDotColor(payload.score, examStep);
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
@@ -99,15 +75,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       { date: 'Mar 11', score: 262, isMainPoint: true }
     ];
 
-    const allPoints: DataPoint[] = [];
-    for (let i = 0; i < mainPoints.length - 1; i++) {
-      allPoints.push(mainPoints[i]);
-      const intermediatePoints = generateIntermediatePoints(mainPoints[i], mainPoints[i + 1]);
-      allPoints.push(...intermediatePoints);
-    }
-    allPoints.push(mainPoints[mainPoints.length - 1]);
-
-    return allPoints;
+    return mainPoints;  // Return only the main points without generating intermediates
   }, [examStep]);
 
   const referenceLines = useMemo(() => ({
