@@ -19,8 +19,8 @@ export const TextProjectionCard = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg flex-1">
               <Clock className="h-5 w-5 text-blue-600 mt-0.5" />
               <div>
                 <p className="font-medium text-gray-900">Passing Score</p>
@@ -28,7 +28,7 @@ export const TextProjectionCard = () => {
               </div>
             </div>
             
-            <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg flex-1">
               <Target className="h-5 w-5 text-blue-600 mt-0.5" />
               <div>
                 <p className="font-medium text-gray-900">Target Score</p>
