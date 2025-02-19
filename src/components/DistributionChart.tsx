@@ -117,7 +117,6 @@ const DistributionChart = ({
           x={currentPeerGroupPercentile}
           stroke="#1f2937"
           strokeWidth={2}
-          strokeDasharray="2 4"
           label={{
             value: `${currentPeerGroupPercentile}th Percentile`,
             position: 'top',
