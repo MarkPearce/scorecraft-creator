@@ -20,7 +20,11 @@ export const performanceData: PerformanceItem[] = [
 ];
 
 // Step 2 data organized by category
-export const step2Data = {
+export const step2Data: {
+  tasks: PerformanceItem[];
+  systems: PerformanceItem[];
+  disciplines: PerformanceItem[];
+} = {
   tasks: [
     { subject: "PC: Diagnosis", performance: "lower", percentageCorrect: 58 },
     { subject: "PC: Pharmacotherapy", performance: "same", percentageCorrect: 71 },
@@ -42,7 +46,7 @@ export const step2Data = {
     { subject: "Obstetrics & Gynecology", performance: "higher", percentageCorrect: 80 },
     { subject: "Psychiatry", performance: "lower", percentageCorrect: 60 }
   ]
-} as const;
+};
 
 interface PerformanceTopicItemProps {
   item: PerformanceItem;

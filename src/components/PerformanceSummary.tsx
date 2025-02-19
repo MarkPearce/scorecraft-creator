@@ -3,7 +3,7 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import PerformanceTopicItem, { performanceData, step2Data } from './PerformanceTopicItem';
+import PerformanceTopicItem, { performanceData, step2Data, PerformanceItem } from './PerformanceTopicItem';
 
 type ViewMode = 'grouped' | 'list';
 
@@ -54,7 +54,7 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
   };
 
   const Step2Content = () => {
-    const renderSection = (title: string, items: typeof step2Data.tasks) => (
+    const renderSection = (title: string, items: PerformanceItem[]) => (
       <div className="mb-8 last:mb-0">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">{title}</h3>
         {viewMode === 'grouped' ? (
@@ -112,7 +112,7 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
     items
   }: {
     title: string;
-    items: typeof performanceData;
+    items: PerformanceItem[];
   }) => (
     <div className="flex-1">
       <h3 className="text-sm font-medium text-gray-700 mb-3">{title}</h3>
