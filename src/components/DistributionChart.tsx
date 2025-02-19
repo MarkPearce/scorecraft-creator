@@ -124,6 +124,8 @@ const DistributionChart = ({
             fontSize: 14,
             dy: -16
           }}
+          y1={0}
+          y2={1}
         />
         
         {displayMode === "percentile" && (
