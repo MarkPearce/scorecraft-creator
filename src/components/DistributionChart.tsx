@@ -7,10 +7,32 @@ interface DistributionChartProps {
   displayMode: "normal" | "percentile";
   studentScore: number;
   studentPercentile: number;
+  peerGroup: "all" | "same-objective" | "same-state" | "same-school";
 }
 
-const DistributionChart = ({ data, displayMode, studentScore, studentPercentile }: DistributionChartProps) => {
+const peerGroupPercentiles = {
+  "all": 47,
+  "same-objective": 52,
+  "same-state": 58,
+  "same-school": 67
+};
+
+const peerGroupLabels = {
+  "all": "All AMBOSS",
+  "same-objective": "Same Learning Objective",
+  "same-state": "Same State",
+  "same-school": "Same School"
+};
+
+const DistributionChart = ({ 
+  data, 
+  displayMode, 
+  studentScore, 
+  studentPercentile,
+  peerGroup = "all"
+}: DistributionChartProps) => {
   const xAxisTicks = [0, 25, 50, 75, 100];
+  const currentPeerGroupPercentile = peerGroupPercentiles[peerGroup];
   
   console.log('Chart Data:', {
     displayMode,
@@ -18,7 +40,9 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     firstPoint: data[0],
     lastPoint: data[data.length - 1],
     meanScore: MEAN_SCORE,
-    domain: [0, 100]
+    domain: [0, 100],
+    peerGroup,
+    currentPeerGroupPercentile
   });
 
   return (
@@ -75,6 +99,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           isAnimationActive={false}
         />
         
+        {/* Student's score reference line */}
         <ReferenceLine
           x={studentScore}
           stroke="#0aa6b8"
@@ -83,6 +108,19 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
             value: `${studentPercentile}th Percentile: ${studentScore}`,
             position: 'top',
             fill: '#0aa6b8',
+            fontSize: 14
+          }}
+        />
+        
+        {/* Peer group percentile reference line */}
+        <ReferenceLine
+          x={currentPeerGroupPercentile}
+          stroke="#6366f1"
+          strokeDasharray="3 3"
+          label={{
+            value: `${peerGroupLabels[peerGroup]}: ${currentPeerGroupPercentile}th Percentile`,
+            position: 'bottom',
+            fill: '#6366f1',
             fontSize: 14
           }}
         />

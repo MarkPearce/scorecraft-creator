@@ -4,6 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import DistributionChart from './DistributionChart';
 import { generateDistributionData, findPercentile } from '@/utils/distributionUtils';
+import { useState } from 'react';
 
 // Student score
 const studentScore = 245;
@@ -11,6 +12,8 @@ const data = generateDistributionData();
 const studentPercentile = findPercentile(studentScore);
 
 const PeerGroup = () => {
+  const [selectedPeerGroup, setSelectedPeerGroup] = useState<"all" | "same-objective" | "same-state" | "same-school">("all");
+
   return (
     <Card className="animate-fadeIn">
       <CardHeader className="flex flex-row items-center justify-between">
@@ -27,11 +30,12 @@ const PeerGroup = () => {
             displayMode="normal"
             studentScore={studentScore}
             studentPercentile={studentPercentile}
+            peerGroup={selectedPeerGroup}
           />
 
           <div className="mt-3 w-[200px] space-y-2">
             <Label htmlFor="peer-group">Peer Group</Label>
-            <Select value="all" onValueChange={() => {}}>
+            <Select value={selectedPeerGroup} onValueChange={(value: "all" | "same-objective" | "same-state" | "same-school") => setSelectedPeerGroup(value)}>
               <SelectTrigger id="peer-group" className="w-full">
                 <SelectValue placeholder="Select peer group" />
               </SelectTrigger>
