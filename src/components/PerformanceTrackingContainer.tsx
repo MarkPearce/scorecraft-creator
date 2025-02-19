@@ -59,20 +59,29 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     const points: DataPoint[] = [];
     const dateStart = new Date(start.date);
     const dateEnd = new Date(end.date);
-    const dayDiff = (dateEnd.getTime() - dateStart.getTime()) / (count + 1);
-    const scoreDiff = (end.score - start.score) / (count + 1);
-
-    for (let i = 1; i <= count; i++) {
-      const date = new Date(dateStart.getTime() + dayDiff * i);
-      const score = Math.round(start.score + scoreDiff * i + (Math.random() * 6 - 3));
+    const totalDays = (dateEnd.getTime() - dateStart.getTime()) / (1000 * 60 * 60 * 24);
+    
+    // Generate a random number of points between 1 and 4
+    const numPoints = Math.floor(Math.random() * 4) + 1;
+    
+    for (let i = 0; i < numPoints; i++) {
+      // Generate random position along the line segment (0 to 1)
+      const position = Math.random();
+      
+      // Calculate score with some random variation
+      const baseScore = start.score + (end.score - start.score) * position;
+      const score = Math.round(baseScore + (Math.random() * 8 - 4));
+      
       points.push({
-        date: '', // Empty date string for intermediate points
+        date: '',
         score,
         color: getStrokeColor(score),
         isMainPoint: false
       });
     }
-    return points;
+    
+    // Sort points by their scores to maintain visual consistency
+    return points.sort((a, b) => a.score - b.score);
   };
 
   const data: DataPoint[] = useMemo(() => {
