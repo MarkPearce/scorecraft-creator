@@ -152,6 +152,9 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 dataKey="date" 
                 tick={{ fontSize: 12 }} 
                 tickLine={false}
+                interval={0}
+                scale="point"
+                padding={{ left: 30, right: 30 }}
                 label={{
                   value: '2025',
                   position: 'bottom',
