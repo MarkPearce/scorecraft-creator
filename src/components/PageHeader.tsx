@@ -7,7 +7,7 @@ import AmbossLogo from "./AmbossLogo";
 
 export function PageHeader() {
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-50">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-[100]">
       <div className="h-full px-6 flex items-center justify-between gap-4 max-w-[1440px] mx-auto">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" className="shrink-0 [&_svg]:size-6">
