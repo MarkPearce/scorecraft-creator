@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -18,6 +19,7 @@ interface DotProps {
   stroke?: string;
   strokeWidth?: number;
   fill?: string;
+  examStep?: 'step1' | 'step2';
 }
 
 const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
