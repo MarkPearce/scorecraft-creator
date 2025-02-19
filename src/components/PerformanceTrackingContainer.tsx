@@ -1,93 +1,10 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { useMemo, memo } from 'react';
-
-interface DataPoint {
-  date: string;
-  score: number;
-  color: string;
-  isMainPoint?: boolean;
-}
-
-interface DotProps {
-  cx?: number;
-  cy?: number;
-  r?: number;
-  payload?: DataPoint;
-  value?: number;
-  index?: number;
-  stroke?: string;
-  strokeWidth?: number;
-  fill?: string;
-}
-
-const getStrokeColor = (score: number, examStep: 'step1' | 'step2') => {
-  if (examStep === 'step1') {
-    if (score >= 231) return '#22c55e';
-    if (score >= 196) return '#F97316';
-    return '#ea384c';
-  } else {
-    if (score >= 265) return '#019444';
-    if (score >= 249) return '#22c55e';
-    if (score >= 214) return '#F97316';
-    return '#ea384c';
-  }
-};
-
-const CustomDot = memo((props: DotProps) => {
-  const { cx = 0, cy = 0, payload } = props;
-  if (!payload) return null;
-  return (
-    <circle 
-      cx={cx} 
-      cy={cy} 
-      r={payload.isMainPoint ? 6 : 3} 
-      fill={payload.color} 
-    />
-  );
-});
-CustomDot.displayName = 'CustomDot';
-
-const CustomActiveDot = memo((props: DotProps) => {
-  const { cx = 0, cy = 0, payload } = props;
-  if (!payload) return null;
-  return (
-    <circle 
-      cx={cx} 
-      cy={cy} 
-      r={payload.isMainPoint ? 8 : 4} 
-      fill={payload.color} 
-    />
-  );
-});
-CustomActiveDot.displayName = 'CustomActiveDot';
-
-interface PerformanceTrackingContainerProps {
-  examStep?: 'step1' | 'step2';
-}
-
-const generateIntermediatePoints = (start: DataPoint, end: DataPoint, examStep: 'step1' | 'step2'): DataPoint[] => {
-  const points: DataPoint[] = [];
-  const numPoints = Math.floor(Math.random() * 3) + 2; // Generate 2-4 points
-  
-  for (let i = 0; i < numPoints; i++) {
-    // Generate a score that's between start and end scores, with some random variation
-    const progress = Math.random();
-    const baseScore = start.score + (end.score - start.score) * progress;
-    const variation = Math.random() * 6 - 3; // Add random variation of ±3 points
-    const score = Math.round(baseScore + variation);
-    
-    points.push({
-      date: '',
-      score,
-      color: getStrokeColor(score, examStep),
-      isMainPoint: false
-    });
-  }
-  
-  return points.sort((a, b) => a.score - b.score);
-};
+import { useMemo } from 'react';
+import { PerformanceTrackingContainerProps, DataPoint } from './performance-tracking/types';
+import { getStrokeColor, generateIntermediatePoints } from './performance-tracking/utils';
+import { CustomDot, CustomActiveDot } from './performance-tracking/CustomDots';
 
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
   const data: DataPoint[] = useMemo(() => {
