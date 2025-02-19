@@ -1,7 +1,7 @@
 
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -10,7 +10,6 @@ interface PerformanceGraphProps {
     min: number;
     max: number;
   };
-  onTargetScoreChange?: (value: number) => void;
   examStep?: 'step1' | 'step2';
   passingStandard?: number;
 }
@@ -19,109 +18,34 @@ const PerformanceGraph = ({
   score,
   targetScore,
   range,
-  onTargetScoreChange,
   examStep = 'step2',
   passingStandard
 }: PerformanceGraphProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const initialTouchY = useRef<number | null>(null);
-
-  useEffect(() => {
-    const preventDefault = (e: TouchEvent) => {
-      if (isDragging) {
-        e.preventDefault();
-      }
-    };
-    document.addEventListener('touchmove', preventDefault, {
-      passive: false
-    });
-    return () => {
-      document.removeEventListener('touchmove', preventDefault);
-    };
-  }, [isDragging]);
 
   const calculatePosition = (value: number) => {
     const percentage = (value - range.min) / (range.max - range.min) * 100;
     return `${100 - percentage}%`;
   };
 
-  const calculateValueFromPosition = (clientY: number) => {
-    if (!containerRef.current) return targetScore;
-    const rect = containerRef.current.getBoundingClientRect();
-    const relativeY = (clientY - rect.top) / rect.height;
-    const value = range.max - relativeY * (range.max - range.min);
-    return Math.round(Math.max(range.min, Math.min(range.max, value)));
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDragging || !onTargetScoreChange) return;
-      e.preventDefault();
-      const newValue = calculateValueFromPosition(e.clientY);
-      onTargetScoreChange(newValue);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (!isDragging || !onTargetScoreChange) return;
-      e.preventDefault();
-      const newValue = calculateValueFromPosition(e.touches[0].clientY);
-      onTargetScoreChange(newValue);
-    };
-
-    const handleDragEnd = () => {
-      setIsDragging(false);
-      initialTouchY.current = null;
-    };
-
-    if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('touchmove', handleTouchMove, {
-        passive: false
-      });
-      window.addEventListener('mouseup', handleDragEnd);
-      window.addEventListener('touchend', handleDragEnd);
-      window.addEventListener('mouseleave', handleDragEnd);
-    }
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('mouseup', handleDragEnd);
-      window.removeEventListener('touchend', handleDragEnd);
-      window.removeEventListener('mouseleave', handleDragEnd);
-    };
-  }, [isDragging, onTargetScoreChange, range]);
-
-  const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    if (!onTargetScoreChange) return;
-    if ('touches' in e) {
-      initialTouchY.current = e.touches[0].clientY;
-    }
-    setIsDragging(true);
-  };
-
   const getSegments = () => {
     if (examStep === 'step1') {
-      // Calculate midpoint between 196 (end of yellow) and 265 (top of green)
-      const midpoint = Math.round(196 + (265 - 196) / 2); // This should be around 231
-      
       return [{
         score: range.min,
         color: "bg-[#ED1B24]",
         label: `${Math.round(range.min)}`
       }, {
-        score: 196,
+        score: 200,
         color: "bg-[#FFC107]",
-        label: ""
+        label: "200"
       }, {
-        score: midpoint,
+        score: 230,
         color: "bg-[#8DC641]",
-        label: "Passing standard\nbefore 2022: 231"
+        label: "230"
       }, {
         score: 265,
         color: "bg-[#019444]",
-        label: ""
+        label: "265"
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
@@ -136,9 +60,9 @@ const PerformanceGraph = ({
         color: "bg-[#FFC107]",
         label: "Passing standard: 214"
       }, {
-        score: 249,
+        score: 230,
         color: "bg-[#8DC641]",
-        label: "National mean: 249"
+        label: "230"
       }, {
         score: 265,
         color: "bg-[#019444]",
@@ -259,20 +183,12 @@ const PerformanceGraph = ({
                 <ScoreIndicator label="Assessment" value={score} />
               </div>
 
-              {examStep === 'step1' && passingStandard && <div className="absolute -translate-y-1/2" style={{
-              top: calculatePosition(passingStandard),
-              left: '0',
-              zIndex: 20
-            }}>
-                  <ScoreIndicator label="Passing Standard" value={passingStandard} />
-                </div>}
-
               {examStep === 'step2' && <div className="absolute -translate-y-1/2" style={{
               top: calculatePosition(targetScore),
               left: '0',
               zIndex: 20
-            }} onMouseDown={handleDragStart} onTouchStart={handleDragStart}>
-                  <ScoreIndicator label="Target Score" value={targetScore} isTarget showMoveIcon />
+            }}>
+                  <ScoreIndicator label="Target Score" value={targetScore} />
                 </div>}
             </div>
           </div>

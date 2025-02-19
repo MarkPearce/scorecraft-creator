@@ -13,13 +13,7 @@ import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
 import RecommendedSession from "@/components/RecommendedSession";
 import { useState } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const Report = () => {
   const navigate = useNavigate();
@@ -68,7 +62,7 @@ const Report = () => {
           </div>
 
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 font-lato">Continuous score assessment</h1>
+            <h1 className="text-3xl font-[900] text-gray-900 font-lato">Continuous score assessment</h1>
             <p className="mt-2 text-gray-600 font-lato">
               Here is your assessment based on Qbank performance.
             </p>
@@ -77,36 +71,20 @@ const Report = () => {
           <div className="relative">
             <div className="flex justify-end gap-2 mb-4">
               <div className="flex gap-2">
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={handlePrevClick}
-                >
+                <Button variant="outline" size="icon" className="h-8 w-8 rounded-full" onClick={handlePrevClick}>
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={handleNextClick}
-                >
+                <Button variant="outline" size="icon" className="h-8 w-8 rounded-full" onClick={handleNextClick}>
                   <ArrowLeft className="h-4 w-4 rotate-180" />
                 </Button>
               </div>
             </div>
-            <Carousel 
-              className="w-full" 
-              opts={{
-                dragFree: false
-              }}
-            >
+            <Carousel className="w-full" opts={{
+              dragFree: false
+            }}>
               <CarouselContent>
                 <CarouselItem>
                   <OverallPerformance 
-                    yourScore={245}
-                    targetScore={sharedTargetScore}
-                    onTargetScoreChange={setSharedTargetScore}
                     questionsAnswered={422}
                     examDate="Oct 15, 2025"
                   />
@@ -118,7 +96,7 @@ const Report = () => {
                     initialScore={245}
                     targetScore={sharedTargetScore}
                     onTargetScoreChange={setSharedTargetScore}
-                    passingStandard={currentStep === 'step1' ? 252 : undefined}
+                    passingStandard={currentStep === 'step1' ? 196 : undefined}
                     showControls={false}
                     title="Current performance"
                   />

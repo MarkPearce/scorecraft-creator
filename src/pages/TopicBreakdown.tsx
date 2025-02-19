@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Beaker, Heart, Brain, Activity, Baby, Users, Droplets, Bone, FlaskConical, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -52,19 +51,14 @@ const TopicBreakdown = () => {
         </div>
 
         <OverallPerformance
-          yourScore={238}
-          targetScore={targetScore}
-          onTargetScoreChange={setTargetScore}
           questionsAnswered={totalQuestionsAnswered}
           examDate="Oct 15, 2025"
         />
 
         <PerformanceOverview 
           score={33}
-          targetScore={57}
           questionsTagged={19}
           totalQuestions={2261}
-          targetQuestions={2035}
         />
 
         <div className="space-y-4">

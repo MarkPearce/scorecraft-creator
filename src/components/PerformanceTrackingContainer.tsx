@@ -1,135 +1,17 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { useMemo, memo } from 'react';
-
-interface DataPoint {
-  date: string;
-  score: number;
-  isMainPoint?: boolean;
-}
-
-interface DotProps {
-  cx?: number;
-  cy?: number;
-  r?: number;
-  payload?: DataPoint;
-  value?: number;
-  index?: number;
-  stroke?: string;
-  strokeWidth?: number;
-  fill?: string;
-  examStep?: 'step1' | 'step2';
-}
-
-const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
-  if (examStep === 'step2') {
-    if (score >= 265) return '#019444'; // dark green
-    if (score >= 249) return '#22c55e'; // light green
-    if (score >= 214) return '#fbbf24'; // yellow - keeping #fbbf24 as #FFC205 isn't in our color system
-    return '#ea384c'; // red
-  } else {
-    // Step 1 logic
-    if (score >= 265) return '#019444'; // dark green
-    if (score >= 231) return '#22c55e'; // light green - at or above national mean
-    if (score >= 196) return '#fbbf24'; // yellow - at or above passing standard
-    return '#ea384c'; // red - below passing standard
-  }
-};
-
-const generateIntermediatePoints = (start: DataPoint, end: DataPoint): DataPoint[] => {
-  const points: DataPoint[] = [];
-  
-  // Generate random number of points between 1 and 5
-  const count = Math.floor(Math.random() * 5) + 1;
-  
-  const scoreDiff = end.score - start.score;
-
-  // Generate random positions between 0 and 1, sort them for progressive points
-  const positions = Array.from({ length: count }, () => Math.random())
-    .sort((a, b) => a - b);
-
-  positions.forEach(position => {
-    const score = Math.round(start.score + (scoreDiff * position) + (Math.random() * 6 - 3));
-    points.push({
-      date: '',  // Empty date string for intermediate points
-      score,
-      isMainPoint: false
-    });
-  });
-
-  return points;
-};
-
-const CustomDot = memo((props: DotProps) => {
-  const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
-  if (!payload) return null;
-  const radius = payload.isMainPoint ? 6 : 3;
-  const color = getDotColor(payload.score, examStep);
-  return <circle cx={cx} cy={cy} r={radius} fill={color} />;
-});
-CustomDot.displayName = 'CustomDot';
-
-const CustomActiveDot = memo((props: DotProps) => {
-  const { cx = 0, cy = 0, payload, examStep = 'step2' } = props;
-  if (!payload) return null;
-  const radius = payload.isMainPoint ? 8 : 4;
-  const color = getDotColor(payload.score, examStep);
-  return <circle cx={cx} cy={cy} r={radius} fill={color} />;
-});
-CustomActiveDot.displayName = 'CustomActiveDot';
-
-interface PerformanceTrackingContainerProps {
-  examStep?: 'step1' | 'step2';
-}
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CustomDot, CustomActiveDot } from './performance-tracking/CustomDots';
+import { usePerformanceData } from './performance-tracking/usePerformanceData';
+import { PerformanceTrackingContainerProps } from './performance-tracking/types';
 
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
-  const data: DataPoint[] = useMemo(() => {
-    const mainPoints = examStep === 'step1' ? [
-      { date: 'Feb 12', score: 190, isMainPoint: true },
-      { date: 'Feb 19', score: 203, isMainPoint: true },
-      { date: 'Feb 26', score: 221, isMainPoint: true },
-      { date: 'Mar 4', score: 242, isMainPoint: true },
-      { date: 'Mar 11', score: 256, isMainPoint: true }
-    ] : [
-      { date: 'Feb 12', score: 204, isMainPoint: true },
-      { date: 'Feb 19', score: 244, isMainPoint: true },
-      { date: 'Feb 26', score: 238, isMainPoint: true },
-      { date: 'Mar 4', score: 248, isMainPoint: true },
-      { date: 'Mar 11', score: 262, isMainPoint: true }
-    ];
-
-    const allPoints: DataPoint[] = [];
-    for (let i = 0; i < mainPoints.length - 1; i++) {
-      allPoints.push(mainPoints[i]);
-      const intermediatePoints = generateIntermediatePoints(mainPoints[i], mainPoints[i + 1]);
-      allPoints.push(...intermediatePoints);
-    }
-    allPoints.push(mainPoints[mainPoints.length - 1]);
-
-    return allPoints;
-  }, [examStep]);
-
-  const referenceLines = useMemo(() => ({
-    passing: {
-      value: examStep === 'step1' ? 196 : 214,
-      label: examStep === 'step1' ? 'Passing Standard (196)' : 'Passing standard (214)'
-    },
-    mean: {
-      value: examStep === 'step1' ? 231 : 249,
-      label: examStep === 'step1' ? 'National mean before 2022 (231)' : 'National mean (249)'
-    }
-  }), [examStep]);
+  const { data, referenceLines } = usePerformanceData(examStep);
 
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
         <CardTitle className="font-lato">Performance over time</CardTitle>
-        <CardDescription>
-          <div className="text-sm text-gray-600 space-y-1 font-lato">
-            
-          </div>
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[400px] w-full">
@@ -182,30 +64,43 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
-              <ReferenceLine 
-                key={`passing-${referenceLines.passing.value}`}
-                y={referenceLines.passing.value} 
-                stroke="#ea384c" 
-                label={{ 
-                  value: referenceLines.passing.label, 
-                  position: 'insideBottomRight',
-                  fill: '#64748b',
-                  fontSize: 12,
-                  dy: 18
-                }} 
-              />
-              <ReferenceLine 
-                key={`mean-${referenceLines.mean.value}`}
-                y={referenceLines.mean.value} 
-                stroke="#22c55e" 
-                label={{ 
-                  value: referenceLines.mean.label, 
-                  position: 'insideBottomRight',
-                  fill: '#64748b',
-                  fontSize: 12,
-                  dy: 18
-                }} 
-              />
+              {examStep === 'step2' && (
+                <>
+                  <ReferenceLine 
+                    y={referenceLines.passing?.value} 
+                    stroke="#ea384c" 
+                    label={{ 
+                      value: referenceLines.passing?.label, 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                  <ReferenceLine 
+                    y={referenceLines.mean?.value} 
+                    stroke="#22c55e" 
+                    label={{ 
+                      value: referenceLines.mean?.label, 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                  <ReferenceLine 
+                    y={referenceLines.target?.value} 
+                    stroke="#295dae" 
+                    label={{ 
+                      value: referenceLines.target?.label, 
+                      position: 'insideBottomRight',
+                      fill: '#64748b',
+                      fontSize: 12,
+                      dy: 18
+                    }} 
+                  />
+                </>
+              )}
               <Line 
                 type="monotone"
                 dataKey="score" 

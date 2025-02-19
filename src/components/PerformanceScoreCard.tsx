@@ -40,63 +40,6 @@ const PerformanceScoreCard = ({
   const [score, setScore] = useState(initialScore);
   const [range, setRange] = useState(initialRange);
 
-  const getScoreSegment = (score: number) => {
-    const totalRange = range.max - range.min;
-    const segmentSize = totalRange / 5;
-    
-    if (score >= range.max - segmentSize) return 5;
-    if (score >= range.max - (segmentSize * 2)) return 4;
-    if (score >= range.max - (segmentSize * 3)) return 3;
-    if (score >= range.max - (segmentSize * 4)) return 2;
-    return 1;
-  };
-
-  const getScoreColor = (score: number) => {
-    const segment = getScoreSegment(score);
-    switch (segment) {
-      case 5: return "bg-[#019444]";
-      case 4: return "bg-[#8DC641]";
-      case 3: return "bg-yellow-500";
-      case 2: return "bg-[#F46523]";
-      default: return "bg-[#ED1B24]";
-    }
-  };
-
-  const getBackgroundColor = (score: number) => {
-    const segment = getScoreSegment(score);
-    switch (segment) {
-      case 5: return "bg-[#019444]/15";
-      case 4: return "bg-[#8DC641]/15";
-      case 3: return "bg-yellow-500/15";
-      case 2: return "bg-[#F46523]/15";
-      default: return "bg-[#ED1B24]/15";
-    }
-  };
-
-  const getTextColor = (score: number) => {
-    const segment = getScoreSegment(score);
-    switch (segment) {
-      case 5: return "text-[#019444]";
-      case 4: return "text-[#8DC641]";
-      case 3: return "text-yellow-500";
-      case 2: return "text-[#F46523]";
-      default: return "text-[#ED1B24]";
-    }
-  };
-
-  const getFaceIcon = (score: number) => {
-    const segment = getScoreSegment(score);
-    const colorClass = getTextColor(score);
-    
-    switch (segment) {
-      case 5: return <Laugh className={`w-16 h-16 ${colorClass}`} />;
-      case 4: return <Smile className={`w-16 h-16 ${colorClass}`} />;
-      case 3: return <Meh className={`w-16 h-16 ${colorClass}`} />;
-      case 2: return <Frown className={`w-16 h-16 ${colorClass}`} />;
-      default: return <Angry className={`w-16 h-16 ${colorClass}`} />;
-    }
-  };
-
   const handleRangeChange = (type: 'min' | 'max', value: string) => {
     const numValue = parseInt(value, 10);
     if (isNaN(numValue)) return;
@@ -144,7 +87,6 @@ const PerformanceScoreCard = ({
             score={score}
             targetScore={targetScore}
             range={range}
-            onTargetScoreChange={onTargetScoreChange}
             examStep={examStep}
             passingStandard={passingStandard}
           />
