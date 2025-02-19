@@ -1,6 +1,8 @@
 
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, ReferenceLine, Area, ScaleType } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, ReferenceLine, Area } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
+
+type ScaleType = "auto" | "linear" | "pow" | "sqrt" | "log";
 
 interface DistributionChartProps {
   data: any[];
