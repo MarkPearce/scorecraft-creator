@@ -16,12 +16,13 @@ export const getStrokeColor = (score: number, examStep: 'step1' | 'step2') => {
 
 export const generateIntermediatePoints = (start: DataPoint, end: DataPoint, examStep: 'step1' | 'step2'): DataPoint[] => {
   const points: DataPoint[] = [];
-  const numPoints = Math.floor(Math.random() * 3) + 2; // Generate 2-4 points
+  const numPoints = Math.floor(Math.random() * 5) + 1; // Generate 1-5 points
   
-  for (let i = 1; i <= numPoints; i++) {
-    const progress = i / (numPoints + 1); // This ensures even spacing
+  for (let i = 0; i < numPoints; i++) {
+    // Random progress between 0 and 1 for uneven distribution
+    const progress = Math.random();
     const baseScore = start.score + (end.score - start.score) * progress;
-    const variation = Math.random() * 6 - 3; // Add random variation of ±3 points
+    const variation = Math.random() * 10 - 5; // Add random variation of ±5 points
     const score = Math.round(baseScore + variation);
     
     points.push({
