@@ -20,21 +20,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 const Report = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
-
-  const handlePrevClick = () => {
-    const prevButton = document.querySelector('.embla__prev') as HTMLButtonElement;
-    prevButton?.click();
-  };
-
-  const handleNextClick = () => {
-    const nextButton = document.querySelector('.embla__next') as HTMLButtonElement;
-    nextButton?.click();
-  };
+  const [emblaRef] = useEmblaCarousel();
 
   return (
     <>
@@ -75,31 +67,9 @@ const Report = () => {
           </div>
           
           <div className="relative">
-            <div className="flex justify-end gap-2 mb-4">
-              <div className="flex gap-2">
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={handlePrevClick}
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={handleNextClick}
-                >
-                  <ArrowLeft className="h-4 w-4 rotate-180" />
-                </Button>
-              </div>
-            </div>
             <Carousel 
-              className="w-full" 
-              opts={{
-                dragFree: false
-              }}
+              ref={emblaRef}
+              className="w-full"
             >
               <CarouselContent>
                 <CarouselItem>
@@ -144,10 +114,8 @@ const Report = () => {
                   <RecommendedSession />
                 </CarouselItem>
               </CarouselContent>
-              <div className="hidden">
-                <CarouselPrevious className="embla__prev" />
-                <CarouselNext className="embla__next" />
-              </div>
+              <CarouselPrevious />
+              <CarouselNext />
             </Carousel>
           </div>
         </div>
