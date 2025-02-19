@@ -116,8 +116,8 @@ const DistributionChart = ({
         <ReferenceLine
           x={currentPeerGroupPercentile}
           stroke="#1f2937"
-          strokeWidth={4}
-          strokeDasharray="3 3"
+          strokeWidth={2}
+          strokeDasharray="2 4"
           label={{
             value: `${currentPeerGroupPercentile}th Percentile`,
             position: 'top',
