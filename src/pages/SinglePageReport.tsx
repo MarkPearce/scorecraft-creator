@@ -58,9 +58,6 @@ const SinglePageReport = () => {
 
           <div className="space-y-8">
             <OverallPerformance 
-              yourScore={245}
-              targetScore={sharedTargetScore}
-              onTargetScoreChange={setSharedTargetScore}
               questionsAnswered={422}
               examDate="Oct 15, 2025"
             />

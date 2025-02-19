@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -104,9 +103,6 @@ const Report = () => {
               <CarouselContent>
                 <CarouselItem>
                   <OverallPerformance 
-                    yourScore={245}
-                    targetScore={sharedTargetScore}
-                    onTargetScoreChange={setSharedTargetScore}
                     questionsAnswered={422}
                     examDate="Oct 15, 2025"
                   />
