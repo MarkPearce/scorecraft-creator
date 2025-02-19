@@ -12,13 +12,16 @@ interface DistributionChartProps {
 const DistributionChart = ({ data, displayMode, studentScore, studentPercentile }: DistributionChartProps) => {
   const xAxisTicks = [0, 25, 50, 75, 100];
   
-  console.log('Chart Data:', {
+  console.log('Chart Data Details:', {
     displayMode,
     dataLength: data.length,
     firstPoint: data[0],
     lastPoint: data[data.length - 1],
     meanScore: MEAN_SCORE,
-    domain: [0, 100]
+    domain: [0, 100],
+    samplePoints: data.slice(0, 5),  // Log first 5 points
+    maxDensity: Math.max(...data.map(d => d.density)),
+    maxPercentile: Math.max(...data.map(d => d.percentile))
   });
 
   return (
@@ -54,7 +57,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
         />
         <YAxis 
           hide={true}
-          domain={displayMode === "normal" ? [0, 0.045] : [0, 100]}
+          domain={[0, 'auto']}
         />
         <Area
           type="basis"
