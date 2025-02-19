@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -73,32 +74,40 @@ const Report = () => {
             </p>
           </div>
 
-          <div className="space-y-8">
-            <OverallPerformance 
-              questionsAnswered={422}
-              examDate="Oct 15, 2025"
-            />
-            
-            <PerformanceScoreCard 
-              examStep={currentStep}
-              initialScore={245}
-              targetScore={sharedTargetScore}
-              onTargetScoreChange={setSharedTargetScore}
-              passingStandard={currentStep === 'step1' ? 196 : undefined}
-              showControls={false}
-              title="Current performance"
-            />
-            
-            <PerformanceTrackingContainer examStep={currentStep} />
-            
-            <PeerGroup />
-            
-            <TextProjectionCard />
-            
-            <PerformanceSummary />
-            
-            <RecommendedSession />
-          </div>
+          <Carousel className="relative mx-auto">
+            <CarouselContent>
+              <CarouselItem>
+                <div className="space-y-8">
+                  <OverallPerformance 
+                    questionsAnswered={422}
+                    examDate="Oct 15, 2025"
+                  />
+                  
+                  <PerformanceScoreCard 
+                    examStep={currentStep}
+                    initialScore={245}
+                    targetScore={sharedTargetScore}
+                    onTargetScoreChange={setSharedTargetScore}
+                    passingStandard={currentStep === 'step1' ? 196 : undefined}
+                    showControls={false}
+                    title="Current performance"
+                  />
+                  
+                  <PerformanceTrackingContainer examStep={currentStep} />
+                  
+                  <PeerGroup />
+                  
+                  <TextProjectionCard />
+                  
+                  <PerformanceSummary />
+                  
+                  <RecommendedSession />
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
     </>
