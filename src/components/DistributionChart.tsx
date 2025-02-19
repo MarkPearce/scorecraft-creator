@@ -1,5 +1,5 @@
 
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, ReferenceLine, Area } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine, Tooltip } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
 interface DistributionChartProps {
@@ -23,7 +23,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <LineChart 
+      <AreaChart 
         data={data} 
         margin={{
           top: 40,
@@ -34,7 +34,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
       >
         <defs>
           <linearGradient id="distributionGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0aa6b8" stopOpacity={0.2} />
+            <stop offset="0%" stopColor="#0aa6b8" stopOpacity={0.3} />
             <stop offset="100%" stopColor="#0aa6b8" stopOpacity={0.05} />
           </linearGradient>
         </defs>
@@ -56,13 +56,23 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
           hide={true}
           domain={[0, 'auto']}
         />
+        <Tooltip 
+          formatter={(value: number) => 
+            [displayMode === "normal" 
+              ? `Density: ${value.toFixed(4)}` 
+              : `Percentile: ${value.toFixed(1)}%`
+            ]
+          }
+          labelFormatter={(label) => `Score: ${label}`}
+        />
         <Area
-          type="basis"
+          type="monotone"
           dataKey={displayMode === "normal" ? "density" : "percentile"}
           stroke="#0aa6b8"
           strokeWidth={2}
           fill="url(#distributionGradient)"
           dot={false}
+          isAnimationActive={false}
         />
         
         <ReferenceLine
@@ -84,7 +94,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
             strokeDasharray="3 3"
           />
         )}
-      </LineChart>
+      </AreaChart>
     </ResponsiveContainer>
   );
 };
