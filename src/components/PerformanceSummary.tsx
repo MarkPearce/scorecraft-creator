@@ -103,22 +103,22 @@ const PerformanceSummary = ({ examStep = 'step2' }: PerformanceSummaryProps) => 
     </div>
   );
 
-  const sortedItems = [...lower, ...same, ...higher];
+  const sortedItems = examStep === 'step2' 
+    ? [...step2Data.tasks, ...step2Data.systems, ...step2Data.disciplines]
+    : [...lower, ...same, ...higher];
 
   return (
     <Card className="animate-fadeIn">
       <CardHeader className="flex flex-col space-y-2">
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           {examStep === 'step2' ? 'Clinical Performance' : 'Performance by subject'}
-          {examStep === 'step1' && (
-            <Button 
-              variant="outline" 
-              className="h-8 w-8 p-0 [&_svg]:size-5" 
-              onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
-            >
-              {viewMode === 'grouped' ? <LayoutList /> : <Columns />}
-            </Button>
-          )}
+          <Button 
+            variant="outline" 
+            className="h-8 w-8 p-0 [&_svg]:size-5" 
+            onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
+          >
+            {viewMode === 'grouped' ? <LayoutList /> : <Columns />}
+          </Button>
         </CardTitle>
         <p className="text-base text-gray-600">
           {examStep === 'step2' 
@@ -128,7 +128,7 @@ const PerformanceSummary = ({ examStep = 'step2' }: PerformanceSummaryProps) => 
         </p>
       </CardHeader>
       <CardContent className="mt-4">
-        {examStep === 'step2' ? (
+        {examStep === 'step2' && viewMode === 'grouped' ? (
           <Step2Categories />
         ) : (
           viewMode === 'grouped' ? (
