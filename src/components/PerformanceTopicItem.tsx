@@ -1,6 +1,6 @@
 
 import { Button } from "./ui/button";
-import { PencilIcon } from "./PerformanceSummary";
+import { PencilIcon } from "lucide-react";
 
 interface PerformanceItem {
   subject: string;
@@ -51,7 +51,7 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
               : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
           }`}
         >
-          <PencilIcon />
+          <PencilIcon className="h-4 w-4" />
         </Button>
       </div>
     );
@@ -91,7 +91,7 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
                 : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
             }`}
           >
-            <PencilIcon />
+            <PencilIcon className="h-4 w-4" />
           </Button>
         </div>
       </td>
