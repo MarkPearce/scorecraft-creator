@@ -50,7 +50,7 @@ const DistributionChart = ({
       <AreaChart 
         data={data} 
         margin={{
-          top: 40,
+          top: 56,
           right: 30,
           left: 20,
           bottom: 20
@@ -117,12 +117,12 @@ const DistributionChart = ({
           x={currentPeerGroupPercentile}
           stroke="#1f2937"
           strokeWidth={2}
-          strokeDasharray="2 4"
           label={{
             value: `${currentPeerGroupPercentile}th Percentile`,
             position: 'top',
             fill: '#1f2937',
-            fontSize: 14
+            fontSize: 14,
+            dy: -16
           }}
         />
         
