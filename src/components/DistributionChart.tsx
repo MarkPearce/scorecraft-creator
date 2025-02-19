@@ -1,5 +1,5 @@
 
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, ReferenceLine, Area } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, ReferenceLine, Area, ScaleType } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
 
 interface DistributionChartProps {
@@ -44,7 +44,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     axisLine: { stroke: '#e5e7eb' },
     tickLine: { stroke: '#e5e7eb' },
     allowDecimals: false,
-    scale: "linear",
+    scale: "linear" as ScaleType,
     allowDataOverflow: false
   };
 
