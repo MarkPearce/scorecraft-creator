@@ -1,6 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "./ui/tooltip";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ClippedTextProps {
   text: string;
@@ -10,6 +11,7 @@ interface ClippedTextProps {
 const ClippedText = ({ text, className }: ClippedTextProps) => {
   const textRef = useRef<HTMLSpanElement>(null);
   const [isClipped, setIsClipped] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const checkIfClipped = () => {
@@ -37,11 +39,11 @@ const ClippedText = ({ text, className }: ClippedTextProps) => {
 
   return (
     <TooltipProvider>
-      <Tooltip>
+      <Tooltip delayDuration={isMobile ? 0 : 300}>
         <TooltipTrigger asChild>
           <span 
             ref={textRef} 
-            className={`overflow-hidden text-ellipsis whitespace-nowrap block ${className || ''}`}
+            className={`overflow-hidden text-ellipsis whitespace-nowrap block touch-action-none ${className || ''}`}
           >
             {text}
           </span>
