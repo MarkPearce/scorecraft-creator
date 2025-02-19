@@ -5,6 +5,7 @@ interface PerformanceItem {
   percentageCorrect: number;
 }
 
+// Original Step 1 data
 export const performanceData: PerformanceItem[] = [
   { subject: "Pathology", performance: "lower", percentageCorrect: 58 },
   { subject: "Physiology", performance: "lower", percentageCorrect: 57 },
@@ -17,6 +18,31 @@ export const performanceData: PerformanceItem[] = [
   { subject: "Immunology", performance: "same", percentageCorrect: 70 },
   { subject: "Genetics", performance: "higher", percentageCorrect: 80 }
 ];
+
+// Step 2 data organized by category
+export const step2Data = {
+  tasks: [
+    { subject: "PC: Diagnosis", performance: "lower", percentageCorrect: 58 },
+    { subject: "PC: Pharmacotherapy", performance: "same", percentageCorrect: 71 },
+    { subject: "PC: Health Maintenance", performance: "higher", percentageCorrect: 82 },
+    { subject: "Ethics/Professionalism", performance: "lower", percentageCorrect: 60 },
+    { subject: "Systems-Based Practice", performance: "same", percentageCorrect: 73 }
+  ],
+  systems: [
+    { subject: "Cardiovascular", performance: "higher", percentageCorrect: 85 },
+    { subject: "Gastrointestinal", performance: "lower", percentageCorrect: 57 },
+    { subject: "Respiratory", performance: "same", percentageCorrect: 70 },
+    { subject: "Musculoskeletal", performance: "higher", percentageCorrect: 82 },
+    { subject: "Neurological", performance: "lower", percentageCorrect: 55 }
+  ],
+  disciplines: [
+    { subject: "Medicine", performance: "higher", percentageCorrect: 82 },
+    { subject: "Surgery", performance: "lower", percentageCorrect: 55 },
+    { subject: "Pediatrics", performance: "same", percentageCorrect: 73 },
+    { subject: "Obstetrics & Gynecology", performance: "higher", percentageCorrect: 80 },
+    { subject: "Psychiatry", performance: "lower", percentageCorrect: 60 }
+  ]
+} as const;
 
 interface PerformanceTopicItemProps {
   item: PerformanceItem;
