@@ -1,28 +1,12 @@
-import { BarChart, LayoutList, Columns } from 'lucide-react';
+
+import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import QuestionSessionDialog from './QuestionSessionDialog';
+import PerformanceTopicItem, { performanceData } from './PerformanceTopicItem';
 
-interface PerformanceItem {
-  subject: string;
-  performance: 'lower' | 'same' | 'higher';
-}
-
-const performanceData: PerformanceItem[] = [
-  { subject: "Pathology", performance: "same" },
-  { subject: "Physiology", performance: "higher" },
-  { subject: "Gross Anatomy & Embryology", performance: "higher" },
-  { subject: "Microbiology", performance: "lower" },
-  { subject: "Pharmacology", performance: "lower" },
-  { subject: "Behavioral Sciences", performance: "higher" },
-  { subject: "Biochemistry & Nutrition", performance: "higher" },
-  { subject: "Histology & Cell Biology", performance: "higher" },
-  { subject: "Immunology", performance: "higher" },
-  { subject: "Genetics", performance: "higher" }
-];
-
-const PencilIcon = () => (
+export const PencilIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" style={{ minWidth: '20px', minHeight: '20px' }}>
     <path fill="currentColor" d="M12 8a1 1 0 1 0-2 0v4a1 1 0 0 0 2 0z"></path>
     <path fill="currentColor" fillRule="evenodd" d="M8 2a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2v.723a9.02 9.02 0 0 1 6.197 5.056 3.121 3.121 0 0 1 3.63 5.045h-.002l-10.197 8.947a1 1 0 0 1-.665.248L8.494 23a1 1 0 0 1-.969-1.223l.192-.839-.013-.005C4.374 19.653 2 16.353 2 12.5a9 9 0 0 1 7-8.777V3a1 1 0 0 1-1-1m3 3.5a7 7 0 0 1 6.583 4.613l-8.987 7.835a1 1 0 0 0-.318.531l-.11.484C5.739 17.91 4 15.42 4 12.5a7 7 0 0 1 7-7m9.85 4.853a1.12 1.12 0 0 0-.813.274l-7.521 6.557 1.611 1.612 7.382-6.477.002-.002a1.121 1.121 0 0 0-.66-1.964Zm-8.23 9.764-1.615-1.615-.85.74-.402 1.765 1.842.01z" clipRule="evenodd"></path>
@@ -45,37 +29,17 @@ const PerformanceSummary = () => {
     setDialogOpen(true);
   };
 
-  const Column = ({ title, items }: { title: string; items: PerformanceItem[] }) => (
+  const Column = ({ title, items }: { title: string; items: typeof performanceData }) => (
     <div className="flex-1">
       <h3 className="text-sm font-medium text-gray-700 mb-3">{title}</h3>
       <div className="space-y-2">
         {items.map((item, index) => (
-          <div
+          <PerformanceTopicItem
             key={index}
-            onClick={() => handleStartSession(item.subject)}
-            className={`px-3 py-2 rounded-lg text-sm font-medium cursor-pointer transition-colors ${
-              item.performance === 'higher'
-                ? 'bg-green-50 text-green-600 hover:bg-green-100'
-                : item.performance === 'lower'
-                ? 'bg-red-50 text-red-600 hover:bg-red-100'
-                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-            } flex justify-between items-center group`}
-          >
-            <span>{item.subject}</span>
-            <Button
-              variant="outline"
-              size="sm"
-              className={`h-8 w-8 p-0 flex items-center justify-center border transition-colors ${
-                item.performance === 'higher'
-                  ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
-                  : item.performance === 'lower'
-                  ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
-                  : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
-              }`}
-            >
-              <PencilIcon />
-            </Button>
-          </div>
+            item={item}
+            onClick={handleStartSession}
+            view="grouped"
+          />
         ))}
       </div>
     </div>
@@ -120,45 +84,12 @@ const PerformanceSummary = () => {
               </thead>
               <tbody className="pt-2">
                 {sortedItems.map((item, index) => (
-                  <tr 
+                  <PerformanceTopicItem
                     key={index}
-                    className="group hover:bg-gray-50 transition-colors cursor-pointer grid grid-cols-12 gap-4 mt-2"
-                    onClick={() => handleStartSession(item.subject)}
-                  >
-                    <td className="col-span-9 py-2 font-medium text-gray-900">{item.subject}</td>
-                    <td className="col-span-2 py-2">
-                      <div className="flex justify-center">
-                        <span
-                          className={`px-3 py-1 rounded-full text-sm ${
-                            item.performance === 'higher'
-                              ? 'bg-green-50 text-green-600'
-                              : item.performance === 'lower'
-                              ? 'bg-red-50 text-red-600'
-                              : 'bg-gray-50 text-gray-600'
-                          }`}
-                        >
-                          {item.performance.charAt(0).toUpperCase() + item.performance.slice(1)}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="col-span-1 py-2">
-                      <div className="flex justify-end">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className={`h-8 w-8 p-0 flex items-center justify-center border transition-colors ${
-                            item.performance === 'higher'
-                              ? 'border-green-600 text-green-600 group-hover:bg-green-600 group-hover:text-white'
-                              : item.performance === 'lower'
-                              ? 'border-red-600 text-red-600 group-hover:bg-red-600 group-hover:text-white'
-                              : 'border-gray-600 text-gray-600 group-hover:bg-gray-600 group-hover:text-white'
-                          }`}
-                        >
-                          <PencilIcon />
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
+                    item={item}
+                    onClick={handleStartSession}
+                    view="list"
+                  />
                 ))}
               </tbody>
             </table>
