@@ -2,19 +2,20 @@
 interface PerformanceItem {
   subject: string;
   performance: 'lower' | 'same' | 'higher';
+  percentageCorrect: number;
 }
 
 export const performanceData: PerformanceItem[] = [
-  { subject: "Pathology", performance: "lower" },
-  { subject: "Physiology", performance: "lower" },
-  { subject: "Gross Anatomy & Embryology", performance: "same" },
-  { subject: "Microbiology", performance: "lower" },
-  { subject: "Pharmacology", performance: "lower" },
-  { subject: "Behavioral Sciences", performance: "same" },
-  { subject: "Biochemistry & Nutrition", performance: "higher" },
-  { subject: "Histology & Cell Biology", performance: "higher" },
-  { subject: "Immunology", performance: "same" },
-  { subject: "Genetics", performance: "higher" }
+  { subject: "Pathology", performance: "lower", percentageCorrect: 58 },
+  { subject: "Physiology", performance: "lower", percentageCorrect: 57 },
+  { subject: "Gross Anatomy & Embryology", performance: "same", percentageCorrect: 71 },
+  { subject: "Microbiology", performance: "lower", percentageCorrect: 55 },
+  { subject: "Pharmacology", performance: "lower", percentageCorrect: 60 },
+  { subject: "Behavioral Sciences", performance: "same", percentageCorrect: 73 },
+  { subject: "Biochemistry & Nutrition", performance: "higher", percentageCorrect: 85 },
+  { subject: "Histology & Cell Biology", performance: "higher", percentageCorrect: 82 },
+  { subject: "Immunology", performance: "same", percentageCorrect: 70 },
+  { subject: "Genetics", performance: "higher", percentageCorrect: 80 }
 ];
 
 interface PerformanceTopicItemProps {
@@ -36,7 +37,10 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
             : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
         }`}
       >
-        <span>{item.subject}</span>
+        <div className="flex justify-between items-center">
+          <span>{item.subject}</span>
+          <span className="ml-2">{item.percentageCorrect}%</span>
+        </div>
       </div>
     );
   }
@@ -46,7 +50,10 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
       className="hover:bg-gray-50 transition-colors cursor-pointer grid grid-cols-12 gap-4 mt-2"
       onClick={() => onClick(item.subject)}
     >
-      <td className="col-span-9 py-2 font-medium text-gray-900">{item.subject}</td>
+      <td className="col-span-7 py-2 font-medium text-gray-900">{item.subject}</td>
+      <td className="col-span-2 py-2 text-right pr-4">
+        <span className="text-gray-600">{item.percentageCorrect}%</span>
+      </td>
       <td className="col-span-3 py-2">
         <div className="flex justify-center">
           <span
