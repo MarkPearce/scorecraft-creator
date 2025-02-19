@@ -67,7 +67,8 @@ const PerformanceSummary = () => {
             <table className="w-full">
               <thead className="border-b border-gray-200">
                 <tr className="grid grid-cols-12 gap-4">
-                  <th className="col-span-9 text-left text-sm font-medium text-gray-700 pb-3">Subject</th>
+                  <th className="col-span-7 text-left text-sm font-medium text-gray-700 pb-3">Subject</th>
+                  <th className="col-span-2 text-right text-sm font-medium text-gray-700 pb-3 pr-4">% Correct</th>
                   <th className="col-span-3 text-center text-sm font-medium text-gray-700 pb-3">Performance</th>
                 </tr>
               </thead>
