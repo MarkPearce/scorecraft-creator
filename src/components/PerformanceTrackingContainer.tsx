@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -67,7 +66,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       const date = new Date(dateStart.getTime() + dayDiff * i);
       const score = Math.round(start.score + scoreDiff * i + (Math.random() * 6 - 3));
       points.push({
-        date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        date: '', // Empty date string for intermediate points
         score,
         color: getStrokeColor(score),
         isMainPoint: false
