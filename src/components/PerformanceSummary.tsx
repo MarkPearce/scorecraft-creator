@@ -103,10 +103,6 @@ const PerformanceSummary = ({ examStep = 'step2' }: PerformanceSummaryProps) => 
     </div>
   );
 
-  const sortedItems = examStep === 'step2' 
-    ? [...step2Data.tasks, ...step2Data.systems, ...step2Data.disciplines]
-    : [...lower, ...same, ...higher];
-
   return (
     <Card className="animate-fadeIn">
       <CardHeader className="flex flex-col space-y-2">
@@ -148,7 +144,10 @@ const PerformanceSummary = ({ examStep = 'step2' }: PerformanceSummaryProps) => 
                   </tr>
                 </thead>
                 <tbody className="pt-2">
-                  {sortedItems.map((item, index) => (
+                  {examStep === 'step2' 
+                    ? [...step2Data.tasks, ...step2Data.systems, ...step2Data.disciplines]
+                    : [...lower, ...same, ...higher]
+                  }.map((item, index) => (
                     <PerformanceTopicItem 
                       key={index} 
                       item={item} 
