@@ -36,22 +36,28 @@ const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
   }
 };
 
-const generateIntermediatePoints = (start: DataPoint, end: DataPoint, count: number): DataPoint[] => {
+const generateIntermediatePoints = (start: DataPoint, end: DataPoint): DataPoint[] => {
   const points: DataPoint[] = [];
   const dateStart = new Date(start.date);
   const dateEnd = new Date(end.date);
-  const dayDiff = (dateEnd.getTime() - dateStart.getTime()) / (count + 1);
-  const scoreDiff = (end.score - start.score) / (count + 1);
+  
+  const count = Math.floor(Math.random() * 5) + 1;
+  
+  const positions = Array.from({ length: count }, () => Math.random()).sort();
+  
+  const dayDiff = dateEnd.getTime() - dateStart.getTime();
+  const scoreDiff = end.score - start.score;
 
-  for (let i = 1; i <= count; i++) {
-    const date = new Date(dateStart.getTime() + dayDiff * i);
-    const score = Math.round(start.score + scoreDiff * i + (Math.random() * 6 - 3));
+  positions.forEach(position => {
+    const date = new Date(dateStart.getTime() + (dayDiff * position));
+    const score = Math.round(start.score + (scoreDiff * position) + (Math.random() * 6 - 3));
     points.push({
-      date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      date: '',  // Empty date string for intermediate points
       score,
       isMainPoint: false
     });
-  }
+  });
+
   return points;
 };
 
@@ -96,14 +102,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     const allPoints: DataPoint[] = [];
     for (let i = 0; i < mainPoints.length - 1; i++) {
       allPoints.push(mainPoints[i]);
-      const intermediatePoints = generateIntermediatePoints(
-        mainPoints[i],
-        mainPoints[i + 1],
-        2
-      ).map(point => ({
-        ...point,
-        date: '' // Set empty date string for intermediate points
-      }));
+      const intermediatePoints = generateIntermediatePoints(mainPoints[i], mainPoints[i + 1]);
       allPoints.push(...intermediatePoints);
     }
     allPoints.push(mainPoints[mainPoints.length - 1]);
