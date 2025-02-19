@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -101,7 +100,10 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
         mainPoints[i],
         mainPoints[i + 1],
         2
-      );
+      ).map(point => ({
+        ...point,
+        date: '' // Set empty date string for intermediate points
+      }));
       allPoints.push(...intermediatePoints);
     }
     allPoints.push(mainPoints[mainPoints.length - 1]);
