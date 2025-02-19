@@ -86,6 +86,10 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     mean: {
       value: examStep === 'step1' ? 231 : 249,
       label: examStep === 'step1' ? 'National mean before 2022 (231)' : 'National mean (249)'
+    },
+    target: {
+      value: 260,
+      label: 'Target score (260)'
     }
   }), [examStep]);
 
@@ -168,6 +172,18 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 stroke="#22c55e" 
                 label={{ 
                   value: referenceLines.mean.label, 
+                  position: 'insideBottomRight',
+                  fill: '#64748b',
+                  fontSize: 12,
+                  dy: 18
+                }} 
+              />
+              <ReferenceLine 
+                key={`target-${referenceLines.target.value}`}
+                y={referenceLines.target.value} 
+                stroke="#295dae" 
+                label={{ 
+                  value: referenceLines.target.label, 
                   position: 'insideBottomRight',
                   fill: '#64748b',
                   fontSize: 12,
