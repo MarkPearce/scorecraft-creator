@@ -3,25 +3,30 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import PerformanceTopicItem, { performanceData } from './PerformanceTopicItem';
+import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
 
 type ViewMode = 'grouped' | 'list';
 
-const PerformanceSummary = () => {
+interface PerformanceSummaryProps {
+  examStep: 'step1' | 'step2';
+}
+
+const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
   
-  const lowerPerformance = performanceData.filter(item => item.performance === 'lower');
-  const samePerformance = performanceData.filter(item => item.performance === 'same');
-  const higherPerformance = performanceData.filter(item => item.performance === 'higher');
+  const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
+  const lowerPerformance = currentData.filter(item => item.performance === 'lower');
+  const samePerformance = currentData.filter(item => item.performance === 'same');
+  const higherPerformance = currentData.filter(item => item.performance === 'higher');
 
   const Column = ({
     title,
     items
   }: {
     title: string;
-    items: typeof performanceData;
+    items: typeof currentData;
   }) => (
-    <div className="flex-1">
+    <div className="w-full min-w-0">
       <h3 className="text-sm font-medium text-gray-700 mb-3">{title}</h3>
       <div className="space-y-2">
         {items.map((item, index) => (
@@ -42,7 +47,7 @@ const PerformanceSummary = () => {
     <Card className="animate-fadeIn">
       <CardHeader className="flex flex-col space-y-2">
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
-          Performance by subject
+          Strengths and weaknesses
           <Button 
             variant="outline" 
             className="h-8 w-8 p-0 [&_svg]:size-5" 
@@ -57,7 +62,7 @@ const PerformanceSummary = () => {
       </CardHeader>
       <CardContent className="mt-4">
         {viewMode === 'grouped' ? (
-          <div className="flex gap-6">
+          <div className="grid grid-cols-3 gap-6">
             <Column title="Lower" items={lowerPerformance} />
             <Column title="Same" items={samePerformance} />
             <Column title="Higher" items={higherPerformance} />
@@ -91,3 +96,4 @@ const PerformanceSummary = () => {
 };
 
 export default PerformanceSummary;
+

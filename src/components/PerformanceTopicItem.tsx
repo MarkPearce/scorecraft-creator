@@ -1,5 +1,4 @@
-
-export interface PerformanceItem {
+interface PerformanceItem {
   subject: string;
   performance: 'lower' | 'same' | 'higher';
   percentageCorrect: number;
@@ -18,40 +17,42 @@ export const performanceData: PerformanceItem[] = [
   { subject: "Genetics", performance: "higher", percentageCorrect: 80 }
 ];
 
-// Step 2 data organized by category
-export const step2Data: {
-  tasks: PerformanceItem[];
-  systems: PerformanceItem[];
-  disciplines: PerformanceItem[];
-} = {
-  tasks: [
-    { subject: "PC: Diagnosis", performance: "lower", percentageCorrect: 58 },
-    { subject: "PC: Pharmacotherapy", performance: "same", percentageCorrect: 71 },
-    { subject: "PC: Health Maintenance", performance: "higher", percentageCorrect: 82 },
-    { subject: "Ethics/Professionalism", performance: "lower", percentageCorrect: 60 },
-    { subject: "Systems-Based Practice", performance: "same", percentageCorrect: 73 }
-  ],
-  systems: [
-    { subject: "Cardiovascular", performance: "higher", percentageCorrect: 85 },
-    { subject: "Gastrointestinal", performance: "lower", percentageCorrect: 57 },
-    { subject: "Respiratory", performance: "same", percentageCorrect: 70 },
-    { subject: "Musculoskeletal", performance: "higher", percentageCorrect: 82 },
-    { subject: "Neurological", performance: "lower", percentageCorrect: 55 }
-  ],
-  disciplines: [
-    { subject: "Medicine", performance: "higher", percentageCorrect: 82 },
-    { subject: "Surgery", performance: "lower", percentageCorrect: 55 },
-    { subject: "Pediatrics", performance: "same", percentageCorrect: 73 },
-    { subject: "Obstetrics & Gynecology", performance: "higher", percentageCorrect: 80 },
-    { subject: "Psychiatry", performance: "lower", percentageCorrect: 60 }
-  ]
-};
+export const step2PerformanceData: PerformanceItem[] = [
+  // Physician Tasks
+  { subject: "PC: Diagnosis", performance: "lower", percentageCorrect: 58 },
+  { subject: "Ethics/Professionalism", performance: "lower", percentageCorrect: 60 },
+  
+  // Systems with Lower Performance
+  { subject: "Gastrointestinal System", performance: "lower", percentageCorrect: 57 },
+  { subject: "Behavioral Health", performance: "lower", percentageCorrect: 55 },
+  { subject: "Surgery", performance: "lower", percentageCorrect: 55 },
+  { subject: "Multisystem Processes & Disorders", performance: "lower", percentageCorrect: 59 },
+  { subject: "Renal & Urinary System & Male Reproductive", performance: "lower", percentageCorrect: 61 },
+  { subject: "Psychiatry", performance: "lower", percentageCorrect: 60 },
+  
+  // Same Performance
+  { subject: "PC: Pharmacotherapy, Interventions & Management", performance: "same", percentageCorrect: 71 },
+  { subject: "Systems-Based Practice/Patient Safety", performance: "same", percentageCorrect: 73 },
+  { subject: "Respiratory System", performance: "same", percentageCorrect: 70 },
+  { subject: "Nervous System & Special Senses", performance: "same", percentageCorrect: 72 },
+  { subject: "Endocrine System", performance: "same", percentageCorrect: 75 },
+  { subject: "Pregnancy, Childbirth & the Puerperium", performance: "same", percentageCorrect: 74 },
+  { subject: "Pediatrics", performance: "same", percentageCorrect: 73 },
+  
+  // Higher Performance (fewer items)
+  { subject: "PC: Health Maintenance, Prevention & Surveillance", performance: "higher", percentageCorrect: 82 },
+  { subject: "Cardiovascular System", performance: "higher", percentageCorrect: 85 },
+  { subject: "Female Reproductive & Breast", performance: "higher", percentageCorrect: 83 },
+  { subject: "Medicine", performance: "higher", percentageCorrect: 82 }
+];
 
 interface PerformanceTopicItemProps {
   item: PerformanceItem;
   onClick: (subject: string) => void;
   view: 'grouped' | 'list';
 }
+
+import ClippedText from './ClippedText';
 
 const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps) => {
   if (view === 'grouped') {
@@ -67,7 +68,7 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
         }`}
       >
         <div className="flex justify-between items-center">
-          <span>{item.subject}</span>
+          <ClippedText text={item.subject} className="max-w-[80%]" />
           <span className="ml-2">{item.percentageCorrect}%</span>
         </div>
       </div>
@@ -79,7 +80,9 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
       className="hover:bg-gray-50 transition-colors cursor-pointer grid grid-cols-12 gap-4 mt-2"
       onClick={() => onClick(item.subject)}
     >
-      <td className="col-span-7 py-2 font-medium text-gray-900">{item.subject}</td>
+      <td className="col-span-7 py-2 font-medium text-gray-900">
+        <ClippedText text={item.subject} />
+      </td>
       <td className="col-span-2 py-2 text-right pr-4">
         <span className="text-gray-600">{item.percentageCorrect}%</span>
       </td>
