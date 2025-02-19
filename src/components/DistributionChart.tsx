@@ -30,6 +30,24 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
     alwaysShow: true
   };
 
+  const xAxisProps = {
+    dataKey: "score" as const,
+    type: "number" as const,
+    domain: [0, 100] as [number, number],
+    ticks: xAxisTicks,
+    interval: 0,
+    tick: {
+      fontSize: 11,
+      dy: 10,
+      fill: "#6b7280"
+    },
+    axisLine: { stroke: '#e5e7eb' },
+    tickLine: { stroke: '#e5e7eb' },
+    allowDecimals: false,
+    scale: "linear",
+    allowDataOverflow: false
+  };
+
   return (
     <ResponsiveContainer width="100%" height={400}>
       <LineChart 
@@ -47,20 +65,7 @@ const DistributionChart = ({ data, displayMode, studentScore, studentPercentile 
             <stop offset="100%" stopColor="#0aa6b8" stopOpacity={0.05} />
           </linearGradient>
         </defs>
-        <XAxis 
-          dataKey="score" 
-          type="number" 
-          domain={[0, 100]}
-          ticks={xAxisTicks}
-          interval={0}
-          tick={{
-            fontSize: 11,
-            dy: 10,
-            fill: "#6b7280"
-          }}
-          axisLine={{ stroke: '#e5e7eb' }}
-          tickLine={{ stroke: '#e5e7eb' }}
-        />
+        <XAxis {...xAxisProps} />
         <YAxis 
           hide={true}
           domain={[0, 'auto']}
