@@ -26,7 +26,7 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
     title: string;
     items: typeof currentData;
   }) => (
-    <div className="flex-1">
+    <div className="w-full min-w-0">
       <h3 className="text-sm font-medium text-gray-700 mb-3">{title}</h3>
       <div className="space-y-2">
         {items.map((item, index) => (
@@ -62,7 +62,7 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
       </CardHeader>
       <CardContent className="mt-4">
         {viewMode === 'grouped' ? (
-          <div className="flex gap-6">
+          <div className="grid grid-cols-3 gap-6">
             <Column title="Lower" items={lowerPerformance} />
             <Column title="Same" items={samePerformance} />
             <Column title="Higher" items={higherPerformance} />
@@ -96,3 +96,4 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
 };
 
 export default PerformanceSummary;
+

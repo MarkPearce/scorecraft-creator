@@ -55,6 +55,8 @@ interface PerformanceTopicItemProps {
   view: 'grouped' | 'list';
 }
 
+import ClippedText from './ClippedText';
+
 const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps) => {
   if (view === 'grouped') {
     return (
@@ -69,7 +71,7 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
         }`}
       >
         <div className="flex justify-between items-center">
-          <span className="overflow-hidden text-ellipsis whitespace-nowrap max-w-[80%]" title={item.subject}>{item.subject}</span>
+          <ClippedText text={item.subject} className="max-w-[80%]" />
           <span className="ml-2">{item.percentageCorrect}%</span>
         </div>
       </div>
@@ -81,7 +83,9 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
       className="hover:bg-gray-50 transition-colors cursor-pointer grid grid-cols-12 gap-4 mt-2"
       onClick={() => onClick(item.subject)}
     >
-      <td className="col-span-7 py-2 font-medium text-gray-900">{item.subject}</td>
+      <td className="col-span-7 py-2 font-medium text-gray-900">
+        <ClippedText text={item.subject} />
+      </td>
       <td className="col-span-2 py-2 text-right pr-4">
         <span className="text-gray-600">{item.percentageCorrect}%</span>
       </td>
@@ -105,3 +109,4 @@ const PerformanceTopicItem = ({ item, onClick, view }: PerformanceTopicItemProps
 };
 
 export default PerformanceTopicItem;
+
