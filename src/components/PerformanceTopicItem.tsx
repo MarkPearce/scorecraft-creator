@@ -5,15 +5,15 @@ interface PerformanceItem {
 }
 
 export const performanceData: PerformanceItem[] = [
-  { subject: "Pathology", performance: "same" },
-  { subject: "Physiology", performance: "higher" },
-  { subject: "Gross Anatomy & Embryology", performance: "higher" },
+  { subject: "Pathology", performance: "lower" },
+  { subject: "Physiology", performance: "lower" },
+  { subject: "Gross Anatomy & Embryology", performance: "same" },
   { subject: "Microbiology", performance: "lower" },
   { subject: "Pharmacology", performance: "lower" },
-  { subject: "Behavioral Sciences", performance: "higher" },
+  { subject: "Behavioral Sciences", performance: "same" },
   { subject: "Biochemistry & Nutrition", performance: "higher" },
   { subject: "Histology & Cell Biology", performance: "higher" },
-  { subject: "Immunology", performance: "higher" },
+  { subject: "Immunology", performance: "same" },
   { subject: "Genetics", performance: "higher" }
 ];
 
