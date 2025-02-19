@@ -36,10 +36,10 @@ const PeerGroup = () => {
                 <SelectValue placeholder="Select peer group" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Students</SelectItem>
-                <SelectItem value="same-state">Same State</SelectItem>
-                <SelectItem value="same-year">Same Year</SelectItem>
-                <SelectItem value="same-school">Same School</SelectItem>
+                <SelectItem value="all">All AMBOSS</SelectItem>
+                <SelectItem value="same-objective">Same learning objective</SelectItem>
+                <SelectItem value="same-state">Same state</SelectItem>
+                <SelectItem value="same-school">Same school</SelectItem>
               </SelectContent>
             </Select>
           </div>
