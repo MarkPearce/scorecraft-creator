@@ -1,4 +1,3 @@
-
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 import { useRef } from "react";
@@ -30,24 +29,22 @@ const PerformanceGraph = ({
 
   const getSegments = () => {
     if (examStep === 'step1') {
-      const midpoint = Math.round(196 + (265 - 196) / 2);
-      
       return [{
         score: range.min,
         color: "bg-[#ED1B24]",
         label: `${Math.round(range.min)}`
       }, {
-        score: 196,
+        score: 200,
         color: "bg-[#FFC107]",
-        label: ""
+        label: "200"
       }, {
-        score: midpoint,
+        score: 230,
         color: "bg-[#8DC641]",
-        label: "Passing standard\nbefore 2022: 231"
+        label: "230"
       }, {
         score: 265,
         color: "bg-[#019444]",
-        label: ""
+        label: "265"
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
