@@ -93,10 +93,7 @@ const Report = () => {
                 <CarouselItem>
                   <PerformanceScoreCard 
                     examStep={currentStep}
-                    initialScore={245}
-                    targetScore={sharedTargetScore}
                     onTargetScoreChange={setSharedTargetScore}
-                    passingStandard={currentStep === 'step1' ? 196 : undefined}
                     showControls={false}
                     title="Current performance"
                   />
