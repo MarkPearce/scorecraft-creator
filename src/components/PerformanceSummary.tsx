@@ -49,7 +49,7 @@ const PerformanceSummary = ({
   const sortedItems = [...lowerPerformance, ...samePerformance, ...higherPerformance];
 
   return <Card className="animate-fadeIn">
-      <CardHeader className="flex flex-col space-y-2">
+      <CardHeader className="flex flex-col space-y-2 p-5">
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           Strengths and weaknesses
           <Button variant="outline" className="h-8 w-8 p-0 [&_svg]:size-5" onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}>
@@ -58,13 +58,15 @@ const PerformanceSummary = ({
         </CardTitle>
         <p className="text-base text-gray-600">See your strengths and weaknesses to focus your study effectively.</p>
         {examStep === 'step2' && (
-          <Tabs defaultValue="Systems" value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full mt-4">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="Systems">Systems</TabsTrigger>
-              <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
-              <TabsTrigger value="Disciplines">Disciplines</TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="pt-4">
+            <Tabs defaultValue="Systems" value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="Systems">Systems</TabsTrigger>
+                <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
+                <TabsTrigger value="Disciplines">Disciplines</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
         )}
       </CardHeader>
       <CardContent className="mt-4">
