@@ -1,5 +1,5 @@
 
-import { ExamStep } from "./types";
+import { ExamStep, ScoreRange } from "./types";
 
 export const getScoreStatus = (score: number, targetScore: number, examStep: ExamStep, passingStandard = 196) => {
   if (examStep === 'step1') {
