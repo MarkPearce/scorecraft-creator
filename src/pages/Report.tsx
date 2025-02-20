@@ -19,6 +19,7 @@ const Report = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
+  const [currentScore, setCurrentScore] = useState(245);
 
   const handlePrevClick = () => {
     const prevButton = document.querySelector('.embla__prev') as HTMLButtonElement;
@@ -93,10 +94,7 @@ const Report = () => {
                 <CarouselItem>
                   <PerformanceScoreCard 
                     examStep={currentStep}
-                    initialScore={245}
-                    targetScore={sharedTargetScore}
                     onTargetScoreChange={setSharedTargetScore}
-                    passingStandard={currentStep === 'step1' ? 196 : undefined}
                     showControls={false}
                     title="Current performance"
                   />
@@ -107,11 +105,11 @@ const Report = () => {
                 </CarouselItem>
                 
                 <CarouselItem>
-                  <PeerGroup />
+                  <PeerGroup studentScore={currentScore} examStep={currentStep} />
                 </CarouselItem>
                 
                 <CarouselItem>
-                  <TextProjectionCard />
+                  <TextProjectionCard examStep={currentStep} />
                 </CarouselItem>
 
                 <CarouselItem>

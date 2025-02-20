@@ -3,21 +3,30 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
 
 type ViewMode = 'grouped' | 'list';
+type Category = 'Systems' | 'Physician Tasks' | 'Disciplines';
 
 interface PerformanceSummaryProps {
   examStep: 'step1' | 'step2';
 }
 
-const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
+const PerformanceSummary = ({
+  examStep
+}: PerformanceSummaryProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
+  const [selectedCategory, setSelectedCategory] = useState<Category>('Systems');
   
   const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
-  const lowerPerformance = currentData.filter(item => item.performance === 'lower');
-  const samePerformance = currentData.filter(item => item.performance === 'same');
-  const higherPerformance = currentData.filter(item => item.performance === 'higher');
+  const filteredData = examStep === 'step1' 
+    ? currentData 
+    : currentData.filter(item => item.category === selectedCategory);
+  
+  const lowerPerformance = filteredData.filter(item => item.performance === 'lower');
+  const samePerformance = filteredData.filter(item => item.performance === 'same');
+  const higherPerformance = filteredData.filter(item => item.performance === 'higher');
 
   const Column = ({
     title,
@@ -27,48 +36,45 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
     items: typeof currentData;
   }) => (
     <div className="w-full min-w-0">
-      <h3 className="text-sm font-medium text-gray-700 mb-3">{title}</h3>
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="text-sm font-medium text-gray-700">{title}</h3>
+        <span className="text-sm text-gray-500 mr-3">% Correct</span>
+      </div>
       <div className="space-y-2">
-        {items.map((item, index) => (
-          <PerformanceTopicItem 
-            key={index} 
-            item={item} 
-            onClick={() => {}} 
-            view="grouped" 
-          />
-        ))}
+        {items.map((item, index) => <PerformanceTopicItem key={index} item={item} onClick={() => {}} view="grouped" />)}
       </div>
     </div>
   );
 
   const sortedItems = [...lowerPerformance, ...samePerformance, ...higherPerformance];
 
-  return (
-    <Card className="animate-fadeIn">
-      <CardHeader className="flex flex-col space-y-2">
+  return <Card className="animate-fadeIn">
+      <CardHeader className="flex flex-col space-y-2 p-5">
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
           Strengths and weaknesses
-          <Button 
-            variant="outline" 
-            className="h-8 w-8 p-0 [&_svg]:size-5" 
-            onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}
-          >
+          <Button variant="outline" className="h-8 w-8 p-0 [&_svg]:size-5" onClick={() => setViewMode(viewMode === 'grouped' ? 'list' : 'grouped')}>
             {viewMode === 'grouped' ? <LayoutList /> : <Columns />}
           </Button>
         </CardTitle>
-        <p className="text-base text-gray-600">
-          These are your personal strengths and weaknesses. Focus on your weaknesses to improve your performance. Below is a breakdown of your performance compared to other students studying for this exam.
-        </p>
+        <p className="text-base text-gray-600">See your strengths and weaknesses to focus your study effectively.</p>
+        {examStep === 'step2' && (
+          <div className="pt-4">
+            <Tabs defaultValue="Systems" value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="Systems">Systems</TabsTrigger>
+                <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
+                <TabsTrigger value="Disciplines">Disciplines</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+        )}
       </CardHeader>
       <CardContent className="mt-4">
-        {viewMode === 'grouped' ? (
-          <div className="grid grid-cols-3 gap-6">
+        {viewMode === 'grouped' ? <div className="grid grid-cols-3 gap-6">
             <Column title="Lower" items={lowerPerformance} />
             <Column title="Same" items={samePerformance} />
             <Column title="Higher" items={higherPerformance} />
-          </div>
-        ) : (
-          <div>
+          </div> : <div>
             <table className="w-full">
               <thead className="border-b border-gray-200">
                 <tr className="grid grid-cols-12 gap-4">
@@ -78,22 +84,12 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
                 </tr>
               </thead>
               <tbody className="pt-2">
-                {sortedItems.map((item, index) => (
-                  <PerformanceTopicItem 
-                    key={index} 
-                    item={item} 
-                    onClick={() => {}} 
-                    view="list" 
-                  />
-                ))}
+                {sortedItems.map((item, index) => <PerformanceTopicItem key={index} item={item} onClick={() => {}} view="list" />)}
               </tbody>
             </table>
-          </div>
-        )}
+          </div>}
       </CardContent>
-    </Card>
-  );
+    </Card>;
 };
 
 export default PerformanceSummary;
-

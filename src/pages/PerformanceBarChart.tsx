@@ -19,7 +19,7 @@ const PerformanceBarChart = () => {
           Back to Dashboard
         </Button>
 
-        <PerformanceScoreCard />
+        <PerformanceScoreCard examStep="step2" />
       </div>
     </div>
   );

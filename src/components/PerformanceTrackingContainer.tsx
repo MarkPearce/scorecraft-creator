@@ -62,11 +62,11 @@ interface PerformanceTrackingContainerProps {
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
-      { date: 'Feb 12', score: 203, isMainPoint: true },
-      { date: 'Feb 19', score: 218, isMainPoint: true },
-      { date: 'Feb 26', score: 215, isMainPoint: true },
-      { date: 'Mar 4', score: 235, isMainPoint: true },
-      { date: 'Mar 11', score: 244, isMainPoint: true }
+      { date: 'Feb 12', score: 138, isMainPoint: true },
+      { date: 'Feb 19', score: 167, isMainPoint: true },
+      { date: 'Feb 26', score: 156, isMainPoint: true },
+      { date: 'Mar 4', score: 189, isMainPoint: true },
+      { date: 'Mar 11', score: 203, isMainPoint: true }
     ] : [
       { date: 'Feb 12', score: 198, isMainPoint: true },
       { date: 'Feb 19', score: 210, isMainPoint: true },
@@ -95,6 +95,19 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
         value: 260,
         label: 'Target score (260)'
       }
+    };
+  }, [examStep]);
+
+  const yAxisConfig = useMemo(() => {
+    if (examStep === 'step1') {
+      return {
+        domain: [120, 300] as [number, number],
+        ticks: [120, 140, 160, 180, 200, 220, 240, 260, 280, 300]
+      };
+    }
+    return {
+      domain: [180, 300] as [number, number],
+      ticks: [180, 200, 220, 240, 260, 280, 300]
     };
   }, [examStep]);
 
@@ -138,8 +151,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               <YAxis 
                 tick={{ fontSize: 12 }}
                 tickLine={false}
-                domain={[180, 300]}
-                ticks={[180, 200, 220, 240, 260, 280, 300]}
+                domain={yAxisConfig.domain}
+                ticks={yAxisConfig.ticks}
                 label={{
                   value: 'Score',
                   angle: -90,

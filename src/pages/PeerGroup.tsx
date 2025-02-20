@@ -13,8 +13,9 @@ const PeerGroupPage = () => {
           Back to Dashboard
         </Button>
         
-        <PeerGroup />
+        <PeerGroup examStep="step2" />
       </div>
     </div>;
 };
+
 export default PeerGroupPage;
