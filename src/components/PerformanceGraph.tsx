@@ -160,15 +160,58 @@ const PerformanceGraph = ({
                   />
                 ))}
                 
-                {/* Add semi-transparent overlay for step 1 between 210 and 182 */}
+                {/* Add semi-transparent overlay and bracket indicators for step 1 */}
                 {examStep === 'step1' && (
-                  <div
-                    className="absolute w-full bg-white/50"
-                    style={{
-                      height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                      top: `${((range.max - 210) / (range.max - range.min)) * 100}%`
-                    }}
-                  />
+                  <>
+                    <div
+                      className="absolute w-full bg-white/50"
+                      style={{
+                        height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                        top: `${((range.max - 210) / (range.max - range.min)) * 100}%`
+                      }}
+                    />
+                    {/* Top bracket line */}
+                    <div
+                      className="absolute left-full"
+                      style={{
+                        top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                        transform: 'translateY(-1px)'
+                      }}
+                    >
+                      <div className="h-[2px] w-4 bg-gray-600" />
+                    </div>
+                    {/* Bottom bracket line */}
+                    <div
+                      className="absolute left-full"
+                      style={{
+                        top: `${((range.max - 182) / (range.max - range.min)) * 100}%`,
+                        transform: 'translateY(-1px)'
+                      }}
+                    >
+                      <div className="h-[2px] w-4 bg-gray-600" />
+                    </div>
+                    {/* Vertical connecting line */}
+                    <div
+                      className="absolute left-full"
+                      style={{
+                        top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                        height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                        transform: 'translateX(16px)'
+                      }}
+                    >
+                      <div className="h-full w-[2px] bg-gray-600" />
+                      {/* Label */}
+                      <div 
+                        className="absolute left-2 whitespace-nowrap text-sm text-gray-600"
+                        style={{
+                          top: '50%',
+                          transform: 'translateY(-50%)'
+                        }}
+                      >
+                        Passing Range
+                      </div>
+                    </div>
+                  </>
                 )}
               </div>
             </div>
