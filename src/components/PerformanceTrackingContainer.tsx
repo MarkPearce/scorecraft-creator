@@ -137,7 +137,7 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
                 <ReferenceArea 
                   y1={182} 
                   y2={210} 
-                  fill="#e0e6eb"
+                  fill="#f1f1f1"
                   fillOpacity={1}
                   strokeOpacity={0}
                   z={-1}
