@@ -1,4 +1,3 @@
-
 interface PerformanceItem {
   subject: string;
   performance: 'lower' | 'same' | 'higher';
@@ -8,43 +7,43 @@ interface PerformanceItem {
 
 export const performanceData: PerformanceItem[] = [
   // Original Step 1 data with Disciplines category
-  { subject: "Pathology", performance: "lower", percentageCorrect: 58, category: "Disciplines" },
-  { subject: "Physiology", performance: "lower", percentageCorrect: 57, category: "Disciplines" },
-  { subject: "Gross Anatomy & Embryology", performance: "same", percentageCorrect: 71, category: "Disciplines" },
-  { subject: "Microbiology", performance: "lower", percentageCorrect: 55, category: "Disciplines" },
-  { subject: "Pharmacology", performance: "lower", percentageCorrect: 60, category: "Disciplines" },
-  { subject: "Behavioral Sciences", performance: "same", percentageCorrect: 73, category: "Disciplines" },
+  { subject: "Pathology", performance: "lower", percentageCorrect: 35, category: "Disciplines" },
+  { subject: "Physiology", performance: "lower", percentageCorrect: 32, category: "Disciplines" },
+  { subject: "Gross Anatomy & Embryology", performance: "same", percentageCorrect: 55, category: "Disciplines" },
+  { subject: "Microbiology", performance: "lower", percentageCorrect: 38, category: "Disciplines" },
+  { subject: "Pharmacology", performance: "lower", percentageCorrect: 36, category: "Disciplines" },
+  { subject: "Behavioral Sciences", performance: "same", percentageCorrect: 65, category: "Disciplines" },
   { subject: "Biochemistry & Nutrition", performance: "higher", percentageCorrect: 85, category: "Disciplines" },
   { subject: "Histology & Cell Biology", performance: "higher", percentageCorrect: 82, category: "Disciplines" },
-  { subject: "Immunology", performance: "same", percentageCorrect: 70, category: "Disciplines" },
-  { subject: "Genetics", performance: "higher", percentageCorrect: 80, category: "Disciplines" }
+  { subject: "Immunology", performance: "same", percentageCorrect: 45, category: "Disciplines" },
+  { subject: "Genetics", performance: "higher", percentageCorrect: 75, category: "Disciplines" }
 ];
 
 export const step2PerformanceData: PerformanceItem[] = [
   // Physician Tasks
-  { subject: "PC: Diagnosis", performance: "lower", percentageCorrect: 58, category: "Physician Tasks" },
-  { subject: "Ethics/Professionalism", performance: "lower", percentageCorrect: 60, category: "Physician Tasks" },
+  { subject: "PC: Diagnosis", performance: "lower", percentageCorrect: 35, category: "Physician Tasks" },
+  { subject: "Ethics/Professionalism", performance: "lower", percentageCorrect: 37, category: "Physician Tasks" },
   { subject: "PC: Health Maintenance, Prevention & Surveillance", performance: "higher", percentageCorrect: 82, category: "Physician Tasks" },
-  { subject: "PC: Pharmacotherapy, Interventions & Management", performance: "same", percentageCorrect: 71, category: "Physician Tasks" },
-  { subject: "Systems-Based Practice/Patient Safety", performance: "same", percentageCorrect: 73, category: "Physician Tasks" },
+  { subject: "PC: Pharmacotherapy, Interventions & Management", performance: "same", percentageCorrect: 55, category: "Physician Tasks" },
+  { subject: "Systems-Based Practice/Patient Safety", performance: "same", percentageCorrect: 60, category: "Physician Tasks" },
   
   // Systems
-  { subject: "Gastrointestinal System", performance: "lower", percentageCorrect: 57, category: "Systems" },
-  { subject: "Behavioral Health", performance: "lower", percentageCorrect: 55, category: "Systems" },
-  { subject: "Respiratory System", performance: "same", percentageCorrect: 70, category: "Systems" },
-  { subject: "Nervous System & Special Senses", performance: "same", percentageCorrect: 72, category: "Systems" },
+  { subject: "Gastrointestinal System", performance: "lower", percentageCorrect: 32, category: "Systems" },
+  { subject: "Behavioral Health", performance: "lower", percentageCorrect: 34, category: "Systems" },
+  { subject: "Respiratory System", performance: "same", percentageCorrect: 50, category: "Systems" },
+  { subject: "Nervous System & Special Senses", performance: "same", percentageCorrect: 58, category: "Systems" },
   { subject: "Cardiovascular System", performance: "higher", percentageCorrect: 85, category: "Systems" },
-  { subject: "Endocrine System", performance: "same", percentageCorrect: 75, category: "Systems" },
-  { subject: "Female Reproductive & Breast", performance: "higher", percentageCorrect: 83, category: "Systems" },
-  { subject: "Renal & Urinary System & Male Reproductive", performance: "lower", percentageCorrect: 61, category: "Systems" },
+  { subject: "Endocrine System", performance: "same", percentageCorrect: 65, category: "Systems" },
+  { subject: "Female Reproductive & Breast", performance: "higher", percentageCorrect: 78, category: "Systems" },
+  { subject: "Renal & Urinary System & Male Reproductive", performance: "lower", percentageCorrect: 36, category: "Systems" },
   
   // Disciplines
-  { subject: "Surgery", performance: "lower", percentageCorrect: 55, category: "Disciplines" },
-  { subject: "Multisystem Processes & Disorders", performance: "lower", percentageCorrect: 59, category: "Disciplines" },
-  { subject: "Psychiatry", performance: "lower", percentageCorrect: 60, category: "Disciplines" },
-  { subject: "Pregnancy, Childbirth & the Puerperium", performance: "same", percentageCorrect: 74, category: "Disciplines" },
-  { subject: "Pediatrics", performance: "same", percentageCorrect: 73, category: "Disciplines" },
-  { subject: "Medicine", performance: "higher", percentageCorrect: 82, category: "Disciplines" }
+  { subject: "Surgery", performance: "lower", percentageCorrect: 33, category: "Disciplines" },
+  { subject: "Multisystem Processes & Disorders", performance: "lower", percentageCorrect: 35, category: "Disciplines" },
+  { subject: "Psychiatry", performance: "lower", percentageCorrect: 38, category: "Disciplines" },
+  { subject: "Pregnancy, Childbirth & the Puerperium", performance: "same", percentageCorrect: 62, category: "Disciplines" },
+  { subject: "Pediatrics", performance: "same", percentageCorrect: 58, category: "Disciplines" },
+  { subject: "Medicine", performance: "higher", percentageCorrect: 80, category: "Disciplines" }
 ];
 
 interface PerformanceTopicItemProps {
