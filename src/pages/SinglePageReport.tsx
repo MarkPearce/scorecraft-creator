@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const SinglePageReport = () => {
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step1');
+  const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
 
   return <>
@@ -75,4 +75,3 @@ const SinglePageReport = () => {
 };
 
 export default SinglePageReport;
-
