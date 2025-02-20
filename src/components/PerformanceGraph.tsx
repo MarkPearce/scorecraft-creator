@@ -34,9 +34,9 @@ const PerformanceGraph = ({
         color: "bg-[#FFC107]",
         label: ""
       }, {
-        score: targetScore,
+        score: 210,
         color: "bg-[#019444]",
-        label: `${targetScore}`
+        label: "210"
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
@@ -83,7 +83,7 @@ const PerformanceGraph = ({
 
   const getScoreColor = (currentScore: number) => {
     if (examStep === 'step1') {
-      if (currentScore >= targetScore) return "text-[#019444]";
+      if (currentScore >= 210) return "text-[#019444]";
       if (currentScore >= 196) return "text-[#FFC107]";
       return "text-[#ED1B24]";
     } else {
@@ -96,7 +96,7 @@ const PerformanceGraph = ({
 
   const getBackgroundColor = (currentScore: number) => {
     if (examStep === 'step1') {
-      if (currentScore >= targetScore) return "bg-[#019444]/15";
+      if (currentScore >= 210) return "bg-[#019444]/15";
       if (currentScore >= 196) return "bg-[#FFC107]/15";
       return "bg-[#ED1B24]/15";
     } else {
@@ -110,7 +110,7 @@ const PerformanceGraph = ({
   const getFaceIcon = (currentScore: number) => {
     const colorClass = getScoreColor(currentScore);
     if (examStep === 'step1') {
-      if (currentScore >= targetScore) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+      if (currentScore >= 210) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
       if (currentScore >= 196) return <Smile className={`w-16 h-16 ${colorClass}`} />;
       return <Angry className={`w-16 h-16 ${colorClass}`} />;
     } else {
