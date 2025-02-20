@@ -69,7 +69,7 @@ const PerformanceScoreCard = ({
 
   return (
     <Card className={`animate-fadeIn ${className}`}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 p-6">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle>{title}</CardTitle>
         {showControls && (
           <Dialog>
@@ -98,7 +98,7 @@ const PerformanceScoreCard = ({
         )}
       </CardHeader>
 
-      <CardContent className="p-6 pt-0">
+      <CardContent>
         <div className="w-full max-w-[1000px] mx-auto">
           <PerformanceGraph 
             score={score}
