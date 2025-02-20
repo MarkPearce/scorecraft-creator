@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -62,11 +61,11 @@ interface PerformanceTrackingContainerProps {
 const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
-      { date: 'Feb 12', score: 203, secondScore: 148, isMainPoint: true },
-      { date: 'Feb 19', score: 218, secondScore: 165, isMainPoint: true },
-      { date: 'Feb 26', score: 215, secondScore: 172, isMainPoint: true },
-      { date: 'Mar 4', score: 235, secondScore: 188, isMainPoint: true },
-      { date: 'Mar 11', score: 244, secondScore: 205, isMainPoint: true }
+      { date: 'Feb 12', score: 148, isMainPoint: true },
+      { date: 'Feb 19', score: 165, isMainPoint: true },
+      { date: 'Feb 26', score: 172, isMainPoint: true },
+      { date: 'Mar 4', score: 188, isMainPoint: true },
+      { date: 'Mar 11', score: 205, isMainPoint: true }
     ] : [
       { date: 'Feb 12', score: 198, isMainPoint: true },
       { date: 'Feb 19', score: 210, isMainPoint: true },
@@ -222,19 +221,6 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 fill="none"
                 isAnimationActive={false}
               />
-              {examStep === 'step1' && (
-                <Line 
-                  type="monotone"
-                  dataKey="secondScore" 
-                  stroke="#8884d8"
-                  strokeWidth={3} 
-                  dot={<CustomDot examStep={examStep} />} 
-                  activeDot={<CustomActiveDot examStep={examStep} />}
-                  connectNulls
-                  fill="none"
-                  isAnimationActive={false}
-                />
-              )}
             </LineChart>
           </ResponsiveContainer>
         </div>
