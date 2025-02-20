@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -53,41 +54,6 @@ const CustomActiveDot = memo((props: DotProps) => {
   return <circle cx={cx} cy={cy} r={radius} fill={color} />;
 });
 CustomActiveDot.displayName = 'CustomActiveDot';
-
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: Array<{
-    value: number;
-    name: string;
-  }>;
-  viewBox?: {
-    width: number;
-  };
-}
-
-const CustomTooltip = ({ active, payload, viewBox }: CustomTooltipProps) => {
-  if (!active || !payload || !payload.length) return null;
-
-  const tooltipWidth = 160;
-  const xPosition = viewBox ? viewBox.width - tooltipWidth : 0;
-
-  return (
-    <div
-      style={{
-        backgroundColor: 'white',
-        border: '1px solid #e5e7eb',
-        borderRadius: '6px',
-        padding: '8px',
-        width: `${tooltipWidth}px`,
-        position: 'absolute',
-        left: `${xPosition}px`,
-        top: '0px'
-      }}
-    >
-      <p>{`Score: ${payload[0].value}`}</p>
-    </div>
-  );
-};
 
 interface PerformanceTrackingContainerProps {
   examStep?: 'step1' | 'step2';
@@ -185,8 +151,15 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
               />
               <Tooltip 
-                content={<CustomTooltip />}
-                allowEscapeViewBox={{ x: true, y: true }}
+                position={{ x: 600, y: 0 }}
+                coordinate={{ x: 600, y: 0 }}
+                contentStyle={{
+                  backgroundColor: 'white',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  padding: '8px'
+                }}
+                formatter={(value: number) => [`${value}`, 'Score']}
               />
               {examStep === 'step2' && (
                 <>
