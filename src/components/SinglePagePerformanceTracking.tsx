@@ -1,13 +1,21 @@
 
-import { examStepType } from "@/utils/types";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
+type examStepType = 'step1' | 'step2';
+
+interface DataPoint {
+  date: string;
+  score: number;
+  isMainPoint?: boolean;
+  isProjected?: boolean;
+}
 
 interface SinglePagePerformanceTrackingProps {
   examStep: examStepType;
 }
 
 const SinglePagePerformanceTracking = ({ examStep }: SinglePagePerformanceTrackingProps) => {
-  const mainPoints = examStep === 'step1' ? [
+  const mainPoints: DataPoint[] = examStep === 'step1' ? [
     { date: 'Feb 12', score: 203, isMainPoint: true },
     { date: 'Feb 19', score: 218, isMainPoint: true },
     { date: 'Feb 26', score: 225, isMainPoint: true },
@@ -21,7 +29,7 @@ const SinglePagePerformanceTracking = ({ examStep }: SinglePagePerformanceTracki
     { date: 'Mar 11', score: 260, isMainPoint: true }
   ];
 
-  const projectedPoints = examStep === 'step1' ? [
+  const projectedPoints: DataPoint[] = examStep === 'step1' ? [
     { date: 'Mar 18', score: 252, isProjected: true },
     { date: 'Mar 25', score: 259, isProjected: true },
     { date: 'Apr 1', score: 266, isProjected: true }
@@ -31,7 +39,7 @@ const SinglePagePerformanceTracking = ({ examStep }: SinglePagePerformanceTracki
     { date: 'Apr 1', score: 281, isProjected: true }
   ];
 
-  const data = [...mainPoints, ...projectedPoints];
+  const data: DataPoint[] = [...mainPoints, ...projectedPoints];
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
@@ -51,9 +59,9 @@ const SinglePagePerformanceTracking = ({ examStep }: SinglePagePerformanceTracki
               stroke="#4F46E5"
               strokeWidth={2}
               dot={(props) => {
-                const isMainPoint = data[props.index]?.isMainPoint;
-                const isProjected = data[props.index]?.isProjected;
-                if (isProjected) {
+                if (!props.cx || !props.cy) return null;
+                const point = data[props.index];
+                if (point?.isProjected) {
                   return (
                     <circle
                       cx={props.cx}
@@ -65,7 +73,7 @@ const SinglePagePerformanceTracking = ({ examStep }: SinglePagePerformanceTracki
                     />
                   );
                 }
-                if (isMainPoint) {
+                if (point?.isMainPoint) {
                   return (
                     <circle
                       cx={props.cx}
