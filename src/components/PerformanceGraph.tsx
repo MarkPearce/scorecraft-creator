@@ -1,8 +1,8 @@
 
 import { useRef } from "react";
 import ScoreIndicator from "./ScoreIndicator";
-import { Angry, Laugh, Meh, Smile } from "lucide-react";
 import PassingRangeBracket from "./PassingRangeBracket";
+import { Angry, Laugh, Meh, Smile } from "lucide-react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -128,7 +128,7 @@ const PerformanceGraph = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
       <div className="performance-graph-container flex items-center justify-center pt-6 md:col-span-8">
-        <div className="relative">
+        <div className="relative w-full">
           <div className="relative h-[300px] flex" ref={containerRef}>
             <div className="relative h-full w-[50px] flex-shrink-0">
               {segments.map(segment => (
@@ -149,16 +149,17 @@ const PerformanceGraph = ({
             </div>
 
             {examStep === 'step1' && (
-              <div className="relative h-full w-[128px] flex-shrink-0">
-                <div
-                  className="absolute h-full pointer-events-none"
-                  style={{
-                    top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
-                    height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                  }}
-                >
-                  <PassingRangeBracket />
-                </div>
+              <div 
+                className="absolute h-full pointer-events-none"
+                style={{
+                  left: '50px',
+                  top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                  height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                  width: '128px',
+                  zIndex: 10
+                }}
+              >
+                <PassingRangeBracket />
               </div>
             )}
 
@@ -193,7 +194,7 @@ const PerformanceGraph = ({
                 style={{
                   top: `${((range.max - score) / (range.max - range.min)) * 100}%`,
                   left: '0',
-                  zIndex: 10
+                  zIndex: 20
                 }}
               >
                 <ScoreIndicator label="Assessment" value={score} />
@@ -205,7 +206,7 @@ const PerformanceGraph = ({
                   style={{
                     top: `${((range.max - targetScore) / (range.max - range.min)) * 100}%`,
                     left: '0',
-                    zIndex: 20
+                    zIndex: 30
                   }}
                 >
                   <ScoreIndicator label="Target Score" value={targetScore} />
@@ -237,4 +238,3 @@ const PerformanceGraph = ({
 };
 
 export default PerformanceGraph;
-
