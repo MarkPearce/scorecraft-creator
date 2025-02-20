@@ -21,10 +21,6 @@ const PerformanceSummary = ({
   const samePerformance = currentData.filter(item => item.performance === 'same');
   const higherPerformance = currentData.filter(item => item.performance === 'higher');
 
-  const getPercentage = (items: typeof currentData) => {
-    return Math.round((items.length / currentData.length) * 100);
-  };
-
   const Column = ({
     title,
     items
@@ -35,7 +31,7 @@ const PerformanceSummary = ({
     <div className="w-full min-w-0">
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-sm font-medium text-gray-700">{title}</h3>
-        <span className="text-sm text-gray-500">{getPercentage(items)}%</span>
+        <span className="text-sm text-gray-500">% Correct</span>
       </div>
       <div className="space-y-2">
         {items.map((item, index) => <PerformanceTopicItem key={index} item={item} onClick={() => {}} view="grouped" />)}
