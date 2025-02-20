@@ -1,33 +1,50 @@
+
 import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
+
 type ViewMode = 'grouped' | 'list';
+
 interface PerformanceSummaryProps {
   examStep: 'step1' | 'step2';
 }
+
 const PerformanceSummary = ({
   examStep
 }: PerformanceSummaryProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
+  
   const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
   const lowerPerformance = currentData.filter(item => item.performance === 'lower');
   const samePerformance = currentData.filter(item => item.performance === 'same');
   const higherPerformance = currentData.filter(item => item.performance === 'higher');
+
+  const getPercentage = (items: typeof currentData) => {
+    return Math.round((items.length / currentData.length) * 100);
+  };
+
   const Column = ({
     title,
     items
   }: {
     title: string;
     items: typeof currentData;
-  }) => <div className="w-full min-w-0">
-      <h3 className="text-sm font-medium text-gray-700 mb-3">{title}</h3>
+  }) => (
+    <div className="w-full min-w-0">
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="text-sm font-medium text-gray-700">{title}</h3>
+        <span className="text-sm text-gray-500">{getPercentage(items)}%</span>
+      </div>
       <div className="space-y-2">
         {items.map((item, index) => <PerformanceTopicItem key={index} item={item} onClick={() => {}} view="grouped" />)}
       </div>
-    </div>;
+    </div>
+  );
+
   const sortedItems = [...lowerPerformance, ...samePerformance, ...higherPerformance];
+
   return <Card className="animate-fadeIn">
       <CardHeader className="flex flex-col space-y-2">
         <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -60,4 +77,5 @@ const PerformanceSummary = ({
       </CardContent>
     </Card>;
 };
+
 export default PerformanceSummary;
