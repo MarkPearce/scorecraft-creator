@@ -3,7 +3,7 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
 
 type ViewMode = 'grouped' | 'list';
@@ -59,13 +59,16 @@ const PerformanceSummary = ({
         <p className="text-base text-gray-600">See your strengths and weaknesses to focus your study effectively.</p>
         {examStep === 'step2' && (
           <div className="pt-4">
-            <Tabs defaultValue="Systems" value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="Systems">Systems</TabsTrigger>
-                <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
-                <TabsTrigger value="Disciplines">Disciplines</TabsTrigger>
-              </TabsList>
-            </Tabs>
+            <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Systems">Systems</SelectItem>
+                <SelectItem value="Physician Tasks">Physician Tasks</SelectItem>
+                <SelectItem value="Disciplines">Disciplines</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         )}
       </CardHeader>
