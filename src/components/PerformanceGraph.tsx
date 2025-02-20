@@ -151,10 +151,12 @@ const PerformanceGraph = ({
             {examStep === 'step1' && (
               <div className="relative h-full w-[128px] flex-shrink-0">
                 <div
-                  className="absolute h-full pointer-events-none"
+                  className="absolute -translate-y-1/2 pointer-events-none"
                   style={{
                     top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                    left: '0',
                     height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                    width: '100%'
                   }}
                 >
                   <PassingRangeBracket />
@@ -237,4 +239,3 @@ const PerformanceGraph = ({
 };
 
 export default PerformanceGraph;
-
