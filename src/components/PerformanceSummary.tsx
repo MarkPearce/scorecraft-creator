@@ -20,7 +20,9 @@ const PerformanceSummary = ({
   const [selectedCategory, setSelectedCategory] = useState<Category>('Systems');
   
   const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
-  const filteredData = currentData.filter(item => item.category === selectedCategory);
+  const filteredData = examStep === 'step1' 
+    ? currentData 
+    : currentData.filter(item => item.category === selectedCategory);
   
   const lowerPerformance = filteredData.filter(item => item.performance === 'lower');
   const samePerformance = filteredData.filter(item => item.performance === 'same');
@@ -55,13 +57,15 @@ const PerformanceSummary = ({
           </Button>
         </CardTitle>
         <p className="text-base text-gray-600">See your strengths and weaknesses to focus your study effectively.</p>
-        <Tabs value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="Systems">Systems</TabsTrigger>
-            <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
-            <TabsTrigger value="Disciplines">Disciplines</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        {examStep === 'step2' && (
+          <Tabs value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="Systems">Systems</TabsTrigger>
+              <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
+              <TabsTrigger value="Disciplines">Disciplines</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        )}
       </CardHeader>
       <CardContent className="mt-4">
         {viewMode === 'grouped' ? <div className="grid grid-cols-3 gap-6">
