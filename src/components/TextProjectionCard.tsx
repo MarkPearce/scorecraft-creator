@@ -1,8 +1,11 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Clock, Target, Percent } from "lucide-react";
+import { Clock, Target, Scale } from "lucide-react";
+
 interface TextProjectionCardProps {
   examStep?: 'step1' | 'step2';
 }
+
 export const TextProjectionCard = ({
   examStep = 'step2'
 }: TextProjectionCardProps) => {
@@ -40,7 +43,7 @@ export const TextProjectionCard = ({
             
             <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
               {examStep === 'step1' ? <>
-                  <Percent className="h-6 w-6 text-gray-600 mt-0.5" />
+                  <Scale className="h-6 w-6 text-gray-600 mt-0.5" />
                   <div>
                     <p className="font-medium text-gray-900">current likelihood of passing:</p>
                     <p className="text-sm">64%</p>
@@ -58,4 +61,5 @@ export const TextProjectionCard = ({
       </CardContent>
     </Card>;
 };
+
 TextProjectionCard.displayName = 'TextProjectionCard';
