@@ -3,9 +3,11 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
 
 type ViewMode = 'grouped' | 'list';
+type Category = 'Systems' | 'Physician Tasks' | 'Disciplines';
 
 interface PerformanceSummaryProps {
   examStep: 'step1' | 'step2';
@@ -15,11 +17,14 @@ const PerformanceSummary = ({
   examStep
 }: PerformanceSummaryProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
+  const [selectedCategory, setSelectedCategory] = useState<Category>('Systems');
   
   const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
-  const lowerPerformance = currentData.filter(item => item.performance === 'lower');
-  const samePerformance = currentData.filter(item => item.performance === 'same');
-  const higherPerformance = currentData.filter(item => item.performance === 'higher');
+  const filteredData = currentData.filter(item => item.category === selectedCategory);
+  
+  const lowerPerformance = filteredData.filter(item => item.performance === 'lower');
+  const samePerformance = filteredData.filter(item => item.performance === 'same');
+  const higherPerformance = filteredData.filter(item => item.performance === 'higher');
 
   const Column = ({
     title,
@@ -50,6 +55,13 @@ const PerformanceSummary = ({
           </Button>
         </CardTitle>
         <p className="text-base text-gray-600">See your strengths and weaknesses to focus your study effectively.</p>
+        <Tabs value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="Systems">Systems</TabsTrigger>
+            <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
+            <TabsTrigger value="Disciplines">Disciplines</TabsTrigger>
+          </TabsList>
+        </Tabs>
       </CardHeader>
       <CardContent className="mt-4">
         {viewMode === 'grouped' ? <div className="grid grid-cols-3 gap-6">
