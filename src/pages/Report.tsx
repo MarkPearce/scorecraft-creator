@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +18,7 @@ const Report = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
+  const [currentScore, setCurrentScore] = useState(245);
 
   const handlePrevClick = () => {
     const prevButton = document.querySelector('.embla__prev') as HTMLButtonElement;
@@ -104,7 +104,7 @@ const Report = () => {
                 </CarouselItem>
                 
                 <CarouselItem>
-                  <PeerGroup />
+                  <PeerGroup studentScore={currentScore} examStep={currentStep} />
                 </CarouselItem>
                 
                 <CarouselItem>
