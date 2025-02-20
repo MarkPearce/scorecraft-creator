@@ -171,11 +171,12 @@ const PerformanceGraph = ({
                       }}
                     />
                     <div
-                      className="absolute -left-2 h-full pointer-events-none"
+                      className="absolute h-full pointer-events-none"
                       style={{
                         top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
                         height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                        width: '128px'
+                        width: '128px',
+                        right: '100%'
                       }}
                     >
                       <PassingRangeBracket />
