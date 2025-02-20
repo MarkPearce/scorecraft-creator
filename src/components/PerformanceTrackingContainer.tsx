@@ -147,7 +147,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                     fill: '#64748b',
                     fontSize: 12,
                     dx: 8,
-                    dy: -10
+                    dy: 0
                   }}
                 />
               )}
