@@ -59,7 +59,7 @@ interface PerformanceTrackingContainerProps {
   examStep?: 'step1' | 'step2';
 }
 
-const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
+const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
       { date: 'Feb 12', score: 138, isMainPoint: true },
@@ -246,6 +246,12 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       </CardContent>
     </Card>
   );
-};
+}, (prevProps, nextProps) => {
+  // Only re-render if examStep changes
+  return prevProps.examStep === nextProps.examStep;
+});
+
+PerformanceTrackingContainer.displayName = 'PerformanceTrackingContainer';
 
 export default PerformanceTrackingContainer;
+
