@@ -88,8 +88,6 @@ const DistributionChart = ({
             ]
           }
           labelFormatter={(label) => `Score: ${label}`}
-          position={{ x: "auto", y: 0 }}
-          coordinate={{ x: "auto", y: 0 }}
           cursor={{ stroke: '#0aa6b8', strokeWidth: 1, strokeDasharray: '3 3' }}
           wrapperStyle={{ 
             backgroundColor: 'white',
