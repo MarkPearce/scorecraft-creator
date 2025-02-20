@@ -3,25 +3,18 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import PerformanceTopicItem from './PerformanceTopicItem';
-import { PerformanceItem, performanceData, step2PerformanceData } from '@/utils/performanceData';
+import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
 
 type ViewMode = 'grouped' | 'list';
 
 interface PerformanceSummaryProps {
   examStep: 'step1' | 'step2';
-  data?: PerformanceItem[];
-  onItemClick?: (subject: string) => void;
 }
 
-const PerformanceSummary = ({ 
-  examStep, 
-  data,
-  onItemClick = () => {} 
-}: PerformanceSummaryProps) => {
+const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
   
-  const currentData = data || (examStep === 'step1' ? performanceData : step2PerformanceData);
+  const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
   const lowerPerformance = currentData.filter(item => item.performance === 'lower');
   const samePerformance = currentData.filter(item => item.performance === 'same');
   const higherPerformance = currentData.filter(item => item.performance === 'higher');
@@ -40,7 +33,7 @@ const PerformanceSummary = ({
           <PerformanceTopicItem 
             key={index} 
             item={item} 
-            onClick={onItemClick} 
+            onClick={() => {}} 
             view="grouped" 
           />
         ))}
@@ -89,7 +82,7 @@ const PerformanceSummary = ({
                   <PerformanceTopicItem 
                     key={index} 
                     item={item} 
-                    onClick={onItemClick} 
+                    onClick={() => {}} 
                     view="list" 
                   />
                 ))}
@@ -103,3 +96,4 @@ const PerformanceSummary = ({
 };
 
 export default PerformanceSummary;
+
