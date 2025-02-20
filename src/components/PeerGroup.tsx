@@ -55,7 +55,7 @@ const PeerGroup = memo(({
                 <SelectValue placeholder="Select peer group" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All AMBOSS {stepDisplay}</SelectItem>
+                <SelectItem value="all">{`All AMBOSS ${stepDisplay}`}</SelectItem>
                 <SelectItem value="same-objective">Same learning objective</SelectItem>
                 <SelectItem value="same-state">Same state</SelectItem>
                 <SelectItem value="same-school">Same school</SelectItem>
@@ -75,3 +75,4 @@ const PeerGroup = memo(({
 PeerGroup.displayName = 'PeerGroup';
 
 export default PeerGroup;
+
