@@ -12,7 +12,7 @@ interface PeerGroupProps {
 }
 
 const PeerGroup = ({ 
-  studentScore = 245, // Default value if not provided
+  studentScore = 245,
   examStep 
 }: PeerGroupProps) => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState<"all" | "same-objective" | "same-state" | "same-school">("all");
@@ -53,7 +53,7 @@ const PeerGroup = ({
                 <SelectValue placeholder="Select peer group" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All AMBOSS</SelectItem>
+                <SelectItem value="all">All AMBOSS ({examStep})</SelectItem>
                 <SelectItem value="same-objective">Same learning objective</SelectItem>
                 <SelectItem value="same-state">Same state</SelectItem>
                 <SelectItem value="same-school">Same school</SelectItem>
