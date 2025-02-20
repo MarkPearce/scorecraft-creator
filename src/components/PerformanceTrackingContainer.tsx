@@ -151,8 +151,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
               />
               <Tooltip 
-                allowEscapeViewBox={{ x: true, y: false }}
-                offset={0}
+                position={{ x: 600, y: 0 }}
+                coordinate={{ x: 600, y: 0 }}
                 contentStyle={{
                   backgroundColor: 'white',
                   border: '1px solid #e5e7eb',
@@ -160,7 +160,6 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                   padding: '8px'
                 }}
                 formatter={(value: number) => [`${value}`, 'Score']}
-                wrapperStyle={{ zIndex: 100 }}
               />
               {examStep === 'step2' && (
                 <>
