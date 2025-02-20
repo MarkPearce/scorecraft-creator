@@ -97,7 +97,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     };
   }, [examStep]);
 
-  const getTooltipPosition = (viewBox: { width: number }) => {
+  const getTooltipCoordinate = (viewBox: { width: number }) => {
     const tooltipWidth = 160; // Fixed width for the tooltip
     return {
       x: viewBox.width - tooltipWidth,
@@ -158,7 +158,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
               />
               <Tooltip 
-                position={getTooltipPosition}
+                coordinate={getTooltipCoordinate}
+                allowEscapeViewBox={{ x: true, y: true }}
                 contentStyle={{
                   backgroundColor: 'white',
                   border: '1px solid #e5e7eb',
