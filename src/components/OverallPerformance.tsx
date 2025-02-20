@@ -29,7 +29,7 @@ const OverallPerformance = ({
     <Card>
       <CardContent>
         <div className="flex gap-8">
-          <div>
+          <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <div className="text-sm text-[#403E43] font-lato">Exam Date</div>
               <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
@@ -45,7 +45,7 @@ const OverallPerformance = ({
             </div>
             <div className="text-4xl font-bold text-gray-600 font-lato">{examDate}</div>
           </div>
-          <div>
+          <div className="flex-1">
             <div className="text-sm text-[#403E43] mb-2 font-lato">Questions Answered</div>
             <div className="text-4xl font-bold text-gray-600 font-lato">{questionsAnswered}</div>
           </div>
