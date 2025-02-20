@@ -20,7 +20,21 @@ export const TextProjectionCard = ({ examStep = 'step2' }: TextProjectionCardPro
         <div className="grid grid-cols-2 gap-6 text-left text-gray-600 font-lato">
           <div className="flex items-center">
             <p className="text-base font-normal">
-              {projectionText}
+              {examStep === 'step1' ? (
+                <>
+                  Users with your current performance typically{" "}
+                  <span className="font-bold text-gray-900">
+                    reach a 95% pass rate in 2 months
+                  </span>
+                </>
+              ) : (
+                <>
+                  Users with your current performance and time to exam typically{" "}
+                  <span className="font-bold text-gray-900">
+                    score 230-250 on a 3-digit scale
+                  </span>
+                </>
+              )}
             </p>
           </div>
           
