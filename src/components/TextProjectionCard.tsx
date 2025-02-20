@@ -19,10 +19,11 @@ export const TextProjectionCard = ({
           <div className="flex items-center">
             <p className="text-base font-normal">
               {examStep === 'step1' ? <>
-                  Users with your current performance typically{" "}
+                  Users with your current performance typically reach a{" "}
                   <span className="font-bold text-gray-900">
-                    reach a 95% pass rate in 2 months
+                    95% pass rate
                   </span>
+                  {" "}in 2 months.
                 </> : <>
                   Users with your current performance and time to exam typically{" "}
                   <span className="font-bold text-gray-900">
