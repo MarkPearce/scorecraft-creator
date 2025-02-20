@@ -148,6 +148,20 @@ const PerformanceGraph = ({
               ))}
             </div>
 
+            {examStep === 'step1' && (
+              <div className="relative h-full w-[128px] flex-shrink-0">
+                <div
+                  className="absolute h-full pointer-events-none"
+                  style={{
+                    top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                    height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                  }}
+                >
+                  <PassingRangeBracket />
+                </div>
+              </div>
+            )}
+
             <div className="relative ml-2 w-[60px] flex-shrink-0">
               <div className="h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
@@ -162,26 +176,13 @@ const PerformanceGraph = ({
                 ))}
                 
                 {examStep === 'step1' && (
-                  <>
-                    <div
-                      className="absolute w-full bg-white/50"
-                      style={{
-                        height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                        top: `${((range.max - 210) / (range.max - range.min)) * 100}%`
-                      }}
-                    />
-                    <div
-                      className="absolute h-full pointer-events-none"
-                      style={{
-                        top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
-                        height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                        width: '128px',
-                        right: 'calc(100% - 8px)'
-                      }}
-                    >
-                      <PassingRangeBracket />
-                    </div>
-                  </>
+                  <div
+                    className="absolute w-full bg-white/50"
+                    style={{
+                      height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                      top: `${((range.max - 210) / (range.max - range.min)) * 100}%`
+                    }}
+                  />
                 )}
               </div>
             </div>
