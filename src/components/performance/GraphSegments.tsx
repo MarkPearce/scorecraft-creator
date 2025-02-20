@@ -1,56 +1,15 @@
 
-import { ExamStep, PerformanceRange, ScoreSegment } from "./types";
+import { ExamStep, ScoreRange, ScoreSegment } from "./types";
+import { getSegments } from "./utils";
 
 interface GraphSegmentsProps {
-  range: PerformanceRange;
+  range: ScoreRange;
   targetScore: number;
   examStep: ExamStep;
 }
 
 const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => {
-  const getSegments = (): ScoreSegment[] => {
-    if (examStep === 'step1') {
-      return [{
-        score: range.min,
-        color: "bg-[#ED1B24]",
-        label: `${Math.round(range.min)}`
-      }, {
-        score: 196,
-        color: "bg-[#FFC107]",
-        label: ""
-      }, {
-        score: 210,
-        color: "bg-[#019444]",
-        label: ""
-      }, {
-        score: range.max,
-        label: `${Math.round(range.max)}`
-      }];
-    } else {
-      return [{
-        score: range.min,
-        color: "bg-[#ED1B24]",
-        label: `${Math.round(range.min)}`
-      }, {
-        score: 214,
-        color: "bg-[#FFC107]",
-        label: "Passing standard: 214"
-      }, {
-        score: 230,
-        color: "bg-[#8DC641]",
-        label: "230"
-      }, {
-        score: targetScore,
-        color: "bg-[#019444]",
-        label: `${targetScore}`
-      }, {
-        score: range.max,
-        label: `${Math.round(range.max)}`
-      }];
-    }
-  };
-
-  const segments = getSegments();
+  const segments = getSegments(range, targetScore, examStep);
 
   return (
     <>
@@ -84,6 +43,16 @@ const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => 
               }}
             />
           ))}
+          
+          {examStep === 'step1' && (
+            <div
+              className="absolute w-full bg-white/50"
+              style={{
+                height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                top: `${((range.max - 210) / (range.max - range.min)) * 100}%`
+              }}
+            />
+          )}
         </div>
       </div>
     </>
