@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Angry, Frown, Meh, Smile, Laugh } from "lucide-react";
 
 interface PerformanceScoreCardProps {
   initialScore?: number;
@@ -43,7 +42,20 @@ const PerformanceScoreCard = ({
     setScore(initialScore);
   }, [initialScore]);
 
-  const [range, setRange] = useState(initialRange);
+  const [range, setRange] = useState(() => {
+    if (examStep === 'step1') {
+      return { min: 120, max: 300 };
+    }
+    return initialRange;
+  });
+
+  useEffect(() => {
+    if (examStep === 'step1') {
+      setRange({ min: 120, max: 300 });
+    } else {
+      setRange(initialRange);
+    }
+  }, [examStep, initialRange]);
 
   const handleRangeChange = (type: 'min' | 'max', value: string) => {
     const numValue = parseInt(value, 10);
