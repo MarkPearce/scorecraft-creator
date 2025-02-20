@@ -1,6 +1,6 @@
 
 import { Settings } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PrototypeControls from "./PrototypeControls";
 import PerformanceGraph from "./PerformanceGraph";
 import {
@@ -38,6 +38,11 @@ const PerformanceScoreCard = ({
   passingStandard
 }: PerformanceScoreCardProps) => {
   const [score, setScore] = useState(initialScore);
+
+  useEffect(() => {
+    setScore(initialScore);
+  }, [initialScore]);
+
   const [range, setRange] = useState(initialRange);
 
   const handleRangeChange = (type: 'min' | 'max', value: string) => {
