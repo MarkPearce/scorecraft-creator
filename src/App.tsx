@@ -9,6 +9,7 @@ import Report from "./pages/Report";
 import NotFound from "./pages/NotFound";
 import TopicBreakdown from "./pages/TopicBreakdown";
 import SinglePageReport from "./pages/SinglePageReport";
+import OverallPerformancePage from "./pages/components/OverallPerformancePage";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/report" element={<Report />} />
           <Route path="/topic-breakdown" element={<TopicBreakdown />} />
           <Route path="/single-page-report" element={<SinglePageReport />} />
+          <Route path="/components/overall-performance" element={<OverallPerformancePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
