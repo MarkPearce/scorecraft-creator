@@ -47,7 +47,7 @@ export const TextProjectionCard = ({
                     <Scale className="h-7 w-7 text-gray-600" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 leading-tight">current likelihood of passing: <span className="text-sm">64%</span></p>
+                    <p className="font-medium text-gray-900 leading-tight">Current Likelihood of Passing: <span className="text-sm">64%</span></p>
                   </div>
                 </> : <>
                   <Target className="h-6 w-6 text-gray-600 mt-0.5" />
