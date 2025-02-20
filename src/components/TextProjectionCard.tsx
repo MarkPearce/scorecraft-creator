@@ -1,7 +1,7 @@
 
 import { memo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Clock, Target } from "lucide-react";
+import { Clock, Target, Percent } from "lucide-react";
 
 interface TextProjectionCardProps {
   examStep?: 'step1' | 'step2';
@@ -49,11 +49,23 @@ export const TextProjectionCard = memo(({ examStep = 'step2' }: TextProjectionCa
             </div>
             
             <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
-              <Target className="h-6 w-6 text-gray-600 mt-0.5" />
-              <div>
-                <p className="font-medium text-gray-900">Target Score</p>
-                <p className="text-sm">Expected in 4 months</p>
-              </div>
+              {examStep === 'step1' ? (
+                <>
+                  <Percent className="h-6 w-6 text-gray-600 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-gray-900">Likelihood of passing</p>
+                    <p className="text-sm">64%</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Target className="h-6 w-6 text-gray-600 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-gray-900">Target Score</p>
+                    <p className="text-sm">Expected in 4 months</p>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
