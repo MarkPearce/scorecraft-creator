@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +13,12 @@ import { Label } from "@/components/ui/label";
 import OverallPerformance from "@/components/OverallPerformance";
 import RecommendedSession from "@/components/RecommendedSession";
 import { useState } from "react";
+
 const SinglePageReport = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'step1' | 'step2'>('step2');
   const [sharedTargetScore, setSharedTargetScore] = useState(260);
+
   return <>
       <PageHeader />
       <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
@@ -46,7 +49,15 @@ const SinglePageReport = () => {
           <div className="space-y-8">
             <OverallPerformance questionsAnswered={422} examDate="Oct 15, 2025" />
             
-            <PerformanceScoreCard examStep={currentStep} initialScore={245} targetScore={sharedTargetScore} onTargetScoreChange={setSharedTargetScore} passingStandard={currentStep === 'step1' ? 196 : undefined} showControls={false} title="Current performance" />
+            <PerformanceScoreCard 
+              examStep={currentStep} 
+              initialScore={currentStep === 'step1' ? 200 : 245}
+              targetScore={sharedTargetScore} 
+              onTargetScoreChange={setSharedTargetScore} 
+              passingStandard={currentStep === 'step1' ? 196 : undefined} 
+              showControls={false} 
+              title="Current performance" 
+            />
             
             <PerformanceTrackingContainer examStep={currentStep} />
             
@@ -62,4 +73,5 @@ const SinglePageReport = () => {
       </div>
     </>;
 };
+
 export default SinglePageReport;
