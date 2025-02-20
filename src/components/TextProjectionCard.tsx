@@ -45,8 +45,7 @@ export const TextProjectionCard = ({
               {examStep === 'step1' ? <>
                   <Scale className="h-6 w-6 text-gray-600 mt-0.5" />
                   <div>
-                    <p className="font-medium text-gray-900">current likelihood of passing:</p>
-                    <p className="text-sm">64%</p>
+                    <p className="font-medium text-gray-900">current likelihood of passing: <span className="text-sm">64%</span></p>
                   </div>
                 </> : <>
                   <Target className="h-6 w-6 text-gray-600 mt-0.5" />
