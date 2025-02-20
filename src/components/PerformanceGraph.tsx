@@ -1,3 +1,4 @@
+
 import { useRef } from "react";
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Laugh, Meh, Smile } from "lucide-react";
@@ -170,11 +171,10 @@ const PerformanceGraph = ({
                       }}
                     />
                     <div
-                      className="absolute left-full h-full pointer-events-none"
+                      className="absolute -left-2 h-full pointer-events-none"
                       style={{
                         top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
                         height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                        transform: 'translateX(16px)',
                         width: '128px'
                       }}
                     >
@@ -235,3 +235,4 @@ const PerformanceGraph = ({
 };
 
 export default PerformanceGraph;
+
