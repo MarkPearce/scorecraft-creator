@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -98,6 +97,14 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     };
   }, [examStep]);
 
+  const getTooltipPosition = (viewBox: { width: number }) => {
+    const tooltipWidth = 160; // Fixed width for the tooltip
+    return {
+      x: viewBox.width - tooltipWidth,
+      y: 0
+    };
+  };
+
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
@@ -151,13 +158,13 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
               />
               <Tooltip 
-                position={{ x: 600, y: 0 }}
-                coordinate={{ x: 600, y: 0 }}
+                position={getTooltipPosition}
                 contentStyle={{
                   backgroundColor: 'white',
                   border: '1px solid #e5e7eb',
                   borderRadius: '6px',
-                  padding: '8px'
+                  padding: '8px',
+                  width: '160px'
                 }}
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
