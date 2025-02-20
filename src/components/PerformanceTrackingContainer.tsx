@@ -1,5 +1,4 @@
-
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceArea } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
 
@@ -212,40 +211,13 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 </>
               )}
               {examStep === 'step1' && (
-                <>
-                  <ReferenceLine
-                    y={182}
-                    stroke="#e5e7eb"
-                    strokeWidth={0}
-                  />
-                  <ReferenceLine
-                    y={210}
-                    stroke="#e5e7eb"
-                    strokeWidth={0}
-                    ifOverflow="extendDomain"
-                  />
-                  <rect
-                    x="0%"
-                    y="0"
-                    width="100%"
-                    height="100%"
-                    fill="#f3f4f6"
-                    fillOpacity={0.4}
-                    mask={`url(#mask-${182}-${210})`}
-                  />
-                  <defs>
-                    <mask id={`mask-${182}-${210}`}>
-                      <rect x="0" y="0" width="100%" height="100%" fill="white" />
-                      <rect
-                        x="0"
-                        y={`${((300 - 210) / (300 - 120)) * 100}%`}
-                        width="100%"
-                        height={`${((210 - 182) / (300 - 120)) * 100}%`}
-                        fill="black"
-                      />
-                    </mask>
-                  </defs>
-                </>
+                <ReferenceArea 
+                  y1={182} 
+                  y2={210} 
+                  fill="#f3f4f6"
+                  fillOpacity={0.4}
+                  strokeOpacity={0}
+                />
               )}
               <Line 
                 type="monotone"
