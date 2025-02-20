@@ -96,7 +96,7 @@ const DistributionChart = ({
             border: '1px solid #e5e7eb',
             borderRadius: '6px',
             padding: '8px',
-            width: '200px',
+            width: '160px',
             boxShadow: 'none'
           }}
           contentStyle={{
