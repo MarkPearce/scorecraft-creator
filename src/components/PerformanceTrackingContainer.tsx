@@ -137,8 +137,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 <ReferenceArea 
                   y1={182} 
                   y2={210} 
-                  fill="#f3f4f6"
-                  fillOpacity={0.8}
+                  fill="#e0e6eb"
+                  fillOpacity={1}
                   strokeOpacity={0}
                   z={-1}
                 />
