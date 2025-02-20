@@ -172,7 +172,7 @@ const PerformanceGraph = ({
                     />
                     {/* Top bracket line */}
                     <div
-                      className="absolute right-full"
+                      className="absolute left-full"
                       style={{
                         top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
                         transform: 'translateY(-1px)'
@@ -182,7 +182,7 @@ const PerformanceGraph = ({
                     </div>
                     {/* Bottom bracket line */}
                     <div
-                      className="absolute right-full"
+                      className="absolute left-full"
                       style={{
                         top: `${((range.max - 182) / (range.max - range.min)) * 100}%`,
                         transform: 'translateY(-1px)'
@@ -192,17 +192,17 @@ const PerformanceGraph = ({
                     </div>
                     {/* Vertical connecting line */}
                     <div
-                      className="absolute right-full"
+                      className="absolute left-full"
                       style={{
                         top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
                         height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                        transform: 'translateX(-16px)'
+                        transform: 'translateX(16px)'
                       }}
                     >
                       <div className="h-full w-[2px] bg-gray-600" />
                       {/* Label */}
                       <div 
-                        className="absolute right-2 whitespace-nowrap text-sm text-gray-600"
+                        className="absolute left-2 whitespace-nowrap text-sm text-gray-600"
                         style={{
                           top: '50%',
                           transform: 'translateY(-50%)'
