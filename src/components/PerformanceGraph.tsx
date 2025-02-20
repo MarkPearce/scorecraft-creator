@@ -1,4 +1,3 @@
-
 import { useRef } from "react";
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Laugh, Meh, Smile } from "lucide-react";
@@ -148,22 +147,6 @@ const PerformanceGraph = ({
               ))}
             </div>
 
-            {examStep === 'step1' && (
-              <div className="relative h-full w-[128px] flex-shrink-0">
-                <div
-                  className="absolute -translate-y-1/2 pointer-events-none"
-                  style={{
-                    top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
-                    left: '0',
-                    height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                    width: '100%'
-                  }}
-                >
-                  <PassingRangeBracket />
-                </div>
-              </div>
-            )}
-
             <div className="relative ml-2 w-[60px] flex-shrink-0">
               <div className="h-full relative">
                 {segments.slice(0, -1).map((segment, index) => (
@@ -214,6 +197,20 @@ const PerformanceGraph = ({
                 </div>
               )}
             </div>
+
+            {examStep === 'step1' && (
+              <div
+                className="absolute pointer-events-none"
+                style={{
+                  left: '50px',
+                  top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                  height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                  width: '128px'
+                }}
+              >
+                <PassingRangeBracket />
+              </div>
+            )}
           </div>
         </div>
       </div>
