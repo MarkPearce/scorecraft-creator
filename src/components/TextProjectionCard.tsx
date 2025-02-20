@@ -1,4 +1,5 @@
 
+import { memo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Target } from "lucide-react";
 
@@ -6,7 +7,7 @@ interface TextProjectionCardProps {
   examStep?: 'step1' | 'step2';
 }
 
-export const TextProjectionCard = ({ examStep = 'step2' }: TextProjectionCardProps) => {
+export const TextProjectionCard = memo(({ examStep = 'step2' }: TextProjectionCardProps) => {
   const projectionText = examStep === 'step1'
     ? "Users with your current performance typically reach a 95% pass rate in 2 months"
     : "Users with your current performance and time to exam typically score 230-250 on a 3-digit scale";
@@ -59,4 +60,8 @@ export const TextProjectionCard = ({ examStep = 'step2' }: TextProjectionCardPro
       </CardContent>
     </Card>
   );
-};
+}, (prevProps, nextProps) => {
+  return prevProps.examStep === nextProps.examStep;
+});
+
+TextProjectionCard.displayName = 'TextProjectionCard';
