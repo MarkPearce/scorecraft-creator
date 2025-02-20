@@ -60,7 +60,7 @@ const PerformanceSummary = ({
         {examStep === 'step2' && (
           <div className="pt-4">
             <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-fit min-w-[160px]">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
