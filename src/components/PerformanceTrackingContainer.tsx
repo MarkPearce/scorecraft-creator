@@ -54,6 +54,41 @@ const CustomActiveDot = memo((props: DotProps) => {
 });
 CustomActiveDot.displayName = 'CustomActiveDot';
 
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value: number;
+    name: string;
+  }>;
+  viewBox?: {
+    width: number;
+  };
+}
+
+const CustomTooltip = ({ active, payload, viewBox }: CustomTooltipProps) => {
+  if (!active || !payload || !payload.length) return null;
+
+  const tooltipWidth = 160;
+  const xPosition = viewBox ? viewBox.width - tooltipWidth : 0;
+
+  return (
+    <div
+      style={{
+        backgroundColor: 'white',
+        border: '1px solid #e5e7eb',
+        borderRadius: '6px',
+        padding: '8px',
+        width: `${tooltipWidth}px`,
+        position: 'absolute',
+        left: `${xPosition}px`,
+        top: '0px'
+      }}
+    >
+      <p>{`Score: ${payload[0].value}`}</p>
+    </div>
+  );
+};
+
 interface PerformanceTrackingContainerProps {
   examStep?: 'step1' | 'step2';
 }
@@ -96,14 +131,6 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       }
     };
   }, [examStep]);
-
-  const getTooltipCoordinate = (viewBox: { width: number }) => {
-    const tooltipWidth = 160; // Fixed width for the tooltip
-    return {
-      x: viewBox.width - tooltipWidth,
-      y: 0
-    };
-  };
 
   return (
     <Card className="animate-fadeIn">
@@ -158,16 +185,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
               />
               <Tooltip 
-                coordinate={getTooltipCoordinate}
+                content={<CustomTooltip />}
                 allowEscapeViewBox={{ x: true, y: true }}
-                contentStyle={{
-                  backgroundColor: 'white',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '6px',
-                  padding: '8px',
-                  width: '160px'
-                }}
-                formatter={(value: number) => [`${value}`, 'Score']}
               />
               {examStep === 'step2' && (
                 <>
