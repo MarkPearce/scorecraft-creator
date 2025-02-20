@@ -57,7 +57,7 @@ const PerformanceGraph = ({
       }, {
         score: targetScore,
         color: "bg-[#019444]",
-        label: `${targetScore}`
+        label: ""
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
