@@ -1,9 +1,7 @@
 
 import { useRef } from "react";
 import ScoreIndicator from "./ScoreIndicator";
-import ScoreStatus from "./ScoreStatus";
-import GraphSegments from "./GraphSegments";
-import { calculatePosition } from "@/utils/scoreUtils";
+import { Angry, Laugh, Meh, Smile } from "lucide-react";
 
 interface PerformanceGraphProps {
   score: number;
@@ -32,17 +30,13 @@ const PerformanceGraph = ({
         color: "bg-[#ED1B24]",
         label: `${Math.round(range.min)}`
       }, {
-        score: 200,
+        score: 196,
         color: "bg-[#FFC107]",
-        label: "200"
+        label: "Passing standard: 196"
       }, {
-        score: 230,
-        color: "bg-[#8DC641]",
-        label: "230"
-      }, {
-        score: 265,
+        score: 210,
         color: "bg-[#019444]",
-        label: "265"
+        label: "210"
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
@@ -87,6 +81,46 @@ const PerformanceGraph = ({
     }
   };
 
+  const getScoreColor = (currentScore: number) => {
+    if (examStep === 'step1') {
+      if (currentScore >= 210) return "text-[#019444]";
+      if (currentScore >= 196) return "text-[#FFC107]";
+      return "text-[#ED1B24]";
+    } else {
+      if (currentScore >= 265) return "text-[#019444]";
+      if (currentScore >= 230) return "text-[#8DC641]";
+      if (currentScore >= 214) return "text-[#FFC107]";
+      return "text-[#ED1B24]";
+    }
+  };
+
+  const getBackgroundColor = (currentScore: number) => {
+    if (examStep === 'step1') {
+      if (currentScore >= 210) return "bg-[#019444]/15";
+      if (currentScore >= 196) return "bg-[#FFC107]/15";
+      return "bg-[#ED1B24]/15";
+    } else {
+      if (currentScore >= 265) return "bg-[#019444]/15";
+      if (currentScore >= 230) return "bg-[#8DC641]/15";
+      if (currentScore >= 214) return "bg-[#FFC107]/15";
+      return "bg-[#ED1B24]/15";
+    }
+  };
+
+  const getFaceIcon = (currentScore: number) => {
+    const colorClass = getScoreColor(currentScore);
+    if (examStep === 'step1') {
+      if (currentScore >= 210) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+      if (currentScore >= 196) return <Smile className={`w-16 h-16 ${colorClass}`} />;
+      return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    } else {
+      if (currentScore >= 265) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+      if (currentScore >= 230) return <Smile className={`w-16 h-16 ${colorClass}`} />;
+      if (currentScore >= 214) return <Meh className={`w-16 h-16 ${colorClass}`} />;
+      return <Angry className={`w-16 h-16 ${colorClass}`} />;
+    }
+  };
+
   const segments = getSegments();
   const scoreStatus = getScoreStatus(score);
 
@@ -94,14 +128,45 @@ const PerformanceGraph = ({
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
       <div className="performance-graph-container flex items-center justify-center pt-6 md:col-span-8">
         <div className="relative">
-          <div className="relative h-[300px] flex p-1 rounded-lg" ref={containerRef}>
-            <GraphSegments segments={segments} range={range} />
+          <div className="relative h-[300px] flex" ref={containerRef}>
+            <div className="relative h-full w-[50px] flex-shrink-0">
+              {segments.map(segment => (
+                <div
+                  key={`label-${segment.score}`}
+                  className="absolute text-sm text-gray-600 text-right whitespace-pre-line"
+                  style={{
+                    top: `${((range.max - segment.score) / (range.max - range.min)) * 100}%`,
+                    transform: 'translateY(-50%)',
+                    right: '8px',
+                    minWidth: '200px',
+                    direction: 'rtl'
+                  }}
+                >
+                  {segment.label}
+                </div>
+              ))}
+            </div>
+
+            <div className="relative ml-2 w-[60px] flex-shrink-0">
+              <div className="h-full relative">
+                {segments.slice(0, -1).map((segment, index) => (
+                  <div
+                    key={segment.score}
+                    className={`absolute w-full ${segment.color}`}
+                    style={{
+                      height: `${((segments[index + 1].score - segment.score) / (range.max - range.min)) * 100}%`,
+                      top: `${((range.max - segments[index + 1].score) / (range.max - range.min)) * 100}%`
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
 
             <div className="relative h-full -ml-[60px] w-[200px]">
               <div
                 className="absolute -translate-y-1/2"
                 style={{
-                  top: calculatePosition(score, range),
+                  top: `${((range.max - score) / (range.max - range.min)) * 100}%`,
                   left: '0',
                   zIndex: 10
                 }}
@@ -113,7 +178,7 @@ const PerformanceGraph = ({
                 <div
                   className="absolute -translate-y-1/2"
                   style={{
-                    top: calculatePosition(targetScore, range),
+                    top: `${((range.max - targetScore) / (range.max - range.min)) * 100}%`,
                     left: '0',
                     zIndex: 20
                   }}
@@ -127,7 +192,20 @@ const PerformanceGraph = ({
       </div>
 
       <div className="score-status-container flex items-start justify-start md:col-span-4">
-        <ScoreStatus score={score} segments={segments} />
+        <div className={`${getBackgroundColor(score)} p-6 rounded-lg inline-block`}>
+          <h3 className="text-gray-900 font-semibold text-lg mb-4">Assessment</h3>
+          <div className="flex">
+            <div className="flex items-center gap-4">
+              {getFaceIcon(score)}
+              <div className="flex flex-col items-center">
+                <div className={`text-4xl font-bold ${getScoreColor(score)}`}>{score}</div>
+                <div className={`text-sm ${getScoreColor(score)}`}>
+                  {Math.floor(score / 10) * 10}-{Math.floor(score / 10) * 10 + 9}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
