@@ -2,7 +2,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Target } from "lucide-react";
 
-export const TextProjectionCard = () => {
+interface TextProjectionCardProps {
+  examStep?: 'step1' | 'step2';
+}
+
+export const TextProjectionCard = ({ examStep = 'step2' }: TextProjectionCardProps) => {
+  const projectionText = examStep === 'step1'
+    ? "Users with your current performance typically reach a 95% pass rate in 2 months"
+    : "Users with your current performance and time to exam typically score 230-250 on a 3-digit scale";
+
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
@@ -12,10 +20,7 @@ export const TextProjectionCard = () => {
         <div className="grid grid-cols-2 gap-6 text-left text-gray-600 font-lato">
           <div className="flex items-center">
             <p className="text-base font-normal">
-              Users with your current performance and time to exam typically{" "}
-              <span className="font-bold text-gray-900">
-                score 230-250 on a 3-digit scale
-              </span>
+              {projectionText}
             </p>
           </div>
           

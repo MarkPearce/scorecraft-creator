@@ -63,7 +63,7 @@ const SinglePageReport = () => {
             
             <PeerGroup />
             
-            <TextProjectionCard />
+            <TextProjectionCard examStep={currentStep} />
 
             <PerformanceSummary examStep={currentStep} />
 
