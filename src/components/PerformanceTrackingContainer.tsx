@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceArea } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -132,6 +133,16 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 bottom: 40
               }}
             >
+              {examStep === 'step1' && (
+                <ReferenceArea 
+                  y1={182} 
+                  y2={210} 
+                  fill="#f3f4f6"
+                  fillOpacity={0.8}
+                  strokeOpacity={0}
+                  zIndex={-1}
+                />
+              )}
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis 
                 dataKey="date" 
@@ -209,15 +220,6 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                     }} 
                   />
                 </>
-              )}
-              {examStep === 'step1' && (
-                <ReferenceArea 
-                  y1={182} 
-                  y2={210} 
-                  fill="#f3f4f6"
-                  fillOpacity={0.4}
-                  strokeOpacity={0}
-                />
               )}
               <Line 
                 type="monotone"
