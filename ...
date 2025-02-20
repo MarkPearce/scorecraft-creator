@@ -1,0 +1,18 @@
+` command, I was pasting the entire file content each time, including parts that hadn't changed. This approach can sometimes:
+
+1. Override recent changes if I accidentally use an older version of the file as my base
+2. Make it harder to track what exactly changed in each update
+3. Lead to inconsistencies if multiple changes are being made in sequence
+
+To avoid this in the future, we should:
+
+1. Always verify the current state of the file before making changes
+2. Only update the specific parts of the code that need to change
+3. Use more focused, smaller updates instead of rewriting entire files
+
+For example, if we need to change just one function in PerformanceGraph.tsx, instead of rewriting the whole file, we should:
+- First read the current state of the file
+- Then make the specific change needed
+- Make sure we're building upon the latest version
+
+Would you like to proceed with the changes we were making to the graph component? I'll make sure to follow this improved approach to maintain consistency and avoid accidental reversions.
