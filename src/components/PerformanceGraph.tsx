@@ -1,7 +1,7 @@
-
 import { useRef } from "react";
 import ScoreIndicator from "./ScoreIndicator";
 import { Angry, Laugh, Meh, Smile } from "lucide-react";
+import PassingRangeBracket from "./PassingRangeBracket";
 
 interface PerformanceGraphProps {
   score: number;
@@ -160,7 +160,6 @@ const PerformanceGraph = ({
                   />
                 ))}
                 
-                {/* Add semi-transparent overlay and bracket indicators for step 1 */}
                 {examStep === 'step1' && (
                   <>
                     <div
@@ -170,46 +169,16 @@ const PerformanceGraph = ({
                         top: `${((range.max - 210) / (range.max - range.min)) * 100}%`
                       }}
                     />
-                    {/* Top bracket line */}
                     <div
-                      className="absolute left-full"
-                      style={{
-                        top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
-                        transform: 'translateY(-1px)'
-                      }}
-                    >
-                      <div className="h-[2px] w-4 bg-gray-600" />
-                    </div>
-                    {/* Bottom bracket line */}
-                    <div
-                      className="absolute left-full"
-                      style={{
-                        top: `${((range.max - 182) / (range.max - range.min)) * 100}%`,
-                        transform: 'translateY(-1px)'
-                      }}
-                    >
-                      <div className="h-[2px] w-4 bg-gray-600" />
-                    </div>
-                    {/* Vertical connecting line */}
-                    <div
-                      className="absolute left-full"
+                      className="absolute left-full h-full pointer-events-none"
                       style={{
                         top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
                         height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                        transform: 'translateX(16px)'
+                        transform: 'translateX(16px)',
+                        width: '128px'
                       }}
                     >
-                      <div className="h-full w-[2px] bg-gray-600" />
-                      {/* Label */}
-                      <div 
-                        className="absolute left-2 whitespace-nowrap text-sm text-gray-600"
-                        style={{
-                          top: '50%',
-                          transform: 'translateY(-50%)'
-                        }}
-                      >
-                        Passing Range
-                      </div>
+                      <PassingRangeBracket />
                     </div>
                   </>
                 )}
