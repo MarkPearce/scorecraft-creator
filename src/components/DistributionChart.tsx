@@ -1,49 +1,43 @@
 
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine, Tooltip } from 'recharts';
 import { MEAN_SCORE } from '@/utils/distributionUtils';
+import { PEER_GROUP_LABELS, PEER_GROUP_PERCENTILES, PeerGroupType } from '@/utils/peerGroupConstants';
+import { useMemo } from 'react';
 
 interface DistributionChartProps {
-  data: any[];
+  data: Array<{
+    score: number;
+    density: number;
+    percentile: number;
+  }>;
   displayMode: "normal" | "percentile";
   studentScore: number;
   studentPercentile: number;
-  peerGroup: "all" | "same-objective" | "same-state" | "same-school";
+  peerGroup: PeerGroupType;
 }
-
-const peerGroupPercentiles = {
-  "all": 47,
-  "same-objective": 52,
-  "same-state": 58,
-  "same-school": 67
-};
-
-const peerGroupLabels = {
-  "all": "All AMBOSS",
-  "same-objective": "Same Learning Objective",
-  "same-state": "Same State",
-  "same-school": "Same School"
-};
 
 const DistributionChart = ({ 
   data, 
   displayMode, 
   studentScore, 
   studentPercentile,
-  peerGroup = "all"
+  peerGroup
 }: DistributionChartProps) => {
-  const xAxisTicks = [0, 25, 50, 75, 100];
-  const currentPeerGroupPercentile = peerGroupPercentiles[peerGroup];
-  
-  console.log('Chart Data:', {
-    displayMode,
-    dataLength: data.length,
-    firstPoint: data[0],
-    lastPoint: data[data.length - 1],
-    meanScore: MEAN_SCORE,
-    domain: [0, 100],
-    peerGroup,
-    currentPeerGroupPercentile
-  });
+  // Memoize chart configuration
+  const chartConfig = useMemo(() => ({
+    xAxisTicks: [0, 25, 50, 75, 100],
+    currentPeerGroupPercentile: PEER_GROUP_PERCENTILES[peerGroup],
+    currentPeerGroupLabel: PEER_GROUP_LABELS[peerGroup]
+  }), [peerGroup]);
+
+  // Memoize tooltip formatter
+  const tooltipFormatter = useMemo(() => (
+    (value: number) => [
+      displayMode === "normal" 
+        ? `Density: ${value.toFixed(4)}` 
+        : `Percentile: ${value.toFixed(1)}%`
+    ]
+  ), [displayMode]);
 
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -62,11 +56,12 @@ const DistributionChart = ({
             <stop offset="100%" stopColor="#0aa6b8" stopOpacity={0.05} />
           </linearGradient>
         </defs>
+        
         <XAxis 
           dataKey="score" 
           type="number" 
           domain={[0, 100]}
-          ticks={xAxisTicks}
+          ticks={chartConfig.xAxisTicks}
           interval={0}
           tick={{
             fontSize: 11,
@@ -76,17 +71,14 @@ const DistributionChart = ({
           axisLine={{ stroke: '#e5e7eb' }}
           tickLine={{ stroke: '#e5e7eb' }}
         />
+        
         <YAxis 
           hide={true}
           domain={[0, 'auto']}
         />
+        
         <Tooltip 
-          formatter={(value: number) => 
-            [displayMode === "normal" 
-              ? `Density: ${value.toFixed(4)}` 
-              : `Percentile: ${value.toFixed(1)}%`
-            ]
-          }
+          formatter={tooltipFormatter}
           labelFormatter={(label) => `Score: ${label}`}
           position={{ x: 600, y: 0 }}
           coordinate={{ x: 600, y: 0 }}
@@ -97,7 +89,7 @@ const DistributionChart = ({
             borderRadius: '6px',
             padding: '8px',
             width: '160px',
-            boxShadow: 'none'
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
           }}
           contentStyle={{
             border: 'none',
@@ -105,6 +97,7 @@ const DistributionChart = ({
             backgroundColor: 'transparent'
           }}
         />
+        
         <Area
           type="monotone"
           dataKey={displayMode === "normal" ? "density" : "percentile"}
@@ -130,13 +123,13 @@ const DistributionChart = ({
         
         {/* Peer group percentile reference line */}
         <ReferenceLine
-          x={currentPeerGroupPercentile}
+          x={chartConfig.currentPeerGroupPercentile}
           stroke="#5a7183"
           strokeWidth={2}
           strokeDasharray="2 4"
           strokeLinecap="round"
           label={{
-            value: `${currentPeerGroupPercentile}th Percentile`,
+            value: `${chartConfig.currentPeerGroupPercentile}th Percentile`,
             position: 'top',
             fill: '#5a7183',
             fontSize: 14,
