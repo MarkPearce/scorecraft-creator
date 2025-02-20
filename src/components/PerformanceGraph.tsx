@@ -55,9 +55,9 @@ const PerformanceGraph = ({
         color: "bg-[#8DC641]",
         label: "230"
       }, {
-        score: 265,
+        score: targetScore,
         color: "bg-[#019444]",
-        label: "265"
+        label: `${targetScore}`
       }, {
         score: range.max,
         label: `${Math.round(range.max)}`
@@ -87,7 +87,7 @@ const PerformanceGraph = ({
       if (currentScore >= 196) return "text-[#FFC107]";
       return "text-[#ED1B24]";
     } else {
-      if (currentScore >= 265) return "text-[#019444]";
+      if (currentScore >= targetScore) return "text-[#019444]";
       if (currentScore >= 230) return "text-[#8DC641]";
       if (currentScore >= 214) return "text-[#FFC107]";
       return "text-[#ED1B24]";
@@ -100,7 +100,7 @@ const PerformanceGraph = ({
       if (currentScore >= 196) return "bg-[#FFC107]/15";
       return "bg-[#ED1B24]/15";
     } else {
-      if (currentScore >= 265) return "bg-[#019444]/15";
+      if (currentScore >= targetScore) return "bg-[#019444]/15";
       if (currentScore >= 230) return "bg-[#8DC641]/15";
       if (currentScore >= 214) return "bg-[#FFC107]/15";
       return "bg-[#ED1B24]/15";
@@ -114,7 +114,7 @@ const PerformanceGraph = ({
       if (currentScore >= 196) return <Smile className={`w-16 h-16 ${colorClass}`} />;
       return <Angry className={`w-16 h-16 ${colorClass}`} />;
     } else {
-      if (currentScore >= 265) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
+      if (currentScore >= targetScore) return <Laugh className={`w-16 h-16 ${colorClass}`} />;
       if (currentScore >= 230) return <Smile className={`w-16 h-16 ${colorClass}`} />;
       if (currentScore >= 214) return <Meh className={`w-16 h-16 ${colorClass}`} />;
       return <Angry className={`w-16 h-16 ${colorClass}`} />;
