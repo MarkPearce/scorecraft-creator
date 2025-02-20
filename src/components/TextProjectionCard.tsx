@@ -26,8 +26,9 @@ export const TextProjectionCard = ({
                 </> : <>
                   Users with your current performance and time to exam typically{" "}
                   <span className="font-bold text-gray-900">
-                    score 230-250 on a 3-digit scale
-                  </span>
+                    score 230-250
+                  </span>{" "}
+                  on a 3-digit scale.
                 </>}
             </p>
           </div>
