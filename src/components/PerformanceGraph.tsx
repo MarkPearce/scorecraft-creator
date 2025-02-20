@@ -159,6 +159,17 @@ const PerformanceGraph = ({
                     }}
                   />
                 ))}
+                
+                {/* Add semi-transparent overlay for step 1 between 210 and 182 */}
+                {examStep === 'step1' && (
+                  <div
+                    className="absolute w-full bg-white/50"
+                    style={{
+                      height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                      top: `${((range.max - 210) / (range.max - range.min)) * 100}%`
+                    }}
+                  />
+                )}
               </div>
             </div>
 
