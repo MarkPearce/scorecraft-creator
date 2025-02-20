@@ -4,14 +4,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import DistributionChart from './DistributionChart';
 import { generateDistributionData, findPercentile } from '@/utils/distributionUtils';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, memo } from 'react';
 
 interface PeerGroupProps {
   studentScore?: number;
   examStep: 'step1' | 'step2';
 }
 
-const PeerGroup = ({ 
+const PeerGroup = memo(({ 
   studentScore = 245,
   examStep 
 }: PeerGroupProps) => {
@@ -25,6 +25,8 @@ const PeerGroup = ({
     findPercentile(studentScore), 
     [studentScore]
   );
+
+  const stepDisplay = examStep === 'step1' ? '(Step 1)' : '(Step 2)';
 
   return (
     <Card className="animate-fadeIn">
@@ -53,7 +55,7 @@ const PeerGroup = ({
                 <SelectValue placeholder="Select peer group" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All AMBOSS ({examStep})</SelectItem>
+                <SelectItem value="all">All AMBOSS {stepDisplay}</SelectItem>
                 <SelectItem value="same-objective">Same learning objective</SelectItem>
                 <SelectItem value="same-state">Same state</SelectItem>
                 <SelectItem value="same-school">Same school</SelectItem>
@@ -64,6 +66,12 @@ const PeerGroup = ({
       </CardContent>
     </Card>
   );
-};
+}, (prevProps, nextProps) => {
+  // Only re-render if studentScore or examStep changes
+  return prevProps.studentScore === nextProps.studentScore && 
+         prevProps.examStep === nextProps.examStep;
+});
+
+PeerGroup.displayName = 'PeerGroup';
 
 export default PeerGroup;
