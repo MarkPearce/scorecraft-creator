@@ -3,18 +3,25 @@ import { LayoutList, Columns } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import PerformanceTopicItem, { performanceData, step2PerformanceData } from './PerformanceTopicItem';
+import PerformanceTopicItem from './PerformanceTopicItem';
+import { PerformanceItem, performanceData, step2PerformanceData } from '@/utils/performanceData';
 
 type ViewMode = 'grouped' | 'list';
 
 interface PerformanceSummaryProps {
   examStep: 'step1' | 'step2';
+  data?: PerformanceItem[];
+  onItemClick?: (subject: string) => void;
 }
 
-const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
+const PerformanceSummary = ({ 
+  examStep, 
+  data,
+  onItemClick = () => {} 
+}: PerformanceSummaryProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('grouped');
   
-  const currentData = examStep === 'step1' ? performanceData : step2PerformanceData;
+  const currentData = data || (examStep === 'step1' ? performanceData : step2PerformanceData);
   const lowerPerformance = currentData.filter(item => item.performance === 'lower');
   const samePerformance = currentData.filter(item => item.performance === 'same');
   const higherPerformance = currentData.filter(item => item.performance === 'higher');
@@ -33,7 +40,7 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
           <PerformanceTopicItem 
             key={index} 
             item={item} 
-            onClick={() => {}} 
+            onClick={onItemClick} 
             view="grouped" 
           />
         ))}
@@ -82,7 +89,7 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
                   <PerformanceTopicItem 
                     key={index} 
                     item={item} 
-                    onClick={() => {}} 
+                    onClick={onItemClick} 
                     view="list" 
                   />
                 ))}
@@ -96,4 +103,3 @@ const PerformanceSummary = ({ examStep }: PerformanceSummaryProps) => {
 };
 
 export default PerformanceSummary;
-
