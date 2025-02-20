@@ -140,7 +140,7 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                   fill="#f3f4f6"
                   fillOpacity={0.8}
                   strokeOpacity={0}
-                  zIndex={-1}
+                  z={-1}
                 />
               )}
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
