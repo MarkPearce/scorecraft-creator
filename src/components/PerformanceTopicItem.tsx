@@ -1,3 +1,4 @@
+
 interface PerformanceItem {
   subject: string;
   performance: 'lower' | 'same' | 'higher';
@@ -6,6 +7,7 @@ interface PerformanceItem {
 }
 
 export const performanceData: PerformanceItem[] = [
+  // Original Step 1 data with Disciplines category
   { subject: "Pathology", performance: "lower", percentageCorrect: 58, category: "Disciplines" },
   { subject: "Physiology", performance: "lower", percentageCorrect: 57, category: "Disciplines" },
   { subject: "Gross Anatomy & Embryology", performance: "same", percentageCorrect: 71, category: "Disciplines" },
