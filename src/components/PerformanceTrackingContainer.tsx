@@ -151,8 +151,14 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
               />
               <Tooltip 
-                position={{ x: 600, y: 0 }}
-                coordinate={{ x: 600, y: 0 }}
+                position={({ x, y, width }) => {
+                  const tooltipWidth = 160;
+                  return {
+                    x: width - tooltipWidth,
+                    y: 0
+                  };
+                }}
+                coordinate={{ x: 0, y: 0 }}
                 contentStyle={{
                   backgroundColor: 'white',
                   border: '1px solid #e5e7eb',
