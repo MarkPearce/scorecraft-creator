@@ -55,4 +55,3 @@ const ClippedText = ({ text, className }: ClippedTextProps) => {
 };
 
 export default ClippedText;
-
