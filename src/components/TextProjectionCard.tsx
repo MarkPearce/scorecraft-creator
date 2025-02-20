@@ -44,7 +44,7 @@ export const TextProjectionCard = ({
             <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
               {examStep === 'step1' ? <>
                   <div className="flex-shrink-0">
-                    <Scale className="h-8 w-8 text-gray-600" />
+                    <Scale className="h-7 w-7 text-gray-600" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">current likelihood of passing: <span className="text-sm">64%</span></p>
