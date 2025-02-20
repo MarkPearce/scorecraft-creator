@@ -98,6 +98,19 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
     };
   }, [examStep]);
 
+  const yAxisConfig = useMemo(() => {
+    if (examStep === 'step1') {
+      return {
+        domain: [120, 300] as [number, number],
+        ticks: [120, 140, 160, 180, 200, 220, 240, 260, 280, 300]
+      };
+    }
+    return {
+      domain: [180, 300] as [number, number],
+      ticks: [180, 200, 220, 240, 260, 280, 300]
+    };
+  }, [examStep]);
+
   return (
     <Card className="animate-fadeIn">
       <CardHeader>
@@ -138,8 +151,8 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
               <YAxis 
                 tick={{ fontSize: 12 }}
                 tickLine={false}
-                domain={[180, 300]}
-                ticks={[180, 200, 220, 240, 260, 280, 300]}
+                domain={yAxisConfig.domain}
+                ticks={yAxisConfig.ticks}
                 label={{
                   value: 'Score',
                   angle: -90,
