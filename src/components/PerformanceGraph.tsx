@@ -176,7 +176,7 @@ const PerformanceGraph = ({
                         top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
                         height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
                         width: '128px',
-                        right: '100%'
+                        right: 'calc(100% - 8px)'
                       }}
                     >
                       <PassingRangeBracket />
