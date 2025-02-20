@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +42,8 @@ const PeerGroupPage = () => {
             </RadioGroup>
           </div>
 
-          <div>
+          <div className="space-y-2">
+            <div className="text-sm text-gray-500 font-mono">src/components/PeerGroup.tsx</div>
             <h1 className="text-3xl font-[900] text-gray-900 font-lato">Peer Group Comparison</h1>
             <p className="mt-2 text-gray-600 font-lato">Compare your performance with your peers.</p>
           </div>

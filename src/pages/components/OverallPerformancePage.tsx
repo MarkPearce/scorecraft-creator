@@ -43,7 +43,8 @@ const OverallPerformancePage = () => {
             </RadioGroup>
           </div>
 
-          <div>
+          <div className="space-y-2">
+            <div className="text-sm text-gray-500 font-mono">src/components/OverallPerformance.tsx</div>
             <h1 className="text-3xl font-[900] text-gray-900 font-lato">Overall Performance</h1>
             <p className="mt-2 text-gray-600 font-lato">View your exam preparation timeline and progress.</p>
           </div>

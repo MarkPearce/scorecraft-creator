@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +42,8 @@ const PerformanceSummaryPage = () => {
             </RadioGroup>
           </div>
 
-          <div>
+          <div className="space-y-2">
+            <div className="text-sm text-gray-500 font-mono">src/components/PerformanceSummary.tsx</div>
             <h1 className="text-3xl font-[900] text-gray-900 font-lato">Performance Summary</h1>
             <p className="mt-2 text-gray-600 font-lato">Review your overall performance summary.</p>
           </div>
