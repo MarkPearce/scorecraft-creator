@@ -129,20 +129,6 @@ const PerformanceGraph = ({
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
       <div className="performance-graph-container flex items-center justify-center pt-6 md:col-span-8">
         <div className="relative">
-          {examStep === 'step1' && (
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                left: '50px',
-                top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
-                height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                width: '128px'
-              }}
-            >
-              <PassingRangeBracket />
-            </div>
-          )}
-          
           <div className="relative h-[300px] flex" ref={containerRef}>
             <div className="relative h-full w-[50px] flex-shrink-0">
               {segments.map(segment => (
@@ -212,6 +198,22 @@ const PerformanceGraph = ({
                 </div>
               )}
             </div>
+
+            {examStep === 'step1' && (
+              <div
+                className="absolute pointer-events-none"
+                style={{
+                  position: 'absolute',
+                  left: '-78px',
+                  top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                  height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                  width: '128px',
+                  zIndex: 5
+                }}
+              >
+                <PassingRangeBracket />
+              </div>
+            )}
           </div>
         </div>
       </div>
