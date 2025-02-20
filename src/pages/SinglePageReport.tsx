@@ -50,13 +50,10 @@ const SinglePageReport = () => {
             <OverallPerformance questionsAnswered={422} examDate="Oct 15, 2025" />
             
             <PerformanceScoreCard 
-              examStep={currentStep} 
-              initialScore={currentStep === 'step1' ? 200 : 245}
-              targetScore={sharedTargetScore} 
-              onTargetScoreChange={setSharedTargetScore} 
-              passingStandard={currentStep === 'step1' ? 196 : undefined} 
-              showControls={false} 
-              title="Current performance" 
+              examStep={currentStep}
+              onTargetScoreChange={setSharedTargetScore}
+              showControls={false}
+              title="Current performance"
             />
             
             <PerformanceTrackingContainer examStep={currentStep} />

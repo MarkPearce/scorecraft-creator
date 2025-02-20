@@ -14,48 +14,48 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 interface PerformanceScoreCardProps {
-  initialScore?: number;
-  targetScore?: number;
+  examStep: 'step1' | 'step2';
   onTargetScoreChange?: (score: number) => void;
-  initialRange?: { min: number; max: number };
   showControls?: boolean;
   className?: string;
   title?: string;
-  examStep?: 'step1' | 'step2';
-  passingStandard?: number;
 }
 
+const STEP_DEFAULTS = {
+  step1: {
+    initialScore: 200,
+    range: { min: 120, max: 300 },
+    passingStandard: 196
+  },
+  step2: {
+    initialScore: 245,
+    range: { min: 180, max: 300 },
+    passingStandard: undefined
+  }
+};
+
 const PerformanceScoreCard = ({
-  initialScore = 240,
-  targetScore = 260,
+  examStep,
   onTargetScoreChange,
-  initialRange = { min: 180, max: 300 },
   showControls = true,
   className = "",
   title = "Performance Score",
-  examStep = 'step2',
-  passingStandard
 }: PerformanceScoreCardProps) => {
-  const [score, setScore] = useState(initialScore);
+  const defaults = STEP_DEFAULTS[examStep];
+  const [score, setScore] = useState(defaults.initialScore);
+  const [targetScore, setTargetScore] = useState(260);
+  const [range, setRange] = useState(defaults.range);
 
   useEffect(() => {
-    setScore(initialScore);
-  }, [initialScore]);
+    const newDefaults = STEP_DEFAULTS[examStep];
+    setScore(newDefaults.initialScore);
+    setRange(newDefaults.range);
+  }, [examStep]);
 
-  const [range, setRange] = useState(() => {
-    if (examStep === 'step1') {
-      return { min: 120, max: 300 };
-    }
-    return initialRange;
-  });
-
-  useEffect(() => {
-    if (examStep === 'step1') {
-      setRange({ min: 120, max: 300 });
-    } else {
-      setRange(initialRange);
-    }
-  }, [examStep, initialRange]);
+  const handleTargetScoreChange = (value: number) => {
+    setTargetScore(value);
+    onTargetScoreChange?.(value);
+  };
 
   const handleRangeChange = (type: 'min' | 'max', value: string) => {
     const numValue = parseInt(value, 10);
@@ -89,7 +89,7 @@ const PerformanceScoreCard = ({
                   targetScore={targetScore}
                   score={score}
                   onRangeChange={handleRangeChange}
-                  onTargetScoreChange={(value) => onTargetScoreChange?.(value[0])}
+                  onTargetScoreChange={(value) => handleTargetScoreChange(value[0])}
                   onScoreChange={(value) => setScore(value[0])}
                 />
               </div>
@@ -105,7 +105,7 @@ const PerformanceScoreCard = ({
             targetScore={targetScore}
             range={range}
             examStep={examStep}
-            passingStandard={passingStandard}
+            passingStandard={defaults.passingStandard}
           />
         </div>
       </CardContent>
