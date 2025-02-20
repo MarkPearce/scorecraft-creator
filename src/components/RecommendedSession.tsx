@@ -1,23 +1,19 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import QuestionSessionDialog from "./QuestionSessionDialog";
-
 const RecommendedSession = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  
-  return (
-    <>
+  return <>
       <Card>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
             <CardHeader className="p-5">
-              <CardTitle className="font-lato">Your stacked rank Qbank session</CardTitle>
+              <CardTitle className="font-lato">Smart question sessions</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
-                <p className="text-gray-600 font-lato">AMBOSS uses AI to create a stack-ranked Question session that covers the most high-yield questions based on your past performance.</p>
+                <p className="text-gray-600 font-lato">Start an AI-powered high yield Qbank session, stack-ranked by relevance to your performance</p>
                 <div>
                   <Button variant="default" className="font-lato" onClick={() => setIsDialogOpen(true)}>
                     Start session
@@ -33,8 +29,6 @@ const RecommendedSession = () => {
       </Card>
 
       <QuestionSessionDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
-    </>
-  );
+    </>;
 };
-
 export default RecommendedSession;
