@@ -58,7 +58,7 @@ const PerformanceSummary = ({
         </CardTitle>
         <p className="text-base text-gray-600">See your strengths and weaknesses to focus your study effectively.</p>
         {examStep === 'step2' && (
-          <Tabs defaultValue="Systems" value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full">
+          <Tabs defaultValue="Systems" value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as Category)} className="w-full mt-4">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="Systems">Systems</TabsTrigger>
               <TabsTrigger value="Physician Tasks">Physician Tasks</TabsTrigger>
