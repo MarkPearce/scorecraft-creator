@@ -80,7 +80,16 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
 
   const referenceLines = useMemo(() => {
     if (examStep === 'step1') {
-      return {};
+      return {
+        passing: {
+          value: 196,
+          label: 'Passing standard (196)'
+        },
+        mean: {
+          value: 231,
+          label: 'National mean (231)'
+        }
+      };
     }
     return {
       passing: {
@@ -174,42 +183,40 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 }}
                 formatter={(value: number) => [`${value}`, 'Score']}
               />
+              <ReferenceLine 
+                y={referenceLines.passing.value} 
+                stroke="#ea384c" 
+                label={{ 
+                  value: referenceLines.passing.label, 
+                  position: 'insideBottomRight',
+                  fill: '#64748b',
+                  fontSize: 12,
+                  dy: 18
+                }} 
+              />
+              <ReferenceLine 
+                y={referenceLines.mean.value} 
+                stroke="#22c55e" 
+                label={{ 
+                  value: referenceLines.mean.label, 
+                  position: 'insideBottomRight',
+                  fill: '#64748b',
+                  fontSize: 12,
+                  dy: 18
+                }} 
+              />
               {examStep === 'step2' && (
-                <>
-                  <ReferenceLine 
-                    y={referenceLines.passing?.value} 
-                    stroke="#ea384c" 
-                    label={{ 
-                      value: referenceLines.passing?.label, 
-                      position: 'insideBottomRight',
-                      fill: '#64748b',
-                      fontSize: 12,
-                      dy: 18
-                    }} 
-                  />
-                  <ReferenceLine 
-                    y={referenceLines.mean?.value} 
-                    stroke="#22c55e" 
-                    label={{ 
-                      value: referenceLines.mean?.label, 
-                      position: 'insideBottomRight',
-                      fill: '#64748b',
-                      fontSize: 12,
-                      dy: 18
-                    }} 
-                  />
-                  <ReferenceLine 
-                    y={referenceLines.target?.value} 
-                    stroke="#295dae" 
-                    label={{ 
-                      value: referenceLines.target?.label, 
-                      position: 'insideBottomRight',
-                      fill: '#64748b',
-                      fontSize: 12,
-                      dy: 18
-                    }} 
-                  />
-                </>
+                <ReferenceLine 
+                  y={referenceLines.target?.value} 
+                  stroke="#295dae" 
+                  label={{ 
+                    value: referenceLines.target?.label, 
+                    position: 'insideBottomRight',
+                    fill: '#64748b',
+                    fontSize: 12,
+                    dy: 18
+                  }} 
+                />
               )}
               <Line 
                 type="monotone"
