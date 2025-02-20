@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PeerGroup from "@/components/PeerGroup";
 import PerformanceSummary from "@/components/PerformanceSummary";
-import SinglePagePerformanceTracking from "@/components/SinglePagePerformanceTracking";
+import PerformanceTrackingContainer from "@/components/PerformanceTrackingContainer";
 import { TextProjectionCard } from "@/components/TextProjectionCard";
 import { PageHeader } from "@/components/PageHeader";
 import PerformanceScoreCard from "@/components/PerformanceScoreCard";
@@ -57,7 +57,7 @@ const SinglePageReport = () => {
               title="Current performance"
             />
             
-            <SinglePagePerformanceTracking examStep={currentStep} />
+            <PerformanceTrackingContainer examStep={currentStep} />
             
             <PeerGroup studentScore={currentScore} examStep={currentStep} />
             
