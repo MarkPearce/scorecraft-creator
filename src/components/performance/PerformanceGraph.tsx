@@ -1,10 +1,10 @@
 
 import { useRef } from "react";
-import ScoreIndicator from "./ScoreIndicator";
-import PassingRangeBracket from "./PassingRangeBracket";
-import ScoreDisplay from "./performance/ScoreDisplay";
-import GraphSegments from "./performance/GraphSegments";
-import { PerformanceGraphProps } from "./performance/types";
+import ScoreIndicator from "../ScoreIndicator";
+import PassingRangeBracket from "../PassingRangeBracket";
+import { PerformanceGraphProps } from "./types";
+import ScoreDisplay from "./ScoreDisplay";
+import GraphSegments from "./GraphSegments";
 
 const PerformanceGraph = ({
   score,
@@ -20,11 +20,21 @@ const PerformanceGraph = ({
       <div className="performance-graph-container flex items-center justify-center pt-6 md:col-span-8">
         <div className="relative">
           <div className="relative h-[300px] flex" ref={containerRef}>
-            <GraphSegments 
-              range={range}
-              targetScore={targetScore}
-              examStep={examStep}
-            />
+            <GraphSegments range={range} targetScore={targetScore} examStep={examStep} />
+
+            {examStep === 'step1' && (
+              <div className="relative h-full w-[128px] flex-shrink-0">
+                <div
+                  className="absolute h-full pointer-events-none"
+                  style={{
+                    top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
+                    height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                  }}
+                >
+                  <PassingRangeBracket />
+                </div>
+              </div>
+            )}
 
             <div className="relative h-full -ml-[60px] w-[200px]">
               <div
@@ -51,32 +61,12 @@ const PerformanceGraph = ({
                 </div>
               )}
             </div>
-
-            {examStep === 'step1' && (
-              <div
-                className="absolute pointer-events-none"
-                style={{
-                  position: 'absolute',
-                  left: '-78px',
-                  top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
-                  height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                  width: '128px',
-                  zIndex: 5
-                }}
-              >
-                <PassingRangeBracket />
-              </div>
-            )}
           </div>
         </div>
       </div>
 
       <div className="score-status-container flex items-start justify-start md:col-span-4">
-        <ScoreDisplay 
-          score={score}
-          targetScore={targetScore}
-          examStep={examStep}
-        />
+        <ScoreDisplay score={score} targetScore={targetScore} examStep={examStep} />
       </div>
     </div>
   );

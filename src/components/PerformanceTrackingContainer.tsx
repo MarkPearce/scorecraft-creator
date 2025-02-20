@@ -1,5 +1,5 @@
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceArea } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
 
@@ -59,7 +59,7 @@ interface PerformanceTrackingContainerProps {
   examStep?: 'step1' | 'step2';
 }
 
-const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
+const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTrackingContainerProps) => {
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
       { date: 'Feb 12', score: 138, isMainPoint: true },
@@ -133,6 +133,24 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
                 bottom: 40
               }}
             >
+              {examStep === 'step1' && (
+                <ReferenceArea 
+                  y1={182} 
+                  y2={210} 
+                  fill="#f1f1f1"
+                  fillOpacity={1}
+                  strokeOpacity={0}
+                  z={-1}
+                  label={{
+                    value: 'Passing range',
+                    position: 'insideTopLeft',
+                    fill: '#64748b',
+                    fontSize: 12,
+                    dx: 8,
+                    dy: 0
+                  }}
+                />
+              )}
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis 
                 dataKey="date" 
@@ -228,6 +246,12 @@ const PerformanceTrackingContainer = ({ examStep = 'step2' }: PerformanceTrackin
       </CardContent>
     </Card>
   );
-};
+}, (prevProps, nextProps) => {
+  // Only re-render if examStep changes
+  return prevProps.examStep === nextProps.examStep;
+});
+
+PerformanceTrackingContainer.displayName = 'PerformanceTrackingContainer';
 
 export default PerformanceTrackingContainer;
+
