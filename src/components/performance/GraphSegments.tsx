@@ -1,4 +1,3 @@
-
 import { ExamStep, ScoreRange, ScoreSegment } from "./types";
 import { getSegments } from "./utils";
 import PassingRangeBracket from "../PassingRangeBracket";
@@ -14,7 +13,7 @@ const GraphSegments = ({
 }: GraphSegmentsProps) => {
   const segments = getSegments(range, targetScore, examStep);
   return <>
-      <div className="relative h-full w-[50px] flex-shrink-0 border border-gray-400">
+      <div className="relative h-full w-[50px] flex-shrink-0">
         {segments.map(segment => <div key={`label-${segment.score}`} className="absolute text-sm text-gray-600 text-right whitespace-pre-line" style={{
         top: `${(range.max - segment.score) / (range.max - range.min) * 100}%`,
         transform: 'translateY(-50%)',
