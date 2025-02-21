@@ -13,7 +13,7 @@ const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => 
 
   return (
     <>
-      <div className="relative h-full w-[50px] flex-shrink-0">
+      <div className="relative h-full w-[50px] flex-shrink-0 bg-gray-100">
         {segments.map(segment => (
           <div
             key={`label-${segment.score}`}
@@ -50,3 +50,4 @@ const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => 
 };
 
 export default GraphSegments;
+

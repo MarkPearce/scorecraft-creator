@@ -3,7 +3,7 @@ import React from 'react';
 
 const PassingRangeBracket = () => {
   return (
-    <div className="relative w-8 h-8">
+    <div className="relative w-8 h-8 bg-purple-200">
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 32 102"
@@ -27,3 +27,4 @@ const PassingRangeBracket = () => {
 };
 
 export default PassingRangeBracket;
+
