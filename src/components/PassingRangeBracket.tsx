@@ -28,6 +28,9 @@ const PassingRangeBracket = () => {
           vectorEffect="non-scaling-stroke"
         />
       </svg>
+      <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 whitespace-nowrap text-sm text-gray-600">
+        Passing range
+      </span>
     </div>
   );
 };
