@@ -27,7 +27,7 @@ const GraphSegments = ({
 
         {examStep === 'step1' && <div className="absolute" style={{
         right: '0',
-        top: `${(range.max - 196) / (range.max - range.min) * 100}%`,
+        top: `${(range.max - 197.5) / (range.max - range.min) * 100}%`,
         transform: 'translateY(-50%)',
         zIndex: 5
       }}>
