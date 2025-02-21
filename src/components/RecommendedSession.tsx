@@ -23,7 +23,7 @@ const RecommendedSession = () => {
             </CardContent>
           </div>
           <div className="flex items-center justify-center p-6">
-            <img alt="Person working at computer" className="w-full h-auto max-w-[300px]" src="/lovable-uploads/1d4b8df5-435d-460c-9b05-c1c29b58e743.png" />
+            <img alt="Person working at computer" className="w-full h-auto max-w-[300px]" src="/lovable-uploads/7f2af8dd-6fd7-4ada-a3f5-ab4ba6e3b14b.png" />
           </div>
         </div>
       </Card>
