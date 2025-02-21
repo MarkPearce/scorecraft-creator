@@ -3,19 +3,27 @@ import React from 'react';
 
 const PassingRangeBracket = () => {
   return (
-    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128.68 49.23" className="h-full">
+    <svg 
+      id="Layer_2" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 128.68 49.23" 
+      className="h-full"
+      preserveAspectRatio="none"
+    >
       <g id="Layer_1-2">
         <g>
           <path 
             className="stroke-gray-600 fill-none" 
             strokeWidth="2"
             strokeMiterlimit="10"
+            vectorEffect="non-scaling-stroke"
             d="M128.68,1h-15.87c-1.1,0-2,.9-2,2v43.23c0,1.1.9,2,2,2h15.87"
           />
           <line 
             className="stroke-gray-600"
             strokeWidth="2"
             strokeMiterlimit="10"
+            vectorEffect="non-scaling-stroke"
             x1="110.81" 
             y1="24.62" 
             x2="100.17" 
@@ -37,4 +45,3 @@ const PassingRangeBracket = () => {
 };
 
 export default PassingRangeBracket;
-

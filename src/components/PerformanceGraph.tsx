@@ -58,10 +58,11 @@ const PerformanceGraph = ({
                 style={{
                   position: 'absolute',
                   left: '-78px',
-                  top: `${((range.max - 210) / (range.max - range.min)) * 100}%`,
-                  height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
+                  top: `${((range.max - 205) / (range.max - range.min)) * 100}%`,
+                  height: `${((205 - 190) / (range.max - range.min)) * 100}%`,
                   width: '128px',
-                  zIndex: 5
+                  zIndex: 5,
+                  transform: 'scale(1, 1)', // Maintain aspect ratio while scaling height
                 }}
               >
                 <PassingRangeBracket />
