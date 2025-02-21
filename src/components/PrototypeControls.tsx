@@ -27,6 +27,21 @@ const PrototypeControls = ({
   const [localScore, setLocalScore] = useState(score);
   const [localRange, setLocalRange] = useState(range);
 
+  // Ensure scores stay within range when range changes
+  useEffect(() => {
+    if (targetScore < range.min) {
+      onTargetScoreChange([range.min]);
+    } else if (targetScore > range.max) {
+      onTargetScoreChange([range.max]);
+    }
+
+    if (score < range.min) {
+      onScoreChange([range.min]);
+    } else if (score > range.max) {
+      onScoreChange([range.max]);
+    }
+  }, [range.min, range.max, targetScore, score, onTargetScoreChange, onScoreChange]);
+
   // Sync local state with props
   useEffect(() => {
     setLocalScore(score);
