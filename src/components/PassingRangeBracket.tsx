@@ -4,6 +4,9 @@ import React from 'react';
 const PassingRangeBracket = () => {
   return (
     <div className="relative w-8 h-8 bg-purple-500">
+      <span className="absolute right-full top-1/2 -translate-y-1/2 mr-2 whitespace-nowrap text-sm text-gray-600">
+        Passing range
+      </span>
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 32 25"
@@ -28,9 +31,6 @@ const PassingRangeBracket = () => {
           vectorEffect="non-scaling-stroke"
         />
       </svg>
-      <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 whitespace-nowrap text-sm text-gray-600">
-        Passing range
-      </span>
     </div>
   );
 };
