@@ -18,7 +18,7 @@ const PerformanceGraph = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
       <div className="performance-graph-container flex items-center justify-center pt-6 md:col-span-8">
-        <div className="relative">
+        <div className="relative bg-blue-50 p-6 rounded-lg">
           <div className="relative h-[300px] flex" ref={containerRef}>
             <GraphSegments 
               range={range}
