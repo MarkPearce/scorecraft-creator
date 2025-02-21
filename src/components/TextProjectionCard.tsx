@@ -36,7 +36,7 @@ export const TextProjectionCard = ({
             <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
               <Clock className="h-6 w-6 text-gray-600 mt-0.5" />
               <div>
-                <p className="font-medium text-gray-900">passing score</p>
+                <p className="font-medium text-gray-900">{examStep === 'step1' ? "95% pass rate" : "passing score"}</p>
                 <p className="text-sm">Expected in 2 months</p>
               </div>
             </div>
