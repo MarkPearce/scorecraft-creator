@@ -9,11 +9,11 @@ const RecommendedSession = () => {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
             <CardHeader className="p-5">
-              <CardTitle className="font-lato">Smart question sessions</CardTitle>
+              <CardTitle className="font-lato">Optimized question sessions</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
-                <p className="text-gray-600 font-lato">Start an AI-powered high yield Qbank session, stack-ranked by relevance to your performance</p>
+                <p className="text-gray-600 font-lato">Start an AI-powered question session with high-yield topics prioritized according to your Qbank performance.</p>
                 <div>
                   <Button variant="default" className="font-lato" onClick={() => setIsDialogOpen(true)}>
                     Start session
