@@ -54,15 +54,13 @@ const PerformanceGraph = ({
 
             {examStep === 'step1' && (
               <div
-                className="absolute pointer-events-none"
+                className="absolute"
                 style={{
                   position: 'absolute',
                   left: '-78px',
                   top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
-                  height: `${((210 - 182) / (range.max - range.min)) * 100}%`,
-                  width: '128px',
-                  zIndex: 5,
-                  transform: 'translateY(-50%)'
+                  transform: 'translateY(-50%)',
+                  zIndex: 5
                 }}
               >
                 <PassingRangeBracket />
