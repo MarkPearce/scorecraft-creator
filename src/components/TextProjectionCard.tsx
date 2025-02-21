@@ -11,7 +11,7 @@ export const TextProjectionCard = ({
 }: TextProjectionCardProps) => {
   const projectionText = examStep === 'step1' ? "Users with your current performance typically reach a 95% pass rate in 2 months" : "Users with your current performance and time to exam typically score 230-250 on a 3-digit scale";
   return <Card className="animate-fadeIn">
-      <CardHeader>
+      <CardHeader className="p-5">
         <CardTitle className="font-lato">Performance summary</CardTitle>
       </CardHeader>
       <CardContent>

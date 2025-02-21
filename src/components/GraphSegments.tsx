@@ -1,28 +1,26 @@
 
-import { calculatePosition } from "@/utils/scoreUtils";
+import { ExamStep, ScoreRange, ScoreSegment } from "./performance/types";
+import { getSegments } from "./performance/utils";
+import PassingRangeBracket from "./PassingRangeBracket";
 
 interface GraphSegmentsProps {
-  segments: Array<{
-    score: number;
-    color?: string;
-    label: string;
-  }>;
-  range: {
-    min: number;
-    max: number;
-  };
+  range: ScoreRange;
+  targetScore: number;
+  examStep: ExamStep;
 }
 
-const GraphSegments = ({ segments, range }: GraphSegmentsProps) => {
+const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => {
+  const segments = getSegments(range, targetScore, examStep);
+
   return (
     <>
-      <div className="relative h-full w-[50px] flex-shrink-0">
+      <div className="relative h-full w-[50px] flex-shrink-0 bg-gray-100">
         {segments.map(segment => (
           <div
             key={`label-${segment.score}`}
             className="absolute text-sm text-gray-600 text-right whitespace-pre-line"
             style={{
-              top: calculatePosition(segment.score, range),
+              top: `${((range.max - segment.score) / (range.max - range.min)) * 100}%`,
               transform: 'translateY(-50%)',
               right: '8px',
               minWidth: '200px',
@@ -32,6 +30,20 @@ const GraphSegments = ({ segments, range }: GraphSegmentsProps) => {
             {segment.label}
           </div>
         ))}
+
+        {examStep === 'step1' && (
+          <div
+            className="absolute"
+            style={{
+              right: '0',
+              top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
+              transform: 'translateY(-50%)',
+              zIndex: 5
+            }}
+          >
+            <PassingRangeBracket />
+          </div>
+        )}
       </div>
 
       <div className="relative ml-2 w-[60px] flex-shrink-0">
@@ -41,8 +53,8 @@ const GraphSegments = ({ segments, range }: GraphSegmentsProps) => {
               key={segment.score}
               className={`absolute w-full ${segment.color}`}
               style={{
-                height: `${(segments[index + 1].score - segment.score) / (range.max - range.min) * 100}%`,
-                top: calculatePosition(segments[index + 1].score, range)
+                height: `${((segments[index + 1].score - segment.score) / (range.max - range.min)) * 100}%`,
+                top: `${((range.max - segments[index + 1].score) / (range.max - range.min)) * 100}%`
               }}
             />
           ))}

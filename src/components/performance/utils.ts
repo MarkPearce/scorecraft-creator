@@ -50,11 +50,11 @@ export const getSegments = (range: ScoreRange, targetScore: number, examStep: Ex
       color: "bg-[#ED1B24]",
       label: `${Math.round(range.min)}`
     }, {
-      score: 196,
+      score: 190,
       color: "bg-[#FFC107]",
       label: ""
     }, {
-      score: 210,
+      score: 205,
       color: "bg-[#019444]",
       label: ""
     }, {

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProgressTracker = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [questionsAnswered, setQuestionsAnswered] = useState(45);
+  const [questionsAnswered, setQuestionsAnswered] = useState(65);
   const { toast } = useToast();
   const navigate = useNavigate();
 

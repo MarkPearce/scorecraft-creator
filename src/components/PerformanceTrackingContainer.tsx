@@ -26,14 +26,13 @@ const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
   if (examStep === 'step2') {
     if (score >= 265) return '#019444'; // dark green
     if (score >= 249) return '#22c55e'; // light green
-    if (score >= 214) return '#fbbf24'; // yellow - keeping #fbbf24 as #FFC205 isn't in our color system
+    if (score >= 214) return '#fbbf24'; // yellow
     return '#ea384c'; // red
   } else {
-    // Step 1 logic
-    if (score >= 265) return '#019444'; // dark green
-    if (score >= 231) return '#22c55e'; // light green - at or above national mean
-    if (score >= 196) return '#fbbf24'; // yellow - at or above passing standard
-    return '#ea384c'; // red - below passing standard
+    // Step 1 logic - aligned with reference area (190-205)
+    if (score > 205) return '#019444'; // dark green - above passing range
+    if (score >= 190 && score <= 205) return '#fbbf24'; // yellow - within passing range
+    return '#ea384c'; // red - below passing range
   }
 };
 
@@ -63,9 +62,9 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
       { date: 'Feb 12', score: 138, isMainPoint: true },
-      { date: 'Feb 19', score: 167, isMainPoint: true },
-      { date: 'Feb 26', score: 156, isMainPoint: true },
-      { date: 'Mar 4', score: 189, isMainPoint: true },
+      { date: 'Feb 19', score: 182, isMainPoint: true }, // Changed from 167
+      { date: 'Feb 26', score: 171, isMainPoint: true }, // Changed from 156
+      { date: 'Mar 4', score: 195, isMainPoint: true },  // Changed from 189
       { date: 'Mar 11', score: 203, isMainPoint: true }
     ] : [
       { date: 'Feb 12', score: 198, isMainPoint: true },
@@ -113,7 +112,7 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
 
   return (
     <Card className="animate-fadeIn">
-      <CardHeader>
+      <CardHeader className="p-5">
         <CardTitle className="font-lato">Performance over time</CardTitle>
         <CardDescription>
           <div className="text-sm text-gray-600 space-y-1 font-lato">
@@ -135,8 +134,8 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
             >
               {examStep === 'step1' && (
                 <ReferenceArea 
-                  y1={182} 
-                  y2={210} 
+                  y1={190} 
+                  y2={205} 
                   fill="#f1f1f1"
                   fillOpacity={1}
                   strokeOpacity={0}
@@ -247,11 +246,9 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
     </Card>
   );
 }, (prevProps, nextProps) => {
-  // Only re-render if examStep changes
   return prevProps.examStep === nextProps.examStep;
 });
 
 PerformanceTrackingContainer.displayName = 'PerformanceTrackingContainer';
 
 export default PerformanceTrackingContainer;
-

@@ -1,40 +1,13 @@
-
 import React from 'react';
-
 const PassingRangeBracket = () => {
-  return (
-    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128.68 49.23" className="h-full">
-      <g id="Layer_1-2">
-        <g>
-          <path 
-            className="stroke-gray-600 fill-none" 
-            strokeWidth="2"
-            strokeMiterlimit="10"
-            d="M128.68,1h-15.87c-1.1,0-2,.9-2,2v43.23c0,1.1.9,2,2,2h15.87"
-          />
-          <line 
-            className="stroke-gray-600"
-            strokeWidth="2"
-            strokeMiterlimit="10"
-            x1="110.81" 
-            y1="24.62" 
-            x2="100.17" 
-            y2="24.62"
-          />
-        </g>
-        <text 
-          className="font-lato text-base text-gray-600"
-          transform="translate(0 28.46)"
-        >
-          <tspan style={{letterSpacing: "-0.02em"}} x="0" y="0">P</tspan>
-          <tspan x="9.38" y="0">assing </tspan>
-          <tspan style={{letterSpacing: "-0.02em"}} x="55.63" y="0">r</tspan>
-          <tspan style={{letterSpacing: "0em"}} x="61.78" y="0">ange</tspan>
-        </text>
-      </g>
-    </svg>
-  );
+  return <div className="relative w-8 h-8">
+      <span className="absolute right-full top-1/2 -translate-y-1/2 mr-2 whitespace-nowrap text-sm text-gray-600">
+        Passing range
+      </span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 25" width="32" height="25" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <path id="bracket" d="M32 1H18.8C17.2 1 16 2.5 16 4.2v16.6c0 1.7 1.2 3.2 2.8 3.2H32" className="fill-none stroke-gray-600" strokeWidth="2" strokeMiterlimit="10" vectorEffect="non-scaling-stroke" />
+        <path id="nib" d="M16 12.5H0" className="fill-none stroke-gray-600" strokeWidth="2.4528" strokeMiterlimit="10" vectorEffect="non-scaling-stroke" />
+      </svg>
+    </div>;
 };
-
 export default PassingRangeBracket;
-
