@@ -36,7 +36,7 @@ const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => 
             className="absolute"
             style={{
               right: '0',
-              top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
+              top: `${((range.max - 214) / (range.max - range.min)) * 100}%`,  // Changed from 196 to 214 to center on yellow area
               transform: 'translateY(-50%)',
               zIndex: 5
             }}
