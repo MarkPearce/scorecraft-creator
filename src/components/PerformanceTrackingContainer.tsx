@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceArea } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -113,7 +112,7 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
 
   return (
     <Card className="animate-fadeIn">
-      <CardHeader>
+      <CardHeader className="p-5">
         <CardTitle className="font-lato">Performance over time</CardTitle>
         <CardDescription>
           <div className="text-sm text-gray-600 space-y-1 font-lato">
@@ -247,11 +246,9 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
     </Card>
   );
 }, (prevProps, nextProps) => {
-  // Only re-render if examStep changes
   return prevProps.examStep === nextProps.examStep;
 });
 
 PerformanceTrackingContainer.displayName = 'PerformanceTrackingContainer';
 
 export default PerformanceTrackingContainer;
-

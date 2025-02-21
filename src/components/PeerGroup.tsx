@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -17,10 +16,8 @@ const PeerGroup = memo(({
 }: PeerGroupProps) => {
   const [selectedPeerGroup, setSelectedPeerGroup] = useState<"all" | "same-objective" | "same-state" | "same-school">("all");
   
-  // Generate distribution data once and memoize it
   const data = useMemo(() => generateDistributionData(), []);
   
-  // Calculate percentile when score changes
   const studentPercentile = useMemo(() => 
     findPercentile(studentScore), 
     [studentScore]
@@ -30,7 +27,7 @@ const PeerGroup = memo(({
 
   return (
     <Card className="animate-fadeIn">
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader className="flex flex-row items-center justify-between p-5">
         <CardTitle>Peer group comparison</CardTitle>
       </CardHeader>
       <CardContent>
@@ -67,7 +64,6 @@ const PeerGroup = memo(({
     </Card>
   );
 }, (prevProps, nextProps) => {
-  // Only re-render if studentScore or examStep changes
   return prevProps.studentScore === nextProps.studentScore && 
          prevProps.examStep === nextProps.examStep;
 });
@@ -75,4 +71,3 @@ const PeerGroup = memo(({
 PeerGroup.displayName = 'PeerGroup';
 
 export default PeerGroup;
-
