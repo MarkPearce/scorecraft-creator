@@ -1,6 +1,6 @@
 
 import { Settings } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import PrototypeControls from "./PrototypeControls";
 import PerformanceGraph from "./PerformanceGraph";
 import {
@@ -45,19 +45,21 @@ const PerformanceScoreCard = ({
   const [score, setScore] = useState(defaults.initialScore);
   const [targetScore, setTargetScore] = useState(260);
   const [range, setRange] = useState(defaults.range);
+  const [key, setKey] = useState(0); // Add a key to force re-render
 
   useEffect(() => {
     const newDefaults = STEP_DEFAULTS[examStep];
     setScore(newDefaults.initialScore);
     setRange(newDefaults.range);
+    setKey(prev => prev + 1); // Force re-render when examStep changes
   }, [examStep]);
 
-  const handleTargetScoreChange = (value: number) => {
+  const handleTargetScoreChange = useCallback((value: number) => {
     setTargetScore(value);
     onTargetScoreChange?.(value);
-  };
+  }, [onTargetScoreChange]);
 
-  const handleRangeChange = (type: 'min' | 'max', value: string) => {
+  const handleRangeChange = useCallback((type: 'min' | 'max', value: string) => {
     const numValue = parseInt(value, 10);
     if (isNaN(numValue)) return;
     
@@ -65,7 +67,8 @@ const PerformanceScoreCard = ({
       ...prev,
       [type]: numValue
     }));
-  };
+    setKey(prev => prev + 1); // Force re-render when range changes
+  }, []);
 
   return (
     <Card className={`animate-fadeIn ${className}`}>
@@ -90,7 +93,10 @@ const PerformanceScoreCard = ({
                   score={score}
                   onRangeChange={handleRangeChange}
                   onTargetScoreChange={(value) => handleTargetScoreChange(value[0])}
-                  onScoreChange={(value) => setScore(value[0])}
+                  onScoreChange={(value) => {
+                    setScore(value[0]);
+                    setKey(prev => prev + 1);
+                  }}
                 />
               </div>
             </DialogContent>
@@ -101,6 +107,7 @@ const PerformanceScoreCard = ({
       <CardContent>
         <div className="w-full max-w-[1000px] mx-auto">
           <PerformanceGraph 
+            key={key}
             score={score}
             targetScore={targetScore}
             range={range}
