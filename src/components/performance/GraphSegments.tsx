@@ -1,3 +1,4 @@
+
 import { ExamStep, ScoreRange, ScoreSegment } from "./types";
 import { getSegments } from "./utils";
 import PassingRangeBracket from "../PassingRangeBracket";
@@ -26,8 +27,7 @@ const GraphSegments = ({
 
         {examStep === 'step1' && <div className="absolute" style={{
         right: '0',
-        top: `${(range.max - 214) / (range.max - range.min) * 100}%`,
-        // Changed from 196 to 214 to center on yellow area
+        top: `${(range.max - 196) / (range.max - range.min) * 100}%`,
         transform: 'translateY(-50%)',
         zIndex: 5
       }}>
