@@ -1,7 +1,7 @@
 
-import { ExamStep, ScoreRange, ScoreSegment } from "./types";
-import { getSegments } from "./utils";
-import PassingRangeBracket from "../PassingRangeBracket";
+import { ExamStep, ScoreRange, ScoreSegment } from "./performance/types";
+import { getSegments } from "./performance/utils";
+import PassingRangeBracket from "./PassingRangeBracket";
 
 interface GraphSegmentsProps {
   range: ScoreRange;
