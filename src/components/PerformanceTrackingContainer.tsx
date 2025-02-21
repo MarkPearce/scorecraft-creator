@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceArea } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useMemo, memo } from 'react';
@@ -25,14 +26,13 @@ const getDotColor = (score: number, examStep: 'step1' | 'step2'): string => {
   if (examStep === 'step2') {
     if (score >= 265) return '#019444'; // dark green
     if (score >= 249) return '#22c55e'; // light green
-    if (score >= 214) return '#fbbf24'; // yellow - keeping #fbbf24 as #FFC205 isn't in our color system
+    if (score >= 214) return '#fbbf24'; // yellow
     return '#ea384c'; // red
   } else {
-    // Step 1 logic
-    if (score >= 265) return '#019444'; // dark green
-    if (score >= 231) return '#22c55e'; // light green - at or above national mean
-    if (score >= 196) return '#fbbf24'; // yellow - at or above passing standard
-    return '#ea384c'; // red - below passing standard
+    // Step 1 logic - aligned with reference area (190-205)
+    if (score > 205) return '#019444'; // dark green - above passing range
+    if (score >= 190 && score <= 205) return '#fbbf24'; // yellow - within passing range
+    return '#ea384c'; // red - below passing range
   }
 };
 
