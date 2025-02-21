@@ -52,6 +52,7 @@ const PerformanceGraph = ({
               )}
             </div>
 
+            {/* Hidden for now while we try a new approach
             {examStep === 'step1' && (
               <div
                 className="absolute pointer-events-none"
@@ -67,6 +68,7 @@ const PerformanceGraph = ({
                 <PassingRangeBracket />
               </div>
             )}
+            */}
           </div>
         </div>
       </div>
