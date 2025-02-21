@@ -8,9 +8,6 @@ const PassingRangeBracket = () => {
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 32 102"
         className="h-full"
-        style={{
-          enableBackground: 'new 0 0 32 102'
-        }}
       >
         <path 
           d="M32 1H18.8C17.2 1 16 2.2 16 3.8v94.5c0 1.5 1.2 2.8 2.8 2.8H32" 
