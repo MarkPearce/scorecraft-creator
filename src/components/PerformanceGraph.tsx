@@ -1,7 +1,6 @@
 
 import { useRef } from "react";
 import ScoreIndicator from "./ScoreIndicator";
-import PassingRangeBracket from "./PassingRangeBracket";
 import ScoreDisplay from "./performance/ScoreDisplay";
 import GraphSegments from "./performance/GraphSegments";
 import { PerformanceGraphProps } from "./performance/types";
@@ -48,21 +47,6 @@ const PerformanceGraph = ({
                   }}
                 >
                   <ScoreIndicator label="Target Score" value={targetScore} />
-                </div>
-              )}
-
-              {examStep === 'step1' && (
-                <div
-                  className="absolute"
-                  style={{
-                    position: 'absolute',
-                    right: '0',
-                    top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
-                    transform: 'translateY(-50%)',
-                    zIndex: 5
-                  }}
-                >
-                  <PassingRangeBracket />
                 </div>
               )}
             </div>

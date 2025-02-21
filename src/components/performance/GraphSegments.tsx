@@ -1,6 +1,7 @@
 
 import { ExamStep, ScoreRange, ScoreSegment } from "./types";
 import { getSegments } from "./utils";
+import PassingRangeBracket from "../PassingRangeBracket";
 
 interface GraphSegmentsProps {
   range: ScoreRange;
@@ -29,6 +30,20 @@ const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => 
             {segment.label}
           </div>
         ))}
+
+        {examStep === 'step1' && (
+          <div
+            className="absolute"
+            style={{
+              right: '0',
+              top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
+              transform: 'translateY(-50%)',
+              zIndex: 5
+            }}
+          >
+            <PassingRangeBracket />
+          </div>
+        )}
       </div>
 
       <div className="relative ml-2 w-[60px] flex-shrink-0">
@@ -50,4 +65,3 @@ const GraphSegments = ({ range, targetScore, examStep }: GraphSegmentsProps) => 
 };
 
 export default GraphSegments;
-
