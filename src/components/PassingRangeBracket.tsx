@@ -16,6 +16,7 @@ const PassingRangeBracket = () => {
         className="fill-none stroke-gray-600" 
         strokeWidth="2"
         strokeMiterlimit="10"
+        vectorEffect="non-scaling-stroke"
       />
       <path 
         id="nib"
@@ -23,6 +24,7 @@ const PassingRangeBracket = () => {
         className="fill-none stroke-gray-600" 
         strokeWidth="2.4528"
         strokeMiterlimit="10"
+        vectorEffect="non-scaling-stroke"
       />
     </svg>
   );
