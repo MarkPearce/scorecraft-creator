@@ -6,7 +6,7 @@ const PassingRangeBracket = () => {
     <div className="relative w-8 h-8 bg-purple-500">
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 32 102"
+        viewBox="0 0 32 50"
         width="32"
         height="50"
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
