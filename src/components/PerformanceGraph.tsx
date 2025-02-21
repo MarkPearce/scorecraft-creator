@@ -50,22 +50,22 @@ const PerformanceGraph = ({
                   <ScoreIndicator label="Target Score" value={targetScore} />
                 </div>
               )}
-            </div>
 
-            {examStep === 'step1' && (
-              <div
-                className="absolute"
-                style={{
-                  position: 'absolute',
-                  right: '0',  // Align to the right edge
-                  top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
-                  transform: 'translateY(-50%)',
-                  zIndex: 5
-                }}
-              >
-                <PassingRangeBracket />
-              </div>
-            )}
+              {examStep === 'step1' && (
+                <div
+                  className="absolute"
+                  style={{
+                    position: 'absolute',
+                    right: '0',
+                    top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
+                    transform: 'translateY(-50%)',
+                    zIndex: 5
+                  }}
+                >
+                  <PassingRangeBracket />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
