@@ -57,7 +57,7 @@ const PerformanceGraph = ({
                 className="absolute"
                 style={{
                   position: 'absolute',
-                  left: '-78px',
+                  left: '-32px',  // Changed from -78px to -32px to align with color bars
                   top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
                   transform: 'translateY(-50%)',
                   zIndex: 5
