@@ -22,7 +22,6 @@ const PassingRangeBracket = () => {
           strokeMiterlimit="10"
         />
       </svg>
-      <span className="text-sm text-gray-600 mt-2 whitespace-nowrap">Passing range</span>
     </div>
   );
 };
