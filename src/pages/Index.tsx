@@ -7,6 +7,7 @@ import ProgressTracker from "@/components/ProgressTracker";
 const Index = () => {
   const navigate = useNavigate();
   return <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+      {/* Prompting by mark */}
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
