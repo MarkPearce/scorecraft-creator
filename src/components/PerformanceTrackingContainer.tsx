@@ -62,9 +62,9 @@ const PerformanceTrackingContainer = memo(({ examStep = 'step2' }: PerformanceTr
   const data: DataPoint[] = useMemo(() => {
     const mainPoints = examStep === 'step1' ? [
       { date: 'Feb 12', score: 138, isMainPoint: true },
-      { date: 'Feb 19', score: 167 + (Math.random() * 40 - 20), isMainPoint: true }, // Random ±20
-      { date: 'Feb 26', score: 156 + (Math.random() * 40 - 20), isMainPoint: true }, // Random ±20
-      { date: 'Mar 4', score: 189 + (Math.random() * 40 - 20), isMainPoint: true },  // Random ±20
+      { date: 'Feb 19', score: 167, isMainPoint: true },
+      { date: 'Feb 26', score: 156, isMainPoint: true },
+      { date: 'Mar 4', score: 189, isMainPoint: true },
       { date: 'Mar 11', score: 203, isMainPoint: true }
     ] : [
       { date: 'Feb 12', score: 198, isMainPoint: true },
