@@ -57,7 +57,7 @@ const PerformanceGraph = ({
                 className="absolute"
                 style={{
                   position: 'absolute',
-                  left: '50px',  // Position within the gray area
+                  right: '0',  // Align to the right edge
                   top: `${((range.max - 196) / (range.max - range.min)) * 100}%`,
                   transform: 'translateY(-50%)',
                   zIndex: 5
