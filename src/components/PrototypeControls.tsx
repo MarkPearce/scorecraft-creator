@@ -1,7 +1,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 interface PrototypeControlsProps {
   range: {
@@ -23,10 +23,6 @@ const PrototypeControls = ({
   onTargetScoreChange,
   onScoreChange,
 }: PrototypeControlsProps) => {
-  // Local state to handle immediate updates
-  const [localScore, setLocalScore] = useState(score);
-  const [localRange, setLocalRange] = useState(range);
-
   // Ensure scores stay within range when range changes
   useEffect(() => {
     if (targetScore < range.min) {
@@ -40,35 +36,7 @@ const PrototypeControls = ({
     } else if (score > range.max) {
       onScoreChange([range.max]);
     }
-  }, [range.min, range.max, targetScore, score, onTargetScoreChange, onScoreChange]);
-
-  // Sync local state with props
-  useEffect(() => {
-    setLocalScore(score);
-    setLocalRange(range);
-  }, [score, range]);
-
-  const handleRangeChange = (type: 'min' | 'max', value: string) => {
-    const numValue = parseInt(value, 10);
-    if (isNaN(numValue)) return;
-    
-    // Update local state immediately
-    setLocalRange(prev => ({
-      ...prev,
-      [type]: numValue
-    }));
-    
-    // Propagate change to parent
-    onRangeChange(type, value);
-  };
-
-  const handleScoreChange = (value: number[]) => {
-    // Update local state immediately
-    setLocalScore(value[0]);
-    
-    // Propagate change to parent
-    onScoreChange(value);
-  };
+  }, [range.min, range.max]);
 
   return (
     <div className="w-full space-y-6">
@@ -80,8 +48,8 @@ const PrototypeControls = ({
           <Input
             id="min-range"
             type="number"
-            value={localRange.min}
-            onChange={(e) => handleRangeChange('min', e.target.value)}
+            value={range.min}
+            onChange={(e) => onRangeChange('min', e.target.value)}
             className="w-full"
           />
         </div>
@@ -92,22 +60,22 @@ const PrototypeControls = ({
           <Input
             id="max-range"
             type="number"
-            value={localRange.max}
-            onChange={(e) => handleRangeChange('max', e.target.value)}
+            value={range.max}
+            onChange={(e) => onRangeChange('max', e.target.value)}
             className="w-full"
           />
         </div>
       </div>
       <div>
         <label htmlFor="prediction-score" className="block text-sm font-medium text-gray-700 mb-1">
-          Prediction: {localScore}
+          Prediction: {score}
         </label>
         <Slider
-          value={[localScore]}
-          min={localRange.min}
-          max={localRange.max}
+          value={[score]}
+          min={range.min}
+          max={range.max}
           step={1}
-          onValueChange={handleScoreChange}
+          onValueChange={onScoreChange}
           className="relative w-full h-2"
         />
       </div>
@@ -116,3 +84,4 @@ const PrototypeControls = ({
 };
 
 export default PrototypeControls;
+
