@@ -25,7 +25,7 @@ export const getScoreColor = (score: number, targetScore: number, examStep: Exam
   } else {
     if (score >= targetScore) return "text-[#019444]";
     if (score >= 230) return "text-[#8DC641]";
-    if (score >= 200) return "text-[#FFC107]";
+    if (score >= 214) return "text-[#FFC107]";
     return "text-[#ED1B24]";
   }
 };
@@ -38,7 +38,7 @@ export const getBackgroundColor = (score: number, targetScore: number, examStep:
   } else {
     if (score >= targetScore) return "bg-[#019444]/15";
     if (score >= 230) return "bg-[#8DC641]/15";
-    if (score >= 200) return "bg-[#FFC107]/15";
+    if (score >= 214) return "bg-[#FFC107]/15";
     return "bg-[#ED1B24]/15";
   }
 };
@@ -67,9 +67,9 @@ export const getSegments = (range: ScoreRange, targetScore: number, examStep: Ex
       color: "bg-[#ED1B24]",
       label: `${Math.round(range.min)}`
     }, {
-      score: 200,
+      score: 214,
       color: "bg-[#FFC107]",
-      label: "Passing standard: 200"
+      label: "Passing standard: 214"
     }, {
       score: 230,
       color: "bg-[#8DC641]",
