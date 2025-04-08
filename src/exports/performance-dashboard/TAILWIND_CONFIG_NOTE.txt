@@ -1,0 +1,8 @@
+
+IMPORTANT: The tailwind.config.ts file in the root of your project contains essential styling configurations for the Performance Dashboard components.
+
+Please ensure this configuration is properly integrated into your project's Tailwind setup, either by:
+1. Copying the entire file (if you don't already have custom Tailwind configurations), or
+2. Merging the relevant parts with your existing configuration
+
+See TAILWIND_INTEGRATION.md for detailed instructions on how to properly merge configurations.

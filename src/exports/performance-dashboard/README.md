@@ -25,6 +25,20 @@ npm install recharts date-fns lucide-react
 
 3. Make sure your project has shadcn/ui components installed. If not, follow the [shadcn/ui installation guide](https://ui.shadcn.com/docs/installation).
 
+4. **Important:** Copy the `tailwind.config.ts` file from this package to your project, or merge it with your existing configuration. The dashboard components rely on specific color schemes, spacing, and other custom design tokens defined in this configuration.
+
+## Tailwind Configuration
+
+The dashboard components use custom Tailwind CSS configurations, particularly for:
+
+- Custom colors scheme (Amboss brand colors)
+- Custom spacing scales
+- Custom font sizes
+- Custom border radius
+- Custom animations
+
+Make sure these configurations are properly integrated into your project's Tailwind setup.
+
 ## Component Structure
 
 The performance dashboard consists of the following main components:
@@ -53,6 +67,31 @@ function YourComponent() {
     <div>
       <h1>Student Dashboard</h1>
       <SinglePageReport />
+    </div>
+  );
+}
+```
+
+For more granular control, you can use individual components:
+
+```jsx
+import { 
+  PerformanceScoreCard, 
+  PerformanceTrackingContainer, 
+  PerformanceSummary 
+} from './path/to/performance-dashboard';
+
+function CustomDashboard() {
+  return (
+    <div>
+      <h2>Performance Score</h2>
+      <PerformanceScoreCard examStep="step2" />
+      
+      <h2>Your Progress</h2>
+      <PerformanceTrackingContainer examStep="step2" />
+      
+      <h2>Topic Analysis</h2>
+      <PerformanceSummary examStep="step2" />
     </div>
   );
 }
@@ -92,6 +131,19 @@ The dashboard includes a header component (`PageHeader.tsx`). You can:
 1. Replace it with your own application header
 2. Remove it by modifying the `SinglePageReport.tsx` component
 
+## Shadcn/UI Integration
+
+This dashboard uses the following shadcn/ui components:
+- Button
+- Card
+- Dialog
+- RadioGroup
+- Select
+- Popover
+- Calendar
+
+Make sure these components are available in your project. You may need to adjust import paths in the dashboard components to match your project's structure.
+
 ## Responsive Design
 
 The dashboard is designed to be responsive across different screen sizes. The components use:
@@ -99,6 +151,16 @@ The dashboard is designed to be responsive across different screen sizes. The co
 - Responsive grid layouts 
 - Flexible width components
 - Mobile-friendly interaction patterns
+
+## Tailwind Class Reference
+
+The dashboard uses these key Tailwind color classes that should be present in your configuration:
+- bg-gray-50, bg-gray-100, text-gray-600, text-gray-900, etc.
+- bg-blue-50, bg-blue-600, text-blue-700, etc.
+- bg-red-50, text-red-600, etc.
+- bg-green-50, text-green-600, etc.
+- bg-yellow-50, text-yellow-600, etc.
+- bg-amboss-brand (custom brand color)
 
 ## Limitations and Considerations
 
@@ -112,6 +174,7 @@ Common issues:
 - **Styling conflicts**: Ensure your Tailwind configuration includes all the used utility classes.
 - **Missing icons**: Make sure Lucide React is installed and properly imported.
 - **Chart rendering issues**: Check that Recharts is properly installed and your data format matches what the charts expect.
+- **Component import errors**: Verify that the import paths match your project structure.
 
 ## License
 

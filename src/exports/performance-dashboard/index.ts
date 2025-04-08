@@ -12,3 +12,7 @@ export { default as ScoreIndicator } from './components/ScoreIndicator';
 
 // Types export
 export * from './components/performance/types';
+
+// Note: This export package doesn't include shadcn/ui components.
+// Make sure your project has shadcn/ui installed and properly configured.
+// See README.md for more details on required dependencies.
